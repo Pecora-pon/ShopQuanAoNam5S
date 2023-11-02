@@ -360,14 +360,6 @@
                         </li>
 
                     </ul>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
-                                <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
-                            </a>
-                        </li>
-
-                    </ul>
                     <%--                    <a--%>
                     <%--                            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"--%>
                     <%--                            target="_blank"--%>
@@ -533,20 +525,15 @@
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
-                                    áo Nam 5S</a>
+                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần áo Nam 5S</a>
                             </div>
                             <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
-                                    chủ</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
-                                    phẩm</a>
+                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang chủ</a>
+                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản phẩm</a>
 
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                   target="_blank" class="footer-link me-4">Thống kê</a>
+                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Thống kê</a>
 
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                   target="_blank" class="footer-link me-4">Hỗ trợ</a>
+                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Hỗ trợ</a>
                             </div>
                         </div>
                     </footer>

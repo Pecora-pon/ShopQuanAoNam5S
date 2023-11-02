@@ -29,22 +29,14 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/nhanvien.jsp
-    <title>Nhân viên</title>
-=======
     <title>Chức vụ</title>
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86:src/main/webapp/WEB-INF/view/admin/khach-hang/index.jsp
 
     <meta name="description" content=""/>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/nhanvien.jsp
-
-=======
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86:src/main/webapp/WEB-INF/view/admin/khach-hang/index.jsp
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -328,11 +320,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/nhanvien.jsp
-                            <a href="/nhan-vien" class="menu-link">
-=======
                             <a href="form-layouts-vertical.html" class="menu-link">
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86:src/main/webapp/WEB-INF/view/admin/khach-hang/index.jsp
                                 <div data-i18n="Vertical Form">Quản lý nhân viên</div>
                             </a>
                         </li>
@@ -375,17 +363,6 @@
                         </li>
 
                     </ul>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/nhanvien.jsp
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
-                                <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
-                            </a>
-                        </li>
-
-                    </ul>
-=======
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86:src/main/webapp/WEB-INF/view/admin/khach-hang/index.jsp
                     <%--                    <a--%>
                     <%--                            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"--%>
                     <%--                            target="_blank"--%>
@@ -535,168 +512,6 @@
 
             <!-- / Navbar -->
 
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/nhanvien.jsp
-            <!-- Content wrapper -->
-            <div class="content-wrapper">
-                <div class="container-xxl flex-grow-1 container-p-y">
-                    <!--Content -->
-                    <!-- Table add -->
-                    <div class="card">
-                        <h3 class="card-header">Quản lý nhân Viên</h3>
-                        <div class="card-body">
-                            <form:form action="/nhan-vien-add" modelAttribute="nv" method="POST">
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">ID nhân viên</label>
-                                        <form:input class="form-control" path="nhanVienID" disabled="true"
-                                                    value="${nv.nhanVienID}"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Tên nhân viên</label>
-                                        <form:input class="form-control" path="hoTen" value="${nv.hoTen}"/>
-                                        <form:errors path="hoTen"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Địa chỉ</label>
-                                        <form:input class="form-control" path="diaChi" value="${nv.diaChi}"/>
-                                        <form:errors path="diaChi"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Số điện thoại</label>
-                                        <form:input class="form-control" path="soDienThoai" value="${nv.soDienThoai}"/>
-
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Chức vụ</label>
-                                        <form:input class="form-control" path="chucVu" value="${nv.chucVu}"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Tên đăng nhập</label>
-                                        <form:input class="form-control" path="tenDangNhap" value="${nv.tenDangNhap}"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Email</label>
-                                        <form:input class="form-control" path="email" value="${nv.email}"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Mật khẩu</label>
-                                        <form:input class="form-control" path="matKhau" value="${nv.matKhau}"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Trạng thái</label>
-                                        <form:radiobutton path="trangThai" value="1" checked="true"/> Hoạt động
-                                        <form:radiobutton path="trangThai" value="0"/> Nghỉ
-                                    </div>
-                                </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
-                                </div>
-                            </form:form>
-                        </div>
-                    </div>
-
-                    <!-- Table add -->
-                    <!--Content -->
-                    <div class="card">
-                        <form>
-                            <input type="text" name="keyword" placeholder="tìm kiếm họ tên">
-                            <button type="submit">Search</button>
-                        </form>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Nhân Viên ID</th>
-                                <th>Họ tên</th>
-                                <th>Địa chỉ</th>
-                                <th>Số điện thoại</th>
-                                <th>Chức vụ</th>
-                                <th>Tên đăng nhập</th>
-                                <th>Email</th>
-                                <th>Mật khẩu</th>
-                                <th>Trạng thái</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody class="table-border-bottom-0">
-                            <c:forEach items="${listNhanVien}" var="nhanvien">
-                                <tr>
-                                    <td>${nhanvien.nhanVienID}</td>
-                                    <td>${nhanvien.hoTen}</td>
-                                    <td>${nhanvien.diaChi}</td>
-                                    <td>${nhanvien.soDienThoai}</td>
-                                    <td>${nhanvien.chucVu}</td>
-                                    <td>${nhanvien.tenDangNhap}</td>
-                                    <td>${nhanvien.email}</td>
-                                    <td>${nhanvien.matKhau}</td>
-                                    <td>
-                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>
-                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>
-                                    </td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                   href="/nhan-vien-view-update/${nhanvien.nhanVienID}"><i
-                                                        class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item"
-                                                   href="/nhan-vien/delete/${nhanvien.nhanVienID}"><i
-                                                        class="bx bx-trash me-1"></i> Xóa</a>
-                                            </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <nav aria-label="Page navigation example">
-                         <ul class="pagination">
-                             <c:forEach begin="0" end="${totalPages}" var="page">
-                                 <c:choose>
-                                     <c:when test="${page == currentPage}">
-                                         <li class="page-item active"><span class="page-link">${page}</span></li>
-                                     </c:when>
-                                     <c:otherwise>
-                                         <li class="page-item"><a class="page-link" href="/nhan-vien/page?page=${page}">${page}</a></li>
-                                     </c:otherwise>
-                                 </c:choose>
-                             </c:forEach>
-                         </ul>
-                        </nav>
-                    </div>
-                    <!--Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
-                                    áo Nam 5S</a>
-                            </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
-                                    chủ</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
-                                    phẩm</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                   target="_blank" class="footer-link me-4">Thống kê</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                   target="_blank" class="footer-link me-4">Hỗ trợ</a>
-                            </div>
-                        </div>
-                    </footer>
-                    <!--Footer -->
-                </div>
-            </div>
-=======
 <div class="content-wrapper">
     <div class="container-xxl flex-grow-1 container-p-y">
         <!--Content -->
@@ -843,7 +658,6 @@
         <!--Footer -->
     </div>
 </div>
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86:src/main/webapp/WEB-INF/view/admin/khach-hang/index.jsp
             <!-- Content wrapper -->
 
         </div>
@@ -878,8 +692,4 @@
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
-<<<<<<< HEAD:src/main/webapp/WEB-INF/view/admin/nhanvien.jsp
 </html>
-=======
-</html>
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86:src/main/webapp/WEB-INF/view/admin/khach-hang/index.jsp

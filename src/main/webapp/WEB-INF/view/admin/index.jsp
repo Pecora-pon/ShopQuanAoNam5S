@@ -360,14 +360,6 @@
                         </li>
 
                     </ul>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
-                                <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
-                            </a>
-                        </li>
-
-                    </ul>
                     <%--                    <a--%>
                     <%--                            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"--%>
                     <%--                            target="_blank"--%>

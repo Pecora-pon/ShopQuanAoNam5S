@@ -45,7 +45,7 @@ public class KhachHangServiceImpl implements KhachHangService {
 
     @Override
     public List<KhachHang> findTenOrDiaChi(String keyword) {
-        return null;
+        return khachHangRepo.searchByHoTenOrTenDangNhap(keyword);
     }
 
 
