@@ -12,7 +12,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
+    <title>Quần áo nam 5S</title>
 
 
     <!-- Google Font -->
@@ -20,7 +20,7 @@
     rel="stylesheet">
 
     <!-- Css Styles -->
-        <link rel="stylesheet" href="../mainshop/mainshop2/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2/css/font-awesome.min.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2/css/elegant-icons.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2//magnific-popup.css" type="text/css">
@@ -61,7 +61,7 @@
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
+            <p>Miễn phí vận chuyển, 30-day trả lại hoặc hoàn tiền.</p>
         </div>
     </div>
     <!-- Offcanvas Menu End -->
@@ -73,13 +73,13 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-7">
                         <div class="header__top__left">
-                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                            <p>Miễn phí vận chuyển, 30-day trả lại hoặc hoàn tiền.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#">Sign in</a>
+                                <a href="#">Đăng nhập</a>
                                 <a href="#">FAQs</a>
                             </div>
                             <div class="header__top__hover">
@@ -105,19 +105,17 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li class="active"><a href="./index.html">Home</a></li>
-                            <li><a href="./shop.html">Shop</a></li>
-                            <li><a href="#">Pages</a>
+                            <li class="active"><a href="/shop/main-shop">Trang chủ</a></li>
+                            <li><a href="/list-san-pham/page">Shop</a></li>
+                            <li><a href="#">Tìm hiểu thêm</a>
                                 <ul class="dropdown">
-                                    <li><a href="./about.html">About Us</a></li>
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="/shop/about">Về chúng tôi</a></li>
+                                    <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
+                                    <li><a href="./blog-details.html">Blog</a></li>
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contacts</a></li>
+                            <li><a href="/shop/lien-he">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
