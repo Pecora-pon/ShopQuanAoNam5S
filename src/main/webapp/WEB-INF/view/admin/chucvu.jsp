@@ -295,7 +295,7 @@
                 </li>
                 <!-- Forms -->
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/chuc-vu" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Chức vụ</div>
                     </a>
@@ -359,6 +359,14 @@
                         <li class="menu-item">
                             <a href="form-layouts-vertical.html" class="menu-link">
                                 <div data-i18n="Vertical Form">Danh sách đơn hàng</div>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="form-layouts-vertical.html" class="menu-link">
+                                <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
                             </a>
                         </li>
 
