@@ -1,7 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.KhachHang;
-import com.example.demo.entity.NhanVien;
+
 import org.springframework.data.domain.Page;
 
 import java.util.List;
@@ -19,5 +19,6 @@ public interface KhachHangService {
     void delete(Integer khachHangId);
 
     List<KhachHang> findTenOrDiaChi(String keyword);
+
 
 }
