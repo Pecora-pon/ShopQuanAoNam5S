@@ -1,7 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.ChucVu;
+import com.example.demo.service.ChucVuService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.util.List;
 
 @Controller
 public class AdminController {
@@ -33,6 +39,28 @@ public class AdminController {
     @RequestMapping("/doimatkhau")
     public String pass() {
         return "admin/doimatkhau";
+    }
+
+//    @RequestMapping("/gio-hang")
+//    public String giohang() {
+//        return "shop/gio-hang";
+//    }
+
+//    @RequestMapping("/list-san-pham")
+//    public String listsanpham() {
+//        return "shop/san-pham";
+//    }
+    @RequestMapping("/shop-san-pham/detail")
+    public String detailsanpham() {
+        return "shop/san-pham-detail";
+    }
+    @RequestMapping("/shop/about")
+    public String about(){
+        return "shop/about";
+    }
+    @RequestMapping("/shop/lien-he")
+    public String contact(){
+        return "shop/lien-he";
     }
 
 }
