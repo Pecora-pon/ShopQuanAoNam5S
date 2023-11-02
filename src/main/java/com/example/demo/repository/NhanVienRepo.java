@@ -1,17 +1,3 @@
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-package com.example.demo.repository;
-
-import com.example.demo.entity.NhanVien;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
-}
-=======
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86
 package com.example.demo.repository;
 
 
@@ -24,28 +10,15 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
-<<<<<<< HEAD
+import java.util.Optional;
 
 @Repository
 public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
     @Query("SELECT n FROM NhanVien n WHERE n.hoTen LIKE %?1%")
     List<NhanVien> searchByHoTenOrTenDangNhap(String keyword);
-
-
-}
-=======
-import java.util.Optional;
-
-@Repository
-public interface NhanVienRepo extends JpaRepository<NhanVien, Integer> {
-    @Query("SELECT n FROM NhanVien n WHERE n.hoTen LIKE %?1%")
-    List<NhanVien> searchByHoTenOrTenDangNhap(String keyword);
-
-    NhanVien findByTenDangNhap(String tenDangNhap);
+    NhanVien findByTenDangNhap(String username);
 
 //    Optional<NhanVien> findbyUsername(String username);
 
 
 }
->>>>>>> 2e4f6e7d57debb762378d8ed3b259c94427d5a8a
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86

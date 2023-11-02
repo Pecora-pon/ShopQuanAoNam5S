@@ -56,6 +56,11 @@ public class DanhSachYeuThichServiceImpl implements DanhSachYeuThichService {
 
     @Override
     public List<DanhSachYeuThich> findKhachHang(String keyword) {
-        return repo.searchByKhachHang(keyword);
+        return null;
     }
+
+//    @Override
+//    public List<DanhSachYeuThich> findKhachHang(String keyword) {
+//        return repo.searchByKhachHang(keyword);
+//    }
 }

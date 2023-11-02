@@ -1,5 +1,7 @@
 package com.example.demo.entity;
 
+import com.example.demo.entity.ChucVu;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -7,11 +9,14 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+
+import java.util.List;
 
 
 @Entity
@@ -28,13 +33,13 @@ public class KhachHang {
     private Integer khachHangId;
 
     @Column(name = "TenDangNhap")
-    private String tenDangNhap;
+    private String username;
 
     @Column(name = "Email")
     private String email;
 
     @Column(name = "MatKhau")
-    private String matKhau;
+    private String password;
 
     @Column(name = "HoTen")
     private String hoTen;
@@ -44,16 +49,12 @@ public class KhachHang {
 
     @Column(name = "SoDienThoai")
     private String soDienThoai;
-<<<<<<< HEAD
-
-    @Column(name = "TrangThai")
-   private Integer trangThai;
-=======
     
-//    @ManyToOne
-//    @JoinColumn(name = "ChucVuID")
-//    private ChucVu chucVu;
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86
+    @ManyToOne
+    @JoinColumn(name = "ChucVuID")
+    private ChucVu chucVu;
+    
+
 
 
 }

@@ -1,5 +1,7 @@
+
 package com.example.demo.entity;
 
+import com.example.demo.entity.ThuongHieu;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
@@ -61,6 +63,9 @@ public class SanPham {
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayTao;
+
+    @Column(name = "HinhAnhURL")
+    private String hinhAnh;
 
 
 }

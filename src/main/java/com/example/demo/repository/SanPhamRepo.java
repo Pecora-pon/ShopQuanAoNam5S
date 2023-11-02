@@ -2,13 +2,18 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.SanPham;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
+import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 @Repository
 public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
-<<<<<<< HEAD
+    @Query("SELECT sp FROM SanPham sp WHERE sp.thuongHieu LIKE %?1%")
+    List<SanPham> findByThuongHieuID(String thuongHieuID);
 
-=======
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86
+
+    Optional<SanPham> findById(UUID sanPhamID);
 }

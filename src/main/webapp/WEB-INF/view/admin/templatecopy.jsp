@@ -360,7 +360,6 @@
                         </li>
 
                     </ul>
-<<<<<<< HEAD
                     <ul class="menu-sub">
                         <li class="menu-item">
                             <a href="form-layouts-vertical.html" class="menu-link">
@@ -369,8 +368,6 @@
                         </li>
 
                     </ul>
-=======
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86
                     <%--                    <a--%>
                     <%--                            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"--%>
                     <%--                            target="_blank"--%>
@@ -536,7 +533,6 @@
                                     document.write(new Date().getFullYear());
                                 </script>
                                 , made with ❤️ by
-<<<<<<< HEAD
                                 <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
                                     áo Nam 5S</a>
                             </div>
@@ -551,17 +547,6 @@
 
                                 <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
                                    target="_blank" class="footer-link me-4">Hỗ trợ</a>
-=======
-                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần áo Nam 5S</a>
-                            </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang chủ</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản phẩm</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Thống kê</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Hỗ trợ</a>
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86
                             </div>
                         </div>
                     </footer>

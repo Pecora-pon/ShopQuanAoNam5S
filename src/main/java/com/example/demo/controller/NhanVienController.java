@@ -45,7 +45,7 @@ public class NhanVienController {
             return "admin/nhanvien";
         }
         nhanVienService.add(nhanVien);
-        return "redirect:/nhan-vien/page    ";
+        return "redirect:/nhan-vien/page";
     }
     @RequestMapping("/nhan-vien/delete/{nhanVienID}")
     public String delete(@PathVariable("nhanVienID") Integer nhanVienID){
@@ -76,7 +76,7 @@ public class NhanVienController {
         List<NhanVien> nhanVienList =page1.getContent();
         List<NhanVien> nhanVienList1 = nhanVienService.getAll();
         if(keyword !=null){
-            nhanVienList     = this.nhanVienService.findTenOrDiaChi(keyword);
+            nhanVienList= this.nhanVienService.findTenOrDiaChi(keyword);
         }
         int totalItems = nhanVienList1.size();
         int itemsPerPage = size;
@@ -91,11 +91,11 @@ public class NhanVienController {
         return "admin/nhanvien";
 
     }
-    @RequestMapping("/nhan-vien/search")
+    @RequestMapping(value = "/nhan-vien/search/{keyword}")
     public String search(Model model,
                          @RequestParam("keyword") String keyword){
         List<NhanVien> nhanVienList = nhanVienService.findTenOrDiaChi(keyword);
-        model.addAttribute("nv",nhanVienList);
+        model.addAttribute("listNhanVien",nhanVienList);
         return "admin/nhanvien";
     }
 

@@ -52,6 +52,10 @@ public class ReviewNguoiDungServiceImpl implements ReviewNguoiDungService {
 
     @Override
     public List<ReviewNguoiDung> findTenkhachHang(String keyword) {
-        return repo.searchByKhachHang(keyword);
+        return null;
     }
+
+//    public List<ReviewNguoiDung> findTenkhachHang(String keyword) {
+//        return repo.searchByKhachHang(keyword);
+//    }
 }

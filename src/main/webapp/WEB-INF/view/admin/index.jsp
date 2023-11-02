@@ -360,7 +360,6 @@
                         </li>
 
                     </ul>
-<<<<<<< HEAD
                     <ul class="menu-sub">
                         <li class="menu-item">
                             <a href="form-layouts-vertical.html" class="menu-link">
@@ -369,8 +368,6 @@
                         </li>
 
                     </ul>
-=======
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86
                     <%--                    <a--%>
                     <%--                            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"--%>
                     <%--                            target="_blank"--%>

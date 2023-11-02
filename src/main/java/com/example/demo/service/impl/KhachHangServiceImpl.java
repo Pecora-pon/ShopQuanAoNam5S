@@ -22,34 +22,6 @@ public class KhachHangServiceImpl implements KhachHangService {
         return khachHangRepo.findAll();
     }
 
-<<<<<<< HEAD
-//    @Override
-//    public KhachHang detail(Integer khachHangId) {
-//        return khachHangRepo.findById(khachHangId).get();
-//    }
-//
-//    @Override
-//    public void add(KhachHang khachHang) {
-//        khachHangRepo.save(khachHang);
-//    }
-//
-//    @Override
-//    public Page<KhachHang> getPage(int pageNumber, int pageSize) {
-//        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-//        return khachHangRepo.findAll(pageable);
-//    }
-//
-//    @Override
-//    public void delete(Integer khachHangId) {
-//        khachHangRepo.deleteById(khachHangId);
-//    }
-//
-//    @Override
-//    public List<KhachHang> findTenOrDiaChi(String keyword) {
-//        return khachHangRepo.searchByHoTenOrTenDangNhap(keyword);
-//    }
-//
-=======
     @Override
     public KhachHang detail(Integer khachHangId) {
         return khachHangRepo.findById(khachHangId).get();
@@ -73,9 +45,8 @@ public class KhachHangServiceImpl implements KhachHangService {
 
     @Override
     public List<KhachHang> findTenOrDiaChi(String keyword) {
-        return khachHangRepo.searchByHoTenOrTenDangNhap(keyword);
+        return null;
     }
 
->>>>>>> 32f04127f71ac1add5b83ad6c6963e7181614f86
 
 }

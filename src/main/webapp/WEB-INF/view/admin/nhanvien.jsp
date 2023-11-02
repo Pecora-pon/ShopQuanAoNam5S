@@ -29,14 +29,13 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Chức vụ</title>
+    <title>Nhân viên</title>
 
     <meta name="description" content=""/>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -295,7 +294,7 @@
                 </li>
                 <!-- Forms -->
                 <li class="menu-item">
-                    <a href="/chuc-vu" class="menu-link">
+                    <a href="" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Chức vụ</div>
                     </a>
@@ -320,7 +319,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="/nhan-vien" class="menu-link">
                                 <div data-i18n="Vertical Form">Quản lý nhân viên</div>
                             </a>
                         </li>
@@ -524,52 +523,135 @@
             <div class="content-wrapper">
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!--Content -->
-                    <!--Table add -->
+                    <!-- Table add -->
                     <div class="card">
+                        <h3 class="card-header">Quản lý nhân Viên</h3>
                         <div class="card-body">
-                            <form:form action="/chuc-vu/update/${cv.chucVuID}" modelAttribute="cv" method="POST">
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">ID chức vụ</label>
-                                        <form:input class="form-control" path="chucVuID" disabled="true" value="${cv.chucVuID}"/>
+
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Thêm nhân viên
+                            </button>
+                            <form:form action="/nhan-vien-add" modelAttribute="nv" method="POST">
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="modal-body">
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">ID nhân viên</label>
+                                                        <form:input class="form-control" path="nhanVienID" disabled="true"
+                                                                    value="${nv.nhanVienID}"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Tên nhân viên</label>
+                                                        <form:input class="form-control" path="hoTen" value="${nv.hoTen}"/>
+                                                        <form:errors path="hoTen"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Địa chỉ</label>
+                                                        <form:input class="form-control" path="diaChi" value="${nv.diaChi}"/>
+                                                        <form:errors path="diaChi"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Số điện thoại</label>
+                                                        <form:input class="form-control" path="soDienThoai" value="${nv.soDienThoai}"/>
+
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Chức vụ</label>
+                                                        <form:input class="form-control" path="chucVu" value="${nv.chucVu}"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Tên đăng nhập</label>
+                                                        <form:input class="form-control" path="tenDangNhap" value="${nv.tenDangNhap}"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Email</label>
+                                                        <form:input class="form-control" path="email" value="${nv.email}"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Mật khẩu</label>
+                                                        <form:input class="form-control" path="matKhau" value="${nv.matKhau}"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Trạng thái</label>
+                                                        <form:radiobutton path="trangThai" value="1" checked="true"/> Hoạt động
+                                                        <form:radiobutton path="trangThai" value="0"/> Nghỉ
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="submit" class="btn btn-primary">Thêm</button>
+                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Tên chức vụ</label>
-                                        <form:input class="form-control" path="tenChucVu" value="${cv.tenChucVu}"/>
-                                    </div>
-                                </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Update</button>
                                 </div>
                             </form:form>
                         </div>
                     </div>
-                    <hr class="my-3">
-                    <!--Table add -->
 
+                    <!-- Table add -->
                     <div class="card">
-                        <h5 class="card-header">Quản lý chức vụ</h5>
+<%--                         <form:form action="/nhan-vien/search" method="get">--%>
+<%--                             <form:input path="keyword"/>--%>
+<%--                            <button type="submit">Tìm kiếm</button>--%>
+<%--                         </form:form>--%>
+                    </div>
+                    <!--Content -->
+                    <div class="card">
+                           <form href="/nhan-vien/search">
+                               <input type="text" name="keyword" placeholder="Tìm kiếm họ tên">
+                               <button type="submit">Tìm kiếm</button>
+                           </form>
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Chức vụ ID</th>
-                                <th>Tên chức vụ</th>
+                                <th>Nhân Viên ID</th>
+                                <th>Họ tên</th>
+                                <th>Địa chỉ</th>
+                                <th>Số điện thoại</th>
+                                <th>Chức vụ</th>
+                                <th>Tên đăng nhập</th>
+                                <th>Email</th>
+                                <th>Mật khẩu</th>
+                                <th>Trạng thái</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                            <c:forEach items="${listChucVu}" var="chucvu">
+                            <c:forEach items="${listNhanVien}" var="nhanvien">
                                 <tr>
-                                    <td>${chucvu.chucVuID}</td>
-                                    <td>${chucvu.tenChucVu}</td>
+                                    <td>${nhanvien.nhanVienID}</td>
+                                    <td>${nhanvien.hoTen}</td>
+                                    <td>${nhanvien.diaChi}</td>
+                                    <td>${nhanvien.soDienThoai}</td>
+                                    <td>${nhanvien.chucVu}</td>
+                                    <td>${nhanvien.tenDangNhap}</td>
+                                    <td>${nhanvien.email}</td>
+                                    <td>${nhanvien.matKhau}</td>
+                                    <td>
+                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>
+                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>
+                                    </td>
                                     <td>
                                         <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                    data-bs-toggle="dropdown">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/chuc-vu"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/chuc-vu/delete/${chucvu.chucVuID}"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                                <a class="dropdown-item"
+                                                   href="/nhan-vien-view-update/${nhanvien.nhanVienID}"><i
+                                                        class="bx bx-edit-alt me-1"></i> Sửa</a>
+                                                <a class="dropdown-item"
+                                                   href="/nhan-vien/delete/${nhanvien.nhanVienID}"><i
+                                                        class="bx bx-trash me-1"></i> Xóa</a>
                                             </div>
                                         </div>
                                     </td>
@@ -577,9 +659,21 @@
                             </c:forEach>
                             </tbody>
                         </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <c:forEach begin="0" end="${totalPages}" var="page">
+                                    <c:choose>
+                                        <c:when test="${page == currentPage}">
+                                            <li class="page-item active"><span class="page-link">${page}</span></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="page-item"><a class="page-link" href="/nhan-vien/page?page=${page}">${page}</a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </nav>
                     </div>
-                    <!--Content -->
-
                     <!--Footer -->
                     <footer class="content-footer footer bg-footer-theme">
                         <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
