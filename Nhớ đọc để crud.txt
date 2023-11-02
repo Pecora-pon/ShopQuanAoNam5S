@@ -1,0 +1,6 @@
+Template có thể copy CRUD chức vụ hoặc tự desgin
+
+ĐƯỜNG DẪN PHẢI NHÌN CHUCVUCONTROLLER MÀ LÀM
+
+Ví dụ : LOCALHOST8080:/trang-chu/chucvu/hienthi => lỗi
+	LOCALHOST8080:/chuc-vu/hienthi => thành công		
