@@ -1,10 +1,9 @@
 package com.example.demo.repository;
 
-import com.example.demo.entity.DonHangChiTiet;
+import com.example.demo.entity.ChucVu;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
-import java.util.UUID;
 @Repository
-public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, UUID> {
+public interface ChucVuRepo extends JpaRepository<ChucVu,Integer> {
 }

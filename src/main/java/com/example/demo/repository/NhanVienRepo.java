@@ -1,14 +1,3 @@
-<<<<<<< HEAD
-package com.example.demo.repository;
-
-import com.example.demo.entity.NhanVien;
-import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
-
-@Repository
-public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
-}
-=======
 package com.example.demo.repository;
 
 
@@ -24,14 +13,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface NhanVienRepo extends JpaRepository<NhanVien, Integer> {
+public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
     @Query("SELECT n FROM NhanVien n WHERE n.hoTen LIKE %?1%")
     List<NhanVien> searchByHoTenOrTenDangNhap(String keyword);
-
-    NhanVien findByTenDangNhap(String tenDangNhap);
+    NhanVien findByTenDangNhap(String username);
 
 //    Optional<NhanVien> findbyUsername(String username);
 
 
 }
->>>>>>> 2e4f6e7d57debb762378d8ed3b259c94427d5a8a
