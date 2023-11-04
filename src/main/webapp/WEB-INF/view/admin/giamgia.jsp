@@ -512,152 +512,153 @@
 
             <!-- / Navbar -->
 
-<div class="content-wrapper">
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <!--Content -->
-        <!--Table add -->
-        <div class="card">
-            <div class="card-body">
-                <form:form action="/khach-hang/add" modelAttribute="kh" method="POST">
-                    <div class="row">
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">ID Khách Hàng</label>
-                            <form:input class="form-control" path="khachHangId" disabled="true" value="${kh.khachHangId}"/>
+            <!-- Content wrapper -->
+            <div class="content-wrapper">
+                <div class="container-xxl flex-grow-1 container-p-y">
+                    <!--Content -->
+                    <!--Table add -->
+                    <div class="card">
+                        <div class="card-body"><div class="mb-3 col-12">
+                            <form:form action="/giam-gia-add" modelAttribute="gg" method="POST">
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">ID Giảm Giá</label>
+                                        <form:input class="form-control" path="giamGiaID" disabled="true" value="${gg.giamGiaID}"/>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Mã giảm giá</label>
+                                        <form:input class="form-control" path="maGiamGia" value="${gg.maGiamGia}"/>
+                                          <form:errors path="maGiamGia"/>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Tên sự kiện</label>
+                                        <form:input class="form-control" path="tenSuKien" value="${gg.tenSuKien}"/>
+                                          <form:errors path="tenSuKien"/>
+                                    </div>
+                                                                <div class="mb-3 col-md-6">
+                                                                    <label class="form-label">Nhân viên</label>
+                                                                    <form:select class="form-select" path="nhanVien">
+                                                                        <c:forEach items="${nv}" var="nv">
+                                                                            <form:option value="${nv.nhanVienID}">${nv.nhanVienID}</form:option>
 
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Tên Đăng Nhập</label>
-                            <form:input class="form-control" path="username" value="${kh.username}"/>
-                            <form:errors path="username"/>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Email</label>
-                            <form:input class="form-control" path="email" value="${kh.email}"/>
-                            <form:errors path="email"/>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Mật Khẩu</label>
-                            <form:input class="form-control" path="password" value="${kh.password}"/>
-                            <form:errors path="password"/>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Họ Tên</label>
-                            <form:input class="form-control" path="hoTen" value="${kh.hoTen}"/>
-                            <form:errors path="hoTen"/>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Địa Chỉ</label>
-                            <form:input class="form-control" path="diaChi" value="${kh.diaChi}"/>
-                            <form:errors path="diaChi"/>
-                        </div>
-                        <div class="mb-3 col-md-6">
-                            <label class="form-label">Số Điện Thoại</label>
-                            <form:input class="form-control" path="soDienThoai" value="${kh.soDienThoai}"/>
-                            <form:errors path="soDienThoai"/>
-                        </div>
-<%--                        <div class="mb-3 col-md-6">--%>
-<%--                            <label class="form-label">Tên chức vụ</label>--%>
-<%--                            <form:select path="chucVu">--%>
-<%--                                <c:forEach items="${listDSP}" var="cv">--%>
-<%--                                    <option value="${cv.chucVuID}" ${cv.chucVuID==kh.chucVu.chucVuID?"selected":""}>${cv.tenChucVu}</option>--%>
-<%--                                </c:forEach>--%>
-<%--                            </form:select>--%>
-<%--                        </div>--%>
-                    </div>
-                    <div class="mt-2">
-                        <button type="submit" class="btn btn-primary me-2">Thêm</button>
-                    </div>
-                </form:form>
-            </div>
-        </div>
-        <hr class="my-3">
-        <!--Table add -->
+                                                                        </c:forEach>
 
-        <div class="card">
-            <h5 class="card-header">Quản lý khách hàng</h5>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>Khách hàng ID</th>
-                    <th>Tên Đăng Nhập</th>
-                    <th>Email</th>
-                    <th>Mật Khẩu</th>
-                    <th>Họ Tên</th>
-                    <th>Đia Chỉ</th>
-                    <th>Số Điện Thoại</th>
-                    <th>Tên chức vụ</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                <c:forEach items="${list}" var="kh">
-                    <tr>
-                        <td>${kh.khachHangId}</td>
-                        <td>${kh.tenDangNhap}</td>
-                        <td>${kh.email}</td>
-                        <td>${kh.matKhau}</td>
-                        <td>${kh.hoTen}</td>
-                        <td>${kh.diaChi}</td>
-                        <td>${kh.soDienThoai}</td>
-                        <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/khach-hang/view-update/${kh.khachHangId}"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                    <a class="dropdown-item" href="/khach-hang/delete/${kh.khachHangId}"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                                                    </form:select>
+                                                                </div>
+
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Ngày tạo</label>
+                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>
+                                          <form:errors path="ngayTao"/>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Ngày hết hạn</label>
+                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
+                                          <form:errors path="ngayHetHan"/>
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                                </div>
+                            </form:form>
+                        </div>
+                    </div>
+                    <hr class="my-3">
+                    <!--Table add -->
+
+                    <div class="card">
+                        <form>
+                            <div class="mb-3 col-md-6">
+                                <div class="input-group">
+                                    <input type="search" name="keyword" class="form-control rounded" placeholder="Nhập mã giảm giá" aria-label="Search" aria-describedby="search-addon" />
+                                    <button type="submit" class="btn btn-outline-primary">search</button>
                                 </div>
                             </div>
-                        </td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <c:forEach begin="0" end="${totalPages}" var="page">
-                        <c:choose>
-                            <c:when test="${page == currentPage}">
-                                <li class="page-item active"><span class="page-link">${page}</span></li>
-                            </c:when>
-                            <c:otherwise>
-                                <li class="page-item"><a class="page-link" href="/khach-hang/page?page=${page}">${page}</a></li>
-                            </c:otherwise>
-                        </c:choose>
-                    </c:forEach>
-                </ul>
-            </nav>
-        </div>
-        <!--Footer -->
-        <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                    ©
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script>
-                    , made with ❤️ by
-                    <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
-                        áo Nam 5S</a>
-                </div>
-                <div>
-                    <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
-                        chủ</a>
-                    <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
-                        phẩm</a>
+                        </form>
+                        <br>
+                        <h5 class="card-header">Quản lý giảm giá</h5>
+                        <table class="table">
+                            <thead>
+                            <tr>
+                                <th>Giảm giá ID</th>
+                                <th>Mã giảm giá</th>
+                                <th>Tên sự kiện</th>
+                                <th>Nhân viên</th>
+                                <th>Ngày tạo</th>
+                                <th>Ngày hết hạn</th>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                            <c:forEach items="${listGiamGia}" var="giamgia">
+                                <tr>
+                                    <td>${giamgia.giamGiaID}</td>
+                                    <td>${giamgia.maGiamGia}</td>
+                                    <td>${giamgia.tenSuKien}</td>
+                                    <td>${giamgia.nhanVien.hoTen}</td>
+                                    <td>${giamgia.ngayTao}</td>
+                                    <td>${giamgia.ngayHetHan}</td>
+                                    <td>
+                                        <div class="dropdown">
+                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu">
+                                                <a class="dropdown-item" href="/giam-gia-view-update/${giamgia.giamGiaID}"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
+                                                <a class="dropdown-item" href="/giam-gia/delete/${giamgia.giamGiaID}" onclick="confirmDeletee()"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
+                        <nav aria-label="Page navigation example">
+                            <ul class="pagination">
+                                <c:forEach begin="0" end="${totalPages}" var="page">
+                                    <c:choose>
+                                        <c:when test="${page == currentPage}">
+                                            <li class="page-item active"><span class="page-link">${page}</span></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="page-item"><a class="page-link" href="/giam-gia/page?page=${page}">${page}</a></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+                            </ul>
+                        </nav>
+                    </div>
+                    <!--Content -->
 
-                    <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                       target="_blank" class="footer-link me-4">Thống kê</a>
+                    <!--Footer -->
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , made with ❤️ by
+                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
+                                    áo Nam 5S</a>
+                            </div>
+                            <div>
+                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
+                                    chủ</a>
+                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
+                                    phẩm</a>
 
-                    <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                       target="_blank" class="footer-link me-4">Hỗ trợ</a>
+                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                                   target="_blank" class="footer-link me-4">Thống kê</a>
+
+                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                   target="_blank" class="footer-link me-4">Hỗ trợ</a>
+                            </div>
+                        </div>
+                    </footer>
+                    <!--Footer -->
                 </div>
             </div>
-        </footer>
-        <!--Footer -->
-    </div>
-</div>
             <!-- Content wrapper -->
 
         </div>
@@ -672,6 +673,19 @@
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
+<script>
+    function confirmDeletee() {
+        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
+            // Thực hiện cập nhật (submit form, gửi request AJAX, ...)
+            displayNotification("Xóa thành công!");
+        }
+    }
+
+    function displayNotification(message) {
+        // Hiển thị thông báo cho người dùng
+        alert(message);
+    }
+</script>
 <script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../admin/assets/vendor/libs/popper/popper.js"></script>
 <script src="../admin/assets/vendor/js/bootstrap.js"></script>

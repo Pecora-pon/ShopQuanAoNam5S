@@ -1,11 +1,6 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -31,8 +26,8 @@ public class GiamGia {
     @Column(name = "MaGiamGia")
     private String maGiamGia;
 
-    @Column(name = "SoTienGiam")
-    private Float soTienGiam;
+    @Column(name = "TenSuKien")
+    private String tenSuKien;
 
     @Column(name = "NgayHetHan")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
@@ -41,6 +36,10 @@ public class GiamGia {
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private Date ngayTao;
+
+    @ManyToOne
+    @JoinColumn(name = "NhanVienID")
+    private NhanVien nhanVien;
 
 
 }
