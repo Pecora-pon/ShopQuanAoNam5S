@@ -14,11 +14,8 @@ import java.util.Optional;
 
 @Repository
 public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
+    Optional<NhanVien> findByTenDangNhap(String tenDangNhap);
     @Query("SELECT n FROM NhanVien n WHERE n.hoTen LIKE %?1%")
     List<NhanVien> searchByHoTenOrTenDangNhap(String keyword);
-    NhanVien findByTenDangNhap(String username);
-
-//    Optional<NhanVien> findbyUsername(String username);
-
 
 }
