@@ -1,22 +1,24 @@
-
 package com.example.demo.service;
 
+import com.example.demo.entity.NhaCungCap;
+import com.example.demo.entity.NhapKho;
 import com.example.demo.entity.SanPham;
+import com.example.demo.entity.responobject.Respon;
+import org.springframework.data.domain.Page;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.UUID;
 
 public interface SanPhamService {
     List<SanPham> getAll();
 
-    SanPham add(SanPham sanPham);
+    Respon<SanPham> add(SanPham sanPham);
 
-    SanPham update(UUID sanPhamID,SanPham sanPham);
+   Respon<SanPham> update(UUID sanPhamID, SanPham sanPham);
 
     void delete(UUID sanPhamID);
 
     SanPham detail(UUID sanPhamID);
-
-    Optional<SanPham> findByID(UUID sanPhamID);
+    Page<SanPham> getPage(int pageNumber, int pageSize);
+    void capnhat(UUID id,int soluong);
 }
