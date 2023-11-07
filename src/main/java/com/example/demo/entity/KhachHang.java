@@ -44,11 +44,9 @@ public class KhachHang {
 
     @Column(name = "SoDienThoai")
     private String soDienThoai;
-    
 
-    
-
-
+    @Column(name = "ChucVu")
+    private String chucVu;
 
 }
 
