@@ -26,6 +26,32 @@ public class ShopImpl implements ShopService {
         return sanPhamRepo.findByThuongHieuID(thuonghieuid);
     }
 
+
+    @Override
+    public List<SanPham> findByMauSacID(String mauSacID) {
+        return sanPhamRepo.findByMauSacID(mauSacID);
+    }
+
+    @Override
+    public List<SanPham> findByChatLieuID(String chatLieuID) {
+        return sanPhamRepo.findByChatLieuID(chatLieuID);
+    }
+
+    @Override
+    public List<SanPham> findBySizeID(String sizeID) {
+        return sanPhamRepo.findBySizeID(sizeID);
+    }
+
+    @Override
+    public List<SanPham> findByTenSanPham(String tenSanPham) {
+        return sanPhamRepo.findByTenSanPham(tenSanPham);
+    }
+
+    @Override
+    public List<SanPham> findByProductInPriceRange(Double minPrice, Double maxPrice) {
+        return sanPhamRepo.findProductsInPriceRange(minPrice,maxPrice);
+    }
+
     @Override
     public List<SanPham> getAll() {
        return sanPhamRepo.findAll();
