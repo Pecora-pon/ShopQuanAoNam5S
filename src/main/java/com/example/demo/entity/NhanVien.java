@@ -46,7 +46,7 @@ public class NhanVien {
     private String soDienThoai;
 
     @Column(name = "ChucVu")
-    private Integer chucVu;
+    private String chucVu;
 
     @Column(name = "TrangThai")
     private Integer trangThai;
