@@ -1,4 +1,8 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
+
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -156,8 +160,8 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form href="/list-san-pham/thuong-hieu">
-                            <input type="text" placeholder="Search..." name="thuonghieuid">
+                        <form href="/list-san-pham/ten-san-pham">
+                            <input type="text" placeholder="Search..." name="tensanpham">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
                     </div>
@@ -210,11 +214,12 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__price">
                                             <ul>
-                                                <li><a href="#">$0.00 - $50.00</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=0.00&maxPrice=50.00">$0.00 -
+                                                    $50.00</a></li>
                                                 <li><a href="#">$50.00 - $100.00</a></li>
                                                 <li><a href="#">$100.00 - $150.00</a></li>
                                                 <li><a href="#">$150.00 - $200.00</a></li>
-                                                <li><a href="#">$200.00 - $250.00</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=20000.0&maxPrice=25000.0">$200.00 - $250.00</a></li>
                                                 <li><a href="#">250.00+</a></li>
                                             </ul>
                                         </div>
@@ -229,28 +234,50 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__size">
                                             <label for="xs">xs
-                                                <input type="radio" id="xs">
+                                                <a href="/list-san-pham/page?sizeid=0">
+                                                    <input id="xs">
+                                                </a>
                                             </label>
                                             <label for="sm">s
-                                                <input type="radio" id="sm">
+                                                <a href="/list-san-pham/page?sizeid=1">
+                                                    <input id="sm">
+                                                </a>
+
                                             </label>
                                             <label for="md">m
-                                                <input type="radio" id="md">
+                                                <a href="/list-san-pham/page?sizeid=2">
+                                                    <input id="md">
+                                                </a>
                                             </label>
                                             <label for="xl">xl
-                                                <input type="radio" id="xl">
+                                                <a href="/list-san-pham/page?sizeid=3">
+                                                    <input id="xl">
+                                                </a>
+
                                             </label>
                                             <label for="2xl">2xl
-                                                <input type="radio" id="2xl">
+                                                <a href="/list-san-pham/page?sizeid=4">
+                                                    <input id="2xl">
+                                                </a>
+
                                             </label>
                                             <label for="xxl">xxl
-                                                <input type="radio" id="xxl">
+                                                <a href="/list-san-pham/page?sizeid=5">
+                                                    <input id="xxl">
+                                                </a>
+
                                             </label>
                                             <label for="3xl">3xl
-                                                <input type="radio" id="3xl">
+                                                <a href="/list-san-pham/page?sizeid=6">
+                                                    <input id="3xl">
+                                                </a>
+
                                             </label>
                                             <label for="4xl">4xl
-                                                <input type="radio" id="4xl">
+                                                <a href="/list-san-pham/page?sizeid=7">
+                                                    <input id="4xl">
+                                                </a>
+
                                             </label>
                                         </div>
                                     </div>
@@ -362,7 +389,9 @@
                                         <i class="fa fa-star-o"></i>
                                         <i class="fa fa-star-o"></i>
                                     </div>
-                                    <h5>${sp.giaSanPham}VNĐ</h5>
+                                    <h5>
+                                        <fmt:formatNumber value="${sp.giaSanPham}" pattern="0"/> VND
+                                    </h5>
                                     <div class="product__color__select">
                                         <label for="pc-4">
                                             <input type="radio" id="pc-4">
