@@ -1,19 +1,13 @@
-
 package com.example.demo.entity;
 
-import com.example.demo.entity.ThuongHieu;
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -26,6 +20,7 @@ import java.util.UUID;
 public class SanPham {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(name = "SanPhamID")
     private UUID sanPhamID;
 
@@ -62,11 +57,9 @@ public class SanPham {
 
     @Column(name = "NgayTao")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ngayTao;
+    private LocalDate ngayTao;
 
-    @Column(name = "HinhAnhURL")
-    private String hinhAnh;
-
-
+    @Column(name="HinhAnhURL")
+    private String hinhAnhURL;
 }
 
