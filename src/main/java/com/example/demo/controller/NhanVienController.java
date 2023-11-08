@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.repository.NhanVienRepo;
 import com.example.demo.service.NhanVienService;
+import com.example.demo.servicesecurity.UserService;
 import com.oracle.wls.shaded.org.apache.xpath.operations.Mod;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class NhanVienController {
     private NhanVienService nhanVienService;
     @Autowired
     private NhanVienRepo nhanVienRepo;
+    @Autowired
+    private UserService userService;
     @RequestMapping("/nhan-vien")
     public String getAll(Model model,
                          @Param("keyword") String keyword){
@@ -44,7 +47,7 @@ public class NhanVienController {
         if(result.hasErrors()){
             return "admin/nhanvien";
         }
-        nhanVienService.add(nhanVien);
+        userService.addUser(nhanVien);
         return "redirect:/nhan-vien/page";
     }
     @RequestMapping("/nhan-vien/delete/{nhanVienID}")
