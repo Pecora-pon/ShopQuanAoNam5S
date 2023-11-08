@@ -26,7 +26,7 @@ public class KhachHangController {
 //    @Autowired
 //    private ChucVuService chucVuService;
 
-    @GetMapping("/hien-thi")
+    @GetMapping("")
     public String hienthi(@ModelAttribute("kh")KhachHang khachHang,Model model){
         List<KhachHang> list = khachHangService.getAll();
 //        List<ChucVu> listCV = chucVuService.getAll();
