@@ -619,7 +619,7 @@
                                 <th>Chức vụ</th>
                                 <th>Tên đăng nhập</th>
                                 <th>Email</th>
-                                <th>Mật khẩu</th>
+<%--                                <th>Mật khẩu</th>--%>
                                 <th>Trạng thái</th>
                                 <th>Action</th>
                             </tr>
@@ -632,7 +632,7 @@
                                     <td>${nhanvien.diaChi}</td>
                                     <td>${nhanvien.soDienThoai}</td>
                                     <td>${nhanvien.chucVu}</td>
-                                    <td>${nhanvien.tenDangNhap}</td>
+<%--                                    <td>${nhanvien.tenDangNhap}</td>--%>
                                     <td>${nhanvien.email}</td>
                                     <td>${nhanvien.matKhau}</td>
                                     <td>
