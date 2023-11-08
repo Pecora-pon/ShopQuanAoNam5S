@@ -632,9 +632,9 @@
                                     <td>${nhanvien.diaChi}</td>
                                     <td>${nhanvien.soDienThoai}</td>
                                     <td>${nhanvien.chucVu}</td>
-<%--                                    <td>${nhanvien.tenDangNhap}</td>--%>
+                                    <td>${nhanvien.tenDangNhap}</td>
                                     <td>${nhanvien.email}</td>
-                                    <td>${nhanvien.matKhau}</td>
+<%--                                    <td>${nhanvien.matKhau}</td>--%>
                                     <td>
                                         <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>
                                         <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>
