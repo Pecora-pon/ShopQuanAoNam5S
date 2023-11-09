@@ -3,6 +3,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.GiamGia;
 import com.example.demo.entity.NhanVien;
+import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.GiamGiaRepo;
 import com.example.demo.repository.NhanVienRepo;
 import com.example.demo.service.GiamGiaService;
@@ -13,6 +14,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -33,6 +35,7 @@ public class GiamGiaController {
 
 
     @RequestMapping("/giam-gia")
+    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
     public String getAll(Model model,
                          @Param("keyword") String keyword) {
 
@@ -43,13 +46,15 @@ public class GiamGiaController {
         return "admin/giamgia";
     }
     @RequestMapping(value = "/giam-gia-add",method = RequestMethod.POST)
-    public String addGiamGia(@Valid @ModelAttribute("nv") GiamGia giamGia,
+    public String addGiamGia(@Valid @ModelAttribute("gg") GiamGia giamGia,
                              BindingResult result,
                              Model model){
+        Respon<GiamGia> respon = giamGiaService.add(giamGia);
         model.addAttribute("nv",nhanVienRepo.findAll());
+        model.addAttribute("repon",respon);
 
-        giamGiaService.add(giamGia);
-        return "redirect:/giam-gia/page";
+
+        return "admin/giamgia";
     }
     @RequestMapping("/giam-gia/delete/{giamGiaID}")
     public String delete(@PathVariable("giamGiaID") Integer giamGiaID){
@@ -68,8 +73,9 @@ public class GiamGiaController {
     }
     @RequestMapping(value = "/giam-gia/update/{giamGiaID}",method = RequestMethod.POST)
     public String update(@PathVariable("giamGiaID") Integer giamGiaID
-            ,GiamGia giamGia){
-       giamGiaService.update(giamGiaID,giamGia);
+            ,GiamGia giamGia,Model model){
+        Respon<GiamGia> respon = giamGiaService.update(giamGiaID,giamGia);
+        model.addAttribute("repon",respon);
         return "redirect:/giam-gia/page";
     }
     @RequestMapping("/giam-gia/page")

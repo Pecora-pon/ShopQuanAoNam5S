@@ -2,6 +2,8 @@ package com.example.demo.service.impl;
 
 import com.example.demo.entity.GiamGia;
 import com.example.demo.entity.NhanVien;
+import com.example.demo.entity.Size;
+import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.GiamGiaRepo;
 import com.example.demo.repository.NhanVienRepo;
 import com.example.demo.service.GiamGiaService;
@@ -26,13 +28,26 @@ public class GiamGiaServiceImpl implements GiamGiaService {
     }
 
     @Override
-    public GiamGia add(GiamGia giamGia) {
+    public Respon<GiamGia> add(GiamGia giamGia) {
 
-        return giamGiaRepo.save(giamGia);
+        Respon<GiamGia> respon=new Respon<>();
+
+        if( !giamGia.getMaGiamGia().isEmpty() &&
+             !giamGia.getTenSuKien().isEmpty() &&
+                giamGia.getNgayTao() != null && giamGia.getNgayHetHan() !=null
+        ){
+
+            giamGiaRepo.save(giamGia);
+            respon.setStatus("Thành công");
+        }else {
+            respon.setError("Vui lòng nhập đầy đủ dữ liệu");
+        }
+        return respon;
     }
 
     @Override
-    public GiamGia update(Integer giamGiaID, GiamGia giamGia) {
+    public Respon<GiamGia> update(Integer giamGiaID, GiamGia giamGia) {
+        Respon<GiamGia> repon = new Respon<>();
         GiamGia giamGia1 = detail(giamGiaID);
         if(giamGia1 !=null){
             giamGia1.setGiamGiaID(giamGia.getGiamGiaID());
@@ -42,8 +57,11 @@ public class GiamGiaServiceImpl implements GiamGiaService {
             giamGia1.setNgayTao(giamGia.getNgayTao());
             giamGia1.setNgayHetHan(giamGia.getNgayHetHan());
             giamGiaRepo.save(giamGia);
+            repon.setStatus("Thành công");
+        }else {
+            repon.setError("không thành công");
         }
-        return null;
+        return repon;
     }
 
     @Override

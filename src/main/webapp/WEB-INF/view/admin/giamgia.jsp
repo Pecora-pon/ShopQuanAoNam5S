@@ -29,7 +29,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Chức vụ</title>
+    <title>Giảm giá</title>
 
     <meta name="description" content=""/>
 
@@ -519,48 +519,77 @@
                     <!--Table add -->
                     <div class="card">
                         <div class="card-body"><div class="mb-3 col-12">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Thêm nhân viên
+                            </button>
                             <form:form action="/giam-gia-add" modelAttribute="gg" method="POST">
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">ID Giảm Giá</label>
-                                        <form:input class="form-control" path="giamGiaID" disabled="true" value="${gg.giamGiaID}"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Mã giảm giá</label>
-                                        <form:input class="form-control" path="maGiamGia" value="${gg.maGiamGia}"/>
-                                          <form:errors path="maGiamGia"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Tên sự kiện</label>
-                                        <form:input class="form-control" path="tenSuKien" value="${gg.tenSuKien}"/>
-                                          <form:errors path="tenSuKien"/>
-                                    </div>
-                                                                <div class="mb-3 col-md-6">
-                                                                    <label class="form-label">Nhân viên</label>
-                                                                    <form:select class="form-select" path="nhanVien">
-                                                                        <c:forEach items="${nv}" var="nv">
-                                                                            <form:option value="${nv.nhanVienID}">${nv.nhanVienID}</form:option>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="modal-body">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">ID Giảm Giá</label>
+                                                        <form:input class="form-control" path="giamGiaID" disabled="true" value="${gg.giamGiaID}"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Mã giảm giá</label>
+                                                        <form:input class="form-control" path="maGiamGia" value="${gg.maGiamGia}"/>
+                                                        <form:errors path="maGiamGia"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Tên sự kiện</label>
+                                                        <form:input class="form-control" path="tenSuKien" value="${gg.tenSuKien}"/>
+                                                        <form:errors path="tenSuKien"/>
 
-                                                                        </c:forEach>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Nhân viên</label>
+                                                        <form:select class="form-select" path="nhanVien">
+                                                            <c:forEach items="${nv}" var="nv">
+                                                                <form:option value="${nv.nhanVienID}">${nv.nhanVienID}</form:option>
 
-                                                                    </form:select>
-                                                                </div>
+                                                            </c:forEach>
 
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Ngày tạo</label>
-                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>
-                                          <form:errors path="ngayTao"/>
+                                                        </form:select>
+                                                    </div>
+
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Ngày tạo</label>
+                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>
+                                                        <form:errors path="ngayTao"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Ngày hết hạn</label>
+                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
+                                                        <form:errors path="ngayHetHan"/>
+
+
+                                                    </div>
+
+
+                                                <div class="mt-2">
+                                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                                                </div>
+                                            </div>
+                                            </div>
+
+                                            </div>
+                                        </div>
                                     </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Ngày hết hạn</label>
-                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
-                                          <form:errors path="ngayHetHan"/>
-                                    </div>
-                                </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
-                                </div>
+
+
                             </form:form>
+                            <c:if test="${!empty repon.error}">
+                                <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
+                            </c:if>
+                            <c:if test="${not empty repon.status}">
+                                <div class="alert alert-success">${repon.status}</div>
+                            </c:if>
                         </div>
                     </div>
                     <hr class="my-3">
