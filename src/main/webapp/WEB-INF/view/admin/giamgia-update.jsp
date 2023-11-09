@@ -536,6 +536,7 @@
                                         <form:input class="form-control" path="tenSuKien" value="${gg.tenSuKien}"/>
                                         <form:errors path="tenSuKien"/>
                                     </div>
+
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Nhân viên</label>
                                         <form:select class="form-select" path="nhanVien">

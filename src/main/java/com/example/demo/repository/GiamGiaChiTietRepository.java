@@ -12,4 +12,5 @@ import java.util.List;
 public interface GiamGiaChiTietRepository extends JpaRepository<GiamGiaChiTiet,Integer> {
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham LIKE %?1%")
     List<GiamGiaChiTiet> searchBytenSanPham(String keyword);
+
 }

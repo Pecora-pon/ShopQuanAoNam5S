@@ -82,6 +82,7 @@ public class GiamGiaController {
         model.addAttribute("listGiamGia",giamGiaList);
         model.addAttribute("gg",new GiamGia());
         model.addAttribute("repon",respon);
+
         return "redirect:/giam-gia/page";
     }
     @RequestMapping("/giam-gia/page")

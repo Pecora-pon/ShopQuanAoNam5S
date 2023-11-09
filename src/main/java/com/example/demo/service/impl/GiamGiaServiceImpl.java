@@ -42,6 +42,7 @@ public class GiamGiaServiceImpl implements GiamGiaService {
             respon.setStatus("Thành công");
         }else {
             respon.setError("Vui lòng nhập đầy đủ dữ liệu");
+
         }
         return respon;
     }

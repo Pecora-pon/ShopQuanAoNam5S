@@ -23,6 +23,7 @@ public class GiamGiaChiTiet {
     @Column(name ="SoTienGiam")
     private Integer soTienGiam;
 
+
     @ManyToOne
     @JoinColumn(name = "GiamGiaID")
     private GiamGia giamGia;

@@ -38,6 +38,7 @@ public class ThongTinVanChuyen {
     private String phuongThuc;
 
 
+
     @Column(name = "TrangThai")
     private Integer trangThai;
 

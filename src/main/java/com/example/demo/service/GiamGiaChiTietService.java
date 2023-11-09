@@ -22,4 +22,5 @@ public interface GiamGiaChiTietService {
     Page<GiamGiaChiTiet> getPage(int pageNumber, int pageSize);
 
     List<GiamGiaChiTiet> findTenSanPham(String keyword);
+
 }

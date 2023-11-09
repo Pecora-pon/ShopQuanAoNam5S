@@ -25,4 +25,5 @@ public interface ThongTinVanChuyenService {
     Page<ThongTinVanChuyen> getPage(int pageNumber,int pageSize);
 
     List<ThongTinVanChuyen> findDiaChi(String keyword);
+
 }

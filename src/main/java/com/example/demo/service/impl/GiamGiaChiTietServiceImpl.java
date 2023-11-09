@@ -60,6 +60,7 @@ public class GiamGiaChiTietServiceImpl implements GiamGiaChiTietService {
     @Override
     public GiamGiaChiTiet detail(Integer giamGiaChiTietID) {
         return giamGiaChiTietRepo.findById(giamGiaChiTietID).orElse(null);
+
     }
 
     @Override

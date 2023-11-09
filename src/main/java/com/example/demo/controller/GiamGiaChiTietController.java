@@ -73,6 +73,7 @@ public class GiamGiaChiTietController {
     public String update(@PathVariable("giamGiaChiTietID") Integer giamGiaChiTietID
             ,GiamGiaChiTiet giamGiaChiTiet,Model model){
 
+
         Respon<GiamGiaChiTiet> respon = giamGiaChiTietService.update(giamGiaChiTietID,giamGiaChiTiet);
         List<GiamGiaChiTiet> giamGiaChiTietList = giamGiaChiTietService.getAll();
         model.addAttribute("gg",giamGiaRepo.findAll());
