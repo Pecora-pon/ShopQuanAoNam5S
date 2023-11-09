@@ -518,10 +518,11 @@
                     <!--Table add -->
                     <div class="card">
                         <div class="card-body">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Thêm khách hàng
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                                    data-bs-target="#exampleModal">
+                                Thêm đơn hàng
                             </button>
-                            <form:form action="/khach-hang/add" modelAttribute="kh" method="POST">
+                            <form:form action="/don-hang/add" modelAttribute="dh" method="POST">
                                 <div class="modal fade" id="exampleModal" tabindex="-1"
                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -534,47 +535,77 @@
                                             <div class="row">
                                                 <div class="modal-body">
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">ID Khách Hàng</label>
-                                                        <form:input class="form-control" path="khachHangId"
+                                                        <label class="form-label">Đơn Hàng ID</label>
+                                                        <form:input class="form-control" path="donHangID"
                                                                     disabled="true"
-                                                                    value="${kh.khachHangId}"/>
+                                                                    value="${dh.donHangID}"/>
 
                                                     </div>
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Tên Đăng Nhập</label>
-                                                        <form:input class="form-control" path="username"
-                                                                    value="${kh.username}"/>
-                                                        <form:errors path="username"/>
+                                                        <label class="form-label">Mã Khách Hàng</label>
+                                                        <form:select path="khachHang">
+                                                            <c:forEach items="${listKH}" var="kh">
+                                                                <option value="${kh.khachHangId}" ${kh.khachHangId==dh.khachHang.khachHangId?"selected":""}>${kh.khachHangId}</option>
+                                                            </c:forEach>
+                                                        </form:select>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Email</label>
-                                                        <form:input class="form-control" path="email"
-                                                                    value="${kh.email}"/>
-                                                        <form:errors path="email"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Mật Khẩu</label>
-                                                        <form:input class="form-control" path="password"
-                                                                    value="${kh.password}"/>
-                                                        <form:errors path="password"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Họ Tên</label>
-                                                        <form:input class="form-control" path="hoTen"
-                                                                    value="${kh.hoTen}"/>
-                                                        <form:errors path="hoTen"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Địa Chỉ</label>
-                                                        <form:input class="form-control" path="diaChi"
-                                                                    value="${kh.diaChi}"/>
-                                                        <form:errors path="diaChi"/>
+                                                        <label class="form-label">Tên Khách</label>
+                                                        <form:input class="form-control" path="tenKhach"
+                                                                    value="${dh.tenKhach}"/>
+                                                        <form:errors path="tenKhach"/>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Số Điện Thoại</label>
                                                         <form:input class="form-control" path="soDienThoai"
-                                                                    value="${kh.soDienThoai}"/>
+                                                                    value="${dh.soDienThoai}"/>
                                                         <form:errors path="soDienThoai"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Địa chỉ vận chuyển</label>
+                                                        <form:select path="thongTinVanChuyen">
+                                                            <c:forEach items="${listTTVC}" var="ttvc">
+                                                                <option value="${ttvc.thongTinVanChuyenID}" ${ttvc.thongTinVanChuyenID==dh.thongTinVanChuyen.thongTinVanChuyenID?"selected":""}>${ttvc.diaChi}</option>
+                                                            </c:forEach>
+                                                        </form:select>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Mã Giảm giá</label>
+                                                        <form:select path="giamGia">
+                                                            <c:forEach items="${listGG}" var="gg">
+                                                                <option value="${gg.giamGiaID}" ${gg.giamGiaID==dh.giamGia.giamGiaID?"selected":""}>${gg.giamGiaID}</option>
+                                                            </c:forEach>
+                                                        </form:select>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Trạng Thái</label>
+                                                        <form:input class="form-control" path="trangThai"
+                                                                    value="${dh.trangThai}"/>
+                                                        <form:errors path="trangThai"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Hình Thức Thanh Toán</label>
+                                                        <form:input class="form-control" path="hinhThucThanhToan"
+                                                                    value="${dh.hinhThucThanhToan}"/>
+                                                        <form:errors path="hinhThucThanhToan"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Ngày Đặt Hàng</label>
+                                                        <form:input type="date" class="form-control" path="ngayDatHang"
+                                                                    value="${dh.ngayDatHang}"/>
+                                                        <form:errors path="ngayDatHang"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Ghi Chú</label>
+                                                        <form:input class="form-control" path="note"
+                                                                    value="${dh.note}"/>
+                                                        <form:errors path="note"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Tổng Tiền</label>
+                                                        <form:input class="form-control" path="tongTien"
+                                                                    value="${dh.tongTien}"/>
+                                                        <form:errors path="tongTien"/>
                                                     </div>
                                                 </div>
                                             </div>
@@ -591,30 +622,38 @@
                     <!--Table add -->
 
                     <div class="card">
-                        <h5 class="card-header">Quản lý khách hàng</h5>
+                        <h5 class="card-header">Quản lý đơn hàng</h5>
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Khách hàng ID</th>
-                                <th>Tên Đăng Nhập</th>
-                                <th>Email</th>
-                                <th>Mật Khẩu</th>
-                                <th>Họ Tên</th>
-                                <th>Đia Chỉ</th>
+                                <th>Đơn Hàng ID</th>
+                                <th>Mã Khách Hàng</th>
+                                <th>Tên Khách Hàng</th>
                                 <th>Số Điện Thoại</th>
+                                <th>Địa Chỉ Vận Chuyển</th>
+                                <th>Mã Giảm Giá</th>
+                                <th>Trạng Thái</th>
+                                <th>Hình Thức Thanh Toán</th>
+                                <th>Ngày Đặt Hàng</th>
+                                <th>Ghi Chú</th>
+                                <th>Tổng Tiền</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                            <c:forEach items="${list}" var="kh">
+                            <c:forEach items="${list}" var="dh">
                                 <tr>
-                                    <td>${kh.khachHangId}</td>
-                                    <td>${kh.username}</td>
-                                    <td>${kh.email}</td>
-                                    <td>${kh.password}</td>
-                                    <td>${kh.hoTen}</td>
-                                    <td>${kh.diaChi}</td>
-                                    <td>${kh.soDienThoai}</td>
+                                    <td>${dh.donHangID}</td>
+                                    <td>${dh.khachHang.khachHangId}</td>
+                                    <td>${dh.tenKhach}</td>
+                                    <td>${dh.soDienThoai}</td>
+                                    <td>${dh.thongTinVanChuyen.diaChi}</td>
+                                    <td>${dh.giamGia.maGiamGia}</td>
+                                    <td>${dh.trangThai}</td>
+                                    <td>${dh.hinhThucThanhToan}</td>
+                                    <td>${dh.ngayDatHang}</td>
+                                    <td>${dh.note}</td>
+                                    <td>${dh.tongTien}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -622,10 +661,9 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                   href="/khach-hang/view-update/${kh.khachHangId}"><i
+                                                <a class="dropdown-item" href="/don-hang/view-update/${dh.donHangID}"><i
                                                         class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/khach-hang/delete/${kh.khachHangId}"><i
+                                                <a class="dropdown-item" href="/don-hang/delete/${dh.donHangID}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
                                             </div>
                                         </div>
@@ -643,8 +681,7 @@
                                         </c:when>
                                         <c:otherwise>
                                             <li class="page-item"><a class="page-link"
-                                                                     href="/khach-hang/page?page=${page}">${page}</a>
-                                            </li>
+                                                                     href="/don-hang/page?page=${page}">${page}</a></li>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
