@@ -54,6 +54,7 @@ public class GiamGiaController {
         model.addAttribute("repon",respon);
 
 
+
         return "admin/giamgia";
     }
     @RequestMapping("/giam-gia/delete/{giamGiaID}")

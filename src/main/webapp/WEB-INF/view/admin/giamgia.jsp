@@ -568,7 +568,6 @@
                                                         <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
                                                         <form:errors path="ngayHetHan"/>
 
-
                                                     </div>
 
 
