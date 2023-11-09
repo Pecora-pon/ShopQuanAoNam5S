@@ -556,11 +556,11 @@
                                         <form:input class="form-control" path="soDienThoai" value="${kh.soDienThoai}"/>
                                         <form:errors path="soDienThoai"/>
                                     </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Chức Vụ</label>
-                                        <form:input class="form-control" path="chucVu" value="${kh.chucVu}"/>
-                                        <form:errors path="chucVu"/>
-                                    </div>
+<%--                                    <div class="mb-3 col-md-6">--%>
+<%--                                        <label class="form-label">Chức Vụ</label>--%>
+<%--                                        <form:input class="form-control" path="chucVu" value="${kh.chucVu}"/>--%>
+<%--                                        <form:errors path="chucVu"/>--%>
+<%--                                    </div>--%>
 <%--                                    <div class="mb-3 col-md-6">--%>
 <%--                                        <label class="form-label">Tên chức vụ</label>--%>
 <%--                                        <form:select path="chucVu">--%>
@@ -605,7 +605,7 @@
                                     <td>${kh.hoTen}</td>
                                     <td>${kh.diaChi}</td>
                                     <td>${kh.soDienThoai}</td>
-                                    <td>${kh.chucVu}</td>
+<%--                                    <td>${kh.chucVu}</td>--%>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
