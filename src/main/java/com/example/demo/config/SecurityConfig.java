@@ -40,7 +40,6 @@ private final NhanVienRepo nhanVienRepo;
                         .requestMatchers(new AntPathRequestMatcher("/giam-gia")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/thong-tin-van-chuyen")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/giam-gia-chi-tiet")).hasAuthority("ROLE_ADMIN")
-
                 )
                 .formLogin()
                 .and()
