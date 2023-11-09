@@ -29,7 +29,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Giảm giá</title>
+    <title>Chức vụ</title>
 
     <meta name="description" content=""/>
 
@@ -518,68 +518,41 @@
                     <!--Content -->
                     <!--Table add -->
                     <div class="card">
-                        <div class="card-body"><div class="mb-3 col-12">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Thêm giảm giá
-                            </button>
-                            <form:form action="/giam-gia-add" modelAttribute="gg" method="POST">
-                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                                            </div>
-                                            <div class="row">
-                                                <div class="modal-body">
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">ID Giảm Giá</label>
-                                                        <form:input class="form-control" path="giamGiaID" disabled="true" value="${gg.giamGiaID}"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Mã giảm giá</label>
-                                                        <form:input class="form-control" path="maGiamGia" value="${gg.maGiamGia}"/>
-                                                        <form:errors path="maGiamGia"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Tên sự kiện</label>
-                                                        <form:input class="form-control" path="tenSuKien" value="${gg.tenSuKien}"/>
-                                                        <form:errors path="tenSuKien"/>
-
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Nhân viên</label>
-                                                        <form:select class="form-select" path="nhanVien">
-                                                            <form:option value="" label="Chọn nhân viên"/>
-                                                            <c:forEach items="${nv}" var="nv">
-                                                                <form:option value="${nv.nhanVienID}">${nv.hoTen}</form:option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    </div>
-
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Ngày tạo</label>
-                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>
-                                                        <form:errors path="ngayTao"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Ngày hết hạn</label>
-                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
-                                                        <form:errors path="ngayHetHan"/>
-                                                    </div>
-
-
-                                                <div class="mt-2">
-                                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
-                                                </div>
-                                            </div>
-                                            </div>
-
-                                            </div>
-                                        </div>
+                        <div class="card-body">
+                            <form:form action="/giam-gia-chi-tiet/update/${ggct.giamGiaChiTietID}" modelAttribute="ggct" method="POST">
+                                <div class="row">
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">ID Giảm giá chi tiết</label>
+                                        <form:input class="form-control" path="giamGiaChiTietID" disabled="true" value="${ggct.giamGiaChiTietID}"/>
                                     </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Giảm giá</label>
+                                        <form:select class="form-select" path="giamGia">
+                                            <form:option value="" label="Chọn mã giảm giá"/>
+                                            <c:forEach items="${gg}" var="gg">
+                                                <form:option value="${gg.giamGiaID}">${gg.maGiamGia}</form:option>
+                                            </c:forEach>
+                                        </form:select>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Sản phẩm</label>
+                                        <form:select class="form-select" path="sanPham">
+                                            <form:option value="" label="Chọn sản phẩm"/>
+                                            <c:forEach items="${sp}" var="sp">
+                                                <form:option value="${sp.sanPhamID}">${sp.tenSanPham}</form:option>
+                                            </c:forEach>
+                                        </form:select>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Số tiền giảm</label>
+                                        <form:input class="form-control" path="soTienGiam" value="${ggct.soTienGiam}"/>
+                                        <form:errors path="soTienGiam"/>
 
-
+                                    </div>
+                                </div>
+                                <div class="mt-2">
+                                    <button type="submit" class="btn btn-primary me-2">Sửa</button>
+                                </div>
                             </form:form>
                             <c:if test="${!empty repon.error}">
                                 <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
@@ -602,36 +575,33 @@
                             </div>
                         </form>
                         <br>
-                        <h5 class="card-header">Quản lý giảm giá</h5>
+                        <h5 class="card-header">Quản lý giảm giá chi tiết</h5>
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Giảm giá ID</th>
-                                <th>Mã giảm giá</th>
-                                <th>Tên sự kiện</th>
-                                <th>Nhân viên</th>
-                                <th>Ngày tạo</th>
-                                <th>Ngày hết hạn</th>
+                                <th>Giảm giá chi tiết ID</th>
+                                <th>Mã Giảm Giá</th>
+                                <th>Sản phẩm</th>
+                                <th>Số tiền giảm</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                            <c:forEach items="${listGiamGia}" var="giamgia">
+                            <c:forEach items="${listGiamGiaChiTiet}" var="giamgiachitiet">
                                 <tr>
-                                    <td>${giamgia.giamGiaID}</td>
-                                    <td>${giamgia.maGiamGia}</td>
-                                    <td>${giamgia.tenSuKien}</td>
-                                    <td>${giamgia.nhanVien.hoTen}</td>
-                                    <td>${giamgia.ngayTao}</td>
-                                    <td>${giamgia.ngayHetHan}</td>
+                                    <td>${giamgiachitiet.giamGiaChiTietID}</td>
+                                    <td>${giamgiachitiet.giamGia.maGiamGia}</td>
+                                    <td>${giamgiachitiet.sanPham.tenSanPham}</td>
+                                    <td>${giamgiachitiet.soTienGiam}</td>
+
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/giam-gia-view-update/${giamgia.giamGiaID}"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/giam-gia/delete/${giamgia.giamGiaID}" onclick="confirmDeletee()"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                                <a class="dropdown-item" href="/giam-gia-chi-tiet-view-update/${giamgiachitiet.giamGiaChiTietID}"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
+                                                <a class="dropdown-item" href="/giam-gia-chi-tiet/delete/${giamgiachitiet.giamGiaChiTietID}" onclick="confirmDeletee()"><i class="bx bx-trash me-1"></i> Xóa</a>
                                             </div>
                                         </div>
                                     </td>
@@ -639,20 +609,20 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <c:forEach begin="0" end="${totalPages}" var="page">
-                                    <c:choose>
-                                        <c:when test="${page == currentPage}">
-                                            <li class="page-item active"><span class="page-link">${page}</span></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="page-item"><a class="page-link" href="/giam-gia/page?page=${page}">${page}</a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </ul>
-                        </nav>
+<%--                        <nav aria-label="Page navigation example">--%>
+<%--                            <ul class="pagination">--%>
+<%--                                <c:forEach begin="0" end="${totalPages}" var="page">--%>
+<%--                                    <c:choose>--%>
+<%--                                        <c:when test="${page == currentPage}">--%>
+<%--                                            <li class="page-item active"><span class="page-link">${page}</span></li>--%>
+<%--                                        </c:when>--%>
+<%--                                        <c:otherwise>--%>
+<%--                                            <li class="page-item"><a class="page-link" href="/giam-gia-chi-tiet/page?page=${page}">${page}</a></li>--%>
+<%--                                        </c:otherwise>--%>
+<%--                                    </c:choose>--%>
+<%--                                </c:forEach>--%>
+<%--                            </ul>--%>
+<%--                        </nav>--%>
                     </div>
                     <!--Content -->
 
@@ -699,19 +669,6 @@
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-<script>
-    function confirmDeletee() {
-        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
-            // Thực hiện cập nhật (submit form, gửi request AJAX, ...)
-            displayNotification("Xóa thành công!");
-        }
-    }
-
-    function displayNotification(message) {
-        // Hiển thị thông báo cho người dùng
-        alert(message);
-    }
-</script>
 <script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../admin/assets/vendor/libs/popper/popper.js"></script>
 <script src="../admin/assets/vendor/js/bootstrap.js"></script>

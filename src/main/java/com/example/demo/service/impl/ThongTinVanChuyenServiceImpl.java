@@ -1,7 +1,9 @@
 package com.example.demo.service.impl;
 
+import com.example.demo.entity.GiamGia;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.entity.ThongTinVanChuyen;
+import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.ThongTinVanChuyenRepo;
 import com.example.demo.service.ThongTinVanChuyenService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,12 +24,25 @@ public class ThongTinVanChuyenServiceImpl implements ThongTinVanChuyenService {
     }
 
     @Override
-    public ThongTinVanChuyen add(ThongTinVanChuyen thongTinVanChuyen) {
-        return thongTinVanChuyenRepo.save(thongTinVanChuyen);
+    public Respon<ThongTinVanChuyen> add(ThongTinVanChuyen thongTinVanChuyen) {
+        Respon<ThongTinVanChuyen> respon=new Respon<>();
+
+        if( !thongTinVanChuyen.getDiaChi().isEmpty() &&
+                !thongTinVanChuyen.getPhuongThuc().isEmpty() &&
+                thongTinVanChuyen.getTrangThai() != null
+        ){
+
+            thongTinVanChuyenRepo.save(thongTinVanChuyen);
+            respon.setStatus("Thành công");
+        }else {
+            respon.setError("Vui lòng nhập đầy đủ dữ liệu");
+        }
+        return respon;
     }
 
     @Override
-    public ThongTinVanChuyen update(Integer thongTinVanChuyenID, ThongTinVanChuyen thongTinVanChuyen) {
+    public Respon<ThongTinVanChuyen> update(Integer thongTinVanChuyenID, ThongTinVanChuyen thongTinVanChuyen) {
+        Respon<ThongTinVanChuyen>  respon = new Respon<>();
         ThongTinVanChuyen thongTinVanChuyen1 = detail(thongTinVanChuyenID);
         if(thongTinVanChuyen1 !=null){
             thongTinVanChuyen1.setThongTinVanChuyenID(thongTinVanChuyen.getThongTinVanChuyenID());
@@ -35,8 +50,11 @@ public class ThongTinVanChuyenServiceImpl implements ThongTinVanChuyenService {
             thongTinVanChuyen1.setPhuongThuc(thongTinVanChuyen.getPhuongThuc());
             thongTinVanChuyen1.setTrangThai(thongTinVanChuyen.getTrangThai());
             thongTinVanChuyenRepo.save(thongTinVanChuyen);
+            respon.setStatus("Thành công");
+        }else {
+            respon.setError("Vui lòng nhập đầy đủ dữ liệu");
         }
-        return null;
+        return respon;
     }
 
     @Override

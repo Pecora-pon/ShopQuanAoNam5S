@@ -7,6 +7,7 @@ import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.GiamGiaRepo;
 import com.example.demo.repository.NhanVienRepo;
 import com.example.demo.service.GiamGiaService;
+import com.example.demo.service.NhanVienService;
 import jakarta.validation.Valid;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,7 +31,7 @@ public class GiamGiaController {
     @Autowired
     private GiamGiaRepo giamGiaRepo;
     @Autowired
-    private NhanVienRepo nhanVienRepo;
+    private NhanVienService nhanVienService;
 
 
 
@@ -40,20 +41,21 @@ public class GiamGiaController {
                          @Param("keyword") String keyword) {
 
         List<GiamGia> giamGiaList = giamGiaService.getAll();
-        model.addAttribute("nv",nhanVienRepo.findAll());
+        model.addAttribute("nv",nhanVienService.getAll());
         model.addAttribute("listGiamGia",giamGiaList);
         model.addAttribute("gg",new GiamGia());
-        return "admin/giamgia";
+        return "redirect:/giam-gia/page";
     }
     @RequestMapping(value = "/giam-gia-add",method = RequestMethod.POST)
     public String addGiamGia(@Valid @ModelAttribute("gg") GiamGia giamGia,
                              BindingResult result,
                              Model model){
         Respon<GiamGia> respon = giamGiaService.add(giamGia);
-        model.addAttribute("nv",nhanVienRepo.findAll());
+        List<GiamGia> giamGiaList = giamGiaService.getAll();
+        model.addAttribute("nv",nhanVienService.getAll());
+        model.addAttribute("listGiamGia",giamGiaList);
+        model.addAttribute("gg",new GiamGia());
         model.addAttribute("repon",respon);
-
-
         return "admin/giamgia";
     }
     @RequestMapping("/giam-gia/delete/{giamGiaID}")
@@ -66,7 +68,7 @@ public class GiamGiaController {
             ,Model model){
         GiamGia giamGia = giamGiaService.detail(giamGiaID);
         List<GiamGia> giamGiaList = giamGiaService.getAll();
-        model.addAttribute("nv",nhanVienRepo.findAll());
+        model.addAttribute("nv",nhanVienService.getAll());
         model.addAttribute("listGiamGia",giamGiaList);
         model.addAttribute("gg",giamGia);
         return "admin/giamgia-update";
@@ -75,6 +77,10 @@ public class GiamGiaController {
     public String update(@PathVariable("giamGiaID") Integer giamGiaID
             ,GiamGia giamGia,Model model){
         Respon<GiamGia> respon = giamGiaService.update(giamGiaID,giamGia);
+        List<GiamGia> giamGiaList = giamGiaService.getAll();
+        model.addAttribute("nv",nhanVienService.getAll());
+        model.addAttribute("listGiamGia",giamGiaList);
+        model.addAttribute("gg",new GiamGia());
         model.addAttribute("repon",respon);
         return "redirect:/giam-gia/page";
     }
@@ -97,7 +103,7 @@ public class GiamGiaController {
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("itemsPerPage", itemsPerPage);
         model.addAttribute("totalItems", totalItems);
-        model.addAttribute("nv",nhanVienRepo.findAll());
+        model.addAttribute("nv",nhanVienService.getAll());
         model.addAttribute("listGiamGia",giamGiaList);
         model.addAttribute("gg",new GiamGia());
         return "admin/giamgia";
@@ -107,7 +113,7 @@ public class GiamGiaController {
     public String search(Model model,
                          @RequestParam("keyword") String keyword){
         List<GiamGia> giamGiaList = giamGiaService.findMaGiamGia(keyword);
-        model.addAttribute("nv",nhanVienRepo.findAll());
+        model.addAttribute("nv",nhanVienService.getAll());
         model.addAttribute("gg",giamGiaList);
         return "admin/giamgia";
     }

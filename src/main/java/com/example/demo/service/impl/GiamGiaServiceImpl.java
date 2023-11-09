@@ -34,7 +34,8 @@ public class GiamGiaServiceImpl implements GiamGiaService {
 
         if( !giamGia.getMaGiamGia().isEmpty() &&
              !giamGia.getTenSuKien().isEmpty() &&
-                giamGia.getNgayTao() != null && giamGia.getNgayHetHan() !=null
+                giamGia.getNgayTao() != null && giamGia.getNgayHetHan() !=null &&
+                giamGia.getNhanVien() !=null
         ){
 
             giamGiaRepo.save(giamGia);

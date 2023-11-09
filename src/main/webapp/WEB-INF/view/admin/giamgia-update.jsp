@@ -539,11 +539,10 @@
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Nhân viên</label>
                                         <form:select class="form-select" path="nhanVien">
+                                            <form:option value="" label="Chọn nhân viên"/>
                                             <c:forEach items="${nv}" var="nv">
-                                                <form:option value="${nv.nhanVienID}">${nv.nhanVienID}</form:option>
-
+                                                <form:option value="${nv.nhanVienID}">${nv.hoTen}</form:option>
                                             </c:forEach>
-
                                         </form:select>
                                     </div>
 
@@ -562,6 +561,12 @@
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                 </div>
                             </form:form>
+                            <c:if test="${!empty repon.error}">
+                                <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
+                            </c:if>
+                            <c:if test="${not empty repon.status}">
+                                <div class="alert alert-success">${repon.status}</div>
+                            </c:if>
                         </div>
                     </div>
                     <hr class="my-3">
@@ -616,12 +621,15 @@
                         </table>
 <%--                        <nav aria-label="Page navigation example">--%>
 <%--                            <ul class="pagination">--%>
-<%--                                <c:forEach begin="1" end="${ listGiamGia.totalPages}" varStatus="loop">--%>
-<%--                                    <li class="page-item">--%>
-<%--                                        <a class="page-link" href="/giam-gia?pageNo=${loop.begin + loop.count - 1}">--%>
-<%--                                                ${loop.begin-1 + loop.count}--%>
-<%--                                        </a>--%>
-<%--                                    </li>--%>
+<%--                                <c:forEach begin="0" end="${totalPages}" var="page">--%>
+<%--                                    <c:choose>--%>
+<%--                                        <c:when test="${page == currentPage}">--%>
+<%--                                            <li class="page-item active"><span class="page-link">${page}</span></li>--%>
+<%--                                        </c:when>--%>
+<%--                                        <c:otherwise>--%>
+<%--                                            <li class="page-item"><a class="page-link" href="/giam-gia/page?page=${page}">${page}</a></li>--%>
+<%--                                        </c:otherwise>--%>
+<%--                                    </c:choose>--%>
 <%--                                </c:forEach>--%>
 <%--                            </ul>--%>
 <%--                        </nav>--%>

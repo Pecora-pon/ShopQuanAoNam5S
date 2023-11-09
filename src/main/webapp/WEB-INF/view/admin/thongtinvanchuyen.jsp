@@ -29,7 +29,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Chức vụ</title>
+    <title>Thông tin vận chuyển</title>
 
     <meta name="description" content=""/>
 
@@ -519,33 +519,58 @@
                     <!--Table add -->
                     <div class="card">
                         <div class="card-body">
+                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                                Thêm thông tin vận chuyển
+                            </button>
                             <form:form action="/thong-tin-van-chuyen-add" modelAttribute="ttvc" method="POST">
-                                <div class="row">
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">ID Vận Chuyển</label>
-                                        <form:input class="form-control" path="thongTinVanChuyenID" disabled="true" value="${ttvc.thongTinVanChuyenID}"/>
+                                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Thông tin vận chuyển</h1>
+                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                            </div>
+                                            <div class="row">
+                                                <div class="modal-body">
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">ID Vận Chuyển</label>
+                                                        <form:input class="form-control" path="thongTinVanChuyenID" disabled="true" value="${ttvc.thongTinVanChuyenID}"/>
 
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Địa Chỉ</label>
-                                        <form:input class="form-control" path="diaChi" value="${ttvc.diaChi}"/>
-                                        <form:errors path="diaChi"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Phương Thức</label>
-                                        <form:input class="form-control" path="phuongThuc" value="${ttvc.phuongThuc}"/>
-                                        <form:errors path="phuongThuc"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Trạng Thái</label>
-                                        <form:input class="form-control" path="trangThai" value="${ttvc.trangThai}"/>
-                                        <form:errors path="trangThai"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Địa Chỉ</label>
+                                                        <form:input class="form-control" path="diaChi" value="${ttvc.diaChi}"/>
+                                                        <form:errors path="diaChi"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Phương Thức</label>
+                                                        <form:input class="form-control" path="phuongThuc" value="${ttvc.phuongThuc}"/>
+                                                        <form:errors path="phuongThuc"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Trạng Thái</label>
+                                                        <form:input class="form-control" path="trangThai" value="${ttvc.trangThai}"/>
+                                                        <form:errors path="trangThai"/>
+                                                    </div>
+
+
+                                                    <div class="mt-2">
+                                                        <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
-                                </div>
+
                             </form:form>
+                            <c:if test="${!empty repon.error}">
+                                <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
+                            </c:if>
+                            <c:if test="${not empty repon.status}">
+                                <div class="alert alert-success">${repon.status}</div>
+                            </c:if>
                         </div>
                     </div>
                     <hr class="my-3">
