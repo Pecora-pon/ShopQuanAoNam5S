@@ -39,14 +39,14 @@ public class KhachHangController {
     public String delete(@PathVariable("khachHangId") Integer khachHangId){
 //        List<ChucVu> listCV = chucVuService.getAll();
         khachHangService.delete(khachHangId);
-        return "redirect:/khach-hang/hien-thi";
+        return "redirect:/khach-hang";
     }
 
     @PostMapping("/add")
     public String add(@ModelAttribute("kh")KhachHang khachHang){
 //        List<ChucVu> listCV = chucVuService.getAll();
         khachHangService.add(khachHang);
-        return "redirect:/khach-hang/hien-thi";
+        return "redirect:/khach-hang";
     }
 
     @GetMapping("/view-update/{khachHangId}")
@@ -89,7 +89,7 @@ public class KhachHangController {
     public String update(@ModelAttribute("kh")KhachHang khachHang){
 //        List<ChucVu> listCV = chucVuService.getAll();
         khachHangService.add(khachHang);
-        return "redirect:/khach-hang/hien-thi";
+        return "redirect:/khach-hang";
     }
 
 }
