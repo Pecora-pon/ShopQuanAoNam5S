@@ -520,7 +520,7 @@
                         <div class="card-body">
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal"
                                     data-bs-target="#exampleModal">
-                                Thêm đơn hàng
+                                Tạo hóa đơn
                             </button>
                             <form:form action="/don-hang/add" modelAttribute="dh" method="POST">
                                 <div class="modal fade" id="exampleModal" tabindex="-1"
@@ -569,14 +569,14 @@
                                                             </c:forEach>
                                                         </form:select>
                                                     </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Mã Giảm giá</label>
-                                                        <form:select path="giamGia">
-                                                            <c:forEach items="${listGG}" var="gg">
-                                                                <option value="${gg.giamGiaID}" ${gg.giamGiaID==dh.giamGia.giamGiaID?"selected":""}>${gg.giamGiaID}</option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    </div>
+<%--                                                    <div class="mb-3 col-md-6">--%>
+<%--                                                        <label class="form-label">Mã Giảm giá</label>--%>
+<%--                                                        <form:select path="giamGia">--%>
+<%--                                                            <c:forEach items="${listGG}" var="gg">--%>
+<%--                                                                <option value="${gg.giamGiaID}" ${gg.giamGiaID==dh.giamGia.giamGiaID?"selected":""}>${gg.giamGiaID}</option>--%>
+<%--                                                            </c:forEach>--%>
+<%--                                                        </form:select>--%>
+<%--                                                    </div>--%>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Trạng Thái</label>
                                                         <form:input class="form-control" path="trangThai"
@@ -601,16 +601,24 @@
                                                                     value="${dh.note}"/>
                                                         <form:errors path="note"/>
                                                     </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Tổng Tiền</label>
-                                                        <form:input class="form-control" path="tongTien"
-                                                                    value="${dh.tongTien}"/>
-                                                        <form:errors path="tongTien"/>
-                                                    </div>
+<%--                                                    <div class="mb-3 col-md-6">--%>
+<%--                                                        <label class="form-label">Tổng Tiền</label>--%>
+<%--                                                        <form:input class="form-control" path="tongTien"--%>
+<%--                                                                    value="${dh.tongTien}"/>--%>
+<%--                                                        <form:errors path="tongTien"/>--%>
+<%--                                                    </div>--%>
                                                 </div>
                                             </div>
                                             <div class="mt-2">
-                                                <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                                                <button type="submit" id="myButton" class="btn btn-primary me-2"> Thanh Toán</button>
+
+                                                <script>
+                                                    document.getElementById("myButton").addEventListener("click", function() {
+                                                        alert("Bạn đã thanh toán thành công");
+                                                    });
+                                                </script>
+
+<%--                                                <button type="submit" class="btn btn-primary me-2">Thanh Toán</button>--%>
                                             </div>
                                         </div>
                                     </div>
@@ -626,12 +634,13 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Đơn Hàng ID</th>
+                                <th>STT</th>
                                 <th>Mã Khách Hàng</th>
                                 <th>Tên Khách Hàng</th>
+                                <th>Địa chỉ</th>
                                 <th>Số Điện Thoại</th>
                                 <th>Địa Chỉ Vận Chuyển</th>
-                                <th>Mã Giảm Giá</th>
+<%--                                <th>Mã Giảm Giá</th>--%>
                                 <th>Trạng Thái</th>
                                 <th>Hình Thức Thanh Toán</th>
                                 <th>Ngày Đặt Hàng</th>
@@ -641,19 +650,20 @@
                             </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
-                            <c:forEach items="${list}" var="dh">
+                            <c:forEach items="${list}" var="dh" varStatus="i">
                                 <tr>
-                                    <td>${dh.donHangID}</td>
+                                    <td scope="row">${i.index+1}</td>
                                     <td>${dh.khachHang.khachHangId}</td>
                                     <td>${dh.tenKhach}</td>
+                                    <td>${dh.khachHang.diaChi}</td>
                                     <td>${dh.soDienThoai}</td>
                                     <td>${dh.thongTinVanChuyen.diaChi}</td>
-                                    <td>${dh.giamGia.maGiamGia}</td>
+<%--                                    <td>${dh.giamGia.maGiamGia}</td>--%>
                                     <td>${dh.trangThai}</td>
                                     <td>${dh.hinhThucThanhToan}</td>
                                     <td>${dh.ngayDatHang}</td>
                                     <td>${dh.note}</td>
-                                    <td>${dh.tongTien}</td>
+<%--                                    <td>${dh.tongTien}</td>--%>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"

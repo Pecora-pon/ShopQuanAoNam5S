@@ -44,9 +44,9 @@ public class DonHang {
     @JoinColumn(name = "ThongTinVanChuyenID")
     private ThongTinVanChuyen thongTinVanChuyen;
 
-    @ManyToOne
-    @JoinColumn(name = "GiamGiaID")
-    private GiamGia giamGia;
+//    @ManyToOne
+//    @JoinColumn(name = "GiamGiaID")
+//    private GiamGia giamGia;
 
     @Column(name = "TrangThai")
     private Integer trangThai;
@@ -61,8 +61,8 @@ public class DonHang {
     @Column(name = "Note", length = 255)
     private String note;
 
-    @Column(name = "TongTien")
-    private Float tongTien;
+//    @Column(name = "TongTien")
+//    private Float tongTien;
 
 
 

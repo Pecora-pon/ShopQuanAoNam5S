@@ -8,6 +8,7 @@ import com.example.demo.service.DonHangService;
 import com.example.demo.service.GiamGiaService;
 import com.example.demo.service.KhachHangService;
 import com.example.demo.service.ThongTinVanChuyenService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -59,7 +60,7 @@ public class DonHangController {
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute("dh")DonHang donHang){
+    public String add(@Valid @ModelAttribute("dh")DonHang donHang){
         List<KhachHang> listKH = khachHangService.getAll();
         List<ThongTinVanChuyen> listTTVC = thongTinVanChuyenService.getAll();
         List<GiamGia> listGG = giamGiaService.getAll();
@@ -108,7 +109,7 @@ public class DonHangController {
     }
 
     @PostMapping("/update/{donHangID}")
-    public String update(@ModelAttribute("dh")DonHang donHang){
+    public String update(@Valid @ModelAttribute("dh")DonHang donHang){
         List<KhachHang> listKH = khachHangService.getAll();
         List<ThongTinVanChuyen> listTTVC = thongTinVanChuyenService.getAll();
         List<GiamGia> listGG = giamGiaService.getAll();
