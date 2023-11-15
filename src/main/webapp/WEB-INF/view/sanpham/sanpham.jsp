@@ -527,7 +527,7 @@
                     <div class="card">
                         <h3 class="card-header">Quản lý nhập kho</h3>
                         <div class="card-body">
-                            <form:form action="/san-pham-add" modelAttribute="sp" method="POST">
+                            <form:form action="/san-pham-add" modelAttribute="sp" method="POST" enctype="multipart/form-data">
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">ID Sản Phẩm</label>
@@ -665,7 +665,7 @@
                                     <td>${sanpham.size.tenSize}</td>
                                     <td>${sanpham.chatLieu.tenChatLieu}</td>
                                     <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                    <td>  <img src="${sanpham.hinhAnhURL}" style="max-width: 20px; max-height: 20px;">
+                                    <td>  <img src="getimage/${sanpham.hinhAnhURL}" style="max-width: 20px; max-height: 20px;">
                                              </td>
 
                                     <td>
