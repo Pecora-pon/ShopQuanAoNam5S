@@ -576,6 +576,10 @@
                                                                     value="${kh.soDienThoai}"/>
                                                         <form:errors path="soDienThoai"/>
                                                     </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Chức vụ</label>
+                                                        <form:input class="form-control" path="chucVu" value="${kh.chucVu}"/>
+                                                    </div>
                                                 </div>
                                             </div>
                                             <div class="mt-2">
@@ -598,7 +602,7 @@
                                 <th>Khách hàng ID</th>
                                 <th>Tên Đăng Nhập</th>
                                 <th>Email</th>
-                                <th>Mật Khẩu</th>
+<%--                                <th>Mật Khẩu</th>--%>
                                 <th>Họ Tên</th>
                                 <th>Đia Chỉ</th>
                                 <th>Số Điện Thoại</th>
@@ -611,7 +615,7 @@
                                     <td>${kh.khachHangId}</td>
                                     <td>${kh.username}</td>
                                     <td>${kh.email}</td>
-                                    <td>${kh.password}</td>
+<%--                                    <td>${kh.password}</td>--%>
                                     <td>${kh.hoTen}</td>
                                     <td>${kh.diaChi}</td>
                                     <td>${kh.soDienThoai}</td>
