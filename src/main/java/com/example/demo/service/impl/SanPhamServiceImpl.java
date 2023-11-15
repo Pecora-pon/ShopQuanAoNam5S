@@ -86,9 +86,16 @@ public class SanPhamServiceImpl implements SanPhamService {
     public void capnhat(UUID id, int soluong) {
         SanPham sanPham=sanPhamRepo.findById(id).orElse(null);
         if(sanPham!=null){
-            int soluongmoi=sanPham.getSoLuongTon() + soluong;
-            sanPham.setSoLuongTon(soluongmoi);
-            sanPhamRepo.save(sanPham);
+            if(sanPham.getSoLuongTon() >=0) {
+                int soluongmoi = sanPham.getSoLuongTon() - soluong;
+                sanPham.setSoLuongTon(soluongmoi);
+                sanPhamRepo.save(sanPham);
+            }
         }
+    }
+
+    @Override
+    public SanPham themgio(UUID sanPhamID) {
+        return sanPhamRepo.getById(sanPhamID);
     }
 }

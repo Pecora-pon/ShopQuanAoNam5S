@@ -21,4 +21,5 @@ public interface SanPhamService {
     SanPham detail(UUID sanPhamID);
     Page<SanPham> getPage(int pageNumber, int pageSize);
     void capnhat(UUID id,int soluong);
+   SanPham themgio(UUID sanPhamID);
 }
