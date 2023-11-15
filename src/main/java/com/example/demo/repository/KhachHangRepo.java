@@ -12,8 +12,9 @@ import java.util.Optional;
 
 @Repository
 public interface KhachHangRepo extends JpaRepository<KhachHang,Integer> {
-    Optional<KhachHang> findByUsername(String username);
+    Optional<KhachHang> findByusername(String username);
     @Query("SELECT k FROM KhachHang k WHERE k.hoTen LIKE %?1%")
     List<KhachHang> searchByHoTenOrUsername(String keyword);
+    KhachHang findByUsername(String username);
 }
 

@@ -34,5 +34,6 @@ public class GioHang {
     @ManyToOne
     @JoinColumn(name = "KhachHangID")
     private KhachHang khachHang;
-
+    @Column(name = "TongTien")
+    private Double tongTien;
 }

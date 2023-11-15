@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <head>
     <meta charset="UTF-8">
@@ -9,11 +11,27 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Male-Fashion | Template</title>
+    <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
 
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com"/>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+    <link
+            href="https://fonts.googleapis.com/css2?family=Public+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+            rel="stylesheet"
+    />
+
+    <!-- Icons. Uncomment required icon fonts -->
+    <link rel="stylesheet" href="../admin/assets/vendor/fonts/boxicons.css"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
+          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <link rel="stylesheet" href="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+
+    <link rel="stylesheet" href="../admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
     rel="stylesheet">
-
+    <script src="../admin/assets/vendor/js/helpers.js"></script>
     <!-- Css Styles -->
     <link rel="stylesheet" href="../mainshop/mainshop2/css/bootstrap.min.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2/css/font-awesome.min.css" type="text/css">
@@ -74,7 +92,7 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#">Sign in</a>
+                                <a href="/logout">Sign in</a>
                                 <a href="#">FAQs</a>
                             </div>
                             <div class="header__top__hover">
@@ -155,6 +173,7 @@
             <div class="row">
                 <div class="col-lg-8">
                     <div class="shopping__cart__table">
+
                         <table>
                             <thead>
                                 <tr>
@@ -164,30 +183,51 @@
                                     <th></th>
                                 </tr>
                             </thead>
+                            <c:forEach items="${listGioHang}" var="gh">
                             <tbody>
+
                                 <tr>
                                     <td class="product__cart__item">
                                         <div class="product__cart__item__pic">
                                             <img src="../mainshop/mainshop2/img/shopping-cart/cart-1.jpg" alt="">
                                         </div>
                                         <div class="product__cart__item__text">
-                                            <h6>T-shirt Contrast Pocket</h6>
-                                            <h5>$98.49</h5>
+                                            <h6>${gh.sanPham.tenSanPham}</h6>
+                                            <h5>${gh.sanPham.giaSanPham}</h5>
                                         </div>
                                     </td>
                                     <td class="quantity__item">
                                         <div class="quantity">
-                                            <div class="pro-qty-2">
-                                                <input type="text" value="1">
+                                            <div >
+                                                <h6>${gh.soLuongDat}</h6>
                                             </div>
                                         </div>
                                     </td>
-                                    <td class="cart__price">$ 30.00</td>
-                                    <td class="cart__close"><i class="fa fa-close"></i></td>
+                                    <td class="cart__price">${gh.tongTien}</td>
+                                    <td>
+                                        <div class="mt-2">
+                                            <input type="checkbox" name="selectedItems" value="${gh.gioHangID}">
+
+                                        </div>
+                                        <div class="mt-2">
+                                            <a class="dropdown-item"
+                                               href="/delete/${gh.gioHangID}"><i
+                                                    class="bx bx-trash me-1"></i></a>
+                                        </div>
+<%--                                        <div class="mt-2">--%>
+<%--                                            <a class="dropdown-item"--%>
+<%--                                               href="/gio-hang-update/${gh.gioHangID}"><i--%>
+<%--                                                    class="bx bx-edit-alt me-1"></i></a>--%>
+<%--                                        </div>--%>
+                                    </td>
                                 </tr>
+
                             </tbody>
+                                <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
+                            </c:forEach>
                         </table>
                     </div>
+
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
@@ -212,7 +252,7 @@
                     <div class="cart__total">
                         <h6>Cart total</h6>
                         <ul>
-                            <li>Subtotal <span>$ 169.50</span></li>
+                            <li>Subtotal <span>${totalPrice}</span></li>
                             <li>Total <span>$ 169.50</span></li>
                         </ul>
                         <a href="#" class="primary-btn">Proceed to checkout</a>

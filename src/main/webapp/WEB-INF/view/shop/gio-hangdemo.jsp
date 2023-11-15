@@ -29,14 +29,13 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Chức vụ</title>
+    <title>Nhân viên</title>
 
     <meta name="description" content=""/>
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
-          integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -320,7 +319,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="/nhan-vien" class="menu-link">
                                 <div data-i18n="Vertical Form">Quản lý nhân viên</div>
                             </a>
                         </li>
@@ -359,6 +358,14 @@
                         <li class="menu-item">
                             <a href="form-layouts-vertical.html" class="menu-link">
                                 <div data-i18n="Vertical Form">Danh sách đơn hàng</div>
+                            </a>
+                        </li>
+
+                    </ul>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="form-layouts-vertical.html" class="menu-link">
+                                <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
                             </a>
                         </li>
 
@@ -512,186 +519,151 @@
 
             <!-- / Navbar -->
 
-            <div class="content-wrapper">
-                <div class="container-xxl flex-grow-1 container-p-y">
-                    <!--Content -->
-                    <!--Table add -->
-                    <div class="card">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
-                                Thêm khách hàng
-                            </button>
-                            <form:form action="/khach-hang/add" modelAttribute="kh" method="POST">
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="row">
-                                                <div class="modal-body">
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">ID Khách Hàng</label>
-                                                        <form:input class="form-control" path="khachHangId"
-                                                                    disabled="true"
-                                                                    value="${kh.khachHangId}"/>
+            <!-- Content wrapper -->
+            <%--            <div class="content-wrapper">--%>
+            <%--                <div class="container-xxl flex-grow-1 container-p-y">--%>
+            <%--                    <!--Content -->--%>
+            <%--                    <!-- Table add -->--%>
+            <%--                    <div class="card">--%>
+            <%--                        <h3 class="card-header">Giỏ hàng</h3>--%>
+            <%--                        <div class="card-body">--%>
 
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Tên Đăng Nhập</label>
-                                                        <form:input class="form-control" path="username"
-                                                                    value="${kh.username}"/>
-                                                        <form:errors path="username"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Email</label>
-                                                        <form:input class="form-control" path="email"
-                                                                    value="${kh.email}"/>
-                                                        <form:errors path="email"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Mật Khẩu</label>
-                                                        <form:input class="form-control" path="password"
-                                                                    value="${kh.password}"/>
-                                                        <form:errors path="password"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Họ Tên</label>
-                                                        <form:input class="form-control" path="hoTen"
-                                                                    value="${kh.hoTen}"/>
-                                                        <form:errors path="hoTen"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Địa Chỉ</label>
-                                                        <form:input class="form-control" path="diaChi"
-                                                                    value="${kh.diaChi}"/>
-                                                        <form:errors path="diaChi"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Số Điện Thoại</label>
-                                                        <form:input class="form-control" path="soDienThoai"
-                                                                    value="${kh.soDienThoai}"/>
-                                                        <form:errors path="soDienThoai"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Chức vụ</label>
-                                                        <form:input class="form-control" path="chucVu" value="${kh.chucVu}"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <button type="submit" class="btn btn-primary me-2">Thêm</button>
-                                            </div>
+
+            <%--    <table class="table">--%>
+            <%--        <thead>--%>
+            <%--        <tr>--%>
+            <%--            <th>Hình Ảnh</th>--%>
+            <%--            <th>Tên sản phẩm</th>--%>
+            <%--            <th>Giá sản phẩm</th>--%>
+            <%--            <th>Số lượng</th>--%>
+            <%--            <th>Action</th>--%>
+            <%--        </tr>--%>
+            <%--        </thead>--%>
+            <%--        <tbody class="table-border-bottom-0">--%>
+            <%--        <form:form action="/them-gio-hang/${gh.sanPhamID}" modelAttribute="gh">--%>
+            <%--          <tr>--%>
+            <%--              <td>${gh.hinhAnhURL}</td>--%>
+            <%--              <td>${gh.tenSanPham}</td>--%>
+            <%--              <td>${gh.giaSanPham}</td>--%>
+            <%--              <td>${gh.soLuong}</td>--%>
+            <%--          </tr>--%>
+            <%--            <input type="text"name="soLuongDat" />--%>
+            <%--        <button type="submit" class="btn btn-primary">Thêm</button>--%>
+            <%--        </form:form>--%>
+            <%--    </table>--%>
+            <%--                    </div>--%>
+            <%--                </div>--%>
+            <div class="container mt-5 mb-5">
+                <div class="row d-flex justify-content-center">
+                    <div class="col-md-10">
+                        <div class="card">
+                            <div class="row">
+                                <form:form action="/them-gio-hang/${gh.sanPhamID}" modelAttribute="gh">
+                                    <div class="col-md-6">
+                                        <div class="images p-3">
+                                            <div class="text-center p-4"><img id="main-image"
+                                                                              src="https://i.imgur.com/Dhebu4F.jpg"
+                                                                              width="250"/></div>
+                                            <div class="thumbnail text-center"><img onclick="change_image(this)"
+                                                                                    src="https://i.imgur.com/Rx7uKd0.jpg"
+                                                                                    width="70"> <img
+                                                    onclick="change_image(this)" src="https://i.imgur.com/Dhebu4F.jpg"
+                                                    width="70"></div>
                                         </div>
                                     </div>
-                                </div>
-                            </form:form>
-                        </div>
-                    </div>
-                    <hr class="my-3">
-                    <!--Table add -->
-
-                    <div class="card">
-                        <h5 class="card-header">Quản lý khách hàng</h5>
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <th>Khách hàng ID</th>
-                                <th>Tên Đăng Nhập</th>
-                                <th>Email</th>
-<%--                                <th>Mật Khẩu</th>--%>
-                                <th>Họ Tên</th>
-                                <th>Đia Chỉ</th>
-                                <th>Số Điện Thoại</th>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody class="table-border-bottom-0">
-                            <c:forEach items="${list}" var="kh">
-                                <tr>
-                                    <td>${kh.khachHangId}</td>
-                                    <td>${kh.username}</td>
-                                    <td>${kh.email}</td>
-<%--                                    <td>${kh.password}</td>--%>
-                                    <td>${kh.hoTen}</td>
-                                    <td>${kh.diaChi}</td>
-                                    <td>${kh.soDienThoai}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                   href="/khach-hang/view-update/${kh.khachHangId}"><i
-                                                        class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/khach-hang/delete/${kh.khachHangId}"><i
-                                                        class="bx bx-trash me-1"></i> Xóa</a>
+                                    <div class="col-md-6">
+                                        <div class="product p-4">
+                                            <div class="d-flex justify-content-between align-items-center">
+                                                <div class="d-flex align-items-center"><i
+                                                        class="fa fa-long-arrow-left"></i> <span
+                                                        class="ml-1">Back</span></div>
+                                                <i class="fa fa-shopping-cart text-muted"></i>
                                             </div>
+                                            <div class="mt-4 mb-3"><span
+                                                    class="text-uppercase text-muted brand">Orianz</span>
+                                                <h5 class="text-uppercase">${gh.tenSanPham}</h5>
+                                                <div class="price d-flex flex-row align-items-center"><span
+                                                        class="act-price">${gh.giaSanPham}</span>
+                                                    <div class="ml-2"><small class="dis-price">$59</small>
+                                                        <span>40% OFF</span></div>
+                                                </div>
+                                            </div>
+                                            <p class="about">Shop from a wide range of t-shirt from orianz. Pefect for
+                                                your everyday use, you could pair it with a stylish pair of jeans or
+                                                trousers complete the look.</p>
+                                            <div class="sizes mt-5">
+                                                <h6 class="text-uppercase">Size</h6>
+                                                <span class="text-uppercase text-muted brand">Số lượng tồn</span>
+                                                <h3 class="text-uppercase" placeholder="số lượng">${gh.soLuongTon}</h3>
+                                                <input type="text" name="soLuongDat"/>
+                                                    <%--                                            <label class="radio"> <input type="radio" name="size" value="S" checked> <span>S</span> </label> <label class="radio"> <input type="radio" name="size" value="M"> <span>M</span> </label> <label class="radio"> <input type="radio" name="size" value="L"> <span>L</span> </label> <label class="radio"> <input type="radio" name="size" value="XL"> <span>XL</span> </label> <label class="radio"> <input type="radio" name="size" value="XXL"> <span>XXL</span> </label>--%>
+                                            </div>
+                                            <div class="cart mt-4 align-items-center">
+                                                <button class="btn btn-danger text-uppercase mr-2 px-4">Add to cart
+                                                </button>
+                                                <i class="fa fa-heart text-muted"></i> <i
+                                                    class="fa fa-share-alt text-muted"></i></div>
                                         </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <c:forEach begin="0" end="${totalPages}" var="page">
-                                    <c:choose>
-                                        <c:when test="${page == currentPage}">
-                                            <li class="page-item active"><span class="page-link">${page}</span></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="/khach-hang/page?page=${page}">${page}</a>
-                                            </li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </ul>
-                        </nav>
-                    </div>
-                    <!--Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
-                                    áo Nam 5S</a>
-                            </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
-                                    chủ</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
-                                    phẩm</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                   target="_blank" class="footer-link me-4">Thống kê</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                   target="_blank" class="footer-link me-4">Hỗ trợ</a>
+                                    </div>
+                                </form:form>
                             </div>
                         </div>
-                    </footer>
-                    <!--Footer -->
+                    </div>
                 </div>
             </div>
-            <!-- Content wrapper -->
+            <!-- Table add -->
+            <!--Content -->
+            <script>
+                document.getElementById('hinhAnh').addEventListener('change', function () {
+                    var hinhAnhInput = this;
+                    var hinhAnhPreview = document.getElementById('hinhAnhPreview');
+                    if (hinhAnhInput.files && hinhAnhInput.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            hinhAnhPreview.src = e.target.result;
+                        };
+                        reader.readAsDataURL(hinhAnhInput.files[0]);
+                    }
+                });
+            </script>
 
+            <!--Footer -->
+            <footer class="content-footer footer bg-footer-theme">
+                <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                    <div class="mb-2 mb-md-0">
+                        ©
+                        <script>
+                            document.write(new Date().getFullYear());
+                        </script>
+                        , made with ❤️ by
+                        <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
+                            áo Nam 5S</a>
+                    </div>
+                    <div>
+                        <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
+                            chủ</a>
+                        <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
+                            phẩm</a>
+
+                        <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                           target="_blank" class="footer-link me-4">Thống kê</a>
+
+                        <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                           target="_blank" class="footer-link me-4">Hỗ trợ</a>
+                    </div>
+                </div>
+            </footer>
+            <!--Footer -->
         </div>
-        <!-- / Layout page -->
     </div>
+    <!-- Content wrapper -->
 
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
+</div>
+<!-- / Layout page -->
+</div>
+
+<!-- Overlay -->
+<div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
 

@@ -35,5 +35,6 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
 
     @Query("select sp from SanPham sp order by sp.ngayTao desc ")
     List<SanPham> sapxep();
+    List<SanPham>findBySanPhamID(UUID sanPhamID);
 
 }

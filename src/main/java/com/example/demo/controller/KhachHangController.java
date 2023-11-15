@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.KhachHang;
 import com.example.demo.service.KhachHangService;
+import com.example.demo.servicesecuritykh.KhService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -22,7 +23,8 @@ public class KhachHangController {
 
     @Autowired
     private KhachHangService khachHangService;
-
+    @Autowired
+    private KhService khService;
 //    @Autowired
 //    private ChucVuService chucVuService;
 
@@ -45,7 +47,8 @@ public class KhachHangController {
     @PostMapping("/add")
     public String add(@ModelAttribute("kh")KhachHang khachHang){
 //        List<ChucVu> listCV = chucVuService.getAll();
-        khachHangService.add(khachHang);
+//        khachHangService.add(khachHang);
+        khService.addKH(khachHang);
         return "redirect:/khach-hang";
     }
 

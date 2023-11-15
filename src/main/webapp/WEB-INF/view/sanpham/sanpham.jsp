@@ -595,14 +595,14 @@
                                         <%--                                    </div>--%>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Hình Ảnh URL</label>
-                                        <input type="file" id="hinhAnh" name="hinhAnhURL" class="form-control-file"
+                                        <input type="file" id="hinhAnhURL" name="hinhAnhURL" class="form-control-file"
                                                accept="image/*"/>
                                     </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Hình Ảnh Đã Chọn</label>
-                                        <img id="hinhAnhPreview" src="" alt="Hình Ảnh"
-                                             style="max-width: 200px; max-height: 200px;">
-                                    </div>
+<%--                                    <div class="mb-3 col-md-6">--%>
+<%--                                        <label class="form-label">Hình Ảnh Đã Chọn</label>--%>
+<%--                                        <img id="hinhAnhPreview" src="" alt="Hình Ảnh"--%>
+<%--                                             style="max-width: 200px; max-height: 200px;">--%>
+<%--                                    </div>--%>
                                         <%--                                    <div class="mb-3 col-md-6">--%>
                                         <%--                                        <label class="form-label">Trạng thái</label>--%>
                                         <%--                                        <form:radiobutton path="trangThai" value="1" checked="true"/> Hoạt động--%>
@@ -629,6 +629,7 @@
                             <input type="text" name="keyword" placeholder="tìm kiếm họ tên">
                             <button type="submit">Search</button>
                         </form>
+
                         <table class="table">
                             <thead>
                             <tr>
@@ -652,26 +653,21 @@
                             <tbody class="table-border-bottom-0">
                             <c:forEach items="${listSanPham}" var="sanpham">
                                 <tr>
-                                        <%--                                    <td>${sanpham.sanPhamID}</td>--%>
+
                                     <td>${sanpham.tenSanPham}</td>
                                     <td>${sanpham.moTa}</td>
                                     <td>${sanpham.giaSanPham}</td>
                                     <td>${sanpham.soLuongTon}</td>
-                                    <td>${sanpham.tinhTrang}</td>
-                                    <c:if test="${sanpham.tinhTrang == 0}"> Hết </c:if>
-                                    <c:if test="${sanpham.tinhTrang == 1}"> Còn Hàng</c:if>
+                                    <td> <c:if test="${sanpham.tinhTrang == 0}"> Hết </c:if>
+                                        <c:if test="${sanpham.tinhTrang == 1}"> Còn Hàng</c:if></td>
+
                                     <td>${sanpham.mauSac.tenMauSac}</td>
                                     <td>${sanpham.size.tenSize}</td>
                                     <td>${sanpham.chatLieu.tenChatLieu}</td>
                                     <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                    <td><img id="hinhAnhPreview_${sanpham.sanPhamID}" src="${sanpham.hinhAnhURL}"
-                                             alt="Hình Ảnh" style="max-width: 200px; max-height: 200px;"></td>
-                                        <%--                                    <td>${sanpham.ngayTao}</td>--%>
-                                        <%--                                    <td>${sanpham.hinhAnhURL}</td>--%>
-                                        <%--                                    <td>--%>
-                                        <%--                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>--%>
-                                        <%--                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>--%>
-                                        <%--                                    </td>--%>
+                                    <td>  <img src="${sanpham.hinhAnhURL}" style="max-width: 20px; max-height: 20px;">
+                                             </td>
+
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -685,31 +681,18 @@
                                                 <a class="dropdown-item"
                                                    href="/san-pham/delete/${sanpham.sanPhamID}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
+                                                <a class="dropdown-item" href="/san-pham-gio/${sanpham.sanPhamID}"> <i class="bx bx-edit-alt me-1"></i>Xem</a>
+<%--                                                <a class="dropdown-item"--%>
+<%--                                                   href="/them-gio-hang/${sanpham.sanPhamID}">--%>
+<%--                                                   <i class="bx bx-edit-alt me-1"></i> Thêm vào giỏ hàng</a>--%>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
-                        </table><script>
-                        document.getElementById('hinhAnh').addEventListener('change', function () {
-                            var hinhAnhInput = this;
-                            var hinhAnhPreview = document.getElementById('hinhAnhPreview');
-                            if (hinhAnhInput.files && hinhAnhInput.files[0]) {
-                                var reader = new FileReader();
-                                reader.onload = function (e) {
-                                    hinhAnhPreview.src = e.target.result;
-                                };
-                                reader.readAsDataURL(hinhAnhInput.files[0]);
-                            }
-                        });
+                        </table>
 
-                        // Đoạn mã để cập nhật hình ảnh sau khi thêm sản phẩm thành công
-                        function updateHinhAnh(sanPhamID, hinhAnhURL) {
-                            var hinhAnhPreview = document.getElementById(`hinhAnhPreview_${sanPhamID}`);
-                            hinhAnhPreview.src = hinhAnhURL;
-                        }
-                    </script>
                         <nav aria-label="Page navigation example">
                             <ul class="pagination">
                                 <c:forEach begin="0" end="${totalPages}" var="page">
@@ -726,6 +709,7 @@
                             </ul>
                         </nav>
                     </div>
+
                     <!--Footer -->
                     <footer class="content-footer footer bg-footer-theme">
                         <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
