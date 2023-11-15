@@ -139,14 +139,14 @@
               <h4 class="mb-2">Chào mừng tới Quần Áo Nam 5S! 👋</h4>
               <p class="mb-4">Đăng nhập vào tài khoản</p>
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form id="formAuthentication" class="mb-3" action="/login" method="POST">
                 <div class="mb-3">
-                  <label for="email" class="form-label">Tên đăng nhập</label>
+                  <label for="username" class="form-label">Tên đăng nhập</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="email"
-                    name="email-username"
+                    id="username"
+                    name="username"
                     placeholder="Enter your email or username"
                     autofocus
                   />

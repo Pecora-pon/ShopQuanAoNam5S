@@ -7,6 +7,7 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -45,6 +46,17 @@ public class SanPhamController {
     @RequestMapping(value = "/san-pham-add",method = RequestMethod.POST)
     public String addSanPham(@Valid @ModelAttribute("sp")SanPham sanPham, BindingResult result, Model model){
         Respon<SanPham>respon=sanPhamService.add(sanPham);
+        List<MauSac> mauSacList = mauSacService.getAll();
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+        List<Size> sizeList = sizeService.getAll();
+        List<SanPham> sanPhamList = sanPhamService.getAll();
+        model.addAttribute("listMauSac", mauSacList);
+        model.addAttribute("listChatLieu", chatLieuList);
+        model.addAttribute("listThuongHieu", thuongHieuList);
+        model.addAttribute("listSize", sizeList);
+        model.addAttribute("listSanPham", sanPhamList);
+        model.addAttribute("sp",new SanPham());
         model.addAttribute("repon",respon);
         return "sanpham/sanpham";
     }
@@ -105,4 +117,12 @@ public class SanPhamController {
         return "sanpham/sanpham";
 
     }
+    @GetMapping("/san-pham-gio/{sanPhamID}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    public String sanphamgio(@PathVariable("sanPhamID")UUID sanPhamID,Model model){
+       SanPham sanPham=sanPhamService.themgio(sanPhamID);
+        model.addAttribute("gh",sanPham);
+        return "shop/gio-hangdemo";
+    }
+
 }
