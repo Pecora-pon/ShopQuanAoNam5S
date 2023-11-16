@@ -1,6 +1,5 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.ChucVu;
 import com.example.demo.entity.NhaCungCap;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.entity.responobject.Respon;
