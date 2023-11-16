@@ -94,8 +94,4 @@ public class SanPhamServiceImpl implements SanPhamService {
         }
     }
 
-    @Override
-    public SanPham themgio(UUID sanPhamID) {
-        return sanPhamRepo.getById(sanPhamID);
-    }
 }

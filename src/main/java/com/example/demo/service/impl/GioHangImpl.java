@@ -3,10 +3,12 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.GioHang;
 import com.example.demo.entity.KhachHang;
 import com.example.demo.entity.SanPham;
+import com.example.demo.entity.Size;
 import com.example.demo.repository.GioHangRepo;
 import com.example.demo.repository.SanPhamRepo;
 import com.example.demo.service.CartService;
 import com.example.demo.service.SanPhamService;
+import com.example.demo.service.SizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -23,6 +25,8 @@ public class GioHangImpl implements CartService {
     private SanPhamRepo sanPhamRepo;
     @Autowired
     private SanPhamService sanPhamService;
+    @Autowired
+    private SizeService sizeService;
 
 
     @Override
@@ -60,14 +64,15 @@ public class GioHangImpl implements CartService {
     public GioHang insert(GioHang gioHang,UUID sanPhamID) {
         SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
         System.out.println(sanPham);
-        gioHang.setSanPham(sanPham);
+        int newSize=sanPham.getSize().getSizeID();
+        sanPham.getSize().setSizeID(newSize);
+        SanPham sanPham1=sanPhamRepo.save(sanPham);
+        gioHang.setSanPham(sanPham1);
         int sl=gioHang.getSoLuongDat();
         double gia=sanPham.getGiaSanPham();
         if(gioHang.getTongTien()==null){
             gioHang.setTongTien(gia*sl);
         }
-
-//        sanPhamService.capnhat(sanPhamID,gioHang.getSoLuongDat());
       return gioHangRepo.save(gioHang);
     }
 
