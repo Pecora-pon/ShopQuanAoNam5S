@@ -368,7 +368,7 @@
                     <c:forEach items="${listSanPham}" var="sp">
                         <div class="col-lg-4 col-md-6 col-sm-6">
                             <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="${sp.hinhAnhURL}">
+                                <div class="product__item__pic set-bg" data-setbg="getimage/${sp.hinhAnhURL}">
                                     <ul class="product__hover">
                                         <li><a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
                                         </li>
