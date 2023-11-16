@@ -681,7 +681,7 @@
                                                 <a class="dropdown-item"
                                                    href="/san-pham/delete/${sanpham.sanPhamID}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
-                                                <a class="dropdown-item" href="/san-pham-gio/${sanpham.sanPhamID}"> <i class="bx bx-edit-alt me-1"></i>Xem</a>
+
 <%--                                                <a class="dropdown-item"--%>
 <%--                                                   href="/them-gio-hang/${sanpham.sanPhamID}">--%>
 <%--                                                   <i class="bx bx-edit-alt me-1"></i> Thêm vào giỏ hàng</a>--%>
