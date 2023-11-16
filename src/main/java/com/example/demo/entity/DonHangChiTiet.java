@@ -25,9 +25,9 @@ import java.util.UUID;
 public class DonHangChiTiet {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "DonHangChiTietID")
-    private UUID donHangChiTietID;
+    private Integer donHangChiTietID;
 
     @ManyToOne
     @JoinColumn(name = "DonHangID")
@@ -36,6 +36,10 @@ public class DonHangChiTiet {
     @ManyToOne
     @JoinColumn(name = "SanPhamID")
     private SanPham sanPham;
+
+    @ManyToOne
+    @JoinColumn(name = "GiamGiaID")
+    private GiamGia giamGia;
 
     @Column(name = "SoLuong")
     private Integer soLuong;
@@ -46,6 +50,8 @@ public class DonHangChiTiet {
     @Column(name = "LyDoHuy")
     private String lyDoHuy;
 
+    @Column(name = "TongTien")
+    private Float tongTien;
 
 
 }

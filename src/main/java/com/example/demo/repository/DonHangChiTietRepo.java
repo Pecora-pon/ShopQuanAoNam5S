@@ -6,5 +6,5 @@ import org.springframework.stereotype.Repository;
 
 import java.util.UUID;
 @Repository
-public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, UUID> {
+public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Integer> {
 }

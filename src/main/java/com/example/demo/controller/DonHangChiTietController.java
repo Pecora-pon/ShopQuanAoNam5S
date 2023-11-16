@@ -70,7 +70,7 @@ public class DonHangChiTietController {
         return "redirect:/don-hang-chi-tiet";
     }
 
-    @GetMapping("/view-update/{donHangChiTietID}")
+    @GetMapping("/{donHangChiTietID}")
     public String viewupdate(@PathVariable("donHangChiTietID") Integer donHangChiTietID,Model model){
         DonHangChiTiet dhct = donHangChiTietService.detail(donHangChiTietID);
         List<DonHangChiTiet> list = donHangChiTietService.getAll();

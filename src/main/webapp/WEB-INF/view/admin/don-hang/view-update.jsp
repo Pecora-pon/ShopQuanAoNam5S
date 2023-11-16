@@ -547,18 +547,18 @@
                                         <label class="form-label">Địa chỉ vận chuyển</label>
                                         <form:select path="thongTinVanChuyen">
                                             <c:forEach items="${listTTVC}" var="ttvc">
-                                                <option value="${ttvc.thongTinVanChuyenID}" ${ttvc.thongTinVanChuyenID==dh.thongTinVanChuyen.thongTinVanChuyenID?"selected":""}>${ttvc.diaChi}</option>
+                                                <option value="${ttvc.thongTinVanChuyenID}" ${ttvc.thongTinVanChuyenID==dh.thongTinVanChuyen.thongTinVanChuyenID?"selected":""}>${ttvc.trangThai}</option>
                                             </c:forEach>
                                         </form:select>
                                     </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Mã Giảm giá</label>
-                                        <form:select path="giamGia">
-                                            <c:forEach items="${listGG}" var="gg">
-                                                <option value="${gg.giamGiaID}" ${gg.giamGiaID==dh.giamGia.giamGiaID?"selected":""}>${gg.giamGiaID}</option>
-                                            </c:forEach>
-                                        </form:select>
-                                    </div>
+<%--                                    <div class="mb-3 col-md-6">--%>
+<%--                                        <label class="form-label">Mã Giảm giá</label>--%>
+<%--                                        <form:select path="giamGia">--%>
+<%--                                            <c:forEach items="${listGG}" var="gg">--%>
+<%--                                                <option value="${gg.giamGiaID}" ${gg.giamGiaID==dh.giamGia.giamGiaID?"selected":""}>${gg.giamGiaID}</option>--%>
+<%--                                            </c:forEach>--%>
+<%--                                        </form:select>--%>
+<%--                                    </div>--%>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Trạng Thái</label>
                                         <form:input class="form-control" path="trangThai" value="${dh.trangThai}"/>
@@ -578,11 +578,6 @@
                                         <label class="form-label">Ghi Chú</label>
                                         <form:input class="form-control" path="note" value="${dh.note}"/>
                                         <form:errors path="note"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Tổng Tiền</label>
-                                        <form:input class="form-control" path="tongTien" value="${dh.tongTien}"/>
-                                        <form:errors path="tongTien"/>
                                     </div>
                                 </div>
                                 <div class="mt-2">
@@ -609,7 +604,6 @@
                                 <th>Hình Thức Thanh Toán</th>
                                 <th>Ngày Đặt Hàng</th>
                                 <th>Ghi Chú</th>
-                                <th>Tổng Tiền</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -620,13 +614,12 @@
                                     <td>${dh.khachHang.khachHangId}</td>
                                     <td>${dh.tenKhach}</td>
                                     <td>${dh.soDienThoai}</td>
-                                    <td>${dh.thongTinVanChuyen.diaChi}</td>
-                                    <td>${dh.giamGia.maGiamGia}</td>
+                                    <td>${dh.thongTinVanChuyen.trangThai}</td>
+<%--                                    <td>${dh.giamGia.maGiamGia}</td>--%>
                                     <td>${dh.trangThai}</td>
                                     <td>${dh.hinhThucThanhToan}</td>
                                     <td>${dh.ngayDatHang}</td>
                                     <td>${dh.note}</td>
-                                    <td>${dh.tongTien}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -642,21 +635,6 @@
                             </c:forEach>
                             </tbody>
                         </table>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <c:forEach begin="0" end="${totalPages}" var="page">
-                                    <c:choose>
-                                        <c:when test="${page == currentPage}">
-                                            <li class="page-item active"><span class="page-link">${page}</span></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="/don-hang/page?page=${page}">${page}</a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </ul>
-                        </nav>
                     </div>
                     <!--Footer -->
                     <footer class="content-footer footer bg-footer-theme">

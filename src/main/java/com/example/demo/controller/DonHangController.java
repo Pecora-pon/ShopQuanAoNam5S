@@ -68,7 +68,7 @@ public class DonHangController {
         return "redirect:/don-hang";
     }
 
-    @GetMapping("/view-update/{donHangID}")
+    @GetMapping("/{donHangID}")
     public String viewupdate(@PathVariable("donHangID") UUID donHangID,Model model){
         DonHang dh = donHangService.detail(donHangID);
         List<DonHang> list = donHangService.getAll();
