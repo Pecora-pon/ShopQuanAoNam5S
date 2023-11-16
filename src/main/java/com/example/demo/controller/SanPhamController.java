@@ -12,7 +12,15 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
+import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
+import java.nio.file.StandardCopyOption;
 import java.util.List;
 import java.util.UUID;
 
@@ -43,9 +51,25 @@ public class SanPhamController {
         model.addAttribute("sp",new SanPham());
         return "sanpham/sanpham";
     }
-    @RequestMapping(value = "/san-pham-add",method = RequestMethod.POST)
-    public String addSanPham(@Valid @ModelAttribute("sp")SanPham sanPham, BindingResult result, Model model){
-        Respon<SanPham>respon=sanPhamService.add(sanPham);
+    @RequestMapping(value = "/san-pham-add", method = RequestMethod.POST)
+    public String addSanPham(@RequestParam("hinhAnhURL") MultipartFile file,
+                             @Valid @ModelAttribute("sp") SanPham sanPham,
+                             BindingResult result, Model model) {
+        
+        if (!file.isEmpty()) {
+            try {
+                byte[] bytes = file.getBytes();
+
+                sanPham.setHinhAnhURL(file.getOriginalFilename());
+
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+
+
+
+        Respon<SanPham> respon = sanPhamService.add(sanPham);
         List<MauSac> mauSacList = mauSacService.getAll();
         List<ChatLieu> chatLieuList = chatLieuService.getAll();
         List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
@@ -56,8 +80,8 @@ public class SanPhamController {
         model.addAttribute("listThuongHieu", thuongHieuList);
         model.addAttribute("listSize", sizeList);
         model.addAttribute("listSanPham", sanPhamList);
-        model.addAttribute("sp",new SanPham());
-        model.addAttribute("repon",respon);
+        model.addAttribute("sp", new SanPham());
+        model.addAttribute("repon", respon);
         return "sanpham/sanpham";
     }
     @RequestMapping("/san-pham/delete/{sanPhamID}")
