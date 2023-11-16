@@ -141,12 +141,12 @@ public class SanPhamController {
         return "sanpham/sanpham";
 
     }
-    @GetMapping("/san-pham-gio/{sanPhamID}")
-    @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String sanphamgio(@PathVariable("sanPhamID")UUID sanPhamID,Model model){
-       SanPham sanPham=sanPhamService.themgio(sanPhamID);
-        model.addAttribute("gh",sanPham);
-        return "shop/gio-hangdemo";
-    }
+//    @GetMapping("/san-pham-gio/{sanPhamID}")
+//    @PreAuthorize("hasAuthority('ROLE_USER')")
+//    public String sanphamgio(@PathVariable("sanPhamID")UUID sanPhamID,Model model){
+//       SanPham sanPham=sanPhamService.themgio(sanPhamID);
+//        model.addAttribute("gh",sanPham);
+//        return "shop/gio-hangdemo";
+//    }
 
 }

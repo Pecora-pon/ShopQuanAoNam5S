@@ -54,7 +54,7 @@ public class CartController {
         gioHang.setKhachHang(khachHang);
         cartService.insert(gioHang, sanPhamID);
         model.addAttribute("listGioHang", gioHangList);
-        model.addAttribute("gh",new GioHang());
+        model.addAttribute("sp",new GioHang());
         return "redirect:/gio-hang";
     }
 

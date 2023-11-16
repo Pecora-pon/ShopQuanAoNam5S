@@ -139,5 +139,13 @@ public class ShopController {
         model.addAttribute("listSanPham", list);
         return "shop/san-pham";
     }
+   @GetMapping("/san-pham-detail/{sanPhamID}")
+    public String san(@PathVariable("sanPhamID")UUID id,Model model){
+        SanPham sanPham=shopService.themgio(id);
+        List<SanPham>list=shopService.getAll();
+        model.addAttribute("listSanPham",list);
+        model.addAttribute("sp",sanPham);
+        return "shop/san-pham-detail";
+   }
 }
 
