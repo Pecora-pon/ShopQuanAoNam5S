@@ -52,7 +52,7 @@ public class KhachHangController {
         return "redirect:/khach-hang";
     }
 
-    @GetMapping("/view-update/{khachHangId}")
+    @GetMapping("/{khachHangId}")
     public String viewupdate(@PathVariable("khachHangId") Integer khachHangId,Model model){
         KhachHang kh = khachHangService.detail(khachHangId);
         List<KhachHang> list = khachHangService.getAll();
