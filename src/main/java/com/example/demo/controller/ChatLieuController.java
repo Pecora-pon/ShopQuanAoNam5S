@@ -1,7 +1,6 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.ChatLieu;
-import com.example.demo.entity.ChucVu;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.ChatLieuService;

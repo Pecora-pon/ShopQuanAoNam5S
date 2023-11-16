@@ -19,7 +19,7 @@
         class="light-style layout-menu-fixed"
         dir="ltr"
         data-theme="theme-default"
-        data-assets-path="../admin/assets/"
+        data-assets-path="../mainshop/mainshop2/admin/assets/"
         data-template="vertical-menu-template-free"
 >
 <head>
@@ -34,7 +34,7 @@
     <meta name="description" content=""/>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../mainshop/mainshop2/admin/assets/img/favicon/favicon.ico"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -45,28 +45,28 @@
     />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../admin/assets/vendor/fonts/boxicons.css"/>
+    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/fonts/boxicons.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../admin/assets/vendor/css/core.css" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="../admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
-    <link rel="stylesheet" href="../admin/assets/css/demo.css"/>
+    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/css/core.css" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
+    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/css/demo.css"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
 
-    <link rel="stylesheet" href="../admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
+    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="../admin/assets/vendor/js/helpers.js"></script>
+    <script src="../mainshop/mainshop2/admin/assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../admin/assets/js/config.js"></script>
+    <script src="../mainshop/mainshop2/admin/assets/js/config.js"></script>
 </head>
 
 <body>
@@ -455,7 +455,7 @@
                             <a class="nav-link dropdown-toggle hide-arrow" href="javascript:void(0);"
                                data-bs-toggle="dropdown">
                                 <div class="avatar avatar-online">
-                                    <img src="../admin/assets/img/avatars/1.png" alt
+                                    <img src="../mainshop/mainshop2/admin/assets/img/avatars/1.png" alt
                                          class="w-px-40 h-auto rounded-circle"/>
                                 </div>
                             </a>
@@ -465,7 +465,7 @@
                                         <div class="d-flex">
                                             <div class="flex-shrink-0 me-3">
                                                 <div class="avatar avatar-online">
-                                                    <img src="../admin/assets/img/avatars/1.png" alt
+                                                    <img src="../mainshop/mainshop2/admin/assets/img/avatars/1.png" alt
                                                          class="w-px-40 h-auto rounded-circle"/>
                                                 </div>
                                             </div>
@@ -661,22 +661,22 @@
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-<script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="../admin/assets/vendor/libs/popper/popper.js"></script>
-<script src="../admin/assets/vendor/js/bootstrap.js"></script>
-<script src="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/vendor/libs/popper/popper.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/vendor/js/bootstrap.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-<script src="../admin/assets/vendor/js/menu.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/vendor/js/menu.js"></script>
 <!-- endbuild -->
 
 <!-- Vendors JS -->
-<script src="../admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
 <!-- Main JS -->
-<script src="../admin/assets/js/main.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/js/main.js"></script>
 
 <!-- Page JS -->
-<script src="../admin/assets/js/dashboards-analytics.js"></script>
+<script src="../mainshop/mainshop2/admin/assets/js/dashboards-analytics.js"></script>
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
