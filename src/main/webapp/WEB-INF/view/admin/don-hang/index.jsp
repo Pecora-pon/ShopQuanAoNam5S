@@ -2,6 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -661,7 +662,7 @@
 <%--                                    <td>${dh.giamGia.maGiamGia}</td>--%>
                                     <td>${dh.trangThai}</td>
                                     <td>${dh.hinhThucThanhToan}</td>
-                                    <td>${dh.ngayDatHang}</td>
+                                    <td><fmt:formatDate value="${dh.ngayDatHang}" pattern="yyyy-MM-dd" /></td>
                                     <td>${dh.note}</td>
 <%--                                    <td>${dh.tongTien}</td>--%>
                                     <td>
