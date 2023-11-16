@@ -187,7 +187,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="product__details__text">
-                        <form:form action="" modelAttribute="sp">
+                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp">
                             <h4 value="${sp.tenSanPham}">${sp.tenSanPham}</h4>
                             <h3 value="${sp.giaSanPham}">${sp.giaSanPham}</h3>
                             <div class="product__details__option">
@@ -201,10 +201,10 @@
                             <div class="product__details__cart__option">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1">
+                                        <input type="text" value="1" name="soLuongDat">
                                     </div>
                                 </div>
-                                <a href="#" class="primary-btn">add to cart</a>
+                                <button class="primary-btn">add to cart</button>
                             </div>
                         </form:form>
 

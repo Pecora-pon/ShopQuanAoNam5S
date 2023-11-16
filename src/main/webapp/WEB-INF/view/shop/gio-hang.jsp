@@ -188,8 +188,8 @@
 
                                 <tr>
                                     <td class="product__cart__item">
-                                        <div class="product__cart__item__pic">
-                                            <img src="../mainshop/mainshop2/img/shopping-cart/cart-1.jpg" alt="">
+                                        <div class="product__cart__item__pic" >
+                                            <img src="/getimage/${gh.sanPham.hinhAnhURL}" style="max-height: 60px;max-height: 60px;">
                                         </div>
                                         <div class="product__cart__item__text">
                                             <h6>${gh.sanPham.tenSanPham}</h6>
