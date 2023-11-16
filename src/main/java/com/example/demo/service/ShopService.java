@@ -24,5 +24,5 @@ public interface ShopService {
     List<SanPham> getAll();
 
     SanPham detail(UUID sanPhamID);
-
+    SanPham themgio(UUID sanPhamID);
 }
