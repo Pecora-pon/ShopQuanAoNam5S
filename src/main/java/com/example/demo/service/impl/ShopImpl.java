@@ -10,6 +10,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ShopImpl implements ShopService {
@@ -55,5 +56,10 @@ public class ShopImpl implements ShopService {
     @Override
     public List<SanPham> getAll() {
        return sanPhamRepo.findAll();
+    }
+
+    @Override
+    public SanPham detail(UUID sanPhamID) {
+        return sanPhamRepo.findById(sanPhamID).orElse(null);
     }
 }
