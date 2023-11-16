@@ -11,12 +11,14 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class ShopController {
@@ -29,6 +31,12 @@ public class ShopController {
         model.addAttribute("listSanPham", sanPhams);
         model.addAttribute("sp", new SanPham());
         return "shop/san-pham";
+    }
+    @RequestMapping("/list-san-pham-detail/{sanPhamID}")
+    public String detail(@PathVariable("sanPhamID") UUID sanPhamID,Model model){
+        SanPham sanPham = shopService.detail(sanPhamID);
+        model.addAttribute("sp",sanPham);
+        return "shop/san-pham-detail";
     }
 
     @RequestMapping(value = "/list-san-pham/page", method = RequestMethod.GET)
