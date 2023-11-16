@@ -4,6 +4,7 @@ import com.example.demo.entity.SanPham;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ShopService {
     Page<SanPham> getPage(int pageNumber, int pageSize);
@@ -22,5 +23,6 @@ public interface ShopService {
 
     List<SanPham> getAll();
 
+    SanPham detail(UUID sanPhamID);
 
 }
