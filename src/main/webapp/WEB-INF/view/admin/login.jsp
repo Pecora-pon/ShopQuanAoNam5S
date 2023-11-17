@@ -139,7 +139,7 @@
               <h4 class="mb-2">Chào mừng tới Quần Áo Nam 5S! 👋</h4>
               <p class="mb-4">Đăng nhập vào tài khoản</p>
 
-              <form id="formAuthentication" class="mb-3" action="/login" method="POST">
+              <form id="formAuthentication" class="mb-3" action="/trang-chu" method="POST">
                 <div class="mb-3">
                   <label for="username" class="form-label">Tên đăng nhập</label>
                   <input
@@ -154,7 +154,7 @@
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Mật khẩu</label>
-                    <a href="auth-forgot-password-basic.html">
+                    <a href="http://localhost:8080/doimatkhau">
                       <small>Quên mật khẩu?</small>
                     </a>
                   </div>
@@ -172,12 +172,13 @@
                 </div>
 
                 <div class="mb-3">
+
                   <button class="btn btn-primary d-grid w-100" type="submit">Đăng nhập</button>
                 </div>
               </form>
 
               <p class="text-center">
-                <a href="auth-register-basic.html">
+                <a href="http://localhost:8080/trang-chu/sign-up">
                   <span>Đăng ký tài khoản</span>
                 </a>
               </p>

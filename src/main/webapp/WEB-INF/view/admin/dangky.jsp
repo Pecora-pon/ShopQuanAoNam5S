@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -139,43 +141,35 @@
               <h4 class="mb-2">Shop Quần Áo Nam 5S 🚀</h4>
 
 
-              <form id="formAuthentication" class="mb-3" action="index.html" method="POST">
+              <form:form id="formAuthentication" class="mb-3" action="/trang-chu/sign-up-add" modelAttribute="kh" method="POST">
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
-                  <input
-                    type="text"
-                    class="form-control"
-                    id="username"
-                    name="username"
-                    placeholder="Enter your username"
-                    autofocus
-                  />
+                  <form:input path="username" type="text"
+                              class="form-control"
+                              placeholder="Enter your username"
+                              value="${kh.username}"
+                              />
+
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <input type="text" class="form-control" id="email" name="email" placeholder="Enter your email" />
+                  <form:input path="email" type="text" class="form-control" value="${kh.email}" placeholder="Enter your email"/>
+
                 </div>
                 <div class="mb-3 form-password-toggle">
                   <label class="form-label" for="password">Password</label>
                   <div class="input-group input-group-merge">
-                    <input
-                      type="password"
-                      id="password"
-                      class="form-control"
-                      name="password"
-                      placeholder="&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;&#xb7;"
-                      aria-describedby="password"
-                    />
-                    <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
+                    <form:input path="password" type="password" value="${kh.password}" class="form-control"
+                                aria-describedby="password"/>
                   </div>
                 </div>
 
                 <button class="btn btn-primary d-grid w-100">Đăng ký</button>
-              </form>
+              </form:form>
 
               <p class="text-center">
                 <span>Đã có tài khoản?</span>
-                <a href="auth-login-basic.html">
+                <a href="http://localhost:8080/login">
                   <span>Đăng nhập</span>
                 </a>
               </p>

@@ -238,12 +238,12 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="/mau-sac" class="menu-link">
                                 <div data-i18n="Accordion">Màu sắc</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="/size" class="menu-link">
                                 <div data-i18n="Accordion">Size</div>
                             </a>
                         </li>
@@ -253,7 +253,7 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="/thuong-hieu" class="menu-link">
                                 <div data-i18n="Accordion">Thương hiệu</div>
                             </a>
                         </li>
@@ -267,7 +267,7 @@
 
                 <!-- Extended components -->
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/list-san-pham" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
