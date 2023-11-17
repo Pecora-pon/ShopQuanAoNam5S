@@ -192,10 +192,18 @@
                             <h3 value="${sp.giaSanPham}">${sp.giaSanPham}</h3>
                             <div class="product__details__option">
                                 <div class="product__details__option__size">
-                                    <span value="${sp.size}">Size:${sp.size.tenSize}</span>
+                                    <span value="${sp.size}">Size:
+                                        <form:select path="size.sizeID" class="form-control">
+                                        <form:option value="" label="Chọn Size"/>
+                                        <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
+                                    </form:select></span>
                                 </div>
                                 <div class="product__details__option__color">
-                                    <span value="${sp.mauSac}" >Color: ${sp.mauSac.tenMauSac}</span>
+                                    <span value="${sp.mauSac}" >Color:
+                                     <form:select path="mauSac.mauSacID" class="form-control">
+                                         <form:option value="" label="Chọn Màu Sắc"/>
+                                         <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac"/>
+                                     </form:select></span>
                                 </div>
                             </div>
                             <div class="product__details__cart__option">
