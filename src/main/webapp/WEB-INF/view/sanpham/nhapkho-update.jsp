@@ -34,7 +34,7 @@
     <meta name="description" content=""/>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../mainshop/mainshop2/admin/assets/img/favicon/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -50,14 +50,14 @@
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/css/core.css" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/css/demo.css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/css/core.css" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
+    <link rel="stylesheet" href="../admin/assets/css/demo.css"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
 
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
 
     <!-- Page CSS -->
 

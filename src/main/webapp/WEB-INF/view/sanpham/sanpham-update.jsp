@@ -34,7 +34,7 @@
     <meta name="description" content=""/>
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../mainshop/mainshop2/admin/assets/img/favicon/favicon.ico"/>
+    <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
@@ -45,28 +45,28 @@
     />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/fonts/boxicons.css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/fonts/boxicons.css"/>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"
           integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/css/core.css" class="template-customizer-core-css"/>
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/css/demo.css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/css/core.css" class="template-customizer-core-css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css"/>
+    <link rel="stylesheet" href="../admin/assets/css/demo.css"/>
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css"/>
 
-    <link rel="stylesheet" href="../mainshop/mainshop2/admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
+    <link rel="stylesheet" href="../admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
 
     <!-- Page CSS -->
 
     <!-- Helpers -->
-    <script src="../mainshop/mainshop2/admin/assets/vendor/js/helpers.js"></script>
+    <script src="../admin/assets/vendor/js/helpers.js"></script>
 
     <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
     <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../mainshop/mainshop2/admin/assets/js/config.js"></script>
+    <script src="../admin/assets/js/config.js"></script>
 </head>
 
 <body>
@@ -582,7 +582,7 @@
                                     <label class="form-label">Tên Thương hiệu</label>
                                     <form:select path="thuongHieu.thuongHieuID" class="form-control">
                                         <form:option value="" label="Chọn thương Hiệu"/>
-                                        <form:options items="${listNhaCungCap}" itemValue="thuongHieuID"
+                                        <form:options items="${listThuongHieu}" itemValue="thuongHieuID"
                                                       itemLabel="tenThuongHieu"/>
                                     </form:select>
                                 </div>
@@ -594,13 +594,9 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Hình Ảnh URL</label>
-                                    <input type="file" name="hinhAnhURL" class="form-control-file" accept="image/*"/>
+                                    <input type="file" name="hinhAnhURL" class="form-control-file" accept="image/*" value="${sp.hinhAnhURL}"/>
                                 </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Hình Ảnh Đã Chọn</label>
-                                    <img id="hinhAnhPreview" src="" alt="Hình Ảnh"
-                                         style="max-width: 200px; max-height: 200px;">
-                                </div>
+
                             </div>
                                 <%--                                    <div class="mb-3 col-md-6">--%>
                                 <%--                                        <label class="form-label">Trạng thái</label>--%>
@@ -623,19 +619,7 @@
 
                 <!-- Table add -->
                 <!--Content -->
-                <script>
-                    document.getElementById('hinhAnh').addEventListener('change', function () {
-                        var hinhAnhInput = this;
-                        var hinhAnhPreview = document.getElementById('hinhAnhPreview');
-                        if (hinhAnhInput.files && hinhAnhInput.files[0]) {
-                            var reader = new FileReader();
-                            reader.onload = function (e) {
-                                hinhAnhPreview.src = e.target.result;
-                            };
-                            reader.readAsDataURL(hinhAnhInput.files[0]);
-                        }
-                    });
-                </script>
+
                 <div class="card">
                     <form>
                         <input type="text" name="keyword" placeholder="tìm kiếm họ tên">
@@ -675,8 +659,8 @@
                                 <td>${sanpham.size.tenSize}</td>
                                 <td>${sanpham.chatLieu.tenChatLieu}</td>
                                 <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                        <td><img id="hinhAnhPreview_${sanpham.sanPhamID}" src="${sanpham.hinhAnhURL}"
-                                                 alt="Hình Ảnh" style="max-width: 200px; max-height: 200px;"></td>
+                                        <td>  <img src="getimage/${sanpham.hinhAnhURL}" style="max-width: 20px; max-height: 20px;">
+                                        </td>
                                     <%--                                    <td>${sanpham.ngayTao}</td>--%>
 <%--                                <td>${sanpham.hinhAnhURL}</td>--%>
                                     <%--                                    <td>--%>
