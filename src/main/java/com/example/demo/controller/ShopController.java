@@ -1,9 +1,13 @@
 package com.example.demo.controller;
 
+import com.example.demo.entity.MauSac;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.entity.SanPham;
+import com.example.demo.entity.Size;
+import com.example.demo.service.MauSacService;
 import com.example.demo.service.SanPhamService;
 import com.example.demo.service.ShopService;
+import com.example.demo.service.SizeService;
 import com.oracle.wls.shaded.org.apache.xpath.operations.Mod;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -24,6 +28,10 @@ import java.util.UUID;
 public class ShopController {
     @Autowired
     private ShopService shopService;
+    @Autowired
+    private SizeService sizeService;
+    @Autowired
+    private MauSacService mauSacService;
 
     @RequestMapping("/list-san-pham")
     public String getAll(Model model) {
@@ -143,6 +151,10 @@ public class ShopController {
     public String san(@PathVariable("sanPhamID")UUID id,Model model){
         SanPham sanPham=shopService.themgio(id);
         List<SanPham>list=shopService.getAll();
+        List<Size> list1=sizeService.getAll();
+        List<MauSac>list2=mauSacService.getAll();
+        model.addAttribute("listMauSac",list2);
+        model.addAttribute("listSize",list1);
         model.addAttribute("listSanPham",list);
         model.addAttribute("sp",sanPham);
         return "shop/san-pham-detail";
