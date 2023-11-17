@@ -11,6 +11,8 @@ import org.springframework.boot.Banner;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.mail.SimpleMailMessage;
+import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -31,6 +33,8 @@ public class NhanVienController {
     private NhanVienRepo nhanVienRepo;
     @Autowired
     private UserService userService;
+    @Autowired
+    private JavaMailSender mailSender;
     @RequestMapping("/nhan-vien")
     public String getAll(Model model,
                          @Param("keyword") String keyword){
@@ -42,11 +46,20 @@ public class NhanVienController {
     }
     @RequestMapping(value = "/nhan-vien-add",method = RequestMethod.POST)
     public String addNhanVien(@Valid @ModelAttribute("nv") NhanVien nhanVien,
+                              @RequestParam("email") String to,
+                              @RequestParam("tenDangNhap") String taiKhoan,
+                              @RequestParam("matKhau") String matKhau,
+                              @RequestParam("hoTen") String hoTen,
                               BindingResult result,
                               Model model){
         if(result.hasErrors()){
             return "admin/nhanvien";
         }
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setTo(to);
+        message.setSubject("THÔNG TIN TÀI KHOẢN NHÂN VIÊN MỚI");
+        message.setText("Xin chào "+hoTen+","+"đây là tài khoản và mật khẩu của bạn."+"\n Tài khoản: "+taiKhoan+"\n Mật khẩu: "+matKhau);
+        mailSender.send(message);
         userService.addUser(nhanVien);
         return "redirect:/nhan-vien/page";
     }
