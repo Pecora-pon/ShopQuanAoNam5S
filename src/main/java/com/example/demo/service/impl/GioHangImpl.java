@@ -64,10 +64,11 @@ public class GioHangImpl implements CartService {
     public GioHang insert(GioHang gioHang,UUID sanPhamID) {
         SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
         System.out.println(sanPham);
-        int newSize=sanPham.getSize().getSizeID();
-        sanPham.getSize().setSizeID(newSize);
-        SanPham sanPham1=sanPhamRepo.save(sanPham);
-        gioHang.setSanPham(sanPham1);
+        int size=sanPham.getSize().getSizeID();
+        sanPham.getSize().setSizeID(size);
+        int mausac=sanPham.getMauSac().getMauSacID();
+        sanPham.getMauSac().setMauSacID(mausac);
+        gioHang.setSanPham(sanPham);
         int sl=gioHang.getSoLuongDat();
         double gia=sanPham.getGiaSanPham();
         if(gioHang.getTongTien()==null){
