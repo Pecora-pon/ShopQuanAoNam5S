@@ -12,6 +12,7 @@ public class KhService {
     private final KhachHangRepo khachHangRepo;
     private final PasswordEncoder passwordEncoder;
     public String addKH(KhachHang khachHang){
+        khachHang.setChucVu("ROLE_USER");
         if(khachHangRepo.findByusername(khachHang.getUsername()).isPresent()){
             return "Tên đăng nhập đã tồn tại";
         }
