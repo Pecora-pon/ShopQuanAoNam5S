@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.GioHang;
-import com.example.demo.entity.KhachHang;
-import com.example.demo.entity.NhanVien;
-import com.example.demo.entity.SanPham;
+import com.example.demo.entity.*;
 import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.service.CartService;
 import com.example.demo.service.KhachHangService;
 import com.example.demo.service.SanPhamService;
+import com.example.demo.service.SizeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,6 +30,8 @@ public class CartController {
     private KhachHangService khachHangService;
     @Autowired
     private KhachHangRepo khachHangRepo;
+    @Autowired
+    private SizeService sizeService;
 
     @GetMapping("/gio-hang")
     @PreAuthorize("hasAuthority('ROLE_USER')")
@@ -45,14 +45,18 @@ public class CartController {
 
     @PostMapping(value = "/them-gio-hang/{sanPhamID}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String them(@Valid @ModelAttribute("sanpham") GioHang gioHang, @PathVariable("sanPhamID") UUID sanPhamID,
+    public String them(@Valid @ModelAttribute("sanpham") GioHang gioHang, @PathVariable("sanPhamID") UUID sanPhamID,SanPham sanPham,
                        BindingResult result,
                        Model model, Principal principal) {
         String logname = principal.getName();
         KhachHang khachHang = khachHangRepo.findByUsername(logname);
         List<GioHang> gioHangList = cartService.getAll();
         gioHang.setKhachHang(khachHang);
+
+        sanPhamService.size(sanPham,sanPhamID);
         cartService.insert(gioHang, sanPhamID);
+        List<Size>sizeList=sizeService.getAll();
+        model.addAttribute("listSize",sizeList);
         model.addAttribute("listGioHang", gioHangList);
         model.addAttribute("sp",new GioHang());
         return "redirect:/gio-hang";
