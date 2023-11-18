@@ -187,16 +187,16 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="product__details__text">
-                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp">
+                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post">
                             <h4 value="${sp.tenSanPham}">${sp.tenSanPham}</h4>
                             <h3 value="${sp.giaSanPham}">${sp.giaSanPham}</h3>
                             <div class="product__details__option">
                                 <div class="product__details__option__size">
-                                    <span value="${sp.size}">Size:
+                                    Size:
                                         <form:select path="size.sizeID" class="form-control">
                                         <form:option value="" label="Chọn Size"/>
                                         <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
-                                    </form:select></span>
+                                    </form:select>
                                 </div>
                                 <div class="product__details__option__color">
                                     <span value="${sp.mauSac}" >Color:
@@ -206,6 +206,7 @@
                                      </form:select></span>
                                 </div>
                             </div>
+
                             <div class="product__details__cart__option">
                                 <div class="quantity">
                                     <div class="pro-qty">
