@@ -64,8 +64,6 @@ public class GioHangImpl implements CartService {
     public GioHang insert(GioHang gioHang,UUID sanPhamID) {
         SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
         System.out.println(sanPham);
-        int size=sanPham.getSize().getSizeID();
-        sanPham.getSize().setSizeID(size);
         int mausac=sanPham.getMauSac().getMauSacID();
         sanPham.getMauSac().setMauSacID(mausac);
         gioHang.setSanPham(sanPham);
@@ -74,6 +72,7 @@ public class GioHangImpl implements CartService {
         if(gioHang.getTongTien()==null){
             gioHang.setTongTien(gia*sl);
         }
+
       return gioHangRepo.save(gioHang);
     }
 

@@ -94,4 +94,11 @@ public class SanPhamServiceImpl implements SanPhamService {
         }
     }
 
+    @Override
+    public SanPham size(SanPham sanPham, UUID sanPhamID) {
+        SanPham sanPham1=detail(sanPhamID);
+        sanPham1.setSize(sanPham.getSize());
+        sanPham1.setMauSac(sanPham.getMauSac());
+       return sanPhamRepo.save(sanPham1);
+    }
 }
