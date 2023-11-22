@@ -40,6 +40,7 @@ public UserDetailsService userDetailsServicekh(){
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/gio-hang")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/thanh-toan")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/them-gio-hang/{sanPhamID}")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/chat-lieu")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/mau-sac")).hasAuthority("ROLE_ADMIN")
