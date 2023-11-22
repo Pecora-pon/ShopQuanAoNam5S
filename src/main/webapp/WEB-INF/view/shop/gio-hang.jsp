@@ -183,6 +183,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
+                            <form method="post" action="/list-gh">
                             <c:forEach items="${listGioHang}" var="gh">
                             <tbody>
 
@@ -225,6 +226,8 @@
                             </tbody>
                                 <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
                             </c:forEach>
+                                <button type="submit">Apply</button>
+                            </form>
                         </table>
                     </div>
 
