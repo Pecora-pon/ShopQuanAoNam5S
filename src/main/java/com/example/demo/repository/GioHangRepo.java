@@ -10,5 +10,6 @@ import java.util.List;
 @Repository
 public interface GioHangRepo extends JpaRepository<GioHang,Integer> {
 List<GioHang>findByKhachHang_Username(String username);
+
 }
 
