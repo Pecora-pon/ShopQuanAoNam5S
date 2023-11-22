@@ -37,10 +37,6 @@ public class DonHangChiTiet {
     @JoinColumn(name = "SanPhamID")
     private SanPham sanPham;
 
-    @ManyToOne
-    @JoinColumn(name = "GiamGiaID")
-    private GiamGia giamGia;
-
     @Column(name = "SoLuong")
     private Integer soLuong;
 
@@ -50,8 +46,8 @@ public class DonHangChiTiet {
     @Column(name = "LyDoHuy")
     private String lyDoHuy;
 
-    @Column(name = "TongTien")
-    private Float tongTien;
+//    @Column(name = "TongTien")
+//    private Float tongTien;
 
 
 }

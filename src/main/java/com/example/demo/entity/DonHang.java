@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 
+import java.time.LocalDate;
 import java.util.Date;
 import java.util.UUID;
 
@@ -44,6 +45,10 @@ public class DonHang {
     @JoinColumn(name = "ThongTinVanChuyenID")
     private ThongTinVanChuyen thongTinVanChuyen;
 
+    @ManyToOne
+    @JoinColumn(name="GiamGiaID")
+    private GiamGia giamGia;
+
     @Column(name = "TrangThai")
     private Integer trangThai;
 
@@ -52,7 +57,7 @@ public class DonHang {
 
     @Column(name = "NgayDatHang")
     @DateTimeFormat(pattern = "yyyy-MM-dd")
-    private Date ngayDatHang;
+    private LocalDate ngayDatHang;
 
     @Column(name = "Note", length = 255)
     private String note;
