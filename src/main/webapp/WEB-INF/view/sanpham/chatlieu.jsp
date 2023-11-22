@@ -525,7 +525,7 @@
                     <!--Content -->
                     <!-- Table add -->
                     <div class="card">
-                        <h3 class="card-header">Quản lý màu sắc</h3>
+                        <h3 class="card-header">Quản lý Chất Liệu</h3>
                         <div class="card-body">
                             <form:form action="/chat-lieu-add" modelAttribute="cl" method="POST">
                                 <div class="row">

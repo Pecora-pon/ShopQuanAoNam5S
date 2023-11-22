@@ -525,7 +525,7 @@
                     <!--Content -->
                     <!-- Table add -->
                     <div class="card">
-                        <h3 class="card-header">Quản lý nhập kho</h3>
+                        <h3 class="card-header">Quản lý Sản Phẩm</h3>
                         <div class="card-body">
                             <form:form action="/san-pham-add" modelAttribute="sp" method="POST" enctype="multipart/form-data">
                                 <div class="row">

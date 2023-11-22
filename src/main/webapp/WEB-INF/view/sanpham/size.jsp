@@ -538,9 +538,7 @@
                                         <label class="form-label">Tên size</label>
                                         <form:input class="form-control" path="tenSize" value="${si.tenSize}"/>
                                         <form:errors path="tenSize"/>
-                                        <c:if test="${!empty repon.error}">
-                                            <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
-                                        </c:if>
+
                                     </div>
 
                                         <%--                                    <div class="mb-3 col-md-6">--%>
@@ -549,6 +547,12 @@
                                         <%--                                        <form:radiobutton path="trangThai" value="0"/> Nghỉ--%>
                                         <%--                                    </div>--%>
                                 </div>
+                                <c:if test="${!empty repon.error}">
+                                    <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
+                                </c:if>
+                                <c:if test="${not empty repon.status}">
+                                    <div class="alert alert-success">${repon.status}</div>
+                                </c:if>
                                 <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                 </div>
