@@ -31,16 +31,21 @@ public class MauSacController {
     @RequestMapping(value = "/mau-sac-add",method = RequestMethod.POST)
     public String addMauSac(@Valid @ModelAttribute("ms") MauSac mauSac, BindingResult result,Model model){
         Respon<MauSac> respon=mauSacService.add(mauSac);
+        List<MauSac>mauSacList=mauSacService.getAll();
+        model.addAttribute("listMauSac",mauSacList);
+        model.addAttribute("ms",new MauSac());
         model.addAttribute("repon",respon);
         return "sanpham/mausac";
     }
     @RequestMapping("/chuc-vu/delete/{mauSacID}")
-    public String delete(@PathVariable("mauSacID") Integer mauSacID){
+    public String delete(@PathVariable("mauSacID") Integer mauSacID,Model model){
+        List<MauSac>mauSacList=mauSacService.getAll();
+        model.addAttribute("listMauSac",mauSacList);
         mauSacService.delete(mauSacID);
         return "redirect:/mau-sac/page";
     }
     @RequestMapping("/mau-sac-view-update/{mauSacID}")
-    public String delete(@PathVariable("mauSacID")Integer mauSacID,Model model){
+    public String update1(@PathVariable("mauSacID")Integer mauSacID,Model model){
         MauSac mauSac=mauSacService.detail(mauSacID);
         List<MauSac> mauSacList=mauSacService.getAll();
         model.addAttribute("listMauSac",mauSacList);
@@ -50,6 +55,8 @@ public class MauSacController {
     @RequestMapping(value = "/mau-sac/update/{mauSacID}",method = RequestMethod.POST)
     public String update(@PathVariable("mauSacID") Integer mauSacID, MauSac mauSac,Model model){
        Respon<MauSac>respon= mauSacService.update(mauSacID,mauSac);
+        List<MauSac>mauSacList=mauSacService.getAll();
+        model.addAttribute("listMauSac",mauSacList);
        model.addAttribute("repon",respon);
         return "redirect:/mau-sac/page";
     }

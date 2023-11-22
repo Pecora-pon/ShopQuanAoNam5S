@@ -29,8 +29,10 @@ public class ThuongHieuController {
     }
     @RequestMapping(value = "/thuong-hieu-add",method = RequestMethod.POST)
     public String addthuonghieu(@Valid @ModelAttribute("th") ThuongHieu thuongHieu, BindingResult result, Model model){
-
-        thuongHieuService.add(thuongHieu);
+        List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+        model.addAttribute("listThuongHieu",thuongHieuList);
+       Respon<ThuongHieu>respon= thuongHieuService.add(thuongHieu);
+       model.addAttribute("repon",respon);
         return "redirect:/thuong-hieu/page";
     }
     @RequestMapping("/thương-hieu/delete/{thuongHieuID}")

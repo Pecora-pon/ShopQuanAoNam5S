@@ -48,7 +48,18 @@ public class XuatKhoController {
     public String addNhapKho(@Valid @ModelAttribute("xk") XuatKho xuatKho, BindingResult result, Model model){
         Respon<XuatKho> respon=  xuatKhoService.add(xuatKho);
         List<XuatKho> xuatKhoList = xuatKhoService.getAll();
+        List<MauSac> mauSacList=mauSacService.getAll();
+        List<ChatLieu>chatLieuList=chatLieuService.getAll();
+        List<Size>sizeList=sizeService.getAll();
+        List<SanPham>sanPhamList=sanPhamService.getAll();
+        List<NhaCungCap>nhaCungCapList=nhaCungCapService.getAll();
         model.addAttribute("listXuatKho",xuatKhoList);
+        model.addAttribute("listMauSac",mauSacList);
+        model.addAttribute("listChatLieu",chatLieuList);
+        model.addAttribute("listSize",sizeList);
+        model.addAttribute("listSanPham",sanPhamList);
+        model.addAttribute("listNhaCungCap",nhaCungCapList);
+        model.addAttribute("xk",new XuatKho());
         model.addAttribute("repon",respon);
         return "sanpham/xuatkho";
     }
@@ -78,6 +89,18 @@ public class XuatKhoController {
     @RequestMapping(value = "/xuat-kho/update/{xuatKhoID}",method = RequestMethod.POST)
     public String update(@PathVariable("nhapKhoID") Integer xuatKhoID,XuatKho xuatKho,Model model){
        Respon<XuatKho> respon= xuatKhoService.update(xuatKhoID,xuatKho);
+        List<XuatKho> xuatKhoList = xuatKhoService.getAll();
+        List<MauSac> mauSacList=mauSacService.getAll();
+        List<ChatLieu>chatLieuList=chatLieuService.getAll();
+        List<Size>sizeList=sizeService.getAll();
+        List<SanPham>sanPhamList=sanPhamService.getAll();
+        List<NhaCungCap>nhaCungCapList=nhaCungCapService.getAll();
+        model.addAttribute("listXuatKho",xuatKhoList);
+        model.addAttribute("listMauSac",mauSacList);
+        model.addAttribute("listChatLieu",chatLieuList);
+        model.addAttribute("listSize",sizeList);
+        model.addAttribute("listSanPham",sanPhamList);
+        model.addAttribute("listNhaCungCap",nhaCungCapList);
        model.addAttribute("repon",respon);
         return "redirect:/xuat-kho/page";
     }

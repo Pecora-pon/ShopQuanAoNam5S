@@ -86,6 +86,18 @@ public class NhapKhoController {
     @RequestMapping(value = "/nhap-kho/update/{nhapKhoID}", method = RequestMethod.POST)
     public String update(@PathVariable("nhapKhoID") Integer nhapKhoID, NhapKho nhapKho,Model model) {
        Respon<NhapKho>respon= nhapKhoService.update(nhapKhoID, nhapKho);
+        List<NhapKho> nhapKhoList = nhapKhoService.getAll();
+        List<MauSac> mauSacList = mauSacService.getAll();
+        List<SanPham> sanPhamList=sanPhamService.getAll();
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        List<NhaCungCap> nhaCungCapList = nhaCungCapService.getAll();
+        List<Size> sizeList = sizeService.getAll();
+        model.addAttribute("listSanPham",sanPhamList);
+        model.addAttribute("listMauSac", mauSacList);
+        model.addAttribute("listChatLieu", chatLieuList);
+        model.addAttribute("listNhaCungCap", nhaCungCapList);
+        model.addAttribute("listSize", sizeList);
+        model.addAttribute("listNhapKho", nhapKhoList);
         model.addAttribute("repon",respon);
         return "redirect:/nhap-kho/page";
     }

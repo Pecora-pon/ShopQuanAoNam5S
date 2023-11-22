@@ -28,11 +28,16 @@ public class NhaCungCapController {
     @RequestMapping(value = "/nha-cung-cap-add",method = RequestMethod.POST)
     public String addNhaCC(@Valid @ModelAttribute("ncc") NhaCungCap nhaCungCap, BindingResult result, Model model){
         Respon<NhaCungCap> respon=nhaCungCapService.add(nhaCungCap);
+        List<NhaCungCap> nhaCungCapList = nhaCungCapService.getAll();
+        model.addAttribute("listNhaCungCap",nhaCungCapList);
+        model.addAttribute("ncc",new NhaCungCap());
         model.addAttribute("repon",respon);
         return "sanpham/nhacungcap";
     }
     @RequestMapping("/nha-cung-cap/delete/{nhaCungCapID}")
-    public String delete(@PathVariable("nhaCungCapID") Integer nhaCungCapID){
+    public String delete(@PathVariable("nhaCungCapID") Integer nhaCungCapID,Model model){
+        List<NhaCungCap> nhaCungCapList = nhaCungCapService.getAll();
+        model.addAttribute("listNhaCungCap",nhaCungCapList);
         nhaCungCapService.delete(nhaCungCapID);
         return "redirect:/nha-cung-cap";
     }
@@ -47,6 +52,8 @@ public class NhaCungCapController {
     @RequestMapping(value = "/nha-cung-cap/update/{nhaCungCapID}",method = RequestMethod.POST)
     public String update(@PathVariable("nhaCungCapID") Integer nhaCungCapID,NhaCungCap nhaCungCap,Model model){
        Respon<NhaCungCap> respon= nhaCungCapService.update(nhaCungCapID,nhaCungCap);
+        List<NhaCungCap> nhaCungCapList = nhaCungCapService.getAll();
+        model.addAttribute("listNhaCungCap",nhaCungCapList);
        model.addAttribute("repon",respon);
         return "redirect:/nha-cung-cap/page";
     }

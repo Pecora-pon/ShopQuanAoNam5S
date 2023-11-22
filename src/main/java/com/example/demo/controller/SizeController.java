@@ -31,6 +31,9 @@ public class SizeController {
     @RequestMapping(value = "/size-add",method = RequestMethod.POST)
     public String addMauSac(@Valid @ModelAttribute("si") Size size, BindingResult result,Model model){
         Respon<Size>respon=sizeService.add(size);
+        List<Size> sizeList=sizeService.getAll();
+        model.addAttribute("listSize",sizeList);
+        model.addAttribute("si",new Size());
         model.addAttribute("repon",respon);
         return "sanpham/size";
     }
