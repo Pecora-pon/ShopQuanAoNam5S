@@ -101,4 +101,5 @@ public class SanPhamServiceImpl implements SanPhamService {
         sanPham1.setMauSac(sanPham.getMauSac());
        return sanPhamRepo.save(sanPham1);
     }
+
 }
