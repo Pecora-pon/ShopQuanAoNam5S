@@ -27,6 +27,9 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham LIKE %?1%")
     List<SanPham> findByTenSanPham(String tenSanPham);
 
+    @Query("SELECT sp FROM SanPham sp WHERE sp.hinhAnhURL LIKE %?1%")
+    List<SanPham> findByHinhAnhURL(String hinhAnhURL);
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.giaSanPham BETWEEN ?1 AND ?2")
     List<SanPham> findProductsInPriceRange(Double minPrice, Double maxPrice);
 
