@@ -1,7 +1,8 @@
-<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
 <head>
@@ -188,6 +189,7 @@
                     <div class="col-lg-8">
                         <div class="product__details__text">
                         <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post">
+                            <c:forEach items="l">
                             <h4 value="${sp.tenSanPham}">${sp.tenSanPham}</h4>
                             <h3 value="${sp.giaSanPham}">${sp.giaSanPham}</h3>
                             <div class="product__details__option">
@@ -214,7 +216,9 @@
                                     </div>
                                 </div>
                                 <button class="primary-btn">add to cart</button>
+                                <a  href="/themngay/${sp.sanPhamID}"><i class="bx bx-trash me-1"></i> Mua Ngay</a>
                             </div>
+                        </c:forEach>
                         </form:form>
 
 

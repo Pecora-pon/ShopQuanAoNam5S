@@ -106,7 +106,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="/shop/main-shop">Trang chủ</a></li>
-                            <li><a href="/list-san-pham/page">Shop</a></li>
+                            <li><a href="/list-san-pham">Shop</a></li>
                             <li><a href="#">Tìm hiểu thêm</a>
                                 <ul class="dropdown">
                                     <li><a href="/shop/about">Về chúng tôi</a></li>

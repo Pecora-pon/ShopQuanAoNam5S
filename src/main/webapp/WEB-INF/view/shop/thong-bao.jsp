@@ -1,3 +1,33 @@
+<%--<!DOCTYPE html>--%>
+<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
+<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
+<%--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>--%>
+<%--<html lang="en">--%>
+<%--<head>--%>
+<%--    <meta charset="UTF-8">--%>
+<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
+<%--    <title>Thông Báo Thành Công</title>--%>
+<%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
+<%--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--%>
+<%--</head>--%>
+<%--<body>--%>
+
+<%--<div class="container mt-5">--%>
+<%--    <div class="alert alert-success" role="alert">--%>
+<%--        <h4 class="alert-heading">Thành công!</h4>--%>
+<%--        <p>Cảm ơn bạn đã sử dụng trang web của chúng tôi. Thông báo thành công.</p>--%>
+<%--        <hr>--%>
+<%--        <p class="mb-0">Nếu bạn cần hỗ trợ thêm, hãy liên hệ chúng tôi.</p>--%>
+<%--    </div>--%>
+<%--</div>--%>
+
+<%--<!-- Thêm các tệp JavaScript của Bootstrap (popper.js và jQuery) -->--%>
+<%--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>--%>
+<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>--%>
+<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>--%>
+
+<%--</body>--%>
+<%--</html>--%>
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -13,7 +43,9 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Male-Fashion | Template</title>
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
-
+    <title>Thông Báo Thành Công</title>--%>
+    <%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
+    <%--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--%>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com"/>
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
@@ -170,131 +202,14 @@
 
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
-    <form class="needs-validation"  enctype="multipart/form-data" method="post"
-          action="/themmoi">
-        <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
-
-        <div class="py-5 text-center">
-            <i class="fa fa-credit-card fa-4x" aria-hidden="true"></i>
-            <h2>Thanh toán</h2>
-            <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
+    <div class="container mt-5">
+        <div class="alert alert-success" role="alert">
+            <h4 class="alert-heading">Thành công!</h4>
+            <p>Cảm ơn bạn đã sử dụng trang web của chúng tôi. Thông báo thành công.</p>
+            <hr>
+            <p class="mb-0">Nếu bạn cần hỗ trợ thêm, hãy liên hệ chúng tôi.</p>
         </div>
-
-        <div class="row">
-            <div class="col-md-4 order-md-2 mb-4">
-                <h4 class="d-flex justify-content-between align-items-center mb-3">
-                    <span class="text-muted">Giỏ hàng</span>
-                    <span class="badge badge-secondary badge-pill">2</span>
-                </h4>
-                <ul class="list-group mb-3">
-                    <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
-                    <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
-                    <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
-                    <c:forEach items="${listGioHang}" var="gh">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                         <ul>
-
-                                 <li>${gh.sanPham.tenSanPham} - ${gh.sanPham.giaSanPham} - ${gh.soLuongDat} - ${gh.tongTien}</li>
-                             <input type="hidden" name="gioHangID[]" value="${gh.gioHangID}">
-                         </ul>
-                        </div>
-<%--                        <span class="text-muted">23600000</span>--%>
-                    </li>   <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
-                        <input type="hidden" name="tongTien" value="${totalPrice}">
-                    </c:forEach>
-                    <input type="hidden" name="gioHangID" value="4">
-                    <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
-                    <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
-                    <li class="list-group-item d-flex justify-content-between">
-                        <span>Tổng thành tiền</span>
-
-                        ${totalPrice}
-                    </li>
-                </ul>
-
-
-                <div class="input-group">
-                    <select name="giamGia.giamGiaID" class="form-control">
-                        <option value="" label="Chọn Giảm Giá"/>
-                        <c:forEach var="giamGia" items="${listGiamGia}">
-                            <option value="${giamGia.giamGiaID}">${giamGia.maGiamGia}</option>
-                        </c:forEach>
-                    </select>
-                </div>
-
-            </div>
-            <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Thông tin khách hàng</h4>
-
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="hoTen">Họ tên</label>
-                        <input type="text" class="form-control" name="hoTen" id="hoTen"
-                               value="${tt.hoTen}" readonly="">
-                        <input type="hidden" name="tenKhach" value="${tt.hoTen}">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="kh_gioitinh">Giới tính</label>
-                        <input type="text" class="form-control" name="kh_gioitinh" id="kh_gioitinh" value="Nam"
-                               readonly="">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="diaChi">Địa chỉ</label>
-                        <input type="text" class="form-control" name="diaChi" id="diaChi"
-                               value="${tt.diaChi}" readonly="">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="soDienThoai">Điện thoại</label>
-                        <input type="text" class="form-control" name="soDienThoai" id="soDienThoai"
-                               value="${tt.soDienThoai}" readonly="">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" id="email"
-                               value="${tt.email}" readonly="">
-                    </div>
-                    <div class="col-md-12">
-                        <label >Thông Tin Vận Chuyển</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control">
-                            <option value="" label="Chọn ThongTinVanChuyen"/>
-                            <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
-                                <option value="${thongTinVanChuyen.thongTinVanChuyenID}">${thongTinVanChuyen.diaChi}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
-                    <div class="col-md-12">
-                        <label for="note">Note</label>
-                        <input type="text" class="form-control" name="note" id="note" value=""
-                               readonly="">
-                    </div>
-                </div>
-
-                <h4 class="mb-3">Hình thức thanh toán</h4>
-                <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                        <input id="httt-1" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
-                               value="1">
-                        <label class="custom-control-label" for="httt-1">Tiền mặt</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="httt-2" name="hinhThucThanhToan"  type="radio" class="custom-control-input" required=""
-                               value="2">
-                        <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="httt-3" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
-                               value="3">
-                        <label class="custom-control-label" for="httt-3">Ship COD</label>
-                    </div>
-                </div>
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block"onclick="redirectToPaymentPage()" type="submit" >Đặt
-                    hàng</button>
-            </div>
-        </div>
-    </form>
-
+    </div>
 </div>
 <!-- Shopping Cart Section End -->
 
@@ -387,11 +302,6 @@
 <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
-<script>
-    function redirectToPaymentPage() {
-        window.location.href = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    }
-</script>
 </body>
 
 </html>

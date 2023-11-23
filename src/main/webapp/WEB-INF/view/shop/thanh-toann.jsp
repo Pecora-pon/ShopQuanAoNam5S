@@ -171,7 +171,7 @@
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
     <form class="needs-validation"  enctype="multipart/form-data" method="post"
-          action="/themmoi">
+          action="/themmoiny">
         <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
         <div class="py-5 text-center">
@@ -190,18 +190,18 @@
                     <input type="hidden" name="sanphamgiohang[1][sp_ma]" value="2">
                     <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
                     <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
-                    <c:forEach items="${listGioHang}" var="gh">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                         <ul>
+                    <c:forEach items="${listSanPham}" var="sp">
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <ul>
 
-                                 <li>${gh.sanPham.tenSanPham} - ${gh.sanPham.giaSanPham} - ${gh.soLuongDat} - ${gh.tongTien}</li>
-                             <input type="hidden" name="gioHangID[]" value="${gh.gioHangID}">
-                         </ul>
-                        </div>
-<%--                        <span class="text-muted">23600000</span>--%>
-                    </li>   <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
-                        <input type="hidden" name="tongTien" value="${totalPrice}">
+                                    <li>${sp.tenSanPham} - ${sp.giaSanPham} - ${sp.soLuongTon} </li>
+                                    <input type="hidden" name="sanPhamID" value="${sp.sanPhamID}">
+                                </ul>
+                            </div>
+                                <%--                        <span class="text-muted">23600000</span>--%>
+                        </li>   <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham }" />
+<%--                        <input type="hidden" name="tongTien" value="${totalPrice}">--%>
                     </c:forEach>
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
@@ -278,7 +278,7 @@
                         <label class="custom-control-label" for="httt-1">Tiền mặt</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input id="httt-2" name="hinhThucThanhToan"  type="radio" class="custom-control-input" required=""
+                        <input id="httt-2" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
                                value="2">
                         <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
                     </div>
@@ -289,7 +289,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block"onclick="redirectToPaymentPage()" type="submit" >Đặt
+                <button class="btn btn-primary btn-lg btn-block" type="submit" >Đặt
                     hàng</button>
             </div>
         </div>
@@ -387,11 +387,6 @@
 <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
-<script>
-    function redirectToPaymentPage() {
-        window.location.href = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
-    }
-</script>
 </body>
 
 </html>
