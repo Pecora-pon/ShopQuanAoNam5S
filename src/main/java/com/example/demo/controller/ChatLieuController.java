@@ -86,6 +86,5 @@ public class ChatLieuController {
         model.addAttribute("listChatLieu",chatLieuList);
         model.addAttribute("cl",new ChatLieu());
         return "sanpham/chatlieu";
-
     }
 }

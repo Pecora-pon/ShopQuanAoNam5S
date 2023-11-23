@@ -57,6 +57,7 @@ public class ShopController {
                        @Param("mausacid") String mausacid,
                        @Param("chatlieuid") String chatlieuid,
                        @Param("minPrice")  Double minPrice,
+                       @Param("getimage/hinhAnhURL") String hinhAnhURL,
                        @Param("maxPrice") Double maxPrice) {
         Page<SanPham> page1 = shopService.getPage(page, size);
         List<SanPham> sanPhams = page1.getContent();
@@ -78,6 +79,8 @@ public class ShopController {
         }if(minPrice != null && maxPrice !=null){
             sanPhams = this.shopService.findByProductInPriceRange(minPrice,maxPrice);
 
+        }if(hinhAnhURL != null){
+            sanPhams =this.shopService.findByHinhAnhURL(hinhAnhURL);
         }
 
         int totalItems = sanPhams1.size();
@@ -90,7 +93,7 @@ public class ShopController {
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("listSanPham", sanPhams);
         model.addAttribute("sp", new SanPham());
-        return "shop/san-pham";
+        return "redirect:/list-san-pham";
 
 
     }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class ThanhToanController {
@@ -26,6 +27,8 @@ public class ThanhToanController {
     GiamGiaService giamGiaService;
     @Autowired
     DonHangService donHangService;
+   @Autowired
+   SanPhamService sanPhamService;
     @Autowired
     ThongTinVanChuyenService thongTinVanChuyenService;
     @GetMapping("/thanh-toan")
@@ -35,10 +38,14 @@ public class ThanhToanController {
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         List<GiamGia>giamGiaList=giamGiaService.getAll();
         List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAll();
-        model.addAttribute("listThongTinVC",thongTinVanChuyenList);
+        model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
         model.addAttribute("listGiamGia",giamGiaList);
         model.addAttribute("tt",khachHang);
         return "shop/thanh-toan";
+    }
+    @GetMapping("/tt")
+    public String tt(){
+        return "shop/thong-bao";
     }
    @PostMapping("/list-gh")
    @PreAuthorize("hasAuthority('ROLE_USER')")
@@ -61,6 +68,31 @@ public class ThanhToanController {
         donHang.setKhachHang(khachHang);
        DonHang donHang1= thanhToanService.themmoi(donHang,giohangID);
         model.addAttribute("t",donHang1);
-        return "shop/thanh-toan";
+        return "shop/thong-bao";
    }
+   @GetMapping("/themngay/{sanPhamID}")
+   @PreAuthorize("hasAuthority('ROLE_USER')")
+    public String detail1(@PathVariable("sanPhamID")UUID id,Model model,Principal principal){
+        SanPham sanPham=thanhToanService.deltail1(id);
+        List<SanPham>sanPhamList=sanPhamService.getAll();
+        String logname= principal.getName();
+        KhachHang khachHang=khachHangRepo.findByUsername(logname);
+        List<GiamGia>giamGiaList=giamGiaService.getAll();
+       List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAll();
+       model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
+       model.addAttribute("listGiamGia",giamGiaList);
+       model.addAttribute("tt",khachHang);
+        model.addAttribute("listSanPham",sanPhamList);
+        model.addAttribute("sp",sanPham);
+        return "shop/thanh-toann";
+   }
+    @PostMapping("/themmoiny")
+    public String themmoinay(@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,Model model,Principal principal){
+        String logname=principal.getName();
+        KhachHang khachHang=khachHangRepo.findByUsername(logname);
+        donHang.setKhachHang(khachHang);
+        DonHang donHang1= thanhToanService.themmoingay(donHang,id);
+        model.addAttribute("t",donHang1);
+        return "shop/thong-bao";
+    }
 }
