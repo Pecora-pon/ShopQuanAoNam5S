@@ -19,6 +19,8 @@ public interface ShopService {
 
     List<SanPham> findByTenSanPham(String tenSanPham);
 
+    List<SanPham> findByHinhAnhURL(String hinhAnhURL);
+
     List<SanPham> findByProductInPriceRange(Double minPrice,Double maxPrice);
 
     List<SanPham> getAll();
