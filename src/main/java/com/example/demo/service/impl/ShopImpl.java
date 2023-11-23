@@ -49,6 +49,11 @@ public class ShopImpl implements ShopService {
     }
 
     @Override
+    public List<SanPham> findByHinhAnhURL(String hinhAnhURL) {
+        return sanPhamRepo.findByHinhAnhURL(hinhAnhURL);
+    }
+
+    @Override
     public List<SanPham> findByProductInPriceRange(Double minPrice, Double maxPrice) {
         return sanPhamRepo.findProductsInPriceRange(minPrice,maxPrice);
     }
