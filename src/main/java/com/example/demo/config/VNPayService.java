@@ -1,5 +1,6 @@
 package com.example.demo.config;
 
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Service;
 
 import java.io.UnsupportedEncodingException;
@@ -9,6 +10,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -83,5 +85,40 @@ public class VNPayService {
 
         return paymentUrl;
     }
+    public int orderReturn(HttpServletRequest request){
+        Map fields = new HashMap();
+        for (Enumeration params = request.getParameterNames(); params.hasMoreElements();) {
+            String fieldName = null;
+            String fieldValue = null;
+            try {
+                fieldName = URLEncoder.encode((String) params.nextElement(), StandardCharsets.US_ASCII.toString());
+                fieldValue = URLEncoder.encode(request.getParameter(fieldName), StandardCharsets.US_ASCII.toString());
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+            if ((fieldValue != null) && (fieldValue.length() > 0)) {
+                fields.put(fieldName, fieldValue);
+            }
+        }
+
+        String vnp_SecureHash = request.getParameter("vnp_SecureHash");
+        if (fields.containsKey("vnp_SecureHashType")) {
+            fields.remove("vnp_SecureHashType");
+        }
+        if (fields.containsKey("vnp_SecureHash")) {
+            fields.remove("vnp_SecureHash");
+        }
+        String signValue = Config.hashAllFields(fields);
+        if (signValue.equals(vnp_SecureHash)) {
+            if ("00".equals(request.getParameter("vnp_TransactionStatus"))) {
+                return 1;
+            } else {
+                return 0;
+            }
+        } else {
+            return -1;
+        }
+    }
 
 }
+
