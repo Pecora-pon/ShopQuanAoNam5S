@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,8 +22,10 @@ import java.text.SimpleDateFormat;
 import java.util.*;
 @Controller
 public class PaymentController {
+
     @Autowired
     private VNPayService vnPayService;
+
     @PostMapping("/submitOrder")
     public String submidOrder(@RequestParam("amount") Long orderTotal,
                               HttpServletRequest request) throws UnsupportedEncodingException {
@@ -30,6 +33,26 @@ public class PaymentController {
         String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
         return "redirect:" + vnpayUrl;
     }
+
+
+    @GetMapping("/vnpay-payment")
+    public String GetMapping(HttpServletRequest request, Model model){
+        int paymentStatus = VNPayService.orderReturn(request);
+
+        String orderInfo = request.getParameter("vnp_OrderInfo");
+        String paymentTime = request.getParameter("vnp_PayDate");
+        String transactionId = request.getParameter("vnp_TransactionNo");
+        String totalPrice = request.getParameter("vnp_Amount");
+
+        model.addAttribute("orderId", orderInfo);
+        model.addAttribute("totalPrice", totalPrice);
+        model.addAttribute("paymentTime", paymentTime);
+        model.addAttribute("transactionId", transactionId);
+
+        return paymentStatus == 1 ? "shop/thong-bao" : "shop/thatbai";
+    }
+
+
 //    @PostMapping(value="/melusinepay",produces = "text/html; charset=UTF-8")
 //    public String getPay(@RequestParam("totalPrice") long totalPrice) throws UnsupportedEncodingException{
 //
