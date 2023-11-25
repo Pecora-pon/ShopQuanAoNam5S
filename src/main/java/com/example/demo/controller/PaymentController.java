@@ -16,7 +16,7 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.text.SimpleDateFormat;
 import java.util.*;
-
+@Controller
 @RequestMapping("/api/payment")
 public class PaymentController {
     @GetMapping("/pay")

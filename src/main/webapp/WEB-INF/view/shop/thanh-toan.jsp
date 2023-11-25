@@ -289,7 +289,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="submitFormAndRedirect()">Đặt hàng</button>
+                <button class="btn btn-primary btn-lg btn-block" type="button" onclick="submitForm()">Đặt hàng</button>
 
             </div>
         </div>
@@ -389,14 +389,24 @@
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
 <script>
-    function submitFormAndRedirect() {
-        // Thực hiện kiểm tra hợp lệ nếu cần
+    function submitForm() {
+        var form = document.getElementById("paymentForm");
+        var paymentMethod = document.querySelector('input[name="hinhThucThanhToan"]:checked');
 
-        // Gửi form
-        document.getElementById("paymentForm").submit();
+        if (paymentMethod) {
+            if (paymentMethod.value === "1") {
+                form.action = "/themmoi";
+            } else if (paymentMethod.value === "2") {
+                form.action = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+            }
+            // Add any additional conditions for other payment methods if needed.
 
-        // Chuyển hướng đến URL được chỉ định
-        window.location.href = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+            // Submit the form
+            form.submit();
+        } else {
+            // Handle the case where no payment method is selected
+            alert("Vui lòng chọn hình thức thanh toán.");
+        }
     }
 </script>
 </body>
