@@ -201,15 +201,14 @@
                         </div>
 <%--                        <span class="text-muted">23600000</span>--%>
                     </li>   <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
+                        <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
                         <input type="hidden" name="tongTien" value="${totalPrice}">
                     </c:forEach>
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
                     <li class="list-group-item d-flex justify-content-between">
-                        <input type="number" name="amount" > <span>
-                        ${totalPrice}
-                    </span>
+                        <input type="text" name="amount" value="${totalPriceLong}" readonly>
 
 
                     </li>
@@ -410,6 +409,24 @@
         } else {
             // Handle the case where no payment method is selected
             alert("Vui lòng chọn hình thức thanh toán.");
+        }
+    }
+</script>
+<script>
+    function convertToLong(input) {
+        // Lấy giá trị từ trường nhập số
+        let inputValue = input.value;
+
+        // Loại bỏ dấu chấm và số 0 phía sau nó
+        let formattedValue = inputValue.replace(/\.0+$/, '');
+
+        // Kiểm tra xem giá trị có phải là một số hợp lệ không
+        if (!isNaN(parseInt(formattedValue))) {
+            // Đặt giá trị mới cho trường nhập số
+            input.value = formattedValue;
+        } else {
+            // Nếu giá trị không hợp lệ, có thể xử lý theo cách khác hoặc báo lỗi
+            console.error("Invalid number format");
         }
     }
 </script>
