@@ -1,10 +1,12 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.VNPayService;
 import com.example.demo.entity.*;
 import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.service.*;
 import com.example.demo.service.impl.GiamGiaChiTietServiceImpl;
 import com.example.demo.service.impl.GioHangImpl;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -43,10 +45,10 @@ public class ThanhToanController {
         model.addAttribute("tt",khachHang);
         return "shop/thanh-toan";
     }
-    @GetMapping("/tt")
-    public String tt(){
-        return "shop/thong-bao";
-    }
+//    @GetMapping("/tt")
+//    public String tt(){
+//        return "shop/thong-bao";
+//    }
    @PostMapping("/list-gh")
    @PreAuthorize("hasAuthority('ROLE_USER')")
     public String detail(@RequestParam(value = "selectedItems",required = false) List<Integer> gioHangID,Model model,Principal principal){
@@ -95,4 +97,10 @@ public class ThanhToanController {
         model.addAttribute("t",donHang1);
         return "shop/thong-bao";
     }
+
+//    @GetMapping("/thanh-toan-that-bai")
+//    public String khongthanhcong(Model model) {
+//        return "shop/thatbai";
+//
+//    }
 }
