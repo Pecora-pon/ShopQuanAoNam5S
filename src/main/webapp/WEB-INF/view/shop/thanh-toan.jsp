@@ -207,9 +207,11 @@
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
                     <li class="list-group-item d-flex justify-content-between">
-                        <span>Tổng thành tiền</span>
-
+                        <input type="number" name="amount" > <span>
                         ${totalPrice}
+                    </span>
+
+
                     </li>
                 </ul>
 
@@ -289,7 +291,7 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="button" onclick="submitForm()">Đặt hàng</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="submitForm()">Đặt hàng</button>
 
             </div>
         </div>
@@ -395,9 +397,11 @@
 
         if (paymentMethod) {
             if (paymentMethod.value === "1") {
+                form.method = "post";
                 form.action = "/themmoi";
             } else if (paymentMethod.value === "2") {
-                form.action = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
+                form.method = "post";  // Đổi phương thức thành GET
+                form.action = "/submitOrder";
             }
             // Add any additional conditions for other payment methods if needed.
 
