@@ -170,7 +170,7 @@
 
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
-    <form class="needs-validation"  enctype="multipart/form-data" method="post"
+    <form class="needs-validation" id="paymentForm" enctype="multipart/form-data" method="post"
           action="/themmoi">
         <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
@@ -289,11 +289,12 @@
                     </div>
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block"onclick="redirectToPaymentPage()" type="submit" >Đặt
-                    hàng</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="submitFormAndRedirect()">Đặt hàng</button>
+
             </div>
         </div>
     </form>
+
 
 </div>
 <!-- Shopping Cart Section End -->
@@ -388,8 +389,14 @@
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
 <script>
-    function redirectToPaymentPage() {
-        window.location.href = "https://sandbox.vnpayment.vn/paymentv2/vpcpay.html";
+    function submitFormAndRedirect() {
+        // Thực hiện kiểm tra hợp lệ nếu cần
+
+        // Gửi form
+        document.getElementById("paymentForm").submit();
+
+        // Chuyển hướng đến URL được chỉ định
+        window.location.href = "https://sandbox.vnpayment.vn/merchant_webapi/api/transaction";
     }
 </script>
 </body>

@@ -139,7 +139,7 @@
               <h4 class="mb-2">Chào mừng tới Quần Áo Nam 5S! 👋</h4>
               <p class="mb-4">Đăng nhập vào tài khoản</p>
 
-              <form id="formAuthentication" class="mb-3" action="/trang-chu" method="POST">
+              <form id="formAuthentication" class="mb-3" action="/login" method="POST">
                 <div class="mb-3">
                   <label for="username" class="form-label">Tên đăng nhập</label>
                   <input
