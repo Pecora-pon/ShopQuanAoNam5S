@@ -12,4 +12,5 @@ import java.util.UUID;
 public interface DonHangRepo extends JpaRepository<DonHang, UUID> {
     @Query("SELECT d FROM DonHang d WHERE d.tenKhach LIKE %?1%")
     List<DonHang> searchByTenKhach(String keyword);
+
 }

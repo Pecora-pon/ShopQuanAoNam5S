@@ -17,5 +17,7 @@ public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
     Optional<NhanVien> findByTenDangNhap(String tenDangNhap);
     @Query("SELECT n FROM NhanVien n WHERE n.hoTen LIKE %?1%")
     List<NhanVien> searchByHoTenOrTenDangNhap(String keyword);
+    @Query("SELECT n FROM NhanVien n WHERE n.tenDangNhap =:tenDangNhap")
+    NhanVien searchByTen(@Param("tenDangNhap") String tenDangNhap);
 
 }
