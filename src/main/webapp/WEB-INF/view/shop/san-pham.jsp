@@ -193,13 +193,13 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__price">
                                             <ul>
-                                                <li><a href="/list-san-pham/page?minPrice=0.00&maxPrice=50.00">$0.00 -
-                                                    $50.00</a></li>
-                                                <li><a href="#">$50.00 - $100.00</a></li>
-                                                <li><a href="#">$100.00 - $150.00</a></li>
-                                                <li><a href="#">$150.00 - $200.00</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=20000.0&maxPrice=25000.0">$200.00 - $250.00</a></li>
-                                                <li><a href="#">250.00+</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=0&maxPrice=50000">0Đ -
+                                                    50000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=50000&maxPrice=100000">50000Đ - 100000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=100000&maxPrice=150000">100000Đ - 150000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=150000&maxPrice=200000">150000Đ - 200000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=200000&maxPrice=250000">200000Đ - 250000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=0&maxPrice=99999999999999">250000+</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -327,7 +327,7 @@
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="shop__product__option__left">
-                                <p>Showing 1–12 of 126 results</p>
+                                <p>Showing ${itemsPerPage} of ${totalItems}</p>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
