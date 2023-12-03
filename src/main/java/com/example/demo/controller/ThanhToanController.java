@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.security.Principal;
 import java.util.List;
+import java.util.Map;
 import java.util.UUID;
 
 @Controller
@@ -51,8 +52,8 @@ public class ThanhToanController {
 //    }
    @PostMapping("/list-gh")
    @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String detail(@RequestParam(value = "selectedItems",required = false) List<Integer> gioHangID,Model model,Principal principal){
-       List<GioHang>gioHangList= thanhToanService.detail(gioHangID);
+    public String detail(@RequestParam(value = "selectedItems",required = false) List<Integer> gioHangID, @RequestParam Map<String, String> params, Model model, Principal principal){
+       List<GioHang>gioHangList= thanhToanService.detail(gioHangID,params);
        String logname= principal.getName();
        KhachHang khachHang=khachHangRepo.findByUsername(logname);
        List<GiamGia>giamGiaList=giamGiaService.getAll();
@@ -64,18 +65,18 @@ public class ThanhToanController {
         return "shop/thanh-toan";
    }
    @PostMapping("/themmoi")
-    public String themmoi(@ModelAttribute("t") DonHang donHang,@RequestParam("gioHangID[]") List<Integer> giohangID,Model model,Principal principal){
+    public String themmoi(@ModelAttribute("t") DonHang donHang,@RequestParam("gioHangID[]")List<Integer>  giohangID,@RequestParam("amount") float tt,Model model,Principal principal){
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
-       DonHang donHang1= thanhToanService.themmoi(donHang,giohangID);
+       DonHang donHang1= thanhToanService.themmoi(donHang,giohangID,tt);
         model.addAttribute("t",donHang1);
         return "shop/thong-bao";
    }
    @GetMapping("/themngay/{sanPhamID}")
    @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String detail1(@PathVariable("sanPhamID")UUID id,Model model,Principal principal){
-        SanPham sanPham=thanhToanService.deltail1(id);
+    public String detail1(@PathVariable("sanPhamID")UUID id,@RequestParam(value = "soLuongDat",defaultValue = "1")int sl, Model model,Principal principal){
+        SanPham sanPham=thanhToanService.deltail1(id,sl);
         List<SanPham>sanPhamList=sanPhamService.getAll();
         String logname= principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
@@ -85,15 +86,16 @@ public class ThanhToanController {
        model.addAttribute("listGiamGia",giamGiaList);
        model.addAttribute("tt",khachHang);
         model.addAttribute("listSanPham",sanPhamList);
+        model.addAttribute("soLuongDat",sl);
         model.addAttribute("sp",sanPham);
         return "shop/thanh-toann";
    }
     @PostMapping("/themmoiny")
-    public String themmoinay(@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,Model model,Principal principal){
+    public String themmoinay(@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,@RequestParam("soLuongDat")int sl,@RequestParam("amount")float tt, Model model,Principal principal){
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
-        DonHang donHang1= thanhToanService.themmoingay(donHang,id);
+        DonHang donHang1= thanhToanService.themmoingay(donHang,id,sl,tt);
         model.addAttribute("t",donHang1);
         return "shop/thong-bao";
     }
