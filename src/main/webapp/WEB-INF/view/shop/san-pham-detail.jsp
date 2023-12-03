@@ -39,7 +39,7 @@
     <div class="offcanvas-menu-wrapper">
         <div class="offcanvas__option">
             <div class="offcanvas__links">
-                <a href="#">Sign in</a>
+                <a href="/logout">Sign in</a>
                 <a href="#">FAQs</a>
             </div>
             <div class="offcanvas__top__hover">
@@ -54,7 +54,7 @@
         <div class="offcanvas__nav__option">
             <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
             <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+            <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
             <div class="price">$0.00</div>
         </div>
         <div id="mobile-menu-wrap"></div>
@@ -104,7 +104,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li><a href="./inex.html">Home</a></li>
-                            <li class="active"><a href="./shop.html">Shop</a></li>
+                            <li class="active"><a href="/list-san-pham/page">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="./about.html">About Us</a></li>
@@ -123,7 +123,7 @@
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                         <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                        <a href="#"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
                         <div class="price">$0.00</div>
                     </div>
                 </div>
@@ -212,15 +212,22 @@
                             <div class="product__details__cart__option">
                                 <div class="quantity">
                                     <div class="pro-qty">
-                                        <input type="text" value="1" name="soLuongDat">
+                                        <input type="text"id="soLuongDatInput" value="1" name="soLuongDat">
                                     </div>
                                 </div>
                                 <button class="primary-btn">add to cart</button>
-                                <a  href="/themngay/${sp.sanPhamID}"><i class="bx bx-trash me-1"></i> Mua Ngay</a>
-                            </div>
+                                <a href="javascript:void(0);"class="primary-btn" onclick="muaNgay()">Mua Ngay</a>                            </div>
                         </c:forEach>
                         </form:form>
+                            <script>
+                                function muaNgay() {
+                                    var soLuongDat = document.getElementById("soLuongDatInput").value;
+                                    var sanPhamID = "${sp.sanPhamID}";
 
+                                    // Chuyển hướng đến URL với tham số soLuongDat
+                                    window.location.href = "/themngay/" + sanPhamID + "?soLuongDat=" + soLuongDat;
+                                }
+                            </script>
 
                         </div>
                     </div>

@@ -119,7 +119,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li><a href="../mainshop/mainshop2/index.html">Home</a></li>
-                            <li class="active"><a href="../mainshop/mainshop2/shop.html">Shop</a></li>
+                            <li class="active"><a href="/list-san-pham/page">Shop</a></li>
                             <li><a href="#">Pages</a>
                                 <ul class="dropdown">
                                     <li><a href="../mainshop/mainshop2/about.html">About Us</a></li>
@@ -138,7 +138,7 @@
                     <div class="header__nav__option">
                         <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                         <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                        <a href="#"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
                         <div class="price">$0.00</div>
                     </div>
                 </div>
@@ -166,7 +166,7 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-
+    <a href="/dangxem" class="primary-btn" >Xem Đơn Hang</a>
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
         <div class="container">
@@ -183,7 +183,7 @@
                                     <th></th>
                                 </tr>
                             </thead>
-                            <form method="post" action="/list-gh">
+                            <form method="post" action="/list-gh" onsubmit="return validateQuantity()">
                             <c:forEach items="${listGioHang}" var="gh">
                             <tbody>
 
@@ -199,8 +199,9 @@
                                     </td>
                                     <td class="quantity__item">
                                         <div class="quantity">
-                                            <div >
-                                                <h6>${gh.soLuongDat}</h6>
+                                            <div class="pro-qty">
+<%--                                                <h6>${gh.soLuongDat}</h6>--%>
+                                            <input type="text" id="soLuongDat_${gh.gioHangID}" name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}" >
                                             </div>
                                         </div>
                                     </td>
@@ -210,9 +211,10 @@
                                             <input type="checkbox" name="selectedItems" value="${gh.gioHangID}">
 
                                         </div>
+                                        <span id="quantityError_${gh.gioHangID}" style="color: #ff0000;"></span>
                                         <div class="mt-2">
                                             <a class="dropdown-item"
-                                               href="/delete/${gh.gioHangID}"><i
+                                               href="/deletedh/${gh.gioHangID}"><i
                                                     class="bx bx-trash me-1"></i></a>
                                         </div>
 <%--                                        <div class="mt-2">--%>
@@ -230,7 +232,27 @@
                             </form>
                         </table>
                     </div>
+                    <script>
+                        function validateQuantity() {
+                            var isValid = true;
 
+                            // Loop through each quantity input
+                            <c:forEach items="${listGioHang}" var="gh">
+                            var quantityInput = document.getElementById("soLuongDat_${gh.gioHangID}");
+                            var quantityError = document.getElementById("quantityError_${gh.gioHangID}");
+
+                            // Check if quantity is 0
+                            if (parseInt(quantityInput.value) === 0) {
+                                quantityError.innerHTML = "số lượng đặt phải từ 1.";
+                                isValid = false;
+                            } else {
+                                quantityError.innerHTML = "";
+                            }
+                            </c:forEach>
+
+                            return isValid;
+                        }
+                    </script>
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">

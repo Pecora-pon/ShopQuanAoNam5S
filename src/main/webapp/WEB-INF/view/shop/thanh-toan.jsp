@@ -120,7 +120,7 @@
                 <nav class="header__menu mobile-menu">
                     <ul>
                         <li><a href="../mainshop/mainshop2/index.html">Home</a></li>
-                        <li class="active"><a href="../mainshop/mainshop2/shop.html">Shop</a></li>
+                        <li class="active"><a href="/list-san-pham/page">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="../mainshop/mainshop2/about.html">About Us</a></li>
@@ -139,7 +139,7 @@
                 <div class="header__nav__option">
                     <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                     <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                    <a href="#"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
                     <div class="price">$0.00</div>
                 </div>
             </div>
@@ -167,7 +167,7 @@
     </div>
 </section>
 <!-- Breadcrumb Section End -->
-
+<a href="/dangxem" class="primary-btn" >Xem Đơn Hang</a>
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
     <form class="needs-validation" id="paymentForm" enctype="multipart/form-data" method="post"
@@ -179,7 +179,6 @@
             <h2>Thanh toán</h2>
             <p class="lead">Vui lòng kiểm tra thông tin Khách hàng, thông tin Giỏ hàng trước khi Đặt hàng.</p>
         </div>
-
         <div class="row">
             <div class="col-md-4 order-md-2 mb-4">
                 <h4 class="d-flex justify-content-between align-items-center mb-3">
@@ -195,22 +194,20 @@
                         <div>
                          <ul>
 
-                                 <li>${gh.sanPham.tenSanPham} - ${gh.sanPham.giaSanPham} - ${gh.soLuongDat} - ${gh.tongTien}</li>
+                                 <li>${gh.sanPham.tenSanPham} - ${gh.sanPham.giaSanPham} - ${gh.soLuongDat} - ${gh.sanPham.giaSanPham*gh.soLuongDat}</li>
                              <input type="hidden" name="gioHangID[]" value="${gh.gioHangID}">
                          </ul>
                         </div>
 <%--                        <span class="text-muted">23600000</span>--%>
                     </li>   <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
                         <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
-                        <input type="hidden" name="tongTien" value="${totalPrice}">
+<%--                        <input type="hidden" name="tongTien" value="${totalPrice}">--%>
                     </c:forEach>
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
                     <li class="list-group-item d-flex justify-content-between">
                         <input type="text" name="amount" value="${totalPriceLong}" readonly>
-
-
                     </li>
                 </ul>
 
@@ -255,15 +252,17 @@
                         <input type="text" class="form-control" name="email" id="email"
                                value="${tt.email}" readonly="">
                     </div>
+
                     <div class="col-md-12">
-                        <label >Thông Tin Vận Chuyển</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control">
+                        <label>Thông Tin Vận Chuyển</label>
+                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;">
                             <option value="" label="Chọn ThongTinVanChuyen"/>
                             <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
                                 <option value="${thongTinVanChuyen.thongTinVanChuyenID}">${thongTinVanChuyen.diaChi}</option>
                             </c:forEach>
                         </select>
                     </div>
+
                     <div class="col-md-12">
                         <label for="note">Note</label>
                         <input type="text" class="form-control" name="note" id="note" value=""
@@ -283,11 +282,7 @@
                                value="2">
                         <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
                     </div>
-                    <div class="custom-control custom-radio">
-                        <input id="httt-3" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
-                               value="3">
-                        <label class="custom-control-label" for="httt-3">Ship COD</label>
-                    </div>
+
                 </div>
                 <hr class="mb-4">
                 <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="submitForm()">Đặt hàng</button>
@@ -393,19 +388,26 @@
     function submitForm() {
         var form = document.getElementById("paymentForm");
         var paymentMethod = document.querySelector('input[name="hinhThucThanhToan"]:checked');
+        var radioTienMat = document.getElementById("httt-1");
 
         if (paymentMethod) {
             if (paymentMethod.value === "1") {
-                form.method = "post";
-                form.action = "/themmoi";
+                if (radioTienMat.checked) {
+                    alert("Bạn có chắc chắn muốn đặt hàng");
+                    // Submit the form
+                    form.method = "post";
+                    form.action = "/themmoi";
+                    form.submit();
+                } else {
+                    // Handle other cases for "Tiền mặt" if needed
+                }
             } else if (paymentMethod.value === "2") {
                 form.method = "post";  // Đổi phương thức thành GET
                 form.action = "/submitOrder";
+                // Submit the form
+                form.submit();
             }
             // Add any additional conditions for other payment methods if needed.
-
-            // Submit the form
-            form.submit();
         } else {
             // Handle the case where no payment method is selected
             alert("Vui lòng chọn hình thức thanh toán.");

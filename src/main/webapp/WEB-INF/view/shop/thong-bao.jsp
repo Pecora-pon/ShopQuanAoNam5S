@@ -1,34 +1,3 @@
-<%--<!DOCTYPE html>--%>
-<%--<%@ page contentType="text/html;charset=UTF-8" language="java" %>--%>
-<%--<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>--%>
-<%--<%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>--%>
-<%--<html lang="en">--%>
-<%--<head>--%>
-<%--    <meta charset="UTF-8">--%>
-<%--    <meta name="viewport" content="width=device-width, initial-scale=1.0">--%>
-<%--    <title>Thông Báo Thành Công</title>--%>
-<%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
-<%--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--%>
-<%--</head>--%>
-<%--<body>--%>
-
-<%--<div class="container mt-5">--%>
-<%--    <div class="alert alert-success" role="alert">--%>
-<%--        <h4 class="alert-heading">Thành công!</h4>--%>
-<%--        <p>Cảm ơn bạn đã sử dụng trang web của chúng tôi. Thông báo thành công.</p>--%>
-<%--        <hr>--%>
-<%--        <p class="mb-0">Nếu bạn cần hỗ trợ thêm, hãy liên hệ chúng tôi.</p>--%>
-<%--    </div>--%>
-<%--</div>--%>
-
-<%--<!-- Thêm các tệp JavaScript của Bootstrap (popper.js và jQuery) -->--%>
-<%--<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>--%>
-<%--<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>--%>
-<%--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>--%>
-
-<%--</body>--%>
-<%--</html>--%>
-
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -152,7 +121,7 @@
                 <nav class="header__menu mobile-menu">
                     <ul>
                         <li><a href="../mainshop/mainshop2/index.html">Home</a></li>
-                        <li class="active"><a href="../mainshop/mainshop2/shop.html">Shop</a></li>
+                        <li class="active"><a href="/list-san-pham/page">Shop</a></li>
                         <li><a href="#">Pages</a>
                             <ul class="dropdown">
                                 <li><a href="../mainshop/mainshop2/about.html">About Us</a></li>
@@ -171,7 +140,7 @@
                 <div class="header__nav__option">
                     <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                     <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                    <a href="#"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
                     <div class="price">$0.00</div>
                 </div>
             </div>
@@ -199,7 +168,7 @@
     </div>
 </section>
 <!-- Breadcrumb Section End -->
-
+<a href="/dangxem" class="primary-btn" >Xem Đơn Hang</a>
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
     <div class="container mt-5">
