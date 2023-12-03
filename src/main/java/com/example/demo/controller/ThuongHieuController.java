@@ -35,7 +35,7 @@ public class ThuongHieuController {
        model.addAttribute("repon",respon);
         return "redirect:/thuong-hieu/page";
     }
-    @RequestMapping("/thương-hieu/delete/{thuongHieuID}")
+    @RequestMapping("/thuong-hieu/delete/{thuongHieuID}")
     public String delete(@PathVariable("thuongHieuID") Integer thuongHieuID){
         thuongHieuService.delete(thuongHieuID);
         return "redirect:/thuong-hieu/page";
