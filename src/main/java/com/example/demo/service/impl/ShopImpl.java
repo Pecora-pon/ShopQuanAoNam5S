@@ -5,6 +5,7 @@ import com.example.demo.repository.SanPhamRepo;
 import com.example.demo.service.ShopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
@@ -18,9 +19,11 @@ public class ShopImpl implements ShopService {
     private SanPhamRepo sanPhamRepo;
     @Override
     public Page<SanPham> getPage(int pageNumber, int pageSize) {
-        Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return sanPhamRepo.findAll(pageable);
-    }
+        List<SanPham> sanPhams = getAll();
+        int start = pageNumber * pageSize;
+        int end = Math.min(start + pageSize, sanPhams.size());
+        List<SanPham> content = sanPhams.subList(start, end);
+        return new PageImpl<>(content, PageRequest.of(pageNumber, pageSize), sanPhams.size());    }
 
     @Override
     public List<SanPham> findByThuongHieu(String thuonghieuid) {
