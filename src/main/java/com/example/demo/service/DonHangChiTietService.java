@@ -20,5 +20,14 @@ public interface DonHangChiTietService {
     void delete(Integer donHangChiTietID);
 
     List<DonHangChiTiet> findTenKhachHang(String keyword);
+    void chuyentrangthai(UUID id);
+    List<DonHangChiTiet>getAlll();
+    List<DonHangChiTiet>getTC();
+    List<DonHangChiTiet>gethuy();
+    List<DonHangChiTiet>gethuyttt();
+    void chuyensangxn(UUID id);
+    void chuyensangtc(UUID id);
+    void chuyensanghuy(UUID id);
+
 
 }

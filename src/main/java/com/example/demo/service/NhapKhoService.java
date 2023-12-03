@@ -6,6 +6,7 @@ import com.example.demo.entity.responobject.Respon;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface NhapKhoService {
     List<NhapKho> getAll();
@@ -22,4 +23,5 @@ public interface NhapKhoService {
     List<NhapKho>findMauSac(Integer mauSac);
     List<NhapKho>findNhaCC(Integer nhaCungCap);
     List<NhapKho> findChatLieu(Integer chatLieu);
+    NhapKho themmoi(NhapKho nhapKho, List<UUID> sanPhamList);
 }

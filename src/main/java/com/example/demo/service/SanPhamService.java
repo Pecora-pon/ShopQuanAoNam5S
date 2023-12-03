@@ -23,4 +23,6 @@ public interface SanPhamService {
     void capnhat(UUID id,int soluong);
     SanPham size(SanPham sanPham,UUID sanPhamID);
 //   SanPham themgio(UUID sanPhamID);
+//    List<SanPham> findmausac(String mausac);
+List<SanPham> findByMauSacID(String mauSacID);
 }
