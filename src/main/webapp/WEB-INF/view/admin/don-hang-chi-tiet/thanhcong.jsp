@@ -522,95 +522,14 @@
                                     data-bs-target="#exampleModal">
                                 Tạo hóa đơn
                             </button>
-                            <form:form action="/don-hang-chi-tiet/add" modelAttribute="dhct" method="POST">
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="row">
-                                                <div class="modal-body">
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Đơn Hàng Chi Tiết ID</label>
-                                                        <form:input class="form-control" path="donHangChiTietID"
-                                                                    disabled="true"
-                                                                    value="${dhct.donHangChiTietID}"/>
 
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Dơn Hàng ID</label>
-                                                        <form:select path="donHang">
-                                                            <c:forEach items="${listDH}" var="dh">
-                                                                <option value="${dh.donHangID}" ${dh.donHangID==dhct.donHang.donHangID?"selected":""}>${dh.donHangID}</option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">ID Sản Phẩm</label>
-                                                        <form:select path="sanPham">
-                                                            <c:forEach items="${listSP}" var="sp">
-                                                                <option value="${sp.sanPhamID}" ${sp.sanPhamID==dhct.sanPham.sanPhamID?"selected":""}>${sp.tenSanPham}</option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    </div>
-
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Số Lượng</label>
-                                                        <form:input class="form-control" path="soLuong"
-                                                                    value="${dhct.soLuong}"/>
-                                                        <form:errors path="soLuong"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Trạng Thái</label>
-                                                        <select name="trangThai" class="form-select" aria-label="Default select example">
-                                                            <option value="0">Chưa thanh toán</option>
-                                                            <option value="1">Vận chuyển</option>
-                                                            <option value="2">Chờ giao hàng</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Đã hủy</option>
-                                                            <option value="5">Trả hàng/ Hoàn tiền</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Lý do hủy</label>
-                                                        <form:input class="form-control" path="lyDoHuy"
-                                                                    value="${dhct.lyDoHuy}"/>
-                                                        <form:errors path="lyDoHuy"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Tổng Tiền</label>
-                                                        <form:input class="form-control" path="tongTien"
-                                                                    value="${dhct.tongTien}"/>
-                                                        <form:errors path="tongTien"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <button type="submit" id="myButton" class="btn btn-primary me-2"> Thanh Toán</button>
-
-                                                <script>
-                                                    document.getElementById("myButton").addEventListener("click", function() {
-                                                        alert("Bạn đã thanh toán thành công");
-                                                    });
-                                                </script>
-
-                                                    <%--                                                <button type="submit" class="btn btn-primary me-2">Thanh Toán</button>--%>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form:form>
                         </div>
                     </div>
                     <hr class="my-3">
                     <!--Table add -->
 
                     <div class="card">
-                        <h5 class="card-header">Đang Đặt Hàng</h5>
+                        <h5 class="card-header">Thành công</h5>
                         <table class="table">
                             <thead>
                             <tr>
@@ -658,52 +577,15 @@
                                                         class="bx bx-edit-alt me-1"></i> Sửa</a>
                                                 <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
-                                                <a class="dropdown-item" href="/chuyentt/${dhct.donHang.donHangID}"><i
-                                                        class="bx bx-trash me-1"></i> Chuyển trang thai</a>
-<%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-                                                <a class="dropdown-item" href="/huyd/${dhct.donHang.donHangID}">Hủy Đơn Hàng</a>
-<%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                             </c:forEach>
-                            <a href="/long" class="primary-btn" >next</a>
                             <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
                             </tbody>
                         </table>
                     </div>
-                    <script>
-                        // Updated function to handle confirmation and redirection
-                        function confirmCancellation(event) {
-                            event.preventDefault();
-
-                            var link = event.currentTarget;
-                            var donHangID = link.getAttribute('data-donhangid');
-                             var confirmations=confirm("Bạn có chắc chắn");
-                            var confirmation = confirm("Bạn Có chắc chắn?");
-                            if (confirmation) {
-                                // If the user clicks "OK", navigate to the cancellation page
-                                window.location.href = "/chuyentt/" + donHangID;
-                            } else {
-                                // If the user clicks "Cancel", do nothing
-                                return false;
-                            }
-                            if(confirmations){
-                                window.location.href="/huyd/"+donHangID;
-                            }else {
-                                return false;
-                            }
-                        }
-
-                        // Add click event listeners to the links
-                        document.addEventListener('DOMContentLoaded', function () {
-                            var cancelLinks = document.querySelectorAll('.cancel-link');
-                            cancelLinks.forEach(function (link) {
-                                link.addEventListener('click', confirmCancellation);
-                            });
-                        });
-                    </script>
                     <!--Footer -->
                     <footer class="content-footer footer bg-footer-theme">
                         <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">

@@ -610,13 +610,13 @@
                     <!--Table add -->
 
                     <div class="card">
-                        <h5 class="card-header">Đang Đặt Hàng</h5>
+                        <h5 class="card-header">Chờ Xác Nhận</h5>
                         <table class="table">
                             <thead>
                             <tr>
                                 <th>STT</th>
                                 <th>Đơn Hang ID</th>
-<%--                                <th>ID Sản Phẩm</th>--%>
+                                <%--                                <th>ID Sản Phẩm</th>--%>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
                                 <th>Số Lượng</th>
@@ -632,12 +632,14 @@
                                 <tr>
                                     <td scope="row">${i.index+1}</td>
                                     <td>${dhct.donHang.donHangID}</td>
-<%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
+
+                                        <%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
                                     <td>  <img src="getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                                     </td>
                                     <td>${dhct.sanPham.tenSanPham}</td>
                                     <td>${dhct.soLuong}</td>
                                     <td>${dhct.donHang.ngayDatHang}</td>
+                                    <input type="hidden" name="soLuong" value="${dhct.soLuong}">
                                     <td>
                                         <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
                                         <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
@@ -658,19 +660,17 @@
                                                         class="bx bx-edit-alt me-1"></i> Sửa</a>
                                                 <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
-                                                <a class="dropdown-item" href="/chuyentt/${dhct.donHang.donHangID}"><i
-                                                        class="bx bx-trash me-1"></i> Chuyển trang thai</a>
+                                                <a class="dropdown-item" href="/huy/${dhct.donHang.donHangID}">Hủy Đơn Hàng</a>
 <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-                                                <a class="dropdown-item" href="/huyd/${dhct.donHang.donHangID}">Hủy Đơn Hàng</a>
-<%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
+
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                             </c:forEach>
-                            <a href="/long" class="primary-btn" >next</a>
-                            <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
                             </tbody>
+                            <a href="/longgg" class="primary-btn" >next</a>
+                            <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
                         </table>
                     </div>
                     <script>
@@ -680,18 +680,13 @@
 
                             var link = event.currentTarget;
                             var donHangID = link.getAttribute('data-donhangid');
-                             var confirmations=confirm("Bạn có chắc chắn");
+
                             var confirmation = confirm("Bạn Có chắc chắn?");
                             if (confirmation) {
                                 // If the user clicks "OK", navigate to the cancellation page
-                                window.location.href = "/chuyentt/" + donHangID;
+                                window.location.href = "/huy/" + donHangID;
                             } else {
                                 // If the user clicks "Cancel", do nothing
-                                return false;
-                            }
-                            if(confirmations){
-                                window.location.href="/huyd/"+donHangID;
-                            }else {
                                 return false;
                             }
                         }
