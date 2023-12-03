@@ -26,12 +26,18 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
     public Respon<ThuongHieu> add(ThuongHieu thuongHieu) {
         Respon<ThuongHieu> respon=new Respon<>();
         String tenThuongHieu=thuongHieu.getTenThuongHieu().trim();
-        if(thuongHieu.getTenThuongHieu() != null&& !thuongHieu.getTenThuongHieu().isEmpty()){
-            thuongHieu.setTenThuongHieu(tenThuongHieu);
-            thuongHieuRepo.save(thuongHieu);
-            respon.setStatus("Thành công");
+        ThuongHieu ten=thuongHieuRepo.searchByten(tenThuongHieu);
+        if(ten==null){
+            respon.setError("Tên đã tồn tại");
         }else {
-            respon.setError("Tên đang bị sai");
+            if (thuongHieu.getTenThuongHieu() != null && !thuongHieu.getTenThuongHieu().isEmpty()) {
+                thuongHieu.setTenThuongHieu(tenThuongHieu);
+                thuongHieu.setTrangThai(0);
+                thuongHieuRepo.save(thuongHieu);
+                respon.setStatus("Thành công");
+            } else {
+                respon.setError("Tên đang bị sai");
+            }
         }
         return respon;
     }

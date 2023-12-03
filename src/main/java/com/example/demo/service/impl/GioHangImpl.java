@@ -65,6 +65,7 @@ public class GioHangImpl implements CartService {
         SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
         System.out.println(sanPham);
         int mausac=sanPham.getMauSac().getMauSacID();
+        gioHang.setTrangThai(0);
         sanPham.getMauSac().setMauSacID(mausac);
         gioHang.setSanPham(sanPham);
         int sl=gioHang.getSoLuongDat();

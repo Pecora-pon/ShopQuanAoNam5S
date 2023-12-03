@@ -25,12 +25,16 @@ public class MauSacServiceImpl implements MauSacService {
     public Respon<MauSac> add(MauSac mauSac) {
         Respon<MauSac> respon=new Respon<>();
         String tenMauSac= mauSac.getTenMauSac().trim();
-        if(mauSac.getTenMauSac() != null&& !mauSac.getTenMauSac().isEmpty()){
-            mauSac.setTenMauSac(tenMauSac);
-            mauSacRepo.save(mauSac);
-            respon.setStatus("Thành công");
-        }else {
-            respon.setError("Tên đang bị sai");
+
+        if(tenMauSac!=null){
+            if (mauSac.getTenMauSac() != null && !mauSac.getTenMauSac().isEmpty()) {
+                mauSac.setTenMauSac(tenMauSac);
+                mauSac.setTrangThai(0);
+                mauSacRepo.save(mauSac);
+                respon.setStatus("Thành công");
+            } else {
+                respon.setError("Tên đang bị sai");
+            }
         }
         return respon;
     }

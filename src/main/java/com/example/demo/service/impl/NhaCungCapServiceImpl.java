@@ -45,6 +45,7 @@ public class NhaCungCapServiceImpl implements NhaCungCapService {
                     nhaCungCap.setTenNhaCungCap(tenNhaCungCap);
                     nhaCungCap.setEmail(email);
                     nhaCungCap.setDiaChi(diaChi);
+                    nhaCungCap.setTrangThai(0);
                     nhaCungCapRepository.save(nhaCungCap);
                     respon.setStatus("Thành công");
                 } else {
@@ -91,7 +92,7 @@ public class NhaCungCapServiceImpl implements NhaCungCapService {
 
     @Override
     public void delete(Integer Id) {
-    nhaCungCapRepository.deleteById(Id);
+    nhaCungCapRepository.deleteByI(Id);
     }
 
     @Override

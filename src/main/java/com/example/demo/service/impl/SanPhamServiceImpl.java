@@ -85,12 +85,15 @@ public class SanPhamServiceImpl implements SanPhamService {
     @Override
     public void capnhat(UUID id, int soluong) {
         SanPham sanPham=sanPhamRepo.findById(id).orElse(null);
+
         if(sanPham!=null){
-            if(sanPham.getSoLuongTon() >=0) {
                 int soluongmoi = sanPham.getSoLuongTon() - soluong;
-                sanPham.setSoLuongTon(soluongmoi);
-                sanPhamRepo.save(sanPham);
-            }
+                if (soluongmoi >= 0) {
+                    sanPham.setSoLuongTon(soluongmoi);
+                    sanPhamRepo.save(sanPham);
+                }else {
+                    throw new IllegalArgumentException("Số lượng trong sản phẩm không đủ");
+                }
         }
     }
 
@@ -102,4 +105,8 @@ public class SanPhamServiceImpl implements SanPhamService {
        return sanPhamRepo.save(sanPham1);
     }
 
+    @Override
+    public List<SanPham> findByMauSacID(String mauSacID) {
+        return sanPhamRepo.findByMauSacID(mauSacID);
+    }
 }

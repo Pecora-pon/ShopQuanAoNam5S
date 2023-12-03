@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.NhapKho;
+import com.example.demo.entity.SanPham;
 import com.example.demo.entity.XuatKho;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.SanPhamRepo;
@@ -23,7 +24,8 @@ public class XuatKhoServiceImpl implements XuatKhoService {
     XuatKhoRepository xuatKhoRepository;
     @Autowired
     SanPhamService sanPhamService;
-
+    @Autowired
+    SanPhamRepo sanPhamRepo;
     @Override
     public List<XuatKho> getAll() {
         return xuatKhoRepository.getAl();
@@ -37,6 +39,7 @@ public class XuatKhoServiceImpl implements XuatKhoService {
                UUID sp=xuatKho.getSanPham().getSanPhamID();
                int sl=xuatKho.getSoLuongXuat();
                xuatKho.setNgayXuat(LocalDate.now());
+               xuatKho.setTrangThai(0);
                xuatKhoRepository.save(xuatKho);
                sanPhamService.capnhat(sp,-sl);
                respon.setStatus("Thành công");
@@ -78,7 +81,7 @@ private boolean isInteger(int str){
 
     @Override
     public void delete(Integer xuatKhoID) {
-
+      xuatKhoRepository.deleteByI(xuatKhoID);
     }
 
     @Override
@@ -110,5 +113,22 @@ private boolean isInteger(int str){
     @Override
     public List<XuatKho> findChatLieu(Integer chatLieu) {
         return xuatKhoRepository.findByChatLieu(chatLieu);
+    }
+    @Override
+    public XuatKho them(XuatKho xuatKho, List<UUID> sanPhamList) {
+        for(UUID sanpham:sanPhamList){
+            SanPham sanPham=sanPhamRepo.findById(sanpham).orElse(null);
+            XuatKho xuatKho1=new XuatKho();
+            xuatKho1.setSanPham(sanPham);
+            xuatKho1.setSoLuongXuat(xuatKho.getSoLuongXuat());
+            xuatKho1.setNgayXuat(LocalDate.now());
+            xuatKho1.setChatLieu(xuatKho.getChatLieu());
+            xuatKho1.setMauSac(xuatKho.getMauSac());
+            xuatKho1.setSize(xuatKho.getSize());
+            xuatKho1.setNhaCungCap(xuatKho.getNhaCungCap());
+            xuatKhoRepository.save(xuatKho1);
+            sanPhamService.capnhat(sanpham,xuatKho1.getSoLuongXuat());
+        }
+        return null;
     }
 }

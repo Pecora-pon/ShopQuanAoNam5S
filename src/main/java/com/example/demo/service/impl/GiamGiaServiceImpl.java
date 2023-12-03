@@ -58,6 +58,7 @@ public class GiamGiaServiceImpl implements GiamGiaService {
             giamGia1.setNhanVien(giamGia.getNhanVien());
             giamGia1.setNgayTao(giamGia.getNgayTao());
             giamGia1.setNgayHetHan(giamGia.getNgayHetHan());
+            giamGia1.setSoTienGiam(giamGia.getSoTienGiam());
             giamGiaRepo.save(giamGia);
             repon.setStatus("Thành công");
         }else {

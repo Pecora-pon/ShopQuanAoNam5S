@@ -29,6 +29,11 @@ public class KhachHangServiceImpl implements KhachHangService {
 
     @Override
     public void add(KhachHang khachHang) {
+        String tenkh= khachHang.getUsername().trim();
+        KhachHang ten=khachHangRepo.findbyten(tenkh);
+        if(ten==null){
+            return;
+        }
         khachHangRepo.save(khachHang);
     }
 

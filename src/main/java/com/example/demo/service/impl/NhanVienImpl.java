@@ -22,7 +22,13 @@ public class NhanVienImpl implements NhanVienService {
 
     @Override
     public NhanVien add(NhanVien nhanVien) {
-        return nhanVienRepo.save(nhanVien);
+        String tendangnhap=nhanVien.getTenDangNhap().trim();
+        NhanVien ten=nhanVienRepo.searchByTen(tendangnhap);
+        if(ten==null) {
+            return null;
+        }else {
+            return nhanVienRepo.save(nhanVien);
+        }
     }
 
     @Override

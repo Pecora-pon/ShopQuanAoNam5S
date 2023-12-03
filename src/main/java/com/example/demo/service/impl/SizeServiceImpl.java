@@ -26,12 +26,18 @@ public class SizeServiceImpl implements SizeService {
     public Respon<Size> add(Size size) {
         Respon<Size> respon=new Respon<>();
         String tenSize=size.getTenSize().trim();
-        if(size.getTenSize() != null && !size.getTenSize().isEmpty()){
-            size.setTenSize(tenSize);
-            sizeRepo.save(size);
-            respon.setStatus("Thành công");
+        Size ten=sizeRepo.searchByten(tenSize);
+        if(ten==null){
+            respon.setError("Tên đã tồn tại");
         }else {
-            respon.setError("Tên không đúng");
+            if (size.getTenSize() != null && !size.getTenSize().isEmpty()) {
+                size.setTenSize(tenSize);
+                size.setTrangThai(0);
+                sizeRepo.save(size);
+                respon.setStatus("Thành công");
+            } else {
+                respon.setError("Tên không đúng");
+            }
         }
         return respon;
     }

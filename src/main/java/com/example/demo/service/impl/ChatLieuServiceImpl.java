@@ -19,19 +19,27 @@ public class ChatLieuServiceImpl implements ChatLieuService {
 
     @Override
     public List<ChatLieu> getAll() {
-        return chatLieuRepository.getAl();
+        return chatLieuRepository.getAll();
     }
+
+
 
     @Override
     public Respon<ChatLieu> add(ChatLieu chatLieu) {
         Respon<ChatLieu>repon=new Respon<>();
         String tenChatLieu=chatLieu.getTenChatLieu().trim();
-        if(chatLieu.getTenChatLieu() != null && !chatLieu.getTenChatLieu().isEmpty()){
-          chatLieu.setTenChatLieu(tenChatLieu);
-            chatLieuRepository.save(chatLieu);
-          repon.setStatus("Thành công");
+        ChatLieu ten=chatLieuRepository.searchtencl(tenChatLieu);
+        if(ten==null){
+            repon.setError("Tên đã tồn tại");
         }else {
-            repon.setError("Tên không được để trông");
+            if (chatLieu.getTenChatLieu() != null && !chatLieu.getTenChatLieu().isEmpty()) {
+                chatLieu.setTrangThai(0);
+                chatLieu.setTenChatLieu(tenChatLieu);
+                chatLieuRepository.save(chatLieu);
+                repon.setStatus("Thành công");
+            } else {
+                repon.setError("Tên không được để trông");
+            }
         }
         return repon;
     }
@@ -53,7 +61,7 @@ public class ChatLieuServiceImpl implements ChatLieuService {
 
     @Override
     public void delete(Integer chatLieuID) {
-   chatLieuRepository.deleteById(chatLieuID);
+    chatLieuRepository.deleteById(chatLieuID);
     }
 
     @Override
