@@ -167,28 +167,7 @@
                     </div>
                     <div class="shop__sidebar__accordion">
                         <div class="accordion" id="accordionExample">
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseOne">Categories</a>
-                                </div>
-                                <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__categories">
-                                            <ul class="nice-scroll">
-                                                <li><a href="#">Men (20)</a></li>
-                                                <li><a href="#">Women (20)</a></li>
-                                                <li><a href="#">Bags (20)</a></li>
-                                                <li><a href="#">Clothing (20)</a></li>
-                                                <li><a href="#">Shoes (20)</a></li>
-                                                <li><a href="#">Accessories (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
-                                                <li><a href="#">Kids (20)</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
                             <div class="card">
                                 <div class="card-heading">
                                     <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
@@ -365,64 +344,74 @@
                 </div>
                 <!-- Sản Phẩm -->
                 <div class="row">
-                    <c:forEach items="${listSanPham}" var="sp">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="getimage/${sp.hinhAnhURL}">
-                                    <ul class="product__hover">
-                                        <li><a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                                        </li>
-                                        <li><a href="#"><img src="../mainshop/mainshop2/img/icon/compare.png" alt="">
-                                            <span>Compare</span></a>
-                                        </li>
-                                        <li><a href="#"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>${sp.tenSanPham}</h6>
-                                    <a  class="add-cart" href="/san-pham-detail/${sp.sanPhamID}">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
+                        <c:forEach items="${listSanPham}" var="sp">
+                            <div class="col-lg-4 col-md-6 col-sm-6">
+                                <div class="product__item">
+                                    <div class="product__item__pic set-bg" data-setbg="/getimage/${sp.hinhAnhURL}">
+                                        <ul class="product__hover">
+                                            <li><a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+                                            </li>
+                                            <li><a href="#"><img src="../mainshop/mainshop2/img/icon/compare.png" alt="">
+                                                <span>Compare</span></a>
+                                            </li>
+                                            <li><a href="#"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+                                            </li>
+                                        </ul>
                                     </div>
-                                    <h5>
-                                        <fmt:formatNumber value="${sp.giaSanPham}" pattern="0"/> VND
-                                    </h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-4">
-                                            <input type="radio" id="pc-4">
-                                        </label>
-                                        <label class="active black" for="pc-5">
-                                            <input type="radio" id="pc-5">
-                                        </label>
-                                        <label class="grey" for="pc-6">
-                                            <input type="radio" id="pc-6">
-                                        </label>
+                                    <div class="product__item__text">
+                                        <h6>${sp.tenSanPham}</h6>
+                                        <a  class="add-cart" href="/san-pham-detail/${sp.sanPhamID}">+ Add To Cart</a>
+                                        <div class="rating">
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div>
+                                        <h5>
+                                            <fmt:formatNumber value="${sp.giaSanPham}" pattern="0"/> VND
+                                        </h5>
+                                        <div class="product__color__select">
+                                            <label for="pc-4">
+                                                <input type="radio" id="pc-4">
+                                            </label>
+                                            <label class="active black" for="pc-5">
+                                                <input type="radio" id="pc-5">
+                                            </label>
+                                            <label class="grey" for="pc-6">
+                                                <input type="radio" id="pc-6">
+                                            </label>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                    </c:forEach>
+                        </c:forEach>
 
-                </div>
-                <!-- Sản phẩm -->
-                <div class="row">
-                    <div class="col-lg-12">
-                        <div class="product__pagination">
-                            <c:forEach begin="0" end="${totalPages}" var="page">
-                                <c:choose>
-                                    <c:when test="${page == currentPage}">
-                                        <a class="active">${page}</a>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <a href="/list-san-pham/page?page=${page + 0}">${page}</a>
-                                    </c:otherwise>
-                                </c:choose>
+                    </div>
+                    <!-- Sản phẩm -->
+                    <div class="row">
+                        <div class="col-lg-12">
+                            <div class="product__pagination">
+                            <c:if test="${currentPage > 1}">
+                                <a href="/list-san-pham/page?page=${currentPage - 1}">&lt;</a>
+                            </c:if>
+
+                            <c:forEach  begin="${currentPage - 1}" end="${currentPage + 1}" var="page">
+                                <c:if test="${page > 0 and page <= totalPages}">
+                                    <c:choose>
+                                        <c:when test="${page == currentPage}">
+                                            <a class="active">${page}</a>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <a href="/list-san-pham/page?page=${page}">${page}</a>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:if>
                             </c:forEach>
+
+                            <c:if test="${currentPage < totalPages}">
+                                <a href="/list-san-pham/page?page=${currentPage + 1}">&gt;</a>
+                            </c:if>
                         </div>
                     </div>
                 </div>

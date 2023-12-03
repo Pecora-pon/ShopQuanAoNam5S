@@ -106,7 +106,7 @@
                     <nav class="header__menu mobile-menu">
                         <ul>
                             <li class="active"><a href="/shop/main-shop">Trang chủ</a></li>
-                            <li><a href="/list-san-pham">Shop</a></li>
+                            <li><a href="/list-san-pham/page">Shop</a></li>
                             <li><a href="#">Tìm hiểu thêm</a>
                                 <ul class="dropdown">
                                     <li><a href="/shop/about">Về chúng tôi</a></li>
@@ -249,46 +249,42 @@
     <!-- Product Section End -->
 
     <!-- Categories Section Begin -->
-    <section class="categories spad">
+    <section class="container">
+        <section class="container-medium category-banner">
+            <img src="https://5sfashion.vn/storage/upload/images/banners/NxxOJy5peLdM19wQIciqODPRoWetjbqw3M4tGaFl.png" alt="Banner-danh-mục-1">
+        </section>
         <div class="container">
+            <div class="section-title">
+                <span></span>
+                <h2>Chất lượng sản phẩm cao</h2>
+            </div>
             <div class="row">
-                <div class="col-lg-3">
-                    <div class="categories__text">
-                        <h2>Clothings Hot <br /> <span>Shoe Collection</span> <br /> Accessories</h2>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item">
+                        <img src="../mainshop/mainshop2/img/blog/blog-4.jpg" alt="">
+                        <h4>John Smith</h4>
+                        <span>Fashion Design</span>
                     </div>
                 </div>
-                <div class="col-lg-4">
-                    <div class="categories__hot__deal">
-                        <img src="../mainshop/mainshop2/img/product-sale.png" alt="">
-                        <div class="hot__deal__sticker">
-                            <span>Sale Of</span>
-                            <h5>$29.99</h5>
-                        </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item">
+                        <img src="../mainshop/mainshop2/img/blog/blog-5.jpg" alt="">
+                        <h4>Christine Wise</h4>
+                        <span>C.E.O</span>
                     </div>
                 </div>
-                <div class="col-lg-4 offset-lg-1">
-                    <div class="categories__deal__countdown">
-                        <span>Deal Of The Week</span>
-                        <h2>Multi-pocket Chest Bag Black</h2>
-                        <div class="categories__deal__countdown__timer" id="countdown">
-                            <div class="cd-item">
-                                <span>3</span>
-                                <p>Days</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>1</span>
-                                <p>Hours</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>50</span>
-                                <p>Minutes</p>
-                            </div>
-                            <div class="cd-item">
-                                <span>18</span>
-                                <p>Seconds</p>
-                            </div>
-                        </div>
-                        <a href="#" class="primary-btn">Shop now</a>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item">
+                        <img src="../mainshop/mainshop2/img/blog/blog-8.jpg" alt="">
+                        <h4>Sean Robbins</h4>
+                        <span>Manager</span>
+                    </div>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <div class="team__item">
+                        <img src="../mainshop/mainshop2/img/blog/blog-7.jpg" alt="">
+                        <h4>Lucy Myers</h4>
+                        <span>Delivery</span>
                     </div>
                 </div>
             </div>
@@ -298,6 +294,12 @@
 
     <!-- Instagram Section Begin -->
     <section class="instagram spad">
+        <div class="container">
+            <section class="container-medium category-banner">
+                <img src="https://5sfashion.vn/storage/upload/images/banners/12qcHdqr2eXEe45ljvuDzNMgcMIPrNH1yqNGeZeD.png" alt="banner web_casual">
+            </section>
+        </div>
+        <br>
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
@@ -312,10 +314,9 @@
                 </div>
                 <div class="col-lg-4">
                     <div class="instagram__text">
-                        <h2>Instagram</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
-                        labore et dolore magna aliqua.</p>
-                        <h3>#Male_Fashion</h3>
+                        <h2>5S Fashion</h2>
+                        <p>Lựa chọn quần áo nam 5S Fashion với thiết kế trẻ trung, đa dạng màu sắc, đủ size, giá rẻ. Thời trang nam 5S Fashion đa dạng sản phẩm, chất liệu cao cấp, thiết kế trẻ trung, giá tốt.</p>
+                        <h3>#5S Shop Online</h3>
                     </div>
                 </div>
             </div>
@@ -329,8 +330,8 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="section-title">
-                        <span>Latest News</span>
-                        <h2>Fashion New Trends</h2>
+                        <span>Tin tức</span>
+                        <h2>Mẫu quần áo mới</h2>
                     </div>
                 </div>
             </div>
