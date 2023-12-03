@@ -13,6 +13,8 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
+
 @Controller
 public class XuatKhoController {
     @Autowired
@@ -159,5 +161,13 @@ public class XuatKhoController {
         model.addAttribute("xk",new XuatKho());
         return "sanpham/xuatkho";
 
+    }
+    @PostMapping("/them-xk")
+    public String them(@ModelAttribute("xk")XuatKho xuatKho, @RequestParam("sanPhamID[]")List<UUID> sanPhamID, Model model){
+        XuatKho xuatKho1=xuatKhoService.them(xuatKho,sanPhamID);
+        List<XuatKho> xuatKhoList = xuatKhoService.getAll();
+        model.addAttribute("listXuaKho", xuatKhoList);
+        model.addAttribute("xk",xuatKho1);
+        return "redirect:/xuat-kho";
     }
 }

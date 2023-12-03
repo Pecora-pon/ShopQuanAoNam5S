@@ -38,7 +38,7 @@ public class SizeController {
         return "sanpham/size";
     }
     @RequestMapping("/size/delete/{sizeID}")
-    public String delete(@PathVariable("sizeID") Integer sizeID){
+    public String deletesd(@PathVariable("sizeID") Integer sizeID){
         sizeService.delete(sizeID);
         return "redirect:/size/page";
     }

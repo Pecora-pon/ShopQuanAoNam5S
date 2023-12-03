@@ -40,16 +40,16 @@ public class DonHangController {
     @Autowired
     private GiamGiaService giamGiaService;
 
-    @GetMapping("")
+    @GetMapping("/hien-thi")
     public String hienthi(@ModelAttribute("dh") DonHang donHang, Model model){
         List<DonHang> list = donHangService.getAll();
-        List<KhachHang> listKH = khachHangService.getAll();
-        List<ThongTinVanChuyen> listTTVC = thongTinVanChuyenService.getAll();
-        List<GiamGia> listGG = giamGiaService.getAll();
+//        List<KhachHang> listKH = khachHangService.getAll();
+//        List<ThongTinVanChuyen> listTTVC = thongTinVanChuyenService.getAll();
+//        List<GiamGia> listGG = giamGiaService.getAll();
         model.addAttribute("list",list);
-        model.addAttribute("listKH",listKH);
-        model.addAttribute("listTTVC",listTTVC);
-        model.addAttribute("listGG",listGG);
+//        model.addAttribute("listKH",listKH);
+//        model.addAttribute("listTTVC",listTTVC);
+//        model.addAttribute("listGG",listGG);
         return "admin/don-hang/index";
     }
 

@@ -37,10 +37,10 @@ public class MauSacController {
         model.addAttribute("repon",respon);
         return "sanpham/mausac";
     }
-    @RequestMapping("/chuc-vu/delete/{mauSacID}")
+    @RequestMapping("/mau-sac/delete/{mauSacID}")
     public String delete(@PathVariable("mauSacID") Integer mauSacID,Model model){
-        List<MauSac>mauSacList=mauSacService.getAll();
-        model.addAttribute("listMauSac",mauSacList);
+//        List<MauSac>mauSacList=mauSacService.getAll();
+//        model.addAttribute("listMauSac",mauSacList);
         mauSacService.delete(mauSacID);
         return "redirect:/mau-sac/page";
     }

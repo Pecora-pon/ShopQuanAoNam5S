@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.*;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.*;
+import com.example.demo.service.impl.FileUploaderServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -36,6 +37,8 @@ public class SanPhamController {
     ChatLieuService chatLieuService;
     @Autowired
     ThuongHieuService thuongHieuService;
+    @Autowired
+    FileUploaderServiceImpl fileUploaderService;
     @GetMapping("/san-pham")
     private String getAll(Model model){
         List<MauSac> mauSacList = mauSacService.getAll();
@@ -82,7 +85,7 @@ public class SanPhamController {
         model.addAttribute("listSanPham", sanPhamList);
         model.addAttribute("sp", new SanPham());
         model.addAttribute("repon", respon);
-        return "sanpham/sanpham";
+        return "redirect:/san-pham";
     }
     @RequestMapping("/san-pham/delete/{sanPhamID}")
     public String delete(@PathVariable("sanPhamID")UUID sanPhamID){
@@ -141,6 +144,20 @@ public class SanPhamController {
         return "sanpham/sanpham";
 
     }
+    @GetMapping("/uploadexel")
+    public String getupload(@ModelAttribute("sp") SanPham sanPham){
+        return "admin/uploadexel";
+    }
+    @PostMapping("/uploadexel")
+    public String uploadexel(@RequestParam("fileLoaction") MultipartFile file) {
+        try {
+            fileUploaderService.uploadFile(file);
+        } catch (IOException e) {
+            // Xử lý IOException nếu cần thiết
+            e.printStackTrace();
+        }
+        return "admin/uploadexel";
+    }
 //    @GetMapping("/san-pham-gio/{sanPhamID}")
 //    @PreAuthorize("hasAuthority('ROLE_USER')")
 //    public String sanphamgio(@PathVariable("sanPhamID")UUID sanPhamID,Model model){
@@ -148,5 +165,12 @@ public class SanPhamController {
 //        model.addAttribute("gh",sanPham);
 //        return "shop/gio-hangdemo";
 //    }
-
+@GetMapping("/timkiemms/{mauSac}")
+public String ms(@PathVariable("mauSac") String mausac, Model model) {
+    List<SanPham> sanPhamList = sanPhamService.findByMauSacID(mausac);
+    List<MauSac> mauSacList = mauSacService.getAll();
+    model.addAttribute("listMauSac", mauSacList);
+    model.addAttribute("listSanPham", sanPhamList);
+    return "sanpham/sanpham";
+}
 }

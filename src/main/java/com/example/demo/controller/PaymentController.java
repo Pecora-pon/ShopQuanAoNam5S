@@ -37,7 +37,7 @@ public class PaymentController {
 
     @GetMapping("/vnpay-payment")
     public String GetMapping(HttpServletRequest request, Model model){
-        int paymentStatus = VNPayService.orderReturn(request);
+        int paymentStatus = vnPayService.orderReturn(request);
 
         String orderInfo = request.getParameter("vnp_OrderInfo");
         String paymentTime = request.getParameter("vnp_PayDate");

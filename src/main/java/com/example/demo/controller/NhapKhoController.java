@@ -14,6 +14,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.UUID;
 
 @Controller
 public class NhapKhoController {
@@ -163,6 +164,15 @@ public class NhapKhoController {
         model.addAttribute("listNhapKho", nhapKhoList);
         model.addAttribute("nk", new NhapKho());
         return "sanpham/nhapkho";
+
+    }
+    @PostMapping("/them")
+    public String them(@ModelAttribute("nk") NhapKho nhapKho, @RequestParam("sanPhamID[]")List<UUID> sanPhamId, Model model){
+        NhapKho nhapKho1=nhapKhoService.themmoi(nhapKho,sanPhamId);
+        List<NhapKho> nhapKhoList = nhapKhoService.getAll();
+        model.addAttribute("listNhapKho", nhapKhoList);
+        model.addAttribute("nk",nhapKho1);
+        return "redirect:/nhap-kho";
 
     }
 }

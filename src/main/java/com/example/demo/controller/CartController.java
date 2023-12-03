@@ -76,7 +76,7 @@ public class CartController {
         cartService.update(id, gioHang);
         return "redirect:/gio-hang";
     }
-    @RequestMapping("/delete/{gioHangID}")
+    @RequestMapping("/deletedh/{gioHangID}")
     public String delete(@PathVariable("gioHangID")int gioHangID){
         cartService.delete(gioHangID);
         return "redirect:/gio-hang";

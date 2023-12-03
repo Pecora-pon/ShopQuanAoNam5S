@@ -31,14 +31,16 @@ public class ChatLieuController {
     @RequestMapping(value = "/chat-lieu-add",method = RequestMethod.POST)
     public String addChatLieu(@Valid @ModelAttribute("cl") ChatLieu chatLieu, BindingResult result, Model model){
         Respon<ChatLieu> respon=chatLieuService.add(chatLieu);
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        model.addAttribute("listChatLieu",chatLieuList);
         model.addAttribute("repon",respon);
         return "sanpham/chatlieu";
     }
     @RequestMapping("/chat-lieu/delete/{chatLieuID}")
     public String delete(@PathVariable("chatLieuID") Integer chatLieuID,Model model){
         chatLieuService.delete(chatLieuID);
-        List<ChatLieu> chatLieuList = chatLieuService.getAll();
-        model.addAttribute("listChatLieu",chatLieuList);
+//        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+//        model.addAttribute("listChatLieu",chatLieuList);
         return "redirect:/chat-lieu/page";
     }
     @RequestMapping("/chat-lieu-view-update/{chatLieuID}")
@@ -87,4 +89,5 @@ public class ChatLieuController {
         model.addAttribute("cl",new ChatLieu());
         return "sanpham/chatlieu";
     }
+
 }

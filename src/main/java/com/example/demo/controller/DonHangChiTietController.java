@@ -16,18 +16,13 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.UUID;
 
 @Controller
-@RequestMapping("/don-hang-chi-tiet")
+
 public class DonHangChiTietController {
 
     @Autowired
@@ -42,16 +37,16 @@ public class DonHangChiTietController {
     @Autowired
     private GiamGiaService giamGiaService;
 
-    @GetMapping("")
+    @GetMapping("/hien-thi")
     public String hienthi(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model){
         List<DonHangChiTiet> list = donHangChiTietService.getAll();
         List<DonHang> listDH = donHangService.getAll();
         List<SanPham> listSP = sanPhamService.getAll();
-        List<GiamGia> listGG = giamGiaService.getAll();
+
         model.addAttribute("list",list);
         model.addAttribute("listDH",listDH);
         model.addAttribute("listSP",listSP);
-        model.addAttribute("listGG",listGG);
+
         return "admin/don-hang-chi-tiet/index";
     }
 
@@ -118,5 +113,65 @@ public class DonHangChiTietController {
         donHangChiTietService.add(donHangChiTiet);
         return "redirect:/don-hang-chi-tiet";
     }
+   @GetMapping("/chuyentt/{donHangID}")
+    public String chuyentt(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyentrangthai(id);
+        return "redirect:/hien-thi";
+   }
+   @GetMapping("/long")
+    public String vt(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet,Model model){
+       List<DonHangChiTiet> list = donHangChiTietService.getAlll();
+       model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/vanchuyen";
+   }
+//   @GetMapping("/hien-thi1")
+//    public String vtt(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet,Model model){
+//       List<DonHangChiTiet> list = donHangChiTietService.getAlll();
+//       model.addAttribute("list",list);
+//       return "admin/don-hang-chi-tiet/vanchuyen";
+//   }
+   @GetMapping("/chuyenvc/{donHangID}")
+    public String chuyent(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyensangxn(id);
+        return "redirect:/long";
+   }
 
+   @GetMapping("/longg")
+    public String vttt(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model){
+        List<DonHangChiTiet> list=donHangChiTietService.getTC();
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/choxacnhan";
+   }
+    @GetMapping("/longgg")
+    public String vtttt(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model){
+        List<DonHangChiTiet> list=donHangChiTietService.gethuy();
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/thanhcong";
+    }
+    @GetMapping("/chuyentc/{donHangID}")
+    public String chuyentc(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyensangtc(id);
+        return "redirect:/longg";
+    }
+    @GetMapping("/huyd/{donHangID}")
+    public String vv(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyensanghuy(id);
+        return "redirect:/hien-thi";
+    }
+ @GetMapping("/huydd/{donHangID}")
+ public String vvv(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyensanghuy(id);
+        return "redirect:/long";
+ }
+   @GetMapping("/huy/{donHangID}")
+    public String v(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyensanghuy(id);
+        return "redirect:/longg";
+   }
+   @GetMapping("/xemhuy")
+    public String huy(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.gethuyttt();
+        model.addAttribute("list",list);
+                return "admin/don-hang-chi-tiet/dahuy";
+   }
 }
