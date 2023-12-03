@@ -33,13 +33,13 @@ public class ShopController {
     @Autowired
     private MauSacService mauSacService;
 
-    @RequestMapping("/list-san-pham")
-    public String getAll(Model model) {
-        List<SanPham> sanPhams = shopService.getAll();
-        model.addAttribute("listSanPham", sanPhams);
-        model.addAttribute("sp", new SanPham());
-        return "shop/san-pham";
-    }
+//    @RequestMapping("/list-san-pham")
+//    public String getAll(Model model) {
+//        List<SanPham> sanPhams = shopService.getAll();
+//        model.addAttribute("listSanPham", sanPhams);
+//        model.addAttribute("sp", new SanPham());
+//        return "shop/san-pham";
+//    }
     @RequestMapping("/list-san-pham-detail/{sanPhamID}")
     public String detail(@PathVariable("sanPhamID") UUID sanPhamID,Model model){
         SanPham sanPham = shopService.detail(sanPhamID);
@@ -48,7 +48,7 @@ public class ShopController {
     }
 
     @RequestMapping(value = "/list-san-pham/page", method = RequestMethod.GET)
-    public String page(@RequestParam(defaultValue = "0") int page,
+    public String page(@RequestParam(defaultValue = "1") int page,
                        @RequestParam(defaultValue = "9") int size,
                        Model model,
                        @Param("thuonghieuid") String thuonghieuid,
@@ -56,12 +56,11 @@ public class ShopController {
                        @Param("tensanpham") String tensanpham,
                        @Param("mausacid") String mausacid,
                        @Param("chatlieuid") String chatlieuid,
-                       @Param("minPrice")  Double minPrice,
+                       @Param("minPrice") Double minPrice,
                        @Param("getimage/hinhAnhURL") String hinhAnhURL,
                        @Param("maxPrice") Double maxPrice) {
-        Page<SanPham> page1 = shopService.getPage(page, size);
-        List<SanPham> sanPhams = page1.getContent();
-        List<SanPham> sanPhams1 = shopService.getAll();
+        // Tính toán danh sách sản phẩm theo các tham số tìm kiếm
+        List<SanPham> sanPhams = shopService.getAll(); // Default to all products
         if (thuonghieuid != null) {
             sanPhams = this.shopService.findByThuongHieu(thuonghieuid);
         }
@@ -76,28 +75,31 @@ public class ShopController {
         }
         if (chatlieuid != null) {
             sanPhams = this.shopService.findByChatLieuID(chatlieuid);
-        }if(minPrice != null && maxPrice !=null){
-            sanPhams = this.shopService.findByProductInPriceRange(minPrice,maxPrice);
-
-        }if(hinhAnhURL != null){
-            sanPhams =this.shopService.findByHinhAnhURL(hinhAnhURL);
+        }
+        if (minPrice != null && maxPrice != null) {
+            sanPhams = this.shopService.findByProductInPriceRange(minPrice, maxPrice);
         }
 
-        int totalItems = sanPhams1.size();
+
+        // Phân trang
+        Page<SanPham> pageResult = shopService.getPage(page - 1, size);
+        List<SanPham> sanPhamsOnPage = pageResult.getContent();
+
+        int totalItems = sanPhams.size(); // Tổng số sản phẩm sau tất cả các bộ lọc
         int itemsPerPage = size;
-        int totalPages = (int) Math.floor((double) totalItems / itemsPerPage);
+        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
         int currentPage = page;
+
+        // Truyền các giá trị đến model
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("itemsPerPage", itemsPerPage);
         model.addAttribute("totalItems", totalItems);
-        model.addAttribute("listSanPham", sanPhams);
+        model.addAttribute("listSanPham", sanPhamsOnPage);
         model.addAttribute("sp", new SanPham());
-        return "redirect:/list-san-pham";
 
-
+        return "shop/san-pham";
     }
-
     @RequestMapping(value = "/list-san-pham/thuong-hieu")
     public String searchThuongHieu(Model model,
                                    @Param("thuonghieuid") String thuongHieuID) {
