@@ -33,13 +33,13 @@ public class ShopController {
     @Autowired
     private MauSacService mauSacService;
 
-//    @RequestMapping("/list-san-pham")
-//    public String getAll(Model model) {
-//        List<SanPham> sanPhams = shopService.getAll();
-//        model.addAttribute("listSanPham", sanPhams);
-//        model.addAttribute("sp", new SanPham());
-//        return "shop/san-pham";
-//    }
+    //    @RequestMapping("/list-san-pham")
+    //    public String getAll(Model model) {
+    //        List<SanPham> sanPhams = shopService.getAll();
+    //        model.addAttribute("listSanPham", sanPhams);
+    //        model.addAttribute("sp", new SanPham());
+    //        return "shop/san-pham";
+    //    }
     @RequestMapping("/list-san-pham-detail/{sanPhamID}")
     public String detail(@PathVariable("sanPhamID") UUID sanPhamID,Model model){
         SanPham sanPham = shopService.detail(sanPhamID);
@@ -61,29 +61,30 @@ public class ShopController {
                        @Param("maxPrice") Double maxPrice) {
         // Tính toán danh sách sản phẩm theo các tham số tìm kiếm
         List<SanPham> sanPhams = shopService.getAll(); // Default to all products
-        if (thuonghieuid != null) {
-            sanPhams = this.shopService.findByThuongHieu(thuonghieuid);
-        }
-        if (sizeid != null) {
-            sanPhams = this.shopService.findBySizeID(sizeid);
-        }
-        if (tensanpham != null) {
-            sanPhams = this.shopService.findByTenSanPham(tensanpham);
-        }
-        if (mausacid != null) {
-            sanPhams = this.shopService.findByMauSacID(mausacid);
-        }
-        if (chatlieuid != null) {
-            sanPhams = this.shopService.findByChatLieuID(chatlieuid);
-        }
-        if (minPrice != null && maxPrice != null) {
-            sanPhams = this.shopService.findByProductInPriceRange(minPrice, maxPrice);
-        }
+
 
 
         // Phân trang
         Page<SanPham> pageResult = shopService.getPage(page - 1, size);
         List<SanPham> sanPhamsOnPage = pageResult.getContent();
+        if (thuonghieuid != null) {
+            sanPhamsOnPage = this.shopService.findByThuongHieu(thuonghieuid);
+        }
+        if (sizeid != null) {
+            sanPhamsOnPage = this.shopService.findBySizeID(sizeid);
+        }
+        if (tensanpham != null) {
+            sanPhamsOnPage = this.shopService.findByTenSanPham(tensanpham);
+        }
+        if (mausacid != null) {
+            sanPhamsOnPage = this.shopService.findByMauSacID(mausacid);
+        }
+        if (chatlieuid != null) {
+            sanPhamsOnPage = this.shopService.findByChatLieuID(chatlieuid);
+        }
+        if (minPrice != null && maxPrice != null) {
+            sanPhamsOnPage = this.shopService.findByProductInPriceRange(minPrice, maxPrice);
+        }
 
         int totalItems = sanPhams.size(); // Tổng số sản phẩm sau tất cả các bộ lọc
         int itemsPerPage = size;
