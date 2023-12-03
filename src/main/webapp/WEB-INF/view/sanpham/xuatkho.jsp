@@ -527,7 +527,7 @@
                     <div class="card">
                         <h3 class="card-header">Quản lý xuất kho</h3>
                         <div class="card-body">
-                            <form:form action="/xuat-kho-add" modelAttribute="xk" method="POST">
+                            <form:form action="/them-xk" modelAttribute="xk" method="POST">
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">ID xuất kho</label>
@@ -572,10 +572,16 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Sản Phẩm</label>
-                                        <form:select path="sanPham.sanPhamID" class="form-control">
-                                            <form:option value="" label="Chọn Sản Phẩm" />
-                                            <form:options items="${listSanPham}" itemValue="sanPhamID" itemLabel="tenSanPham" />
-                                        </form:select>
+                                            <%--                                        <form:select path="sanPham.sanPhamID" class="form-control">--%>
+                                            <%--                                            <form:option value="" label="Chọn Sản Phẩm" />--%>
+                                            <%--                                            <form:options items="${listSanPham}" itemValue="sanPhamID" itemLabel="tenSanPham" />--%>
+                                            <%--                                        </form:select>--%>
+                                        <c:forEach items="${listSanPham}" var="sp">
+                                            <lli>
+                                                <input type="checkbox" name="sanPhamID[]" value="${sp.sanPhamID}" id="sp${sp.sanPhamID}">
+                                                <label for="sp${sp.sanPhamID}">${sp.tenSanPham}</label>
+                                            </lli>
+                                        </c:forEach>
                                     </div>
 
                                         <%--                                    <div class="mb-3 col-md-6">--%>
@@ -621,7 +627,7 @@
                                 <th>Tên Chất liệu</th>
                                 <th>Nhà cung cấp</th>
                                 <th>Số lượng xuất</th>
-<%--                                <th>Ngày xuất</th>--%>
+                                <%--                                <th>Ngày xuất</th>--%>
                                 <th>Tên sản phẩm</th>
 
                                 <%--                                <th>Trạng thái</th>--%>
@@ -639,7 +645,7 @@
                                     <td>${xuatkho.nhaCungCap.tenNhaCungCap}</td>
                                     <td>${xuatkho.soLuongXuat}</td>
                                     <td>${xuatkho.sanPham.tenSanPham}</td>
-<%--                                    <td>${xuatkho.ngayXuat}</td>--%>
+                                        <%--                                    <td>${xuatkho.ngayXuat}</td>--%>
                                         <%--                                    <td>--%>
                                         <%--                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>--%>
                                         <%--                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>--%>

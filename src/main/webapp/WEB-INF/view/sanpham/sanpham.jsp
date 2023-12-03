@@ -619,17 +619,42 @@
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                 </div>
                             </form:form>
+                            <div class="mt-2">
+
+                                <a href="/uploadexel" >Importexel</a>
+
+                            </div>
                         </div>
                     </div>
 
                     <!-- Table add -->
                     <!--Content -->
-                    <div class="card">
-                        <form>
-                            <input type="text" name="keyword" placeholder="tìm kiếm họ tên">
-                            <button type="submit">Search</button>
-                        </form>
+<%--                    <div class="card">--%>
 
+<%--                        <form>--%>
+<%--                            <input type="text" name="keyword" placeholder="tìm kiếm họ tên">--%>
+<%--                            <button type="submit">Search</button>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
+                    <script>
+                    function searchByMauSac() {
+                        var mauSacId = document.getElementById("mauSac").value;
+                        window.location.href = "/timkiemms/page" + mauSacId;
+                    }
+                </script>
+                    <div class="mb-3 col-md-2">
+                    <form method="get" action="/timkiemms">
+                        <div>
+                            <select class="form-control" name="mauSac">
+                                <option value="" label="Chọn Màu Sắc"/>
+                                <c:forEach var="mauSac" items="${listMauSac}">
+                                    <option value="${mauSac.mauSacID.toString()}">${mauSac.tenMauSac}</option>
+                                </c:forEach>
+                            </select>
+                            <button type="submit" >Search</button>
+                        </div>
+                    </form>
+                </div>
                         <table class="table">
                             <thead>
                             <tr>

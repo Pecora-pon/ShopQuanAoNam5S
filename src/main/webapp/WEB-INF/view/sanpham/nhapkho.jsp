@@ -527,7 +527,7 @@
                     <div class="card">
                         <h3 class="card-header">Quản lý nhập kho</h3>
                         <div class="card-body">
-                            <form:form action="/nhap-kho-add" modelAttribute="nk" method="POST">
+                            <form:form action="/them" modelAttribute="nk" method="POST">
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">ID nhà kho</label>
@@ -556,9 +556,9 @@
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
-                                    <label class="form-label">Số lượng nhập</label>
-                                    <form:input class="form-control" path="soLuongNhap" value="${nk.soLuongNhap}"/>
-                                </div>
+                                        <label class="form-label">Số lượng nhập</label>
+                                        <form:input class="form-control" path="soLuongNhap" value="${nk.soLuongNhap}"/>
+                                    </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Ngày Nhập</label>
                                         <form:input class="form-control" path="ngayNhap" value="${nk.ngayNhap}" type="date"/>
@@ -572,10 +572,16 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Sản Phẩm</label>
-                                        <form:select path="sanPham.sanPhamID" class="form-control">
-                                            <form:option value="" label="Chọn Sản Phẩm" />
-                                            <form:options items="${listSanPham}" itemValue="SanPhamID" itemLabel="tenSanPham" />
-                                        </form:select>
+                                            <%--                                        <form:select path="sanPham.sanPhamID" class="form-control">--%>
+                                            <%--                                            <form:option value="" label="Chọn Sản Phẩm" />--%>
+                                            <%--                                            <form:options items="${listSanPham}" itemValue="SanPhamID" itemLabel="tenSanPham" />--%>
+                                            <%--                                        </form:select>--%>
+                                        <c:forEach items="${listSanPham}" var="sp">
+                                            <lli>
+                                                <input type="checkbox" name="sanPhamID[]" value="${sp.sanPhamID}" id="sp${sp.sanPhamID}">
+                                                <label for="sp${sp.sanPhamID}">${sp.tenSanPham}</label>
+                                            </lli>
+                                        </c:forEach>
                                     </div>
 
                                         <%--                                    <div class="mb-3 col-md-6">--%>
@@ -614,7 +620,7 @@
                                 <th>Số lượng nhập</th>
                                 <th>Nhà cung cấp</th>
                                 <th>Tên Sản Phẩm</th>
-<%--                                <th>Ngày Nhập</th>--%>
+                                <%--                                <th>Ngày Nhập</th>--%>
 
                                 <%--                                <th>Trạng thái</th>--%>
                                 <th>Action</th>
@@ -629,7 +635,7 @@
                                     <td>${nhapkho.size.tenSize}</td>
                                     <td>${nhapkho.chatLieu.tenChatLieu}</td>
                                     <td>${nhapkho.soLuongNhap}</td>
-<%--                                    <td>${nhapkho.ngayNhap}</td>--%>
+                                        <%--                                    <td>${nhapkho.ngayNhap}</td>--%>
                                     <td>${nhapkho.nhaCungCap.tenNhaCungCap}</td>
                                     <td>${nhapkho.sanPham.tenSanPham}</td>
                                         <%--                                    <td>--%>

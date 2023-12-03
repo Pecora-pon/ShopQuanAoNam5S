@@ -537,14 +537,14 @@
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên chất liệu</label>
                                         <form:input class="form-control" path="tenChatLieu" value="${ms.tenMauSac}"/>
-                                        <form:errors path="tenChatLieu"/>
+                                        <form:errors path="tenChatLieu"/> </div>
                                         <c:if test="${!empty repon.error}">
                                             <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
                                         </c:if>
                                         <c:if test="${not empty repon.status}">
                                             <div class="alert alert-success">${repon.status}</div>
                                         </c:if>
-                                    </div>
+
 
                                         <%--                                    <div class="mb-3 col-md-6">--%>
                                         <%--                                        <label class="form-label">Trạng thái</label>--%>
@@ -556,6 +556,11 @@
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                 </div>
                             </form:form>
+                            <div class="mt-2">
+
+                                <a href="/uploadexel" >Importexel</a>
+
+                            </div>
                         </div>
                     </div>
 
