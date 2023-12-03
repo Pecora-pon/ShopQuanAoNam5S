@@ -25,4 +25,6 @@ public class NhaCungCap {
     private int sdt;
     @Column(name="Email")
     private String email;
+    @Column(name="trangThai")
+    private int trangThai;
 }

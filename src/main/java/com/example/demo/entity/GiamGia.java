@@ -41,5 +41,7 @@ public class GiamGia {
     @JoinColumn(name = "NhanVienID")
     private NhanVien nhanVien;
 
+    @Column(name="SoTienGiam")
+    private float soTienGiam;
 
 }

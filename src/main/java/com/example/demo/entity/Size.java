@@ -28,5 +28,6 @@ public class Size {
     @Column(name = "TenSize")
     private String tenSize;
 
-
+    @Column(name="trangThai")
+    private int trangThai;
 }

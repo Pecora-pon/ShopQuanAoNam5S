@@ -37,4 +37,6 @@ public class NhapKho {
     @ManyToOne
     @JoinColumn(name="SanPhamID")
     private SanPham SanPham;
+    @Column(name="trangThai")
+    private int trangThai;
 }

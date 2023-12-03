@@ -36,4 +36,6 @@ public class GioHang {
     private KhachHang khachHang;
     @Column(name = "TongTien")
     private Double tongTien;
+    @Column(name="trangThai")
+    private int trangThai;
 }

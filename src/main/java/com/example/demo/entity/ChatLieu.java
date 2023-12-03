@@ -28,5 +28,6 @@ public class ChatLieu {
     @Column(name = "TenChatLieu")
     private String tenChatLieu;
 
-
+    @Column(name="trangThai")
+    private int trangThai;
 }
