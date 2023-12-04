@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
@@ -138,21 +139,35 @@
                         </a>
                     </div>
                     <!-- /Logo -->
-                    <h4 class="mb-2">Forgot Password? 🔒</h4>
-                    <p class="mb-4">Enter your email and we'll send you instructions to reset your password</p>
-                    <form:form id="formAuthentication" class="mb-3" action="/forgot_password"  modelAttribute="kh" method="POST">
-                        <div class="mb-3">
-                            <label for="email" class="form-label">Email</label>
-                            <form:input path="email" type="text" class="form-control" value="${kh.email}"  placeholder="Enter your email"/>
+                    <h4 class="mb-2">Reset Password</h4>
 
-                        </div>
+                    <form:form id="formAuthentication" class="mb-3" action="/reset_password/${token}"  modelAttribute="kh" method="POST">
+
+
+
+
+                            <div class="border border-secondary rounded p-3">
+                                <div>
+                                    <p>
+                                        <form:input path="password" type="password" class="form-control" placeholder="Enter your new password" />
+
+                                    </p>
+                                    <p>
+                                        <input type="password" class="form-control" placeholder="Confirm your new password"
+                                               required oninput="checkPasswordMatch(this);" />
+                                    </p>
+                                    <p class="text-center">
+                                        <input type="submit" value="Change Password" class="btn btn-primary" />
+                                    </p>
+                                </div>
+                            </div>
+
                         <c:if test="${!empty repon.error}">
                             <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
                         </c:if>
                         <c:if test="${not empty repon.status}">
                             <div class="alert alert-success">${repon.status}</div>
                         </c:if>
-                        <button class="btn btn-primary d-grid w-100">Send Reset Link</button>
                     </form:form>
                     <div class="text-center">
                         <a href="http://localhost:8080/login" class="d-flex align-items-center justify-content-center">
@@ -197,5 +212,14 @@
 
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+<script>
+    function checkPasswordMatch(fieldConfirmPasswor) {
+        if (fieldConfirmPasswor.value != $("#password").val()) {
+            fieldConfirmPasswor.setCustomValidity("Mật khẩu không trùng khớp");
+        } else {
+            fieldConfirmPasswor.setCustomValidity("");
+        }
+    }
+</script>
 </body>
 </html>

@@ -141,35 +141,61 @@
               <h4 class="mb-2">Shop Quần Áo Nam 5S 🚀</h4>
 
 
-              <form:form id="formAuthentication" class="mb-3" action="/trang-chu/sign-up-add" modelAttribute="kh" method="POST">
+              <form:form id="formAuthentication" class="mb-3" action="/trang-chu/sign-up" modelAttribute="kh" method="POST">
+                <div class="mb-3">
+                  <label for="hoTen" class="form-label">Họ tên</label>
+                  <form:input path="hoTen" id="hoTen" type="text" class="form-control" value="${kh.hoTen}" placeholder="Enter your Full name"/>
+                  <form:errors path="hoTen"/>
+
+                </div>
                 <div class="mb-3">
                   <label for="username" class="form-label">Username</label>
-                  <form:input path="username" type="text"
+                  <form:input path="username" type="text" id ="username"
                               class="form-control"
                               placeholder="Enter your username"
                               value="${kh.username}"
                               />
+                  <form:errors path="username"/>
 
                 </div>
                 <div class="mb-3">
                   <label for="email" class="form-label">Email</label>
-                  <form:input path="email" type="text" class="form-control" value="${kh.email}" placeholder="Enter your email"/>
-
+                  <form:input path="email" id="email" type="text" class="form-control" value="${kh.email}" placeholder="Enter your email"/>
+                  <form:errors path="email"/>
+                </div>
+                <div class="mb-3">
+                  <label for="soDienThoai" class="form-label">Số điện thoại</label>
+                  <form:input path="soDienThoai" id ="soDienThoai" type="text" class="form-control" value="${kh.soDienThoai}" placeholder="Enter your phone number"/>
+                  <form:errors path="soDienThoai"/>
                 </div>
                 <div class="mb-3 form-password-toggle">
-                  <label class="form-label" for="password">Password</label>
+                <label class="form-label" for="password">Mật khẩu</label>
+                <div class="input-group input-group-merge">
+                  <form:input path="password" id="password" type="password" value="${kh.password}" class="form-control"
+                              aria-describedby="password"/>
+                  <form:errors path="password"/>
+                </div>
+              </div>
+                <div class="mb-3 form-password-toggle">
+                  <label class="form-label" for="password">Nhập lại mật khẩu</label>
                   <div class="input-group input-group-merge">
-                    <form:input path="password" type="password" value="${kh.password}" class="form-control"
-                                aria-describedby="password"/>
+                    <input type="password" class="form-control" placeholder="Nhập lại mật khẩu"
+                           required oninput="checkPasswordMatch(this);" />
                   </div>
                 </div>
+                <c:if test="${!empty repon.error}">
+                  <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
+                </c:if>
+                <c:if test="${not empty repon.status}">
+                  <div class="alert alert-success">${repon.status}</div>
+                </c:if>
 
-                <button class="btn btn-primary d-grid w-100">Đăng ký</button>
+                <button class="btn btn-primary d-grid w-100"  >Đăng ký</button>
               </form:form>
 
               <p class="text-center">
                 <span>Đã có tài khoản?</span>
-                <a href="http://localhost:8080/login">
+                <a href="/login">
                   <span>Đăng nhập</span>
                 </a>
               </p>
@@ -206,5 +232,83 @@
 
     <!-- Place this tag in your head or just before your close body tag. -->
     <script async defer src="https://buttons.github.io/buttons.js"></script>
+  <script>
+
+    function validate() {
+      var userName = document.getElementById("username").value;
+      if(userName.length <6 ){
+        alert("Username phải từ 6 ký tự trở lên");
+        return false;
+      }
+      if(userName.length >20 ){
+        alert("Username phải nhỏ hơn 20 ký tự");
+        return false;
+      }
+
+
+
+      if ($("#hoTen").val() == "" || $("#hoTen").val() == null) {
+        alert("Mời bạn nhập họ và tên");
+        return false;
+      }
+      if($("#password").val()==""||$("#password").val()==null){
+        alert("Mời bạn nhập mật khẩu")
+        return false;
+      }
+      if ($("#soDienThoai").val() == "" || $("#soDienThoai").val() == null) {
+        alert("Mời khách hàng nhập số điện thoại");
+        return false;
+      }
+
+      if ($("#email").val() == "" || $("#email").val() == null) {
+        alert("Mời khách hàng nhập email");
+        return false;
+      }
+
+      if ($("#soDienThoai").val() != "") {
+        var vnf_regex = /((09|03|07|08|05)+([0-9]{8,10})\b)/g;
+        if (vnf_regex.test($("#soDienThoai").val()) == false) {
+          alert('Số điện thoại của bạn không đúng định dạng!');
+          return false;
+        }
+        if ($("#soDienThoai").val().length < 10 || $("#soDienThoai").val().length > 12) {
+          alert('Số điện thoại của bạn phải từ 10-12 số!');
+          return false;
+        }
+        if ($("#soDienThoai").val().substring(0, 2) == "00") {
+          alert('Số điện thoại của bạn không đúng định dạng!');
+          return false;
+        }
+      }
+
+      if ($("#email").val() != "") {
+        var email = document.getElementById('email');
+        if (email.value.length > 0) {
+          var re = /^([\w-]+(?:\.[\w-]+)*)@((?:[\w-]+\.)*\w[\w-]{0,66})\.([a-z]{2,6}(?:\.[a-z]{2})?)$/i;
+          var flag = re.test(email.value);
+          if (flag == false) {
+            alert('Đề nghị nhập email đúng định dạng quy định');
+            setTimeout(function () {
+              $(email).focus();
+            }, 100);
+            $(email).val('');
+            return false;
+          }
+          //return flag;
+        }
+      }
+      document.getElementById("formAuthentication").submit();
+    }
+    function checkPasswordMatch(fieldConfirmPasswor) {
+      if (fieldConfirmPasswor.value != $("#password").val()) {
+        fieldConfirmPasswor.setCustomValidity("Mật khẩu không trùng khớp");
+      } else {
+        fieldConfirmPasswor.setCustomValidity("");
+      }
+    }
+
+
+
+  </script>
   </body>
 </html>

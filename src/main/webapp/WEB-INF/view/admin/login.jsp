@@ -154,7 +154,7 @@
                 <div class="mb-3 form-password-toggle">
                   <div class="d-flex justify-content-between">
                     <label class="form-label" for="password">Mật khẩu</label>
-                    <a href="http://localhost:8080/doimatkhau">
+                    <a href="/forgot_password">
                       <small>Quên mật khẩu?</small>
                     </a>
                   </div>
@@ -178,7 +178,7 @@
               </form>
 
               <p class="text-center">
-                <a href="http://localhost:8080/trang-chu/sign-up">
+                <a href="/trang-chu/sign-up">
                   <span>Đăng ký tài khoản</span>
                 </a>
               </p>

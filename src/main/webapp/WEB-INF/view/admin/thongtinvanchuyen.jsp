@@ -533,25 +533,47 @@
                                             </div>
                                             <div class="row">
                                                 <div class="modal-body">
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">ID Vận Chuyển</label>
-                                                        <form:input class="form-control" path="thongTinVanChuyenID" disabled="true" value="${ttvc.thongTinVanChuyenID}"/>
+                                                    <div class="container">
+                                                        <h1>Thêm địa chỉ</h1>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Tỉnh</label>
+                                                            <select  class="form-control" name="" id="province">
+                                                                <option  value="">Chọn tỉnh</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Huyện</label>
+                                                            <select class="form-control" name="" id="district">
+                                                                <option  value="">Chọn huyện</option>
+                                                            </select>
 
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Địa Chỉ</label>
-                                                        <form:input class="form-control" path="diaChi" value="${ttvc.diaChi}"/>
-                                                        <form:errors path="diaChi"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Phương Thức</label>
-                                                        <form:input class="form-control" path="phuongThuc" value="${ttvc.phuongThuc}"/>
-                                                        <form:errors path="phuongThuc"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Trạng Thái</label>
-                                                        <form:input class="form-control" path="trangThai" value="${ttvc.trangThai}"/>
-                                                        <form:errors path="trangThai"/>
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Xã</label>
+                                                            <select class="form-control" name="" id="ward">
+                                                                <option  value="">Chọn xã</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Số nhà,đường</label>
+                                                            <input type="text" class="form-control" id="soNha">
+                                                        </div>
+
+                                                        <div class="mb-3 col-md-12">
+                                                            <label class="form-label">Địa chỉ</label>
+                                                            <form:input class="form-control" path="diaChi" id="result" type="text"/>
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Phương Thức</label>
+                                                            <form:input class="form-control" path="phuongThuc" value="${ttvc.phuongThuc}"/>
+                                                            <form:errors path="phuongThuc"/>
+                                                        </div>
+                                                        <div class="mb-3 col-md-6">
+                                                            <label class="form-label">Trạng Thái</label>
+                                                            <form:input class="form-control" path="trangThai" value="${ttvc.trangThai}"/>
+                                                            <form:errors path="trangThai"/>
+                                                        </div>
+
                                                     </div>
 
 
@@ -684,6 +706,9 @@
 <script src="../admin/assets/vendor/libs/popper/popper.js"></script>
 <script src="../admin/assets/vendor/js/bootstrap.js"></script>
 <script src="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../admin/js/diachi.js"></script>
 
 <script src="../admin/assets/vendor/js/menu.js"></script>
 <!-- endbuild -->

@@ -560,23 +560,27 @@
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Số điện thoại</label>
                                                         <form:input class="form-control" path="soDienThoai" value="${nv.soDienThoai}"/>
+                                                        <form:errors path="soDienThoai"/>
 
                                                     </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Chức vụ</label>
-                                                        <form:input class="form-control" path="chucVu" value="${nv.chucVu}"/>
-                                                    </div>
+<%--                                                    <div class="mb-3 col-md-6">--%>
+<%--                                                        <label class="form-label">Chức vụ</label>--%>
+<%--                                                        <form:input class="form-control" path="chucVu" value="${nv.chucVu}"/>--%>
+<%--                                                    </div>--%>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Tên đăng nhập</label>
                                                         <form:input class="form-control" path="tenDangNhap" value="${nv.tenDangNhap}"/>
+                                                        <form:errors path="tenDangNhap"/>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Email</label>
                                                         <form:input class="form-control" path="email" value="${nv.email}"/>
+                                                        <form:errors path="email"/>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Mật khẩu</label>
                                                         <form:input class="form-control" path="matKhau" value="${nv.matKhau}"/>
+                                                        <form:errors path="matKhau"/>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Trạng thái</label>
@@ -616,7 +620,7 @@
                                 <th>Họ tên</th>
                                 <th>Địa chỉ</th>
                                 <th>Số điện thoại</th>
-                                <th>Chức vụ</th>
+<%--                                <th>Chức vụ</th>--%>
                                 <th>Tên đăng nhập</th>
                                 <th>Email</th>
 <%--                                <th>Mật khẩu</th>--%>
@@ -631,7 +635,7 @@
                                     <td>${nhanvien.hoTen}</td>
                                     <td>${nhanvien.diaChi}</td>
                                     <td>${nhanvien.soDienThoai}</td>
-                                    <td>${nhanvien.chucVu}</td>
+<%--                                    <td>${nhanvien.chucVu}</td>--%>
                                     <td>${nhanvien.tenDangNhap}</td>
                                     <td>${nhanvien.email}</td>
 <%--                                    <td>${nhanvien.matKhau}</td>--%>
