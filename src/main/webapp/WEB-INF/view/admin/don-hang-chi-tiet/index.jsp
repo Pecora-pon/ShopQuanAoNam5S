@@ -659,9 +659,10 @@
                                                 <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
                                                 <a class="dropdown-item" href="/chuyentt/${dhct.donHang.donHangID}"><i
-                                                        class="bx bx-trash me-1"></i> Chuyển trang thai</a>
+                                                        class="bx bx-edit-alt me-1"></i> Chuyển trang thai</a>
 <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-                                                <a class="dropdown-item" href="/huyd/${dhct.donHang.donHangID}">Hủy Đơn Hàng</a>
+                                                <a class="dropdown-item" href="/huyd/${dhct.donHang.donHangID}"><i
+                                                        class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
 <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
                                             </div>
                                         </div>
