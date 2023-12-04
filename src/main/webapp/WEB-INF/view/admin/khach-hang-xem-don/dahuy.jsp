@@ -240,7 +240,28 @@
                         </td>
                     </tr>
                 </c:forEach>
-                <a href="/dahuy" class="primary-btn" >Đơn hàng đã hủy</a>
+                <style>
+                    .btn-container {
+                        display: flex;
+                    }
+
+                    .primary-btn {
+                        text-decoration: none;
+                        color: #ffffff;
+                        background-color: #007bff;
+                        padding: 10px 20px;
+                        border-radius: 5px;
+                        margin-right: 10px;
+                    }
+                </style>
+
+                <div class="btn-container">
+                    <a href="/dangxem" class="primary-btn">Xem Đơn Hàng</a>
+                    <a href="/vanchuyen" class="primary-btn">Vận Chuyển</a>
+                    <a href="/xacnhan" class="primary-btn">Xác Nhận</a>
+                    <a href="/thanhcong" class="primary-btn">Thành Công</a>
+                    <a href="/dahuy" class="primary-btn">Đơn hàng đã hủy</a>
+                </div>
                 </tbody>
             </table>
         </div>
