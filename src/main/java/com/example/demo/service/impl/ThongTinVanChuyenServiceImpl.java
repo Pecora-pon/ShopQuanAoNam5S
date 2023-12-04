@@ -79,5 +79,10 @@ public class ThongTinVanChuyenServiceImpl implements ThongTinVanChuyenService {
         return thongTinVanChuyenRepo.searchByDiaChi(keyword);
     }
 
+    @Override
+    public List<ThongTinVanChuyen> getAllByKhachHang(String username) {
+        return thongTinVanChuyenRepo.findByKhachHang_Username(username);
+    }
+
 
 }
