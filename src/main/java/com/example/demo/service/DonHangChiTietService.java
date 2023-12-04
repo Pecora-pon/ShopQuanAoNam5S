@@ -27,6 +27,11 @@ public interface DonHangChiTietService {
     void chuyensangxn(UUID id);
     void chuyensangtc(UUID id);
     void chuyensanghuy(UUID id);
+   List<DonHangChiTiet> findkhachHang(String username);
+    List<DonHangChiTiet> findkhachHang1(String username);
+    List<DonHangChiTiet> findkhachHang2(String username);
+    List<DonHangChiTiet> findkhachHang3(String username);
+    List<DonHangChiTiet> findkhachHang4(String username);
 
 
 }
