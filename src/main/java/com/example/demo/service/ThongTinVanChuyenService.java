@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.entity.GiamGia;
+import com.example.demo.entity.GioHang;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.entity.ThongTinVanChuyen;
 import com.example.demo.entity.responobject.Respon;
@@ -25,5 +26,7 @@ public interface ThongTinVanChuyenService {
     Page<ThongTinVanChuyen> getPage(int pageNumber,int pageSize);
 
     List<ThongTinVanChuyen> findDiaChi(String keyword);
+    List<ThongTinVanChuyen>getAllByKhachHang(String username);
+
 
 }
