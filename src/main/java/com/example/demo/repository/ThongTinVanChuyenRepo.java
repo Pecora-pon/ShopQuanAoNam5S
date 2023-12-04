@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.entity.GioHang;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.entity.ThongTinVanChuyen;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -14,4 +15,5 @@ public interface ThongTinVanChuyenRepo extends JpaRepository<ThongTinVanChuyen,I
     @Query("SELECT ttvc FROM ThongTinVanChuyen ttvc WHERE ttvc.diaChi LIKE %?1%")
     List<ThongTinVanChuyen> searchByDiaChi(String keyword);
     Optional<ThongTinVanChuyen> findById(Integer integer);
+    List<ThongTinVanChuyen>findByKhachHang_Username(String username);
 }
