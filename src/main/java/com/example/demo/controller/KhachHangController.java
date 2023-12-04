@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.entity.KhachHang;
 import com.example.demo.service.KhachHangService;
 import com.example.demo.servicesecuritykh.KhService;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -45,10 +47,10 @@ public class KhachHangController {
     }
 
     @PostMapping("/add")
-    public String add(@ModelAttribute("kh")KhachHang khachHang){
+    public String add(@ModelAttribute("kh")KhachHang khachHang, HttpServletRequest request)throws MessagingException {
 //        List<ChucVu> listCV = chucVuService.getAll();
 //        khachHangService.add(khachHang);
-        khService.addKH(khachHang);
+        khService.addKH(khachHang,request);
         return "redirect:/khach-hang";
     }
 

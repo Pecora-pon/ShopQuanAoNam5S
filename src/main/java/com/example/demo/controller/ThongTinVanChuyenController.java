@@ -1,9 +1,8 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.GiamGia;
-import com.example.demo.entity.NhanVien;
-import com.example.demo.entity.ThongTinVanChuyen;
+import com.example.demo.entity.*;
 import com.example.demo.entity.responobject.Respon;
+import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.repository.NhanVienRepo;
 import com.example.demo.service.GiamGiaService;
 import com.example.demo.service.NhanVienService;
@@ -15,11 +14,14 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
+import java.net.Authenticator;
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -27,34 +29,38 @@ public class ThongTinVanChuyenController {
     @Autowired
     private ThongTinVanChuyenService thongTinVanChuyenService;
 
+@Autowired
+KhachHangRepo khachHangRepo;
     @RequestMapping("/thong-tin-van-chuyen")
-    @PreAuthorize("hasAnyAuthority('ROLE_ADMIN')")
+    @PreAuthorize("hasAnyAuthority('ROLE_USER')")
     public String getAll(Model model,
-                         @Param("keyword") String keyword){
-
-        List<ThongTinVanChuyen> thongTinVanChuyenList = thongTinVanChuyenService.getAll();
+                         @Param("keyword") String keyword, Authentication authentication){
+        String username=authentication.getName();
+        List<ThongTinVanChuyen> thongTinVanChuyenList =thongTinVanChuyenService.getAllByKhachHang(username);
         model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
         model.addAttribute("ttvc",new ThongTinVanChuyen());
-        return "redirect:/thong-tin-van-chuyen/page";
+        return"admin/thongtinvanchuyen";
     }
     @RequestMapping(value = "/thong-tin-van-chuyen-add",method = RequestMethod.POST)
     public String addThongTinVanChuyen(@Valid @ModelAttribute("ttvc") ThongTinVanChuyen thongTinVanChuyen,
-                              BindingResult result,
-                              Model model){
+                                       BindingResult result,
+                                       Model model, Principal principal){
+        String logname = principal.getName();
+        KhachHang khachHang = khachHangRepo.findByUsername(logname);
+        thongTinVanChuyen.setKhachHang(khachHang);
         Respon<ThongTinVanChuyen> respon = thongTinVanChuyenService.add(thongTinVanChuyen);
         List<ThongTinVanChuyen> thongTinVanChuyenList = thongTinVanChuyenService.getAll();
         model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
         model.addAttribute("ttvc",new ThongTinVanChuyen());
         model.addAttribute("repon",respon);
-
-            return "admin/thongtinvanchuyen";
+            return "redirect:/thong-tin-van-chuyen";
 
 
     }
     @RequestMapping("/thong-tin-van-chuyen/delete/{thongTinVanChuyenID}")
     public String delete(@PathVariable("thongTinVanChuyenID") Integer thongTinVanChuyenID){
         thongTinVanChuyenService.delete(thongTinVanChuyenID);
-        return "redirect:/thong-tin-van-chuyen/page";
+        return "redirect:/thong-tin-van-chuyen";
     }
     @RequestMapping("/thong-tin-van-chuyen-view-update/{thongTinVanChuyenID}")
     public String viewUpdate(@PathVariable("thongTinVanChuyenID") Integer thongTinVanChuyenID

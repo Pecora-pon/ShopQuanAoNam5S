@@ -2,17 +2,19 @@ package com.example.demo.controller;
 
 
 import com.example.demo.entity.KhachHang;
+import com.example.demo.entity.NhaCungCap;
+import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.KhachHangService;
 import com.example.demo.servicesecuritykh.KhService;
+import jakarta.mail.MessagingException;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -31,23 +33,24 @@ public class AdminController {
 
 
 
-    @RequestMapping("/trang-chu/sign-up")
+
+
+
+
+
+    @GetMapping("/trang-chu/sign-up")
     public String sigunup(@ModelAttribute("kh")KhachHang khachHang) {
         return "admin/dangky";
     }
 
-    @RequestMapping("/trang-chu/sign-up-add")
-    public String sigunupadd(@ModelAttribute("kh")KhachHang khachHang,
-                          @RequestParam("email") String to,
-                          @RequestParam("username")String username,
-                          @RequestParam("password") String password) {
-        SimpleMailMessage message = new SimpleMailMessage();
-        message.setTo(to);
-        message.setSubject("THÔNG TIN TÀI KHOẢN KHÁCH HÀNG MỚI");
-        message.setText("Xin chào,"+"đây là tài khoản và mật khẩu của bạn."+"\n Tài khoản: "+username+"\n Mật khẩu: "+password);
-        mailSender.send(message);
-        khService.addKH(khachHang);
-        return "admin/login";
+    @PostMapping("/trang-chu/sign-up")
+    public String sigunupadd(@RequestParam("email")String email,
+                             @RequestParam("hoTen") String hoTen,
+                             @RequestParam("username")String username,
+                             @RequestParam("password")String password, @ModelAttribute("kh")KhachHang khachHang, Model model, HttpServletRequest request)throws MessagingException {
+        Respon<KhachHang> respon=khService.addKH(khachHang,request);
+        model.addAttribute("repon",respon);
+        return "admin/dangky";
     }
 
     @RequestMapping("/shop/main-shop")
@@ -65,11 +68,32 @@ public class AdminController {
         return "admin/thongtintaikhoan";
     }
 
-    @RequestMapping("/doimatkhau")
-    public String pass() {
+    @GetMapping("/forgot_password")
+    public String pass(@ModelAttribute("kh") KhachHang khachHang) {
+
         return "admin/doimatkhau";
     }
 
+    @PostMapping("/forgot_password")
+    public String passforgot(@ModelAttribute("kh")KhachHang khachHang, Model model)throws MessagingException {
+        Respon<KhachHang> respon=khService.ForgotPasswordKH(khachHang);
+        model.addAttribute("repon",respon);
+        return "admin/doimatkhau";
+    }
+
+    @RequestMapping("/reset_password/{token}")
+    public String showResetPasswordForm(@ModelAttribute("kh")KhachHang khachHang,@PathVariable("token")String token, Model model) {
+        return "admin/reset_password_form";
+    }
+
+    @RequestMapping(value = "/reset_password/{token}",method = RequestMethod.POST)
+    public String processResetPassword(@ModelAttribute("kh")KhachHang khachHang,@PathVariable("token")String token,
+                                        @RequestParam("password") String password, Model model) {
+         KhachHang khachHang1 = khService.getByResetPasswordToken(token);
+        Respon<KhachHang> respon = khService.updatePassword(khachHang1,password,token);
+        model.addAttribute("repon",respon);
+        return "admin/reset_password_form";
+    }
 //    @RequestMapping("/gio-hang")
 //    public String giohang() {
 //        return "shop/gio-hang";
