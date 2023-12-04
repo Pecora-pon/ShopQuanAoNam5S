@@ -225,7 +225,7 @@
                         <td>${dhct.lyDoHuy}</td>
                         <td>${dhct.tongTien}</td>
                         <td>
-                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>
+                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>
 <%--                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
 
                         </td>
