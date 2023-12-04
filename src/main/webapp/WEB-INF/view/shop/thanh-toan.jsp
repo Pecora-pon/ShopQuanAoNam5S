@@ -237,11 +237,11 @@
                         <input type="text" class="form-control" name="kh_gioitinh" id="kh_gioitinh" value="Nam"
                                readonly="">
                     </div>
-                    <div class="col-md-12">
-                        <label for="diaChi">Địa chỉ</label>
-                        <input type="text" class="form-control" name="diaChi" id="diaChi"
-                               value="${tt.diaChi}" readonly="">
-                    </div>
+<%--                    <div class="col-md-12">--%>
+<%--                        <label for="diaChi">Địa chỉ</label>--%>
+<%--                        <input type="text" class="form-control" name="diaChi" id="diaChi"--%>
+<%--                               value="${tt.diaChi}" readonly="">--%>
+<%--                    </div>--%>
                     <div class="col-md-12">
                         <label for="soDienThoai">Điện thoại</label>
                         <input type="text" class="form-control" name="soDienThoai" id="soDienThoai"
@@ -254,7 +254,7 @@
                     </div>
 
                     <div class="col-md-12">
-                        <label>Thông Tin Vận Chuyển</label>
+                        <label>Địa Chỉ</label>
                         <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;">
                             <option value="" label="Chọn ThongTinVanChuyen"/>
                             <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
