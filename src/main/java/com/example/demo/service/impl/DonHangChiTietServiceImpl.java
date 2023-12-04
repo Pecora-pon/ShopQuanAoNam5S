@@ -86,6 +86,31 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
     @Override
+    public List<DonHangChiTiet> findkhachHang(String username) {
+        return donHangChiTietRepo.findByDonHang_KhachHang_Username(username);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findkhachHang1(String username) {
+        return donHangChiTietRepo.findByDonHang_KhachHang_Username1(username);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findkhachHang2(String username) {
+        return donHangChiTietRepo.findByDonHang_KhachHang_Username2(username);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findkhachHang3(String username) {
+        return donHangChiTietRepo.findByDonHang_KhachHang_Username3(username);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findkhachHang4(String username) {
+        return donHangChiTietRepo.findByDonHang_KhachHang_Username4(username);
+    }
+
+    @Override
     public void chuyentrangthai(UUID id) {
         donHangChiTietRepo.chuyenTrangThai(id);
     }
