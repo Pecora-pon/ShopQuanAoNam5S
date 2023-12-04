@@ -8,6 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
+import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -27,26 +28,34 @@ public class KhachHang {
     @Column(name = "KhachHangID")
     private Integer khachHangId;
 
+    @NotBlank(message = "khong duoc de trong")
     @Column(name = "TenDangNhap")
     private String username;
 
+    @NotBlank(message = "khong duoc de trong")
     @Column(name = "Email")
     private String email;
 
+    @NotBlank(message = "khong duoc de trong")
     @Column(name = "MatKhau")
     private String password;
 
+    @NotBlank(message = "khong duoc de trong")
     @Column(name = "HoTen")
     private String hoTen;
 
     @Column(name = "DiaChi")
     private String diaChi;
 
+    @NotBlank(message = "khong duoc de trong")
     @Column(name = "SoDienThoai")
     private String soDienThoai;
 
     @Column(name = "ChucVu")
     private String chucVu;
+
+    @Column(name = "reset_password_token")
+    private String resetPasswordToken;
 
 }
 

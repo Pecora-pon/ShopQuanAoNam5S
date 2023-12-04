@@ -1,12 +1,7 @@
 package com.example.demo.entity;
 
 
-import jakarta.persistence.Column;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -37,6 +32,9 @@ public class ThongTinVanChuyen {
     @Column(name = "PhuongThuc", length = 255)
     private String phuongThuc;
 
+    @ManyToOne
+    @JoinColumn(name = "KhachHangID")
+    private  KhachHang khachHang;
 
 
     @Column(name = "TrangThai")
