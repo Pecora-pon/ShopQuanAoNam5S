@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.DonHangChiTiet;
 import com.example.demo.service.DonHangChiTietService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -17,32 +18,37 @@ public class KhachHangXemDonHang {
     @Autowired
     private DonHangChiTietService donHangChiTietService;
     @GetMapping("/dangxem")
-    public String dangxem(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.getAll();
+    public String dangxem(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model, Authentication authentication){
+        String username=authentication.getName();
+        List<DonHangChiTiet> list=donHangChiTietService.findkhachHang(username);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/dadat";
     }
     @GetMapping("/vanchuyen")
-    public String vanchuyen(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet, Model model){
-        List<DonHangChiTiet>list=donHangChiTietService.getAlll();
+    public String vanchuyen(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet, Model model,Authentication authentication){
+        String username=authentication.getName();
+        List<DonHangChiTiet>list=donHangChiTietService.findkhachHang1(username);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/vanchuyen";
     }
     @GetMapping("/xacnhan")
-    public String xacnhan(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model){
-        List<DonHangChiTiet>list=donHangChiTietService.getTC();
+    public String xacnhan(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model,Authentication authentication){
+        String username=authentication.getName();
+        List<DonHangChiTiet>list=donHangChiTietService.findkhachHang2(username);
         model.addAttribute("list",list);
                 return "admin/khach-hang-xem-don/xacnhan";
     }
     @GetMapping("/thanhcong")
-    public String thanhcong(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model){
-        List<DonHangChiTiet>list=donHangChiTietService.gethuy();
+    public String thanhcong(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model,Authentication authentication){
+        String username=authentication.getName();
+        List<DonHangChiTiet>list=donHangChiTietService.findkhachHang3(username);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/thanhcong";
     }
     @GetMapping("/dahuy")
-    public String dahuy(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model){
-        List<DonHangChiTiet>list=donHangChiTietService.gethuyttt();
+    public String dahuy(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model,Authentication authentication){
+        String username=authentication.getName();
+        List<DonHangChiTiet>list=donHangChiTietService.findkhachHang4(username);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/dahuy";
     }
