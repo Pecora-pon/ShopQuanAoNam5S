@@ -669,8 +669,28 @@
                                 </tr>
                             </c:forEach>
                             </tbody>
-                            <a href="/longgg" class="primary-btn" >next</a>
-                            <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
+                            <style>
+                                .btn-container {
+                                    display: flex;
+                                }
+
+                                .primary-btn {
+                                    text-decoration: none;
+                                    color: #ffffff;
+                                    background-color: #007bff;
+                                    padding: 10px 20px;
+                                    border-radius: 5px;
+                                    margin-right: 10px;
+                                }
+                            </style>
+
+                            <div class="btn-container">
+                                <a href="/hien-thi" class="primary-btn" >Xem Đơn</a>
+                                <a href="/long" class="primary-btn" >Vận chuyển</a>
+                                <a href="/longg" class="primary-btn" >Đơn Hàng Cần Xác nhận</a>
+                                <a href="/longgg" class="primary-btn" >Thành Công</a>
+                                <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
+                            </div>
                         </table>
                     </div>
                     <script>
