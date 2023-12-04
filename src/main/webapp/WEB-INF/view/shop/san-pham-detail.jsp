@@ -71,23 +71,23 @@
                 <div class="row">
                     <div class="col-lg-6 col-md-7">
                         <div class="header__top__left">
-                            <p>Free shipping, 30-day return or refund guarantee.</p>
+                            <p>Miễn phí vận chuyển, 30-ngày trả lại hoặc hoàn tiền.</p>
                         </div>
                     </div>
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#">Sign in</a>
-                                <a href="#">FAQs</a>
+                                <a href="#">Đăng nhập</a>
+                                <%--                                <a href="#">FAQs</a>--%>
                             </div>
-                            <div class="header__top__hover">
-                                <span>Usd <i class="arrow_carrot-down"></i></span>
-                                <ul>
-                                    <li>USD</li>
-                                    <li>EUR</li>
-                                    <li>USD</li>
-                                </ul>
-                            </div>
+                            <%--                            <div class="header__top__hover">--%>
+                            <%--                                <span>Usd <i class="arrow_carrot-down"></i></span>--%>
+                            <%--                                <ul>--%>
+                            <%--                                    <li>USD</li>--%>
+                            <%--                                    <li>EUR</li>--%>
+                            <%--                                    <li>USD</li>--%>
+                            <%--                                </ul>--%>
+                            <%--                            </div>--%>
                         </div>
                     </div>
                 </div>
@@ -103,29 +103,27 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a href="./inex.html">Home</a></li>
-                            <li class="active"><a href="/list-san-pham/page">Shop</a></li>
-                            <li><a href="#">Pages</a>
+                            <li class="active"><a href="/shop/main-shop">Trang chủ</a></li>
+                            <li><a href="/list-san-pham/page">Shop</a></li>
+                            <li><a href="#">Tìm hiểu thêm</a>
                                 <ul class="dropdown">
-                                    <li><a href="./about.html">About Us</a></li>
-                                    <li><a href="./shop-details.html">Shop Details</a></li>
-                                    <li><a href="./shopping-cart.html">Shopping Cart</a></li>
-                                    <li><a href="./checkout.html">Check Out</a></li>
-                                    <li><a href="./blog-details.html">Blog Details</a></li>
+                                    <li><a href="/shop/about">Về chúng tôi</a></li>
+                                    <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
+                                    <li><a href="./blog-details.html">Blog</a></li>
                                 </ul>
                             </li>
                             <li><a href="./blog.html">Blog</a></li>
-                            <li><a href="./contact.html">Contacts</a></li>
+                            <li><a href="/shop/lien-he">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-3">
-                    <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
-                        <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
-                        <div class="price">$0.00</div>
-                    </div>
+<%--                    <div class="header__nav__option">--%>
+<%--                        <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+<%--                        <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
+<%--                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
+<%--                        <div class="price">$0.00</div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -236,51 +234,37 @@
                     <div class="col-lg-12">
                         <div class="product__details__tab">
                             <ul class="nav nav-tabs" role="tablist">
+<%--                                <li class="nav-item">--%>
+<%--                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5"--%>
+<%--                                    role="tab">Mô tả</a>--%>
+<%--                                </li>--%>
                                 <li class="nav-item">
-                                    <a class="nav-link active" data-toggle="tab" href="#tabs-5"
-                                    role="tab">Description</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Mô Tả</a>
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Customer
-                                    Previews(5)</a>
-                                </li>
-                                <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional
-                                    information</a>
-                                </li>
+<%--                                <li class="nav-item">--%>
+<%--                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional--%>
+<%--                                    information</a>--%>
+<%--                                </li>--%>
                             </ul>
                             <div class="tab-content">
                                 <div class="tab-pane active" id="tabs-5" role="tabpanel">
                                     <div class="product__details__tab__content">
-                                        <p class="note">Nam tempus turpis at metus scelerisque placerat nulla deumantos
-                                            solicitud felis. Pellentesque diam dolor, elementum etos lobortis des mollis
-                                            ut risus. Sedcus faucibus an sullamcorper mattis drostique des commodo
-                                        pharetras loremos.</p>
+                                        <p class="note">${sp.tenSanPham} là một trong những item nổi bật của ${sp.thuongHieu.tenThuongHieu}, với thiết kế đơn giản:</p>
                                         <div class="product__details__tab__content__item">
-                                            <h5>Products Infomation</h5>
-                                            <p>A Pocket PC is a handheld computer, which features many of the same
-                                                capabilities as a modern PC. These handy little devices allow
-                                                individuals to retrieve and store e-mail messages, create a contact
-                                                file, coordinate appointments, surf the internet, exchange text messages
-                                                and more. Every product that is labeled as a Pocket PC must be
-                                                accompanied with specific software to operate the unit and must feature
-                                            a touchscreen and touchpad.</p>
-                                            <p>As is the case with any new technology product, the cost of a Pocket PC
-                                                was substantial during it’s early release. For approximately $700.00,
-                                                consumers could purchase one of top-of-the-line Pocket PCs in 2003.
-                                                These days, customers are finding that prices have become much more
-                                                reasonable now that the newness is wearing off. For approximately
-                                            $350.00, a new Pocket PC can now be purchased.</p>
+                                            <h5>Thông tin sản phẩm</h5>
+                                            <p>${sp.tenSanPham} không chỉ mang lại cảm giác thoải mái mà còn có thiết kế hỗ trợ cho nhiều hoạt động khác nhau. Đường may chất lượng cao và việc chọn kích thước phù hợp giúp người mặc tự tin và thoải mái khi tham gia các hoạt động vận động.
+
+                                                Trong khi giữ vững chất lượng, giá cả của chiếc áo này cũng phản ánh giá trị đồng giá, tạo nên sự cân bằng tốt giữa chất lượng và chi phí.</p>
+                                            <p></p>
                                         </div>
                                         <div class="product__details__tab__content__item">
-                                            <h5>Material used</h5>
-                                            <p>Polyester is deemed lower quality due to its none natural quality’s. Made
-                                                from synthetic materials, not natural like wool. Polyester suits become
-                                                creased easily and are known for not being breathable. Polyester suits
-                                                tend to have a shine to them compared to wool and cotton suits, this can
-                                                make the suit look cheap. The texture of velvet is luxurious and
-                                                breathable. Velvet is a great choice for dinner party jacket and can be
-                                            worn all year round.</p>
+                                            <h5>Chất lượng sản phẩm</h5>
+                                            <p>Được may từ chất vải sợi S.Cafe bảo vệ môi trường, thân thiện với làn da người mặc
+                                                Vải cafe mang sự mát mẻ,nhanh khô, khử mùi tốt và chống được tia cực tím, tia UV
+                                                Form áo rộng rãi, phù hợp với mọi vóc dáng mang lại sự thoải mái cho người mặc
+                                                Sở hữu 2 gam màu cơ bản cực dễ phối đồ
+                                                Mang phong cách basic có thể phù hợp với mọi đối tượng, mọi phong cách
+                                                Là chiếc áo quốc dân sử dụng được trong mọi hoàn cảnh.</p>
                                         </div>
                                     </div>
                                 </div>

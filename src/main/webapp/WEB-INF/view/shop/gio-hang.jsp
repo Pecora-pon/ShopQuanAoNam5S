@@ -118,19 +118,17 @@
                 <div class="col-lg-6 col-md-6">
                     <nav class="header__menu mobile-menu">
                         <ul>
-                            <li><a href="../mainshop/mainshop2/index.html">Home</a></li>
-                            <li class="active"><a href="/list-san-pham/page">Shop</a></li>
-                            <li><a href="#">Pages</a>
+                            <li class="active"><a href="/shop/main-shop">Trang chủ</a></li>
+                            <li><a href="/list-san-pham/page">Shop</a></li>
+                            <li><a href="#">Tìm hiểu thêm</a>
                                 <ul class="dropdown">
-                                    <li><a href="../mainshop/mainshop2/about.html">About Us</a></li>
-                                    <li><a href="../mainshop/mainshop2/shop-details.html">Shop Details</a></li>
-                                    <li><a href="./gio-hang.jsp">Shopping Cart</a></li>
-                                    <li><a href="../mainshop/mainshop2/checkout.html">Check Out</a></li>
-                                    <li><a href="../mainshop/mainshop2/blog-details.html">Blog Details</a></li>
+                                    <li><a href="/shop/about">Về chúng tôi</a></li>
+                                    <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
+                                    <li><a href="./blog-details.html">Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="../mainshop/mainshop2/blog.html">Blog</a></li>
-                            <li><a href="../mainshop/mainshop2/contact.html">Contacts</a></li>
+                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="/shop/lien-he">Liên hệ</a></li>
                         </ul>
                     </nav>
                 </div>
