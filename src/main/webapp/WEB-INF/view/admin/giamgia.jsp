@@ -568,7 +568,10 @@
                                                         <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
                                                         <form:errors path="ngayHetHan"/>
                                                     </div>
-
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Số Tiền Giảm</label>
+                                                        <form:input class="form-control" path="soTienGiam" value="${gg.soTienGiam}"/>
+                                                    </div>
 
                                                 <div class="mt-2">
                                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
@@ -613,6 +616,7 @@
                                 <th>Nhân viên</th>
                                 <th>Ngày tạo</th>
                                 <th>Ngày hết hạn</th>
+                                <th>Số tiền giảm</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -625,6 +629,7 @@
                                     <td>${giamgia.nhanVien.hoTen}</td>
                                     <td>${giamgia.ngayTao}</td>
                                     <td>${giamgia.ngayHetHan}</td>
+                                    <td>${giamgia.soTienGiam}</td>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
