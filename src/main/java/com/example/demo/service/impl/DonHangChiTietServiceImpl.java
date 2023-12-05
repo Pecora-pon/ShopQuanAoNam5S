@@ -9,6 +9,7 @@ import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -108,6 +109,18 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     @Override
     public List<DonHangChiTiet> findkhachHang4(String username) {
         return donHangChiTietRepo.findByDonHang_KhachHang_Username4(username);
+    }
+
+
+
+    @Override
+    public DonHangChiTiet findNgayDat(LocalDate ngaydat) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang(ngaydat);
+    }
+
+    @Override
+    public List<DonHangChiTiet> finDonHang(UUID id) {
+        return donHangChiTietRepo.findByDonHang_DonHangID(id);
     }
 
     @Override

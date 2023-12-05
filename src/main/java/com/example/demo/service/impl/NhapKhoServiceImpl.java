@@ -85,7 +85,7 @@ private boolean isInteger(int str){
 
     @Override
     public void delete(Integer nhapKhoID) {
-     nhapKhoRepository.deleteByI(nhapKhoID);
+     nhapKhoRepository.deleteById(nhapKhoID);
     }
 
     @Override
@@ -119,22 +119,22 @@ private boolean isInteger(int str){
         return nhapKhoRepository.findByChatLieu(chatLieu);
     }
 
-    @Override
-    public NhapKho themmoi(NhapKho nhapKho, List<UUID> sanPhamList) {
-        for(UUID sanpham: sanPhamList){
-            SanPham sanPham=sanPhamRepo.findById(sanpham).orElse(null);
-            NhapKho nhapKho1=new NhapKho();
-            nhapKho1.setSoLuongNhap(nhapKho.getSoLuongNhap());
-            nhapKho1.setTrangThai(0);
-            nhapKho1.setSize(nhapKho.getSize());
-            nhapKho1.setMauSac(nhapKho.getMauSac());
-            nhapKho1.setNhaCungCap(nhapKho.getNhaCungCap());
-            nhapKho1.setChatLieu(nhapKho.getChatLieu());
-            nhapKho1.setNgayNhap(LocalDate.now());
-            nhapKho1.setSanPham(sanPham);
-            nhapKhoRepository.save(nhapKho1);
-            sanPhamService.capnhat(sanpham,-nhapKho1.getSoLuongNhap());
-        }
-        return null;
-    }
+//    @Override
+//    public NhapKho themmoi(NhapKho nhapKho, List<UUID> sanPhamList) {
+//        for(UUID sanpham: sanPhamList){
+//            SanPham sanPham=sanPhamRepo.findById(sanpham).orElse(null);
+//            NhapKho nhapKho1=new NhapKho();
+//            nhapKho1.setSoLuongNhap(nhapKho.getSoLuongNhap());
+//            nhapKho1.setTrangThai(0);
+//            nhapKho1.setSize(nhapKho.getSize());
+//            nhapKho1.setMauSac(nhapKho.getMauSac());
+//            nhapKho1.setNhaCungCap(nhapKho.getNhaCungCap());
+//            nhapKho1.setChatLieu(nhapKho.getChatLieu());
+//            nhapKho1.setNgayNhap(LocalDate.now());
+//            nhapKho1.setSanPham(sanPham);
+//            nhapKhoRepository.save(nhapKho1);
+//            sanPhamService.capnhat(sanpham,-nhapKho1.getSoLuongNhap());
+//        }
+//        return null;
+//    }
 }

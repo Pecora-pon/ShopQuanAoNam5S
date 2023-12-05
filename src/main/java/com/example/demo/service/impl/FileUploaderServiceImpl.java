@@ -4,6 +4,7 @@ import com.example.demo.entity.*;
 import com.example.demo.repository.*;
 import com.example.demo.service.FileUploaderService;
 import com.example.demo.service.MauSacService;
+import com.example.demo.service.SanPhamService;
 import lombok.Value;
 import org.apache.poi.ss.usermodel.Row;
 import org.apache.poi.ss.usermodel.Sheet;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class FileUploaderServiceImpl implements FileUploaderService {
@@ -32,6 +34,12 @@ private MauSacRepo mauSacRepo;
     SizeRepo sizeRepo;
 @Autowired
     SanPhamRepo sanPhamRepo;
+@Autowired
+   NhaCungCapRepository nhaCungCapRepository;
+@Autowired
+   NhapKhoRepository nhapKhoRepository;
+@Autowired
+    SanPhamService sanPhamService;
     @Override
     public void uploadFile(MultipartFile fileLoaction) throws IOException {
         try (InputStream inputStream = fileLoaction.getInputStream()) {
@@ -105,6 +113,72 @@ private MauSacRepo mauSacRepo;
                     sanPham.setHinhAnhURL(row.getCell(8).getStringCellValue());
                     sanPhamRepo.save(sanPham);
                 }
+            }
+            workbook.close();
+//            file.close();
+        }
+    }
+
+    @Override
+    public void uploadFilenk(MultipartFile fileLoaction) throws IOException {
+        try (InputStream inputStream = fileLoaction.getInputStream()) {
+            // Create a Workbook instance using the provided InputStream
+            Workbook workbook = new XSSFWorkbook(inputStream);
+
+            // Get the first sheet from the workbook
+            Sheet sheet = workbook.getSheetAt(0);
+            for (Row row : sheet) {
+                if (row.getCell(0) == null || row.getCell(0).getStringCellValue().trim().isEmpty()) {
+                    // Skip empty row
+                    continue;
+                }
+                String tenSanPham= row.getCell(0).getStringCellValue();
+                NhapKho nhapKho = new NhapKho();
+                if(tenSanPham != null) {
+                    SanPham sanPham = sanPhamRepo.findByTen(tenSanPham);
+                    nhapKho.setSanPham(sanPham);
+                }
+                UUID sp=nhapKho.getSanPham().getSanPhamID();
+                String tenMauSac = row.getCell(1).getStringCellValue();  // Assuming the foreign key is in the second column
+//
+                MauSac ms = mauSacRepo.searchBytenms(tenMauSac);
+                if (ms == null) {
+                    ms = new MauSac();
+                    ms.setTenMauSac(tenMauSac);
+                    mauSacRepo.save(ms);
+                }
+                nhapKho.setMauSac(ms);
+                //Size
+                String tenSize = row.getCell(2).getStringCellValue();  // Assuming the foreign key is in the second column
+//
+                Size size = sizeRepo.searchByten(tenSize);
+                if (size == null) {
+                    size = new Size();
+                    size.setTenSize(tenSize);
+                    sizeRepo.save(size);
+                }
+//
+                nhapKho.setSize(size);
+                //ChatLieu
+                String tenChatLieu = row.getCell(3).getStringCellValue();  // Assuming the foreign key is in the second column
+                ChatLieu chatLieu = chatLieuRepo.searchtencl(tenChatLieu);
+                if (chatLieu == null) {
+                    chatLieu = new ChatLieu();
+                    chatLieu.setTenChatLieu(tenChatLieu);
+                    chatLieuRepo.save(chatLieu);
+                }
+                nhapKho.setChatLieu(chatLieu);
+                int soLuongNhap=(int) row.getCell(4).getNumericCellValue();
+                nhapKho.setSoLuongNhap(soLuongNhap);
+                nhapKho.setNgayNhap(LocalDate.now());
+
+                String tenNhaCungCap=row.getCell(5).getStringCellValue();
+                NhaCungCap nhaCungCap=nhaCungCapRepository.serchByTen(tenNhaCungCap);
+                nhapKho.setNhaCungCap(nhaCungCap);
+                nhapKho.setTrangThai(0);
+                nhapKhoRepository.save(nhapKho);
+
+                sanPhamService.capnhat(sp,-soLuongNhap);
             }
             workbook.close();
 //            file.close();
