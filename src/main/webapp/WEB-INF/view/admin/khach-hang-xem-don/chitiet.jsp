@@ -12,7 +12,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Male-Fashion | Template</title>
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
-    <title>Thông Báo Thành Công</title>--%>
+    <title>Thông Báo Thành Công</title>
     <%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
     <%--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--%>
     <!-- Fonts -->
@@ -88,23 +88,23 @@
             <div class="row">
                 <div class="col-lg-6 col-md-7">
                     <div class="header__top__left">
-                        <p>Free shipping, 30-day return or refund guarantee.</p>
+                        <p>Miễn phí vận chuyển, 30-ngày trả lại hoặc hoàn tiền.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
                     <div class="header__top__right">
                         <div class="header__top__links">
-                            <a href="/logout">Sign in</a>
-                            <a href="#">FAQs</a>
+                            <a href="#">Đăng nhập</a>
+                            <%--                                <a href="#">FAQs</a>--%>
                         </div>
-                        <div class="header__top__hover">
-                            <span>Usd <i class="arrow_carrot-down"></i></span>
-                            <ul>
-                                <li>USD</li>
-                                <li>EUR</li>
-                                <li>USD</li>
-                            </ul>
-                        </div>
+                        <%--                            <div class="header__top__hover">--%>
+                        <%--                                <span>Usd <i class="arrow_carrot-down"></i></span>--%>
+                        <%--                                <ul>--%>
+                        <%--                                    <li>USD</li>--%>
+                        <%--                                    <li>EUR</li>--%>
+                        <%--                                    <li>USD</li>--%>
+                        <%--                                </ul>--%>
+                        <%--                            </div>--%>
                     </div>
                 </div>
             </div>
@@ -135,12 +135,12 @@
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
-<%--                <div class="header__nav__option">--%>
-<%--                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
-<%--                    <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
-<%--                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
-<%--                    <div class="price">$0.00</div>--%>
-<%--                </div>--%>
+                <%--                <div class="header__nav__option">--%>
+                <%--                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                <%--                    <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
+                <%--                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
+                <%--                    <div class="price">$0.00</div>--%>
+                <%--                </div>--%>
             </div>
         </div>
         <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -166,155 +166,45 @@
     </div>
 </section>
 <!-- Breadcrumb Section End -->
-
+<a href="/dangxem" class="primary-btn" >Xem Đơn Hang</a>
 <!-- Shopping Cart Section Begin -->
-<div class="content-wrapper">
-    <div class="container-xxl flex-grow-1 container-p-y">
-        <!--Content -->
-        <!--Table add -->
-        <div class="card">
-            <div class="card-body">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                    Tạo hóa đơn
-                </button>
-
-            </div>
-        </div>
-        <hr class="my-3">
-        <!--Table add -->
-
-        <div class="card">
-            <h5 class="card-header">Xác Nhận</h5>
-            <table class="table">
-                <thead>
-                <tr>
-                    <th>STT</th>
-                    <th>Đơn Hang ID</th>
-                    <%--                                <th>ID Sản Phẩm</th>--%>
-                    <th>Hình Ảnh</th>
-                    <th>Tên Sản Phẩm</th>
-                    <th>Số Lượng</th>
-                    <th>Ngày Đặt</th>
-                    <th>Trạng Thái</th>
-                    <th>Lý Do Hủy</th>
-                    <th>Tổng Tiền</th>
-                    <th>Action</th>
-                </tr>
-                </thead>
-                <tbody class="table-border-bottom-0">
-                <c:forEach items="${list}" var="dhct" varStatus="i">
-                    <tr>
-                        <td scope="row">${i.index+1}</td>
-                        <td>${dhct.donHang.donHangID}</td>
-                            <%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
-                        <td>  <img src="getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
-                        </td>
-                        <td>${dhct.sanPham.tenSanPham}</td>
-                        <td>${dhct.soLuong}</td>
-                        <td>${dhct.donHang.ngayDatHang}</td>
-                        <td>
-                            <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
-                            <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
-                            <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
-                            <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
-                            <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
-                        </td>
-                        <td>${dhct.lyDoHuy}</td>
-                        <td>${dhct.tongTien}</td>
-                        <td>
-                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>
-<%--                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-
-                        </td>
-                    </tr>
-                </c:forEach>
-
-                <style>
-                    .btn-container {
-                        display: flex;
-                    }
-
-                    .primary-btn {
-                        text-decoration: none;
-                        color: #ffffff;
-                        background-color: #007bff;
-                        padding: 10px 20px;
-                        border-radius: 5px;
-                        margin-right: 10px;
-                    }
-                </style>
-
-                <div class="btn-container">
-                    <a href="/dangxem" class="primary-btn">Xem Đơn Hàng</a>
-                    <a href="/vanchuyen" class="primary-btn">Vận Chuyển</a>
-                    <a href="/xacnhan" class="primary-btn">Xác Nhận</a>
-                    <a href="/thanhcong" class="primary-btn">Thành Công</a>
-                    <a href="/dahuy" class="primary-btn">Đơn hàng đã hủy</a>
-                </div>
-                </tbody>
-            </table>
-        </div>
-        <script>
-            // Updated function to handle confirmation and redirection
-            function confirmCancellation(event) {
-                event.preventDefault();
-
-                var link = event.currentTarget;
-                var donHangID = link.getAttribute('data-donhangid');
-
-                // var confirmation = confirm("Bạn Có chắc chắn?");
-                var confirmations= confirm("Bạn Có chắc chắn?");
-                // if (confirmation) {
-                //     // If the user clicks "OK", navigate to the cancellation page
-                //     window.location.href = "/huytt/" + donHangID;
-                // } else {
-                //     // If the user clicks "Cancel", do nothing
-                //     return false;
-                // }
-                if(confirmations){
-                    window.location.href = "/khxacnhan/" + donHangID;
-                }else {
-                    return false;
-                }
-            }
-
-            // Add click event listeners to the links
-            document.addEventListener('DOMContentLoaded', function () {
-                var cancelLinks = document.querySelectorAll('.cancel-link');
-                cancelLinks.forEach(function (link) {
-                    link.addEventListener('click', confirmCancellation);
-                });
-            });
-        </script>
-        <!--Footer -->
-        <footer class="content-footer footer bg-footer-theme">
-            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                <div class="mb-2 mb-md-0">
-                    ©
-                    <script>
-                        document.write(new Date().getFullYear());
-                    </script>
-                    , made with ❤️ by
-                    <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
-                        áo Nam 5S</a>
-                </div>
-                <div>
-                    <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
-                        chủ</a>
-                    <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
-                        phẩm</a>
-
-                    <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                       target="_blank" class="footer-link me-4">Thống kê</a>
-
-                    <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                       target="_blank" class="footer-link me-4">Hỗ trợ</a>
+<div>
+    <c:forEach items="${list}" var="dh">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="order-details">
+                        <h2>Thông Tin Đơn Hàng</h2>
+                        <div class="order-item">
+                            <div class="order-header">
+                                <span class="order-label">Đơn Hàng ID:</span>
+                                <span class="order-value">${dh.donHang.donHangID}</span>
+                            </div>
+                            <div class="order-content">
+                                <div class="item-info">
+                                    <span class="item-label">Tên Sản Phẩm:</span>
+                                    <span class="item-value">${dh.sanPham.tenSanPham}</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">Số Lượng:</span>
+                                    <span class="item-value">${dh.soLuong}</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">Ngày Đặt Hàng:</span>
+                                    <span class="item-value">${dh.donHang.ngayDatHang}</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">Tổng Tiền:</span>
+                                    <span class="item-value">${dh.tongTien}</span>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Thêm các đơn hàng khác nếu có -->
+                    </div>
                 </div>
             </div>
-        </footer>
-        <!--Footer -->
-    </div>
+        </div>
+    </c:forEach>
 </div>
 <!-- Shopping Cart Section End -->
 

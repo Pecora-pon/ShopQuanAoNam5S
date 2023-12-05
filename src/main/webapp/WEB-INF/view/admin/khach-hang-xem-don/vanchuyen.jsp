@@ -223,8 +223,8 @@
                         <td>${dhct.lyDoHuy}</td>
                         <td>${dhct.tongTien}</td>
                         <td>
-                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>
-
+                            <a class="dropdown-item" href="/huyt/${dhct.donHang.donHangID}"><i
+                                    class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
                         </td>
                     </tr>
                 </c:forEach>
