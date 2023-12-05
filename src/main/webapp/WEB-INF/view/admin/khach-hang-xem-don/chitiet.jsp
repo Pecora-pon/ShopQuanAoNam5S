@@ -176,10 +176,7 @@
                     <div class="order-details">
                         <h2>Thông Tin Đơn Hàng</h2>
                         <div class="order-item">
-                            <div class="order-header">
-                                <span class="order-label">Đơn Hàng ID:</span>
-                                <span class="order-value">${dh.donHang.donHangID}</span>
-                            </div>
+
                             <div class="order-content">
                                 <div class="item-info">
                                     <span class="item-label">Tên Sản Phẩm:</span>
@@ -285,7 +282,55 @@
     </div>
 </div>
 <!-- Search End -->
+<div>
+    <style>
+        .order-details {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
 
+        .order-item {
+            margin-top: 20px;
+            padding: 15px;
+            border: 1px solid #dee2e6;
+            border-radius: 8px;
+            background-color: #fff;
+            transition: box-shadow 0.3s ease-in-out;
+        }
+
+        .order-item:hover {
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .order-label {
+            font-weight: bold;
+        }
+
+        .order-value {
+            color: #007bff;
+        }
+
+        .item-info {
+            margin-bottom: 10px;
+        }
+
+        .item-label {
+            font-weight: bold;
+        }
+
+        .item-value {
+            color: #28a745;
+        }
+    </style>
+</div>
 <!-- Js Plugins -->
 <script src="../mainshop/mainshop2/js/jquery-3.3.1.min.js"></script>
 <script src="../mainshop/mainshop2/js/bootstrap.min.js"></script>
