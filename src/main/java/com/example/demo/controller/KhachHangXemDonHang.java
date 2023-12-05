@@ -72,5 +72,11 @@ public class KhachHangXemDonHang {
         donHangChiTietService.chuyensangtc(id);
         return "redirect:/xacnhan";
    }
+    @GetMapping("/detail/{donHang}")
+    public String detail(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/khach-hang-xem-don/chitiet";
+    }
 }
 

@@ -14,10 +14,12 @@ import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -174,4 +176,16 @@ public class DonHangChiTietController {
         model.addAttribute("list",list);
                 return "admin/don-hang-chi-tiet/dahuy";
    }
+   @GetMapping("/timkiemngay/{ngaydat}")
+    public String ngay(@PathVariable("ngaydat")@DateTimeFormat(iso = DateTimeFormat.ISO.DATE)LocalDate ngaydat,Model model){
+        DonHangChiTiet list=donHangChiTietService.findNgayDat(ngaydat);
+        model.addAttribute("list",list);
+       return "admin/don-hang-chi-tiet/index";
+   }
+//   @GetMapping("/detail/{donHang}")
+//    public String detail(@PathVariable("donHang")UUID donHang,Model model){
+//        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+//        model.addAttribute("list",list);
+//        return "admin/don-hang-chi-tiet/chitiet";
+//   }
 }

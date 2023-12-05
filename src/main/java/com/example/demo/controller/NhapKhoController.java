@@ -3,6 +3,8 @@ package com.example.demo.controller;
 import com.example.demo.entity.*;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.*;
+import com.example.demo.service.impl.FileUploaderNKServiceImpl;
+import com.example.demo.service.impl.FileUploaderServiceImpl;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -12,7 +14,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.UUID;
 
@@ -30,6 +34,8 @@ public class NhapKhoController {
     NhaCungCapService nhaCungCapService;
     @Autowired
     SanPhamService sanPhamService;
+    @Autowired
+    FileUploaderService fileUploaderService;
 
     @GetMapping("/nhap-kho")
     @PreAuthorize("hasAuthority('ROLE_ADMIN')")
@@ -166,13 +172,27 @@ public class NhapKhoController {
         return "sanpham/nhapkho";
 
     }
-    @PostMapping("/them")
-    public String them(@ModelAttribute("nk") NhapKho nhapKho, @RequestParam("sanPhamID[]")List<UUID> sanPhamId, Model model){
-        NhapKho nhapKho1=nhapKhoService.themmoi(nhapKho,sanPhamId);
-        List<NhapKho> nhapKhoList = nhapKhoService.getAll();
-        model.addAttribute("listNhapKho", nhapKhoList);
-        model.addAttribute("nk",nhapKho1);
-        return "redirect:/nhap-kho";
-
+//    @PostMapping("/them")
+//    public String them(@ModelAttribute("nk") NhapKho nhapKho, Model model){
+//        NhapKho nhapKho1=nhapKhoService.themmoi(nhapKho);
+//        List<NhapKho> nhapKhoList = nhapKhoService.getAll();
+//        model.addAttribute("listNhapKho", nhapKhoList);
+//        model.addAttribute("nk",nhapKho1);
+//        return "redirect:/nhap-kho";
+//
+//    }
+    @GetMapping("/uploadexelnk")
+    public String getupload(@ModelAttribute("nk") SanPham sanPham){
+        return "sanpham/uploadexelnk";
+    }
+    @PostMapping("/uploadexelnk")
+    public String uploadexel(@RequestParam("fileLoactionnk") MultipartFile file) {
+        try {
+            fileUploaderService.uploadFilenk(file);
+        } catch (IOException e) {
+            // Xử lý IOException nếu cần thiết
+            e.printStackTrace();
+        }
+        return "sanpham/uploadexelnk";
     }
 }
