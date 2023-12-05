@@ -3,6 +3,7 @@ package com.example.demo.service;
 import com.example.demo.entity.DonHangChiTiet;
 import org.springframework.data.domain.Page;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,6 +33,7 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet> findkhachHang2(String username);
     List<DonHangChiTiet> findkhachHang3(String username);
     List<DonHangChiTiet> findkhachHang4(String username);
-
+    DonHangChiTiet findNgayDat(LocalDate ngaydat);
+    List<DonHangChiTiet> finDonHang(UUID id);
 
 }

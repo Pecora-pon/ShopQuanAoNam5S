@@ -23,5 +23,5 @@ public interface NhapKhoService {
     List<NhapKho>findMauSac(Integer mauSac);
     List<NhapKho>findNhaCC(Integer nhaCungCap);
     List<NhapKho> findChatLieu(Integer chatLieu);
-    NhapKho themmoi(NhapKho nhapKho, List<UUID> sanPhamList);
+//    NhapKho themmoi(NhapKho nhapKho);
 }
