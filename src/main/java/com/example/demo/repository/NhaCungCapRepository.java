@@ -17,6 +17,8 @@ public interface NhaCungCapRepository extends JpaRepository<NhaCungCap,Integer> 
     List<NhaCungCap> searchBy(@Param("keyword")String keyword);
     @Query("Select n from NhaCungCap n order by n.nhaCungCapID desc ")
     List<NhaCungCap> getAl();
+    @Query("Select n from NhaCungCap n where n.tenNhaCungCap =:tenNhaCungCap and n.trangThai=0")
+    NhaCungCap serchByTen(@Param("tenNhaCungCap")String tenNhaCungCap);
     @Transactional
     @Modifying
     @Query(value = "Update NhaCungCap set trangThai = 1 where nhaCungCapID =:nhaCungCapID",nativeQuery = true)

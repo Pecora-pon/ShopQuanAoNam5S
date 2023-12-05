@@ -10,6 +10,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 @Repository
@@ -24,6 +25,8 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     List<DonHangChiTiet>findByDonHang_KhachHang_Username3(String username);
     @Query("select p from DonHangChiTiet p WHERE p.donHang.khachHang.username =:username and p.trangThai =4 order by p.donHangChiTietID desc")
     List<DonHangChiTiet>findByDonHang_KhachHang_Username4(String username);
+    DonHangChiTiet findByDonHang_NgayDatHang(LocalDate ngaydathang);
+    List<DonHangChiTiet> findByDonHang_DonHangID(UUID id);
     @Transactional
     @Modifying
     @Query(value = "Update DonHangChiTiet set trangThai = 1 where donHangID =:donHangID",nativeQuery = true)
