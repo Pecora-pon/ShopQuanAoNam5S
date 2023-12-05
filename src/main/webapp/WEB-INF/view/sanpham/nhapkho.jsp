@@ -527,7 +527,7 @@
                     <div class="card">
                         <h3 class="card-header">Quản lý nhập kho</h3>
                         <div class="card-body">
-                            <form:form action="/them" modelAttribute="nk" method="POST">
+                            <form:form action="/nhap-kho-add" modelAttribute="nk" method="POST">
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">ID nhà kho</label>
@@ -572,16 +572,16 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Sản Phẩm</label>
-                                            <%--                                        <form:select path="sanPham.sanPhamID" class="form-control">--%>
-                                            <%--                                            <form:option value="" label="Chọn Sản Phẩm" />--%>
-                                            <%--                                            <form:options items="${listSanPham}" itemValue="SanPhamID" itemLabel="tenSanPham" />--%>
-                                            <%--                                        </form:select>--%>
-                                        <c:forEach items="${listSanPham}" var="sp">
-                                            <lli>
-                                                <input type="checkbox" name="sanPhamID[]" value="${sp.sanPhamID}" id="sp${sp.sanPhamID}">
-                                                <label for="sp${sp.sanPhamID}">${sp.tenSanPham}</label>
-                                            </lli>
-                                        </c:forEach>
+                                                                                    <form:select path="sanPham.sanPhamID" class="form-control">
+                                                                                        <form:option value="" label="Chọn Sản Phẩm" />
+                                                                                        <form:options items="${listSanPham}" itemValue="SanPhamID" itemLabel="tenSanPham" />
+                                                                                    </form:select>
+<%--                                        <c:forEach items="${listSanPham}" var="sp">--%>
+<%--                                            <lli>--%>
+<%--                                                <input type="checkbox" name="sanPhamID[]" value="${sp.sanPhamID}" id="sp${sp.sanPhamID}">--%>
+<%--                                                <label for="sp${sp.sanPhamID}">${sp.tenSanPham}</label>--%>
+<%--                                            </lli>--%>
+<%--                                        </c:forEach>--%>
                                     </div>
 
                                         <%--                                    <div class="mb-3 col-md-6">--%>
@@ -602,7 +602,11 @@
                             </form:form>
                         </div>
                     </div>
+                    <div class="mt-2">
 
+                        <a href="/uploadexelnk" >Importexel</a>
+
+                    </div>
                     <!-- Table add -->
                     <!--Content -->
                     <div class="card">
