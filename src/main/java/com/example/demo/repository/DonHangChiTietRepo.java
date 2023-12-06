@@ -60,9 +60,13 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     void chuyensanghuy(@Param("donHangID") UUID donHangChiTietID);
     @Query(value = "select * from DonHangChiTiet p WHERE p.trangThai =4 order by p.donHangChiTietID desc",nativeQuery = true)
     List<DonHangChiTiet> getHuyy();
-    @Query("SELECT EXTRACT(MONTH FROM dh.ngayDatHang) AS month, SUM(dhc.soLuong) AS totalQuantity FROM DonHangChiTiet dhc JOIN dhc.donHang dh WHERE dh.trangThai = 3 AND EXTRACT(YEAR FROM dh.ngayDatHang) = 2023 GROUP BY EXTRACT(MONTH FROM dh.ngayDatHang)")
+    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.soLuong) AS totalQuantity FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 GROUP BY MONTH(dhc.ngayNhan)")
     List<Object[]> getTotalQuantityByMonthInYear2023();
-    @Query("SELECT MONTH(dhc.donHang.ngayDatHang) AS month, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE dhc.donHang.trangThai = 3 AND EXTRACT(YEAR FROM dhc.donHang.ngayDatHang) = 2023 GROUP BY MONTH(dhc.donHang.ngayDatHang)")
+    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 GROUP BY MONTH(dhc.ngayNhan)")
     List<Object[]> getTotalRevenueByMonthInYear2023();
+
+    @Query("SELECT dhc.trangThai, COUNT(dhc) FROM DonHangChiTiet dhc GROUP BY dhc.trangThai")
+    List<Object[]> countOrdersByStatus();
+
     List<DonHangChiTiet> findByTrangThai(int trangThai);
 }
