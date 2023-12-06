@@ -567,7 +567,7 @@
                     <!-- Table add -->
                     <!--Content -->
                     <div class="card">
-                        <form>
+                        <form action="/chat-lieu/search" method="get">
                             <input type="text" name="keyword" placeholder="tìm kiếm họ tên">
                             <button type="submit">Search</button>
                         </form>

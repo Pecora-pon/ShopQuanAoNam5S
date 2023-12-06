@@ -537,22 +537,24 @@
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Màu Săc</label>
                                         <form:select path="mauSac.mauSacID" class="form-control">
-                                            <form:option value="" label="Chọn Màu Sắc" />
-                                            <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac" />
+                                            <form:option value="" label="Chọn Màu Sắc"/>
+                                            <form:options items="${listMauSac}" itemValue="mauSacID"
+                                                          itemLabel="tenMauSac"/>
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Size</label>
                                         <form:select path="size.sizeID" class="form-control">
-                                            <form:option value="" label="Chọn Size" />
-                                            <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize" />
+                                            <form:option value="" label="Chọn Size"/>
+                                            <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Chất Liệu</label>
                                         <form:select path="chatLieu.chatLieuID" class="form-control">
-                                            <form:option value="" label="Chọn Chất Liệu" />
-                                            <form:options items="${listChatLieu}" itemValue="chatLieuID" itemLabel="tenChatLieu" />
+                                            <form:option value="" label="Chọn Chất Liệu"/>
+                                            <form:options items="${listChatLieu}" itemValue="chatLieuID"
+                                                          itemLabel="tenChatLieu"/>
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
@@ -561,27 +563,30 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Ngày Nhập</label>
-                                        <form:input class="form-control" path="ngayNhap" value="${nk.ngayNhap}" type="date"/>
+                                        <form:input class="form-control" path="ngayNhap" value="${nk.ngayNhap}"
+                                                    type="date"/>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Nhà Cung Cấp</label>
                                         <form:select path="nhaCungCap.nhaCungCapID" class="form-control">
-                                            <form:option value="" label="Chọn Nhà Cung Cấp" />
-                                            <form:options items="${listNhaCungCap}" itemValue="nhaCungCapID" itemLabel="tenNhaCungCap" />
+                                            <form:option value="" label="Chọn Nhà Cung Cấp"/>
+                                            <form:options items="${listNhaCungCap}" itemValue="nhaCungCapID"
+                                                          itemLabel="tenNhaCungCap"/>
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Sản Phẩm</label>
-                                                                                    <form:select path="sanPham.sanPhamID" class="form-control">
-                                                                                        <form:option value="" label="Chọn Sản Phẩm" />
-                                                                                        <form:options items="${listSanPham}" itemValue="SanPhamID" itemLabel="tenSanPham" />
-                                                                                    </form:select>
-<%--                                        <c:forEach items="${listSanPham}" var="sp">--%>
-<%--                                            <lli>--%>
-<%--                                                <input type="checkbox" name="sanPhamID[]" value="${sp.sanPhamID}" id="sp${sp.sanPhamID}">--%>
-<%--                                                <label for="sp${sp.sanPhamID}">${sp.tenSanPham}</label>--%>
-<%--                                            </lli>--%>
-<%--                                        </c:forEach>--%>
+                                        <form:select path="sanPham.sanPhamID" class="form-control">
+                                            <form:option value="" label="Chọn Sản Phẩm"/>
+                                            <form:options items="${listSanPham}" itemValue="SanPhamID"
+                                                          itemLabel="tenSanPham"/>
+                                        </form:select>
+                                            <%--                                        <c:forEach items="${listSanPham}" var="sp">--%>
+                                            <%--                                            <lli>--%>
+                                            <%--                                                <input type="checkbox" name="sanPhamID[]" value="${sp.sanPhamID}" id="sp${sp.sanPhamID}">--%>
+                                            <%--                                                <label for="sp${sp.sanPhamID}">${sp.tenSanPham}</label>--%>
+                                            <%--                                            </lli>--%>
+                                            <%--                                        </c:forEach>--%>
                                     </div>
 
                                         <%--                                    <div class="mb-3 col-md-6">--%>
@@ -604,8 +609,64 @@
                     </div>
                     <div class="mt-2">
 
-                        <a href="/uploadexelnk" >Importexel</a>
+                        <a href="/uploadexelnk">Importexel</a>
 
+                    </div>
+                    <div class="row">
+                        <div class="col-md-4">
+                            <!-- Màu Sắc Form -->
+                            <form:form method="get" action="/nhap-kho/searchNhaCC" modelAttribute="nk">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="nhaCungCap">Màu Sắc:</label>
+                                    <form:select path="nhaCungCap" class="form-control">
+                                        <form:option value="" label="Chọn Nhà cung cấp"/>
+                                        <form:options items="${listNhaCungCap}" itemValue="nhaCungCapID"
+                                                      itemLabel="tenNhaCungCap"/>
+                                    </form:select>
+                                    <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                </div>
+                            </form:form>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Màu Sắc Form -->
+                            <form:form method="get" action="/nhap-kho/searchSize" modelAttribute="nk">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="size">Màu Sắc:</label>
+                                    <form:select path="size" class="form-control">
+                                        <form:option value="" label="Chọn Size"/>
+                                        <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
+                                    </form:select>
+                                    <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                </div>
+                            </form:form>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Màu Sắc Form -->
+                            <form:form method="get" action="/nhap-kho/searchChatLieu" modelAttribute="nk">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="chatLieu">Màu Sắc:</label>
+                                    <form:select path="chatLieu" class="form-control">
+                                        <form:option value="" label="Chọn Chất Liệu"/>
+                                        <form:options items="${listChatLieu}" itemValue="chatLieuID"
+                                                      itemLabel="tenChatLieu"/>
+                                    </form:select>
+                                    <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                </div>
+                            </form:form>
+                        </div>
+                        <div class="col-md-4">
+                            <!-- Màu Sắc Form -->
+                            <form:form method="get" action="/nhap-kho/searchMauSac" modelAttribute="nk">
+                                <div class="input-group mb-3">
+                                    <label class="input-group-text" for="mauSac">Màu Sắc:</label>
+                                    <form:select path="mauSac" class="form-control">
+                                        <form:option value="" label="Chọn Màu Sac"/>
+                                        <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac"/>
+                                    </form:select>
+                                    <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                </div>
+                            </form:form>
+                        </div>
                     </div>
                     <!-- Table add -->
                     <!--Content -->
@@ -674,7 +735,8 @@
                                             <li class="page-item active"><span class="page-link">${page}</span></li>
                                         </c:when>
                                         <c:otherwise>
-                                            <li class="page-item"><a class="page-link" href="/nhap-kho/page?page=${page}">${page}</a></li>
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="/nhap-kho/page?page=${page}">${page}</a></li>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>

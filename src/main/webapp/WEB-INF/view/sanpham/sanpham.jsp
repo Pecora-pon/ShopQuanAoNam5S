@@ -624,6 +624,73 @@
                                 <a href="/uploadexel" >Importexel</a>
 
                             </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <form:form action="/timkiemtensp" modelAttribute="sp" method="get">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="tenSanPham">Tên Sản Phẩm:</label>
+                                            <input type="text" class="form-control" id="tenSanPham" name="tenSanPham" value="${sp.tenSanPham}" required>
+                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                        </div>
+                                    </form:form>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- Màu Sắc Form -->
+                                    <form:form method="get" action="/timkiemmssp" modelAttribute="sp">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="mauSac">Màu Sắc:</label>
+                                            <form:select path="mauSac" class="form-control">
+                                                <form:option value="" label="Chọn Màu Sắc"/>
+                                                <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac"/>
+                                            </form:select>
+                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                        </div>
+                                    </form:form>
+                                </div>
+
+                                <div class="col-md-3">
+                                    <!-- Size Form -->
+                                    <form:form method="get" action="/timkiemsize" modelAttribute="sp">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="size">Size:</label>
+                                            <form:select path="size" class="form-control">
+                                                <form:option value="" label="Chọn Size"/>
+                                                <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
+                                            </form:select>
+                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                        </div>
+                                    </form:form>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- Chất Liệu Form -->
+                                    <form:form method="get" action="/timkiemchatlieu" modelAttribute="sp">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="chatLieu">Chất Liệu:</label>
+                                            <form:select path="chatLieu" class="form-control">
+                                                <form:option value="" label="Chọn Chất Liệu"/>
+                                                <form:options items="${listChatLieu}" itemValue="chatLieuID" itemLabel="tenChatLieu"/>
+                                            </form:select>
+                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                        </div>
+                                    </form:form>
+                                </div>
+
+                                <div class="col-md-4">
+                                    <!-- Thương Hiệu Form -->
+                                    <form:form method="get" action="/timkiemthuonghieu" modelAttribute="sp">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="thuongHieu">Thương Hiệu:</label>
+                                            <form:select path="thuongHieu" class="form-control">
+                                                <form:option value="" label="Chọn Thương Hiệu"/>
+                                                <form:options items="${listThuongHieu}" itemValue="thuongHieuID" itemLabel="tenThuongHieu"/>
+                                            </form:select >
+                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                        </div>
+                                    </form:form>
+                                </div>
+                            </div>
                         </div>
                     </div>
 
@@ -642,19 +709,8 @@
                         window.location.href = "/timkiemms/page" + mauSacId;
                     }
                 </script>
-                    <div class="mb-3 col-md-2">
-                    <form method="get" action="/timkiemms">
-                        <div>
-                            <select class="form-control" name="mauSac">
-                                <option value="" label="Chọn Màu Sắc"/>
-                                <c:forEach var="mauSac" items="${listMauSac}">
-                                    <option value="${mauSac.mauSacID.toString()}">${mauSac.tenMauSac}</option>
-                                </c:forEach>
-                            </select>
-                            <button type="submit" >Search</button>
-                        </div>
-                    </form>
-                </div>
+
+
                         <table class="table">
                             <thead>
                             <tr>
@@ -690,7 +746,7 @@
                                     <td>${sanpham.size.tenSize}</td>
                                     <td>${sanpham.chatLieu.tenChatLieu}</td>
                                     <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                    <td>  <img src="getimage/${sanpham.hinhAnhURL}" style="max-width: 20px; max-height: 20px;">
+                                    <td>  <img src="getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;">
                                              </td>
 
                                     <td>

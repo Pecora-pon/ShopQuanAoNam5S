@@ -554,7 +554,7 @@
                     <!--Table add -->
 
                     <div class="card">
-                        <form>
+                        <form method="get" action="/thuong-hieu/search">
                             <input type="text" name="keyword" placeholder="tìm kiếm họ tên">
                             <button type="submit">Search</button>
                         </form>
