@@ -601,36 +601,63 @@
                         <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
                             <div class="card">
                                 <div class="row row-bordered g-0">
-                                    <h3 class="card-header m-0 me-2 pb-3 text-primary">Số lượng sản phẩm bán ra theo tháng</h3>
-                                    <canvas id="myColumnChart" width="400" height="200"></canvas>
+                                    <div class="col-md-8">
+                                        <h5 class="card-header m-0 me-2 pb-3 text-primary">Số lượng sản phẩm bán ra theo tháng</h5>
+                                        <canvas id="myColumnChart" width="400" height="200"></canvas>
 
-                                    <script>
-                                        var data = {
-                                            labels: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[0]}" />,</c:forEach>],
-                                            datasets: [{
-                                                label: "Số lượng sản phẩm bán ra",
-                                                backgroundColor: 'rgba(75, 192, 192, 0.2)',
-                                                borderColor: 'rgba(75, 192, 192, 1)',
-                                                borderWidth: 1,
-                                                data: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[1]}" />,</c:forEach>],
-                                            }]
-                                        };
+                                        <script>
+                                            var data = {
+                                                labels: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[0]}" />,</c:forEach>],
+                                                datasets: [{
+                                                    label: "Số lượng sản phẩm bán ra",
+                                                    backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                                    borderColor: 'rgba(75, 192, 192, 1)',
+                                                    borderWidth: 1,
+                                                    data: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[1]}" />,</c:forEach>],
+                                                }]
+                                            };
 
-                                        var options = {
-                                            scales: {
-                                                y: {
-                                                    beginAtZero: true
+                                            var options = {
+                                                scales: {
+                                                    y: {
+                                                        beginAtZero: true
+                                                    }
                                                 }
-                                            }
-                                        };
+                                            };
 
-                                        var ctx = document.getElementById('myColumnChart').getContext('2d');
-                                        var myColumnChart = new Chart(ctx, {
-                                            type: 'bar',
-                                            data: data,
-                                            options: options
-                                        });
-                                    </script>
+                                            var ctx = document.getElementById('myColumnChart').getContext('2d');
+                                            var myColumnChart = new Chart(ctx, {
+                                                type: 'bar',
+                                                data: data,
+                                                options: options
+                                            });
+                                        </script>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <h5 class="card-header m-0 me-2 pb-3 text-primary">Biểu đồ đơn hàng</h5>
+                                        <canvas id="myPieChart" width="400" height="200"></canvas>
+
+                                        <script>
+                                            var data = {
+                                                labels: ['Đã đặt hàng', 'Chờ xác nhận', 'Đã vận chuyển', 'Thành công', 'Đã hủy'],
+                                                datasets: [{
+                                                    data: [<c:forEach var="item" items="${ordersByStatus}"><c:out value="${item[1]}" />,</c:forEach>],
+                                                    backgroundColor: ['rgba(148, 0, 211, 0.2)', 'rgba(0, 128, 0, 0.2)', 'rgba(255, 182, 193, 0.2)', 'rgba(255, 165, 0, 0.2)', 'rgba(255, 0, 0, 0.2)'],
+                                                    borderColor: ['rgba(148, 0, 211, 1)', 'rgba(0, 128, 0, 1)', 'rgba(255, 182, 193, 1)', 'rgba(255, 165, 0, 1)', 'rgba(255, 0, 0, 1)'],
+                                                    borderWidth: 1
+                                                }]
+                                            };
+
+                                            var options = {};
+
+                                            var ctx = document.getElementById('myPieChart').getContext('2d');
+                                            var myPieChart = new Chart(ctx, {
+                                                type: 'pie',
+                                                data: data,
+                                                options: options
+                                            });
+                                        </script>
+                                    </div>
 
                                 </div>
                             </div>
