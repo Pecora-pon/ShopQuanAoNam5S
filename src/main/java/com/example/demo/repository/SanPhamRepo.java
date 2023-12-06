@@ -39,10 +39,19 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
     SanPham findByTen(@Param("tenSanPham") String tenSanPham);
 
-    Optional<SanPham> findById(UUID sanPhamID);
-//     @Query("SELECT sp FROM SanPham sp WHERE sp.mauSac LIKE %?1%")
-//    List<SanPham> findByMauSac_MauSacID(@Param("mausac") String tenMauSac);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
+    List<SanPham> findByTenSanPham1(@Param("tenSanPham") String tenSanPham);
 
+    Optional<SanPham> findById(UUID sanPhamID);
+     @Query("SELECT sp FROM SanPham sp WHERE sp.mauSac.mauSacID =:mauSacID")
+    List<SanPham> findByMauSac_MauSacID(@Param("mauSacID") int tenMauSac);
+
+    @Query("SELECT sp FROM SanPham sp WHERE sp.size.sizeID =:sizeID")
+    List<SanPham> findBySize_SizeID(@Param("sizeID") int tenSize);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.chatLieu.chatLieuID =:chatLieuID")
+    List<SanPham> findByChatLieu_ChatLieuID(@Param("chatLieuID") int tenChatLieu);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.thuongHieu.thuongHieuID =:thuongHieuID")
+    List<SanPham> findByThuongHieu_ThuongHieuID(@Param("thuongHieuID") int tenthuongHieu);
     @Query("select sp from SanPham sp order by sp.ngayTao desc ")
     List<SanPham> sapxep();
     List<SanPham>findBySanPhamID(UUID sanPhamID);

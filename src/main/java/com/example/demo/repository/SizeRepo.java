@@ -26,4 +26,5 @@ public interface SizeRepo extends JpaRepository<Size,Integer> {
     void deleteByI(@Param("sizeID") int chatLieuID);
     @Query(value = "select * from Size p WHERE p.trangThai =0 order by p.sizeID desc",nativeQuery = true)
     List<Size> getAll();
+
 }
