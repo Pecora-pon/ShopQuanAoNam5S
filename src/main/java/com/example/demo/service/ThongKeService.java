@@ -1,5 +1,4 @@
 package com.example.demo.service;
-
 import com.example.demo.entity.DonHangChiTiet;
 import com.example.demo.entity.KhachHang;
 import com.example.demo.entity.NhanVien;
@@ -12,7 +11,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
 @Service
 public class ThongKeService {
     @Autowired
@@ -50,9 +48,9 @@ public class ThongKeService {
         return donHangChiTietRepo.findAll();
     }
 
-    public double calculateTotalTongTien(int trangThai) {
+    public Float calculateTotalTongTien(int trangThai) {
         List<DonHangChiTiet> donHangChiTiets = donHangChiTietRepo.findByTrangThai(trangThai);
-        double totalTongTien = 0;
+        float totalTongTien = 0;
 
         for (DonHangChiTiet donHangChiTiet : donHangChiTiets) {
             totalTongTien += donHangChiTiet.getTongTien();
@@ -66,6 +64,7 @@ public class ThongKeService {
     public List<Object[]> getTotalRevenueByMonthInYear2023() {
         return donHangChiTietRepo.getTotalRevenueByMonthInYear2023();
     }
-
-
+    public List<Object[]> countOrdersByStatus() {
+        return donHangChiTietRepo.countOrdersByStatus();
+    }
 }
