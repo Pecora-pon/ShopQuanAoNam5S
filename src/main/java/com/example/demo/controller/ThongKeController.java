@@ -8,9 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-
 @Controller
 public class ThongKeController {
     @Autowired
@@ -38,15 +39,18 @@ public class ThongKeController {
         model.addAttribute("khachHangs", sanPhams);
         model.addAttribute("totalKhachHang", totalKhachHang);
 
-        double totalTongTien = thongKeService.calculateTotalTongTien(trangThai);
+        Float totalTongTien = thongKeService.calculateTotalTongTien(trangThai);
         model.addAttribute("totalTongTien",totalTongTien);
 
         List<Object[]> totalQuantityByMonth = thongKeService.getTotalQuantityByMonthInYear2023();
         model.addAttribute("totalQuantityByMonth", totalQuantityByMonth);
 
+        List<Object[]> ordersByStatus = thongKeService.countOrdersByStatus();
+        model.addAttribute("ordersByStatus", ordersByStatus);
+
         List<Object[]> totalRevenueByMonth = thongKeService.getTotalRevenueByMonthInYear2023();
         model.addAttribute("totalRevenueByMonth", totalRevenueByMonth);
         return "admin/thong-ke";
-    }
 
+    }
 }
