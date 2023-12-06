@@ -22,7 +22,11 @@ public interface SanPhamService {
     Page<SanPham> getPage(int pageNumber, int pageSize);
     void capnhat(UUID id,int soluong);
     SanPham size(SanPham sanPham,UUID sanPhamID);
+    List<SanPham> findtenSanPham(String ten);
 //   SanPham themgio(UUID sanPhamID);
 //    List<SanPham> findmausac(String mausac);
-List<SanPham> findByMauSacID(String mauSacID);
+List<SanPham> findByMauSacID(int mauSacID);
+List<SanPham> findBySizeID(int sizeID);
+List<SanPham> findByChatLieuID(int chatLieuID);
+List<SanPham> findByThuongHieuID(int thuongHieuID);
 }

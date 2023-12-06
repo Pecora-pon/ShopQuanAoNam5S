@@ -33,7 +33,9 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet> findkhachHang2(String username);
     List<DonHangChiTiet> findkhachHang3(String username);
     List<DonHangChiTiet> findkhachHang4(String username);
-    DonHangChiTiet findNgayDat(LocalDate ngaydat);
+    List<DonHangChiTiet> findNgayDat(LocalDate ngaydat);
+    List<DonHangChiTiet> findTenSP(String ten);
     List<DonHangChiTiet> finDonHang(UUID id);
+    List<DonHangChiTiet> findTongTien(Float tong);
 
 }
