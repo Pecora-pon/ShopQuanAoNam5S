@@ -114,13 +114,25 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
 
 
     @Override
-    public DonHangChiTiet findNgayDat(LocalDate ngaydat) {
+    public List<DonHangChiTiet> findNgayDat(LocalDate ngaydat) {
         return donHangChiTietRepo.findByDonHang_NgayDatHang(ngaydat);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTenSP(String ten) {
+
+
+        return  donHangChiTietRepo.findBySanPham_TenSanPham(ten);
     }
 
     @Override
     public List<DonHangChiTiet> finDonHang(UUID id) {
         return donHangChiTietRepo.findByDonHang_DonHangID(id);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTongTien(Float tong) {
+        return donHangChiTietRepo.findByTongTien(tong);
     }
 
     @Override

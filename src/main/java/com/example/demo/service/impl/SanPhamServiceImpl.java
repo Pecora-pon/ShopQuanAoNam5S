@@ -106,7 +106,29 @@ public class SanPhamServiceImpl implements SanPhamService {
     }
 
     @Override
-    public List<SanPham> findByMauSacID(String mauSacID) {
-        return sanPhamRepo.findByMauSacID(mauSacID);
+    public List<SanPham> findtenSanPham(String ten) {
+        return sanPhamRepo.findByTenSanPham1(ten);
+    }
+
+
+
+    @Override
+    public List<SanPham> findByMauSacID(int mauSacID) {
+        return sanPhamRepo.findByMauSac_MauSacID(mauSacID);
+    }
+
+    @Override
+    public List<SanPham> findBySizeID(int sizeID) {
+        return sanPhamRepo.findBySize_SizeID(sizeID);
+    }
+
+    @Override
+    public List<SanPham> findByChatLieuID(int chatLieuID) {
+        return sanPhamRepo.findByChatLieu_ChatLieuID(chatLieuID);
+    }
+
+    @Override
+    public List<SanPham> findByThuongHieuID(int thuongHieuID) {
+        return sanPhamRepo.findByThuongHieu_ThuongHieuID(thuongHieuID);
     }
 }
