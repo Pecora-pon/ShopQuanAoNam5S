@@ -46,7 +46,7 @@ public class SizeController {
     public String delete(@PathVariable("sizeID")Integer sizeID,Model model){
         Size size=sizeService.detail(sizeID);
         List<Size> sizeList=sizeService.getAll();
-        model.addAttribute("listsize",sizeList);
+        model.addAttribute("listSize",sizeList);
         model.addAttribute("si",size);
         return "sanpham/size-update";
     }
@@ -60,7 +60,8 @@ public class SizeController {
     public String search(Model model,
                          @RequestParam("keyword") String keyword){
         List<Size> sizeList = sizeService.findSize(keyword);
-        model.addAttribute("si",sizeList);
+        model.addAttribute("listSize",sizeList);
+        model.addAttribute("si",new Size());
         return "sanpham/size";
     }
     @RequestMapping("/size/page")

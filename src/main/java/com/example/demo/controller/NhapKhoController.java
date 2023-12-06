@@ -109,35 +109,47 @@ public class NhapKhoController {
         return "redirect:/nhap-kho/page";
     }
 
-    @RequestMapping("/nhap-kho/searchNhaCC/{nhaCungCap}")
+    @RequestMapping("/nhap-kho/searchNhaCC")
     public String searchNhaCC(Model model,
-                              @PathVariable("nhaCungCap") Integer nhaCC) {
+                              @RequestParam("nhaCungCap") Integer nhaCC) {
         List<NhapKho> nhapKhoList = nhapKhoService.findNhaCC(nhaCC);
-        model.addAttribute("nk", nhapKhoList);
+        List<NhaCungCap> nhaCungCapList=nhaCungCapService.getAll();
+        model.addAttribute("listNhaCungCap",nhaCungCapList);
+        model.addAttribute("listNhapKho", nhapKhoList);
+        model.addAttribute("nk",new NhapKho());
         return "sanpham/nhapkho";
     }
 
-    @RequestMapping("/nhap-kho/searchSize/{size}")
+    @RequestMapping("/nhap-kho/searchSize")
     public String searchSize(Model model,
                              @PathVariable("size") Integer size) {
         List<NhapKho> nhapKhoList = nhapKhoService.findSize(size);
-        model.addAttribute("nk", nhapKhoList);
+        List<Size>sizeList=sizeService.getAll();
+        model.addAttribute("listSize",sizeList);
+        model.addAttribute("listNhapKho", nhapKhoList);
+        model.addAttribute("nk",new NhapKho());
         return "sanpham/nhapkho";
     }
 
-    @RequestMapping("/nhap-kho/searchChatLieu/{chatLieu}")
+    @RequestMapping("/nhap-kho/searchChatLieu")
     public String searchChatLieu(Model model,
                                  @PathVariable("chatLieu") Integer chatLieu) {
         List<NhapKho> nhapKhoList = nhapKhoService.findChatLieu(chatLieu);
-        model.addAttribute("nk", nhapKhoList);
+        List<ChatLieu> chatLieuList=chatLieuService.getAll();
+        model.addAttribute("listChatLieu",chatLieuList);
+        model.addAttribute("listNhapKho",nhapKhoList);
+        model.addAttribute("nk", new NhapKho());
         return "sanpham/nhapkho";
     }
 
-    @RequestMapping("/nhap-kho/searchMauSac/{mauSac}")
+    @RequestMapping("/nhap-kho/searchMauSac")
     public String searchmausac(Model model,
                                @PathVariable("mauSac") Integer mauSac) {
         List<NhapKho> nhapKhoList = nhapKhoService.findMauSac(mauSac);
-        model.addAttribute("nk", nhapKhoList);
+        List<MauSac> mauSacList=mauSacService.getAll();
+        model.addAttribute("listMauSac",mauSacList);
+        model.addAttribute("listNhapKho", nhapKhoList);
+        model.addAttribute("nk",new NhapKho());
         return "sanpham/nhapkho";
     }
 

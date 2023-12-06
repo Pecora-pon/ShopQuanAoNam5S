@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.NhanVien;
+import com.example.demo.entity.Size;
 import com.example.demo.entity.ThuongHieu;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.ThuongHieuService;
@@ -58,7 +59,8 @@ public class ThuongHieuController {
     public String search(Model model,
                          @RequestParam("keyword") String keyword){
         List<ThuongHieu> thuongHieuList = thuongHieuService.findTen(keyword);
-        model.addAttribute("th",thuongHieuList);
+        model.addAttribute("listThuongHieu",thuongHieuList);
+        model.addAttribute("th",new Size());
         return "sanpham/thuonghieu";
     }
     @RequestMapping("/thuong-hieu/page")

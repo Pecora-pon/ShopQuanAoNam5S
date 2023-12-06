@@ -3,21 +3,23 @@ package com.example.demo.controller;
 import com.example.demo.DTO.PaymentResDTO;
 import com.example.demo.config.Config;
 import com.example.demo.config.VNPayService;
+import com.example.demo.entity.DonHang;
+import com.example.demo.entity.KhachHang;
+import com.example.demo.repository.KhachHangRepo;
+import com.example.demo.service.SanPhamService;
+import com.example.demo.service.ThanhToanService;
 import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
+import java.security.Principal;
 import java.text.SimpleDateFormat;
 import java.util.*;
 @Controller
@@ -25,12 +27,20 @@ public class PaymentController {
 
     @Autowired
     private VNPayService vnPayService;
-
+   @Autowired
+    KhachHangRepo khachHangRepo;
+   @Autowired
+    ThanhToanService thanhToanService;
     @PostMapping("/submitOrder")
     public String submidOrder(@RequestParam("amount") Long orderTotal,
-                              HttpServletRequest request) throws UnsupportedEncodingException {
+                              HttpServletRequest request, @ModelAttribute("t") DonHang donHang, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") float tt, Model model, Principal principal) throws UnsupportedEncodingException {
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
+        String logname=principal.getName();
+        KhachHang khachHang=khachHangRepo.findByUsername(logname);
+        donHang.setKhachHang(khachHang);
+        DonHang donHang1= thanhToanService.themmoi(donHang,giohangID,tt);
+        model.addAttribute("t",donHang1);
         return "redirect:" + vnpayUrl;
     }
 

@@ -110,28 +110,40 @@ public class XuatKhoController {
     public String searchNhaCC(Model model,
                          @RequestParam("nhaCungCap") Integer nhaCC){
         List<XuatKho> xuatKhoList = xuatKhoService.findNhaCC(nhaCC);
-        model.addAttribute("xk",xuatKhoList);
+        List<NhaCungCap> nhaCungCapList=nhaCungCapService.getAll();
+        model.addAttribute("listNhaCungCap",nhaCungCapList);
+        model.addAttribute("listXuatKho",xuatKhoList);
+        model.addAttribute("xk",new XuatKho());
         return "sanpham/xuatkho";
     }
-    @RequestMapping("/xuat-kho/searchSize/{size}")
+    @RequestMapping("/xuat-kho/searchSize")
     public String searchSize(Model model,
                          @PathVariable("size") Integer size){
         List<XuatKho> xuatKhoList = xuatKhoService.findSize(size);
-        model.addAttribute("xk",xuatKhoList);
+        List<Size>sizeList=sizeService.getAll();
+        model.addAttribute("listSize",sizeList);
+        model.addAttribute("listXuatKho",xuatKhoList);
+        model.addAttribute("xk",new XuatKho());
         return "sanpham/xuatkho";
     }
-    @RequestMapping("/xuat-kho/searchChatLieu/{chatLieu}")
+    @RequestMapping("/xuat-kho/searchChatLieu")
     public String searchChatLieu(Model model,
                              @PathVariable("chatLieu") Integer chatLieu){
         List<XuatKho> xuatKhoList = xuatKhoService.findChatLieu(chatLieu);
-        model.addAttribute("xk",xuatKhoList);
+        List<ChatLieu> chatLieuList=chatLieuService.getAll();
+        model.addAttribute("listChatLieu",chatLieuList);
+        model.addAttribute("listXuatKho",xuatKhoList);
+        model.addAttribute("xk",new XuatKho());
         return "sanpham/xuatkho";
     }
-    @RequestMapping("/xuat-kho/searchMauSac/{mauSac}")
+    @RequestMapping("/xuat-kho/searchMauSac")
     public String searchmausac(Model model,
                              @PathVariable("mauSac") Integer mauSac){
         List<XuatKho> xuatKhoList = xuatKhoService.findMauSac(mauSac);
-        model.addAttribute("xk",xuatKhoList);
+        List<MauSac> mauSacList=mauSacService.getAll();
+        model.addAttribute("listMauSac",mauSacList);
+        model.addAttribute("listXuatKho",xuatKhoList);
+        model.addAttribute("xk",new XuatKho());
         return "sanpham/xuatkho";
     }
     @RequestMapping("/xuat-kho/page")
@@ -162,12 +174,12 @@ public class XuatKhoController {
         return "sanpham/xuatkho";
 
     }
-    @PostMapping("/them-xk")
-    public String them(@ModelAttribute("xk")XuatKho xuatKho, @RequestParam("sanPhamID[]")List<UUID> sanPhamID, Model model){
-        XuatKho xuatKho1=xuatKhoService.them(xuatKho,sanPhamID);
-        List<XuatKho> xuatKhoList = xuatKhoService.getAll();
-        model.addAttribute("listXuaKho", xuatKhoList);
-        model.addAttribute("xk",xuatKho1);
-        return "redirect:/xuat-kho";
-    }
+//    @PostMapping("/them-xk")
+//    public String them(@ModelAttribute("xk")XuatKho xuatKho, @RequestParam("sanPhamID[]")List<UUID> sanPhamID, Model model){
+//        XuatKho xuatKho1=xuatKhoService.them(xuatKho,sanPhamID);
+//        List<XuatKho> xuatKhoList = xuatKhoService.getAll();
+//        model.addAttribute("listXuaKho", xuatKhoList);
+//        model.addAttribute("xk",xuatKho1);
+//        return "redirect:/xuat-kho";
+//    }
 }

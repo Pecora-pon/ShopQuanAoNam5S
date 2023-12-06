@@ -2,6 +2,7 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.MauSac;
 import com.example.demo.entity.NhanVien;
+import com.example.demo.entity.Size;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.MauSacService;
 import jakarta.validation.Valid;
@@ -64,7 +65,8 @@ public class MauSacController {
     public String search(Model model,
                          @RequestParam("keyword") String keyword){
         List<MauSac> mauSacList = mauSacService.findTen(keyword);
-        model.addAttribute("ms",mauSacList);
+        model.addAttribute("listMauSac",mauSacList);
+        model.addAttribute("ms",new Size());
         return "sanpham/mausac";
     }
     @RequestMapping("/mau-sac/page")

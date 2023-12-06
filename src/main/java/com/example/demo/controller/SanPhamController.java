@@ -114,11 +114,12 @@ public class SanPhamController {
        model.addAttribute("repon",respon);
         return "redirect:/san-pham/page";
     }
-    @RequestMapping("/san-pham/page")
+    @RequestMapping(value = "/san-pham/page", method = RequestMethod.GET)
     public String page(@RequestParam(defaultValue = "0") int page,
                        @RequestParam(defaultValue = "3") int size,
                        Model model,
-                       @Param("keyword") String keyword) {
+                       @Param("keyword") String keyword,
+                       @Param("getimage/hinhAnhURL")String hinhAnhURL) {
         Page<SanPham> page1 = sanPhamService.getPage(page, size);
         List<SanPham> sanPhamList= page1.getContent();
         List<SanPham> nhapKhoList1 = sanPhamService.getAll();
@@ -165,12 +166,47 @@ public class SanPhamController {
 //        model.addAttribute("gh",sanPham);
 //        return "shop/gio-hangdemo";
 //    }
-@GetMapping("/timkiemms/{mauSac}")
-public String ms(@PathVariable("mauSac") String mausac, Model model) {
+@GetMapping("/timkiemmssp")
+public String ms(@RequestParam("mauSac") int mausac, Model model) {
     List<SanPham> sanPhamList = sanPhamService.findByMauSacID(mausac);
     List<MauSac> mauSacList = mauSacService.getAll();
-    model.addAttribute("listMauSac", mauSacList);
+    model.addAttribute("listMauSac",mauSacList);
     model.addAttribute("listSanPham", sanPhamList);
+    model.addAttribute("sp",new SanPham());
     return "sanpham/sanpham";
 }
+@GetMapping("/timkiemtensp")
+    public String timkiem(@RequestParam("tenSanPham") String tenSanPham,Model model){
+        List<SanPham>list=sanPhamService.findtenSanPham(tenSanPham);
+        model.addAttribute("listSanPham",list);
+        model.addAttribute("sp",new SanPham());
+        return "sanpham/sanpham";
+}
+    @GetMapping("/timkiemsize")
+    public String timkiemsize(@RequestParam("size") int size,Model model){
+        List<SanPham>list=sanPhamService.findBySizeID(size);
+        List<Size>sizeList=sizeService.getAll();
+        model.addAttribute("listSize",sizeList);
+        model.addAttribute("listSanPham",list);
+        model.addAttribute("sp",new SanPham());
+        return "sanpham/sanpham";
+    }
+    @GetMapping("/timkiemchatlieu")
+    public String timkiemchatlieu(@RequestParam("chatLieu") int chatLieu,Model model){
+        List<SanPham>list=sanPhamService.findByChatLieuID(chatLieu);
+        List<ChatLieu>chatLieuList=chatLieuService.getAll();
+        model.addAttribute("listChatLieu",chatLieuList);
+        model.addAttribute("listSanPham",list);
+        model.addAttribute("sp",new SanPham());
+        return "sanpham/sanpham";
+    }
+    @GetMapping("/timkiemthuonghieu")
+    public String timkiemthuonghieu(@RequestParam("thuongHieu") int thuongHieu,Model model){
+        List<SanPham>list=sanPhamService.findByThuongHieuID(thuongHieu);
+        List<ThuongHieu>thuongHieuList=thuongHieuService.getAll();
+        model.addAttribute("listThuongHieu",thuongHieuList);
+        model.addAttribute("listSanPham",list);
+        model.addAttribute("sp",new SanPham());
+        return "sanpham/sanpham";
+    }
 }
