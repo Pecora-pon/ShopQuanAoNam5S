@@ -82,10 +82,11 @@ public class SanPhamController {
         model.addAttribute("listChatLieu", chatLieuList);
         model.addAttribute("listThuongHieu", thuongHieuList);
         model.addAttribute("listSize", sizeList);
-        model.addAttribute("listSanPham", sanPhamList);
+
         model.addAttribute("sp", new SanPham());
         model.addAttribute("repon", respon);
-        return "redirect:/san-pham";
+        model.addAttribute("listSanPham", sanPhamList);
+        return "sanpham/sanpham";
     }
     @RequestMapping("/san-pham/delete/{sanPhamID}")
     public String delete(@PathVariable("sanPhamID")UUID sanPhamID){
@@ -170,7 +171,13 @@ public class SanPhamController {
 public String ms(@RequestParam("mauSac") int mausac, Model model) {
     List<SanPham> sanPhamList = sanPhamService.findByMauSacID(mausac);
     List<MauSac> mauSacList = mauSacService.getAll();
-    model.addAttribute("listMauSac",mauSacList);
+    List<ChatLieu> chatLieuList = chatLieuService.getAll();
+    List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+    List<Size> sizeList = sizeService.getAll();
+    model.addAttribute("listMauSac", mauSacList);
+    model.addAttribute("listChatLieu", chatLieuList);
+    model.addAttribute("listThuongHieu", thuongHieuList);
+    model.addAttribute("listSize", sizeList);
     model.addAttribute("listSanPham", sanPhamList);
     model.addAttribute("sp",new SanPham());
     return "sanpham/sanpham";
@@ -178,6 +185,14 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
 @GetMapping("/timkiemtensp")
     public String timkiem(@RequestParam("tenSanPham") String tenSanPham,Model model){
         List<SanPham>list=sanPhamService.findtenSanPham(tenSanPham);
+    List<MauSac> mauSacList = mauSacService.getAll();
+    List<ChatLieu> chatLieuList = chatLieuService.getAll();
+    List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+    List<Size> sizeList = sizeService.getAll();
+    model.addAttribute("listMauSac", mauSacList);
+    model.addAttribute("listChatLieu", chatLieuList);
+    model.addAttribute("listThuongHieu", thuongHieuList);
+    model.addAttribute("listSize", sizeList);
         model.addAttribute("listSanPham",list);
         model.addAttribute("sp",new SanPham());
         return "sanpham/sanpham";
@@ -185,8 +200,14 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
     @GetMapping("/timkiemsize")
     public String timkiemsize(@RequestParam("size") int size,Model model){
         List<SanPham>list=sanPhamService.findBySizeID(size);
-        List<Size>sizeList=sizeService.getAll();
-        model.addAttribute("listSize",sizeList);
+        List<MauSac> mauSacList = mauSacService.getAll();
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+        List<Size> sizeList = sizeService.getAll();
+        model.addAttribute("listMauSac", mauSacList);
+        model.addAttribute("listChatLieu", chatLieuList);
+        model.addAttribute("listThuongHieu", thuongHieuList);
+        model.addAttribute("listSize", sizeList);
         model.addAttribute("listSanPham",list);
         model.addAttribute("sp",new SanPham());
         return "sanpham/sanpham";
@@ -194,8 +215,14 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
     @GetMapping("/timkiemchatlieu")
     public String timkiemchatlieu(@RequestParam("chatLieu") int chatLieu,Model model){
         List<SanPham>list=sanPhamService.findByChatLieuID(chatLieu);
-        List<ChatLieu>chatLieuList=chatLieuService.getAll();
-        model.addAttribute("listChatLieu",chatLieuList);
+        List<MauSac> mauSacList = mauSacService.getAll();
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+        List<Size> sizeList = sizeService.getAll();
+        model.addAttribute("listMauSac", mauSacList);
+        model.addAttribute("listChatLieu", chatLieuList);
+        model.addAttribute("listThuongHieu", thuongHieuList);
+        model.addAttribute("listSize", sizeList);
         model.addAttribute("listSanPham",list);
         model.addAttribute("sp",new SanPham());
         return "sanpham/sanpham";
@@ -203,8 +230,14 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
     @GetMapping("/timkiemthuonghieu")
     public String timkiemthuonghieu(@RequestParam("thuongHieu") int thuongHieu,Model model){
         List<SanPham>list=sanPhamService.findByThuongHieuID(thuongHieu);
-        List<ThuongHieu>thuongHieuList=thuongHieuService.getAll();
-        model.addAttribute("listThuongHieu",thuongHieuList);
+        List<MauSac> mauSacList = mauSacService.getAll();
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+        List<Size> sizeList = sizeService.getAll();
+        model.addAttribute("listMauSac", mauSacList);
+        model.addAttribute("listChatLieu", chatLieuList);
+        model.addAttribute("listThuongHieu", thuongHieuList);
+        model.addAttribute("listSize", sizeList);
         model.addAttribute("listSanPham",list);
         model.addAttribute("sp",new SanPham());
         return "sanpham/sanpham";

@@ -103,10 +103,105 @@ public class DonHangChiTietController {
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("list",list);
         model.addAttribute("dh",new DonHang());
-        return "admin/don-hang-chi-tiet";
+        return "admin/don-hang-chi-tiet/index";
 
     }
+    @GetMapping("/don-hang-chi-tiet/page1")
+    public String page1(@RequestParam(defaultValue = "0") int page,
+                       @RequestParam(defaultValue = "3") int size,
+                       Model model,
+                       @Param("keyword") String keyword){
+        Page<DonHangChiTiet> page1 = donHangChiTietService.getPage1(page,size);
+        List<DonHangChiTiet> list =page1.getContent();
+        List<DonHangChiTiet> list1 = donHangChiTietService.getAll();
+        if(keyword !=null){
+            list1     = this.donHangChiTietService.findTenKhachHang(keyword);
+        }
+        int totalItems = list1.size();
+        int itemsPerPage = size;
+        int totalPages = (int) Math.floor((double) totalItems / itemsPerPage);
+        int currentPage = page;
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("itemsPerPage", itemsPerPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("list",list);
+        model.addAttribute("dh",new DonHang());
+        return "admin/don-hang-chi-tiet/vanchuyen";
 
+    }
+    @GetMapping("/don-hang-chi-tiet/page2")
+    public String page2(@RequestParam(defaultValue = "0") int page,
+                        @RequestParam(defaultValue = "3") int size,
+                        Model model,
+                        @Param("keyword") String keyword){
+        Page<DonHangChiTiet> page1 = donHangChiTietService.getPage2(page,size);
+        List<DonHangChiTiet> list =page1.getContent();
+        List<DonHangChiTiet> list1 = donHangChiTietService.getAll();
+        if(keyword !=null){
+            list1     = this.donHangChiTietService.findTenKhachHang(keyword);
+        }
+        int totalItems = list1.size();
+        int itemsPerPage = size;
+        int totalPages = (int) Math.floor((double) totalItems / itemsPerPage);
+        int currentPage = page;
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("itemsPerPage", itemsPerPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("list",list);
+        model.addAttribute("dh",new DonHang());
+        return "admin/don-hang-chi-tiet/choxacnhan";
+
+    }
+    @GetMapping("/don-hang-chi-tiet/page3")
+    public String page3(@RequestParam(defaultValue = "0") int page,
+                        @RequestParam(defaultValue = "3") int size,
+                        Model model,
+                        @Param("keyword") String keyword){
+        Page<DonHangChiTiet> page1 = donHangChiTietService.getPage3(page,size);
+        List<DonHangChiTiet> list =page1.getContent();
+        List<DonHangChiTiet> list1 = donHangChiTietService.getAll();
+        if(keyword !=null){
+            list1     = this.donHangChiTietService.findTenKhachHang(keyword);
+        }
+        int totalItems = list1.size();
+        int itemsPerPage = size;
+        int totalPages = (int) Math.floor((double) totalItems / itemsPerPage);
+        int currentPage = page;
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("itemsPerPage", itemsPerPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("list",list);
+        model.addAttribute("dh",new DonHang());
+        return "admin/don-hang-chi-tiet/thanhcong";
+
+    }
+    @GetMapping("/don-hang-chi-tiet/page4")
+    public String page4(@RequestParam(defaultValue = "0") int page,
+                        @RequestParam(defaultValue = "3") int size,
+                        Model model,
+                        @Param("keyword") String keyword){
+        Page<DonHangChiTiet> page1 = donHangChiTietService.getPage4(page,size);
+        List<DonHangChiTiet> list =page1.getContent();
+        List<DonHangChiTiet> list1 = donHangChiTietService.getAll();
+        if(keyword !=null){
+            list1     = this.donHangChiTietService.findTenKhachHang(keyword);
+        }
+        int totalItems = list1.size();
+        int itemsPerPage = size;
+        int totalPages = (int) Math.floor((double) totalItems / itemsPerPage);
+        int currentPage = page;
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("itemsPerPage", itemsPerPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("list",list);
+        model.addAttribute("dh",new DonHang());
+        return "admin/don-hang-chi-tiet/dahuy";
+
+    }
     @PostMapping("/update/{donHangChiTietID}")
     public String update(@Valid @ModelAttribute("dhct")DonHangChiTiet donHangChiTiet){
         List<DonHang> listDH = donHangService.getAll();

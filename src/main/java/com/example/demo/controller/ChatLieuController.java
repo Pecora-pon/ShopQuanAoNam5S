@@ -63,7 +63,8 @@ public class ChatLieuController {
     public String search(Model model,
                          @RequestParam("keyword") String keyword){
         List<ChatLieu> chatLieuList = chatLieuService.findTen(keyword);
-        model.addAttribute("cl",chatLieuList);
+        model.addAttribute("listChatLieu",chatLieuList);
+        model.addAttribute("cl",new ChatLieu());
         return "sanpham/chatlieu";
     }
     @RequestMapping("/chat-lieu/page")
