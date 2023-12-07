@@ -2,7 +2,10 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.ChatLieu;
 import com.example.demo.entity.NhaCungCap;
+import com.example.demo.entity.SanPham;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -13,6 +16,8 @@ import java.util.List;
 
 @Repository
 public interface NhaCungCapRepository extends JpaRepository<NhaCungCap,Integer> {
+    boolean existsByTenNhaCungCap(String tenNhaCungCap);
+    Page<NhaCungCap> findByTrangThai(Integer tinhTrang, Pageable pageable);
     @Query("Select n from NhaCungCap n Where n.tenNhaCungCap like :keyword or n.email like :keyword or n.diaChi like :keyword ")
     List<NhaCungCap> searchBy(@Param("keyword")String keyword);
     @Query("Select n from NhaCungCap n order by n.nhaCungCapID desc ")

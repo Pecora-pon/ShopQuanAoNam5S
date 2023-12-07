@@ -2,8 +2,11 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.DonHangChiTiet;
 import com.example.demo.entity.GioHang;
+import com.example.demo.entity.SanPham;
 import jakarta.transaction.Transactional;
 import jakarta.validation.Valid;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,6 +18,7 @@ import java.util.List;
 import java.util.UUID;
 @Repository
 public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Integer> {
+    Page<DonHangChiTiet> findByTrangThai(Integer tinhTrang, Pageable pageable);
     @Query("select p from DonHangChiTiet p WHERE p.donHang.khachHang.username =:username and p.trangThai =0 order by p.donHangChiTietID desc")
     List<DonHangChiTiet>findByDonHang_KhachHang_Username(String username);
     @Query("select p from DonHangChiTiet p WHERE p.donHang.khachHang.username =:username and p.trangThai =1 order by p.donHangChiTietID desc")
@@ -32,6 +36,7 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     @Query("select p from DonHangChiTiet p where p.tongTien =:tongTien")
     List<DonHangChiTiet> findByTongTien(@Param("tongTien") Float tongTien);
     List<DonHangChiTiet> findByDonHang_DonHangID(UUID id);
+
     @Transactional
     @Modifying
     @Query(value = "Update DonHangChiTiet set trangThai = 1 where donHangID =:donHangID",nativeQuery = true)

@@ -3,6 +3,8 @@ package com.example.demo.repository;
 import com.example.demo.entity.ChatLieu;
 import com.example.demo.entity.SanPham;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -15,7 +17,8 @@ import java.util.UUID;
 
 @Repository
 public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
-
+    boolean existsByTenSanPham(String tenSanPham);
+    Page<SanPham> findByTinhTrang(Integer tinhTrang, Pageable pageable);
     @Query("SELECT sp FROM SanPham sp WHERE sp.thuongHieu LIKE %?1%")
     List<SanPham> findByThuongHieuID(String thuongHieuID);
 
@@ -57,9 +60,9 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     List<SanPham>findBySanPhamID(UUID sanPhamID);
     @Transactional
     @Modifying
-    @Query(value = "Update SanPham set trangThai = 1 where sanPhamID =:sanPhamID",nativeQuery = true)
+    @Query(value = "Update SanPham set tinhTrang = 1 where sanPhamID =:sanPhamID",nativeQuery = true)
     void deleteByI(@Param("sanPhamID") UUID sanPhamID);
-    @Query(value = "select * from SanPham p WHERE p.trangThai =0 order by p.sanPhamID desc",nativeQuery = true)
+    @Query(value = "select * from SanPham p WHERE p.tinhTrang =0 order by p.sanPhamID desc",nativeQuery = true)
     List<SanPham> getAll();
 
 

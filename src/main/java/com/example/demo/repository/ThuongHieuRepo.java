@@ -2,8 +2,11 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.ChatLieu;
 import com.example.demo.entity.MauSac;
+import com.example.demo.entity.Size;
 import com.example.demo.entity.ThuongHieu;
 import jakarta.transaction.Transactional;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -14,6 +17,8 @@ import java.util.List;
 
 @Repository
 public interface ThuongHieuRepo extends JpaRepository<ThuongHieu,Integer> {
+    boolean existsByTenThuongHieu(String tenThuongHieu);
+    Page<ThuongHieu> findByTrangThai(Integer tinhTrang, Pageable pageable);
     @Query("Select th from ThuongHieu th where th.tenThuongHieu like %?1%")
     List<ThuongHieu> searchBy(String keyword);
     @Query("Select th from ThuongHieu th where th.tenThuongHieu =:tenThuongHieu")
