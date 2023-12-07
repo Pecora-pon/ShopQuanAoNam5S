@@ -240,28 +240,28 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="/mau-sac" class="menu-link">
                                 <div data-i18n="Accordion">Màu sắc</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="/size" class="menu-link">
                                 <div data-i18n="Accordion">Size</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
-                                <div data-i18n="Accordion">Danh mục</div>
+                            <a href="/chat-lieu" class="menu-link">
+                                <div data-i18n="Accordion">Chất liêu</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="/thuong-hieu" class="menu-link">
                                 <div data-i18n="Accordion">Thương hiệu</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
-                                <div data-i18n="Accordion">Hình ảnh</div>
+                            <a href="/nha-cung-cap" class="menu-link">
+                                <div data-i18n="Accordion">Nhà cung cấp</div>
                             </a>
                         </li>
                     </ul>
@@ -269,7 +269,7 @@
 
                 <!-- Extended components -->
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/san-pham" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
@@ -306,7 +306,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/trang-chu/login" class="menu-link">
+                            <a href="/khach-hang" class="menu-link">
                                 <div data-i18n="Basic Inputs">Quản lý khách hàng</div>
                             </a>
                         </li>
@@ -336,7 +336,7 @@
                 <li class="menu-header small text-uppercase"><span
                         class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/thongke" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Thống kê</div>
                     </a>
@@ -356,7 +356,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="/hien-thi" class="menu-link">
                                 <div data-i18n="Vertical Form">Danh sách đơn hàng</div>
                             </a>
                         </li>
@@ -364,7 +364,7 @@
                     </ul>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="/hien-thi" class="menu-link">
                                 <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
                             </a>
                         </li>
@@ -381,7 +381,7 @@
 
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/long" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-car"></i>
                         <div data-i18n="Analytics">Vận chuyển</div>
                     </a>
@@ -398,7 +398,7 @@
 
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/logout" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-door-open"></i>
                         <div data-i18n="Analytics">Log out</div>
                     </a>
@@ -505,7 +505,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="auth-login-basic.html">
+                                    <a class="dropdown-item" href="/logout">
                                         <i class="bx bx-power-off me-2"></i>
                                         <span class="align-middle">Log Out</span>
                                     </a>
@@ -537,18 +537,22 @@
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Sản Phẩm</label>
                                         <form:input class="form-control" path="tenSanPham" value="${sp.tenSanPham}"/>
+                                        <form:errors path="tenSanPham"/>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Mô Ta</label>
                                         <form:input class="form-control" path="moTa" value="${sp.moTa}"/>
+                                        <form:errors path="moTa"/>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Giá Sản Phẩm</label>
                                         <form:input class="form-control" path="giaSanPham" value="${sp.giaSanPham}"/>
+                                        <form:errors path="giaSanPham"/>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Số lượng tồn</label>
                                         <form:input class="form-control" path="soLuongTon" value="${sp.soLuongTon}"/>
+                                        <form:errors path="soLuongTon"/>
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tình Trạng</label>
@@ -561,6 +565,7 @@
                                             <form:option value="" label="Chọn Màu Sắc"/>
                                             <form:options items="${listMauSac}" itemValue="mauSacID"
                                                           itemLabel="tenMauSac"/>
+                                            <form:errors path="mauSac"/>
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
@@ -568,6 +573,7 @@
                                         <form:select path="size.sizeID" class="form-control">
                                             <form:option value="" label="Chọn Size"/>
                                             <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
+                                            <form:errors path="size"/>
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
@@ -576,6 +582,7 @@
                                             <form:option value="" label="Chọn Chất Liệu"/>
                                             <form:options items="${listChatLieu}" itemValue="chatLieuID"
                                                           itemLabel="tenChatLieu"/>
+                                            <form:errors path="chatLieu"/>
                                         </form:select>
                                     </div>
 
@@ -585,6 +592,7 @@
                                             <form:option value="" label="Chọn thương Hiệu"/>
                                             <form:options items="${listThuongHieu}" itemValue="thuongHieuID"
                                                           itemLabel="tenThuongHieu"/>
+                                            <form:errors path="thuongHieu"/>
                                         </form:select>
                                     </div>
 
@@ -746,7 +754,7 @@
                                     <td>${sanpham.size.tenSize}</td>
                                     <td>${sanpham.chatLieu.tenChatLieu}</td>
                                     <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                    <td>  <img src="getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;">
+                                    <td>  <img src="/getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;">
                                              </td>
 
                                     <td>
