@@ -747,8 +747,8 @@
                                     <td>${sanpham.moTa}</td>
                                     <td>${sanpham.giaSanPham}</td>
                                     <td>${sanpham.soLuongTon}</td>
-                                    <td> <c:if test="${sanpham.tinhTrang == 0}"> Hết </c:if>
-                                        <c:if test="${sanpham.tinhTrang == 1}"> Còn Hàng</c:if></td>
+                                    <td> <c:if test="${sanpham.tinhTrang == 0}"> Còn Hàng </c:if>
+                                        <c:if test="${sanpham.tinhTrang == 1}"> Hết</c:if></td>
 
                                     <td>${sanpham.mauSac.tenMauSac}</td>
                                     <td>${sanpham.size.tenSize}</td>
