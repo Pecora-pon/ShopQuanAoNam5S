@@ -14,6 +14,7 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.UUID;
 
 @Entity
@@ -49,6 +50,7 @@ public class DonHangChiTiet {
     @Column(name = "TongTien")
     private Float tongTien;
 
-
+    @Column(name= "NgayNhan")
+    private LocalDate ngayNhan;
 }
 
