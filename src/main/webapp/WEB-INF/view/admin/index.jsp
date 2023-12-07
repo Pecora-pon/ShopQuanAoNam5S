@@ -248,8 +248,8 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
-                                <div data-i18n="Accordion">Danh mục</div>
+                            <a href="/chat-lieu" class="menu-link">
+                                <div data-i18n="Accordion">Chất liêu</div>
                             </a>
                         </li>
                         <li class="menu-item">
@@ -258,8 +258,8 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
-                                <div data-i18n="Accordion">Hình ảnh</div>
+                            <a href="/nha-cung-cap" class="menu-link">
+                                <div data-i18n="Accordion">Nhà cung cấp</div>
                             </a>
                         </li>
                     </ul>
@@ -267,7 +267,7 @@
 
                 <!-- Extended components -->
                 <li class="menu-item">
-                    <a href="/list-san-pham" class="menu-link">
+                    <a href="/san-pham" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
@@ -304,7 +304,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/trang-chu/login" class="menu-link">
+                            <a href="/khach-hang" class="menu-link">
                                 <div data-i18n="Basic Inputs">Quản lý khách hàng</div>
                             </a>
                         </li>
@@ -317,7 +317,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="/nhan-vien" class="menu-link">
                                 <div data-i18n="Vertical Form">Quản lý nhân viên</div>
                             </a>
                         </li>
@@ -334,7 +334,7 @@
                 <li class="menu-header small text-uppercase"><span
                         class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/thongke" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Thống kê</div>
                     </a>
@@ -354,7 +354,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="/hien-thi" class="menu-link">
                                 <div data-i18n="Vertical Form">Danh sách đơn hàng</div>
                             </a>
                         </li>
@@ -362,7 +362,7 @@
                     </ul>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="/hien-thi" class="menu-link">
                                 <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
                             </a>
                         </li>
@@ -379,7 +379,7 @@
 
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/long" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-car"></i>
                         <div data-i18n="Analytics">Vận chuyển</div>
                     </a>
@@ -396,7 +396,7 @@
 
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/logout" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-door-open"></i>
                         <div data-i18n="Analytics">Log out</div>
                     </a>
@@ -503,7 +503,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="auth-login-basic.html">
+                                    <a class="dropdown-item" href="/logout">
                                         <i class="bx bx-power-off me-2"></i>
                                         <span class="align-middle">Log Out</span>
                                     </a>
