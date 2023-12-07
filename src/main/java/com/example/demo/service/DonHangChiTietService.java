@@ -16,7 +16,10 @@ public interface DonHangChiTietService {
     void add(DonHangChiTiet donHangChiTiet);
 
     Page<DonHangChiTiet> getPage(int pageNumber, int pageSize);
-
+    Page<DonHangChiTiet> getPage1(int pageNumber, int pageSize);
+    Page<DonHangChiTiet> getPage2(int pageNumber, int pageSize);
+    Page<DonHangChiTiet> getPage3(int pageNumber, int pageSize);
+    Page<DonHangChiTiet> getPage4(int pageNumber, int pageSize);
     void delete(Integer donHangChiTietID);
 
     List<DonHangChiTiet> findTenKhachHang(String keyword);

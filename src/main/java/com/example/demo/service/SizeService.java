@@ -20,6 +20,6 @@ public interface SizeService {
 
     List<Size> findSize(String keyword);
     Page<Size> getPage(int pageNumber,int pageSize);
-    Page<Size> page(int page);
+
 
 }
