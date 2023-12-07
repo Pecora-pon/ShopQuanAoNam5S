@@ -85,7 +85,7 @@ private boolean isInteger(int str){
 
     @Override
     public void delete(Integer nhapKhoID) {
-     nhapKhoRepository.deleteById(nhapKhoID);
+     nhapKhoRepository.deleteByI(nhapKhoID);
     }
 
     @Override
@@ -96,7 +96,7 @@ private boolean isInteger(int str){
     @Override
     public Page<NhapKho> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
-        return nhapKhoRepository.findAll(pageable);
+        return nhapKhoRepository.findByTrangThai(0,pageable);
     }
 
     @Override

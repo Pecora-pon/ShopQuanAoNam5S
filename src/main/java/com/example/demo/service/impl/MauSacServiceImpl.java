@@ -18,7 +18,7 @@ public class MauSacServiceImpl implements MauSacService {
 
     @Override
     public List<MauSac> getAll() {
-        return mauSacRepo.getAl();
+        return mauSacRepo.getAlll();
     }
 
     @Override
@@ -27,11 +27,16 @@ public class MauSacServiceImpl implements MauSacService {
         String tenMauSac= mauSac.getTenMauSac().trim();
 
         if(tenMauSac!=null){
+
             if (mauSac.getTenMauSac() != null && !mauSac.getTenMauSac().isEmpty()) {
+                if(mauSacRepo.existsByTenMauSac(mauSac.getTenMauSac())){
+                    respon.setError("Tên Màu Sắc đã tồn tại. Vui lòng chọn tên khác");
+                }else {
                 mauSac.setTenMauSac(tenMauSac);
                 mauSac.setTrangThai(0);
                 mauSacRepo.save(mauSac);
                 respon.setStatus("Thành công");
+            }
             } else {
                 respon.setError("Tên đang bị sai");
             }
@@ -56,7 +61,7 @@ public class MauSacServiceImpl implements MauSacService {
 
     @Override
     public void delete(Integer mauSacID) {
-     mauSacRepo.deleteById(mauSacID);
+     mauSacRepo.deleteByI(mauSacID);
     }
 
     @Override
@@ -72,6 +77,6 @@ public class MauSacServiceImpl implements MauSacService {
     @Override
     public Page<MauSac> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
-        return mauSacRepo.findAll(pageable);
+        return mauSacRepo.findByTrangThai(0,pageable);
     }
 }

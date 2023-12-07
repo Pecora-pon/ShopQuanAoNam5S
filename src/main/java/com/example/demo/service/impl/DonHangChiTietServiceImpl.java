@@ -39,7 +39,31 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     @Override
     public Page<DonHangChiTiet> getPage(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return donHangChiTietRepo.findAll(pageable);
+        return donHangChiTietRepo.findByTrangThai(0,pageable);
+    }
+
+    @Override
+    public Page<DonHangChiTiet> getPage1(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return donHangChiTietRepo.findByTrangThai(1,pageable);
+    }
+
+    @Override
+    public Page<DonHangChiTiet> getPage2(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return donHangChiTietRepo.findByTrangThai(2,pageable);
+    }
+
+    @Override
+    public Page<DonHangChiTiet> getPage3(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return donHangChiTietRepo.findByTrangThai(3,pageable);
+    }
+
+    @Override
+    public Page<DonHangChiTiet> getPage4(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return donHangChiTietRepo.findByTrangThai(4,pageable);
     }
 
     @Override
@@ -143,6 +167,11 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     @Override
     public void chuyensangxn(UUID id) {
        donHangChiTietRepo.chuyensangxn(id);
+       List<DonHangChiTiet>list=donHangChiTietRepo.findById(id);
+       for (DonHangChiTiet dhct:list){
+           dhct.setNgayNhan(LocalDate.now());
+           donHangChiTietRepo.save(dhct);
+       }
     }
 
     @Override

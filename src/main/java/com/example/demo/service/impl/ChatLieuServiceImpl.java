@@ -28,19 +28,20 @@ public class ChatLieuServiceImpl implements ChatLieuService {
     public Respon<ChatLieu> add(ChatLieu chatLieu) {
         Respon<ChatLieu>repon=new Respon<>();
         String tenChatLieu=chatLieu.getTenChatLieu().trim();
-        ChatLieu ten=chatLieuRepository.searchtencl(tenChatLieu);
-        if(ten==null){
-            repon.setError("Tên đã tồn tại");
-        }else {
+
             if (chatLieu.getTenChatLieu() != null && !chatLieu.getTenChatLieu().isEmpty()) {
-                chatLieu.setTrangThai(0);
-                chatLieu.setTenChatLieu(tenChatLieu);
-                chatLieuRepository.save(chatLieu);
-                repon.setStatus("Thành công");
+                if(chatLieuRepository.existsByTenChatLieu(chatLieu.getTenChatLieu())){
+                    repon.setError("tên đã tồn tại");
+                }else {
+                    chatLieu.setTrangThai(0);
+                    chatLieu.setTenChatLieu(tenChatLieu);
+                    chatLieuRepository.save(chatLieu);
+                    repon.setStatus("Thành công");
+                }
             } else {
                 repon.setError("Tên không được để trông");
             }
-        }
+
         return repon;
     }
 
@@ -61,7 +62,7 @@ public class ChatLieuServiceImpl implements ChatLieuService {
 
     @Override
     public void delete(Integer chatLieuID) {
-    chatLieuRepository.deleteById(chatLieuID);
+    chatLieuRepository.deleteByI(chatLieuID);
     }
 
     @Override
@@ -77,6 +78,6 @@ public class ChatLieuServiceImpl implements ChatLieuService {
     @Override
     public Page<ChatLieu> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
-        return chatLieuRepository.findAll(pageable);
+        return chatLieuRepository.findByTrangThai(0,pageable);
     }
 }

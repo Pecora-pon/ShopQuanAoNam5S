@@ -19,26 +19,27 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
 
     @Override
     public List<ThuongHieu> getAll() {
-        return thuongHieuRepo.getAl();
+        return thuongHieuRepo.getAll();
     }
 
     @Override
     public Respon<ThuongHieu> add(ThuongHieu thuongHieu) {
         Respon<ThuongHieu> respon=new Respon<>();
         String tenThuongHieu=thuongHieu.getTenThuongHieu().trim();
-        ThuongHieu ten=thuongHieuRepo.searchByten(tenThuongHieu);
-        if(ten==null){
-            respon.setError("Tên đã tồn tại");
-        }else {
+
             if (thuongHieu.getTenThuongHieu() != null && !thuongHieu.getTenThuongHieu().isEmpty()) {
-                thuongHieu.setTenThuongHieu(tenThuongHieu);
-                thuongHieu.setTrangThai(0);
-                thuongHieuRepo.save(thuongHieu);
-                respon.setStatus("Thành công");
+                if(thuongHieuRepo.existsByTenThuongHieu(thuongHieu.getTenThuongHieu())){
+                    respon.setError("Tên đã tồn tại");
+                }else {
+                    thuongHieu.setTenThuongHieu(tenThuongHieu);
+                    thuongHieu.setTrangThai(0);
+                    thuongHieuRepo.save(thuongHieu);
+                    respon.setStatus("Thành công");
+                }
             } else {
                 respon.setError("Tên đang bị sai");
             }
-        }
+
         return respon;
     }
 
@@ -59,7 +60,7 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
 
     @Override
     public void delete(Integer thuongHieuID) {
-    thuongHieuRepo.deleteById(thuongHieuID);
+    thuongHieuRepo.deleteByI(thuongHieuID);
     }
 
     @Override
@@ -75,6 +76,6 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
     @Override
     public Page<ThuongHieu> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
-        return thuongHieuRepo.findAll(pageable);
+        return thuongHieuRepo.findByTrangThai(0,pageable);
     }
 }

@@ -29,10 +29,14 @@ public class SizeServiceImpl implements SizeService {
 
 
             if (size.getTenSize() != null && !size.getTenSize().isEmpty()) {
-                size.setTenSize(tenSize);
-                size.setTrangThai(0);
-                sizeRepo.save(size);
-                respon.setStatus("Thành công");
+                if(sizeRepo.existsByTenSize(size.getTenSize())){
+                    respon.setError("Tên không đã tồn tại");
+                }else {
+                    size.setTenSize(tenSize);
+                    size.setTrangThai(0);
+                    sizeRepo.save(size);
+                    respon.setStatus("Thành công");
+                }
             } else {
                 respon.setError("Tên không đúng");
             }
@@ -57,7 +61,7 @@ public class SizeServiceImpl implements SizeService {
 
     @Override
     public void delete(Integer sizeID) {
-sizeRepo.deleteByI(sizeID);
+ sizeRepo.deleteByI(sizeID);
     }
 
     @Override
@@ -73,13 +77,13 @@ sizeRepo.deleteByI(sizeID);
     @Override
     public Page<Size> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
-        return sizeRepo.findAll(pageable);
+        return sizeRepo.findByTrangThai(0,pageable);
     }
 
-    @Override
-    public Page<Size> page(int page) {
-        Pageable pageable=PageRequest.of(page,2);
-        return sizeRepo.findAll(pageable);
-    }
+//    @Override
+//    public Page<Size> page(int page) {
+//        Pageable pageable=PageRequest.of(page,2);
+//        return sizeRepo.findAll(pageable);
+//    }
 
 }

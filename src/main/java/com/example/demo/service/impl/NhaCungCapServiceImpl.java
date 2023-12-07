@@ -21,7 +21,7 @@ public class NhaCungCapServiceImpl implements NhaCungCapService {
 
     @Override
     public List<NhaCungCap> getAll() {
-        return nhaCungCapRepository.getAl();
+        return nhaCungCapRepository.getAll();
     }
 
     @Override
@@ -42,12 +42,17 @@ public class NhaCungCapServiceImpl implements NhaCungCapService {
 
                 // Kiểm tra định dạng email
                 if (isValidEmail(email)) {
-                    nhaCungCap.setTenNhaCungCap(tenNhaCungCap);
-                    nhaCungCap.setEmail(email);
-                    nhaCungCap.setDiaChi(diaChi);
-                    nhaCungCap.setTrangThai(0);
-                    nhaCungCapRepository.save(nhaCungCap);
-                    respon.setStatus("Thành công");
+                    if (nhaCungCapRepository.existsByTenNhaCungCap(nhaCungCap.getTenNhaCungCap())) {
+                        respon.setError("Tên Đã tồn tại");
+                    } else {
+                        nhaCungCap.setTenNhaCungCap(tenNhaCungCap);
+                        nhaCungCap.setEmail(email);
+                        nhaCungCap.setDiaChi(diaChi);
+                        nhaCungCap.setTrangThai(0);
+                        nhaCungCapRepository.save(nhaCungCap);
+                        respon.setStatus("Thành công");
+                    }
+
                 } else {
                     respon.setError("Email không hợp lệ.");
                 }
@@ -108,6 +113,6 @@ public class NhaCungCapServiceImpl implements NhaCungCapService {
     @Override
     public Page<NhaCungCap> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
-        return nhaCungCapRepository.findAll(pageable);
+        return nhaCungCapRepository.findByTrangThai(0,pageable);
     }
 }
