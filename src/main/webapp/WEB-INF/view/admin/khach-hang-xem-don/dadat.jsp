@@ -233,7 +233,7 @@
                         <td scope="row">${i.index+1}</td>
                         <td>${dhct.donHang.donHangID}</td>
                             <%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
-                        <td>  <img src="getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
+                        <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                         </td>
                         <td>${dhct.sanPham.tenSanPham}</td>
                         <td>${dhct.soLuong}</td>
@@ -279,6 +279,20 @@
                 </div>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:forEach begin="0" end="${totalPages}" var="page">
+                        <c:choose>
+                            <c:when test="${page == currentPage}">
+                                <li class="page-item active"><span class="page-link">${page}</span></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item"><a class="page-link" href="/khach-hang-xem/page?page=${page}">${page}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </ul>
+            </nav>
         </div>
         <script>
             // Updated function to handle confirmation and redirection

@@ -233,7 +233,7 @@
                         <td scope="row">${i.index+1}</td>
                         <td>${dhct.donHang.donHangID}</td>
                             <%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
-                        <td>  <img src="getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
+                        <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                         </td>
                         <td>${dhct.sanPham.tenSanPham}</td>
                         <td>${dhct.soLuong}</td>
@@ -248,9 +248,10 @@
                         <td>${dhct.lyDoHuy}</td>
                         <td>${dhct.tongTien}</td>
                         <td>
-                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>
+<%--                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
 <%--                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-
+    <a class="dropdown-item" href="/khxacnhan/${dhct.donHang.donHangID}"><i
+            class="bx bx-edit-alt me-1"></i> Xác Nhận</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -279,6 +280,20 @@
                 </div>
                 </tbody>
             </table>
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <c:forEach begin="0" end="${totalPages}" var="page">
+                        <c:choose>
+                            <c:when test="${page == currentPage}">
+                                <li class="page-item active"><span class="page-link">${page}</span></li>
+                            </c:when>
+                            <c:otherwise>
+                                <li class="page-item"><a class="page-link" href="/khach-hang-xem/page2?page=${page}">${page}</a></li>
+                            </c:otherwise>
+                        </c:choose>
+                    </c:forEach>
+                </ul>
+            </nav>
         </div>
         <script>
             // Updated function to handle confirmation and redirection
