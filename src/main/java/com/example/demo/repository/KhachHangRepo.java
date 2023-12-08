@@ -21,6 +21,8 @@ public interface KhachHangRepo extends JpaRepository<KhachHang,Integer> {
 
     KhachHang findByUsername(String username);
     Optional<KhachHang> findByEmail( String email);
+
+    Optional<KhachHang> findBySoDienThoai(String soDienThoai);
     KhachHang findByemail(String email);
     KhachHang findByResetPasswordToken(String token);
 }
