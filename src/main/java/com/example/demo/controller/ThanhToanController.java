@@ -1,19 +1,30 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.DonHangPDF;
 import com.example.demo.config.VNPayService;
 import com.example.demo.entity.*;
 import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.service.*;
 import com.example.demo.service.impl.GiamGiaChiTietServiceImpl;
 import com.example.demo.service.impl.GioHangImpl;
+import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.ByteArrayResource;
+import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.security.Principal;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.UUID;
@@ -34,6 +45,9 @@ public class ThanhToanController {
    SanPhamService sanPhamService;
     @Autowired
     ThongTinVanChuyenService thongTinVanChuyenService;
+    @Autowired
+    JavaMailSender mailSender;
+
     @GetMapping("/thanh-toan")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String thanhtoan(Principal principal, Model model){
@@ -65,12 +79,37 @@ public class ThanhToanController {
         return "shop/thanh-toan";
    }
    @PostMapping("/themmoi")
-    public String themmoi(@ModelAttribute("t") DonHang donHang,@RequestParam("gioHangID[]")List<Integer>  giohangID,@RequestParam("amount") float tt,Model model,Principal principal){
+    public String themmoi(@RequestParam("email")String email, @RequestParam("hoTen")String hoTen, @ModelAttribute("t") DonHang donHang, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") float tt, Model model, Principal principal, HttpServletResponse response)throws MessagingException, IOException {
         String logname=principal.getName();
+//       response.setContentType("application/pdf");
+//        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+//        String currentDateTime = dateFormatter.format(new Date());
+//
+//        String headerKey = "Content-Disposition";
+//        String headerValue = "attachment; filename=users_" + currentDateTime + ".pdf";
+//        response.setHeader(headerKey, headerValue);
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
        DonHang donHang1= thanhToanService.themmoi(donHang,giohangID,tt);
         model.addAttribute("t",donHang1);
+//        DonHangPDF donHangPDF = new DonHangPDF();
+//       byte[] pdfDonHang = donHangPDF.exportpdf(donHang);
+       String donhanggg="http://localhost:8080/detail/"+donHang.getDonHangID();
+       MimeMessage message = mailSender.createMimeMessage();
+       MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
+       helper.setTo(email);
+       String subject = "Bạn đã đặt hàng thành công";
+
+       String content = "<p>Xin chào "+hoTen+",</p>" + "<p>Bạn đã đặt hàng thành công</p>"
+               + "<p>Nhấp vào liên kết bên dưới để xem thông tin đơn hàng của bạn:</p>" + "<p><a href=\"" + donhanggg
+               + "\">Xem đơn hàng</a></p>" + "<br>"
+               + "<p>Cảm ơn bạn đã mua sản phẩm bên 5SFashion</p> ";
+
+       helper.setSubject(subject);
+       helper.setText(content,true);
+//       helper.addAttachment("donhang_" + currentDateTime + ".pdf",new ByteArrayResource(pdfDonHang));
+
+       mailSender.send(message);
         return "shop/thong-bao";
    }
    @GetMapping("/themngay/{sanPhamID}")
