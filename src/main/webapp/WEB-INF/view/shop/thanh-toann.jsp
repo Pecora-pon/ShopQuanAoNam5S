@@ -212,16 +212,56 @@
                     </li>
                 </ul>
 
-
+                <style>
+                    .sotiengiam-label {
+                        font-weight: bold;
+                        color: #007BFF; /* Màu sắc tùy chọn */
+                        margin-top: 10px; /* Khoảng cách giữa select box và label, tùy chỉnh theo nhu cầu */
+                        display: block; /* Hiển thị label dưới dạng block để nó xuống dòng */
+                    }
+                </style>
                 <div class="input-group">
-                    <select name="giamGia.giamGiaID" class="form-control">
-                        <option value="" label="Chọn Giảm Giá"/>
-                        <c:forEach var="giamGia" items="${listGiamGia}">
-                            <option value="${giamGia.giamGiaID}">${giamGia.maGiamGia}</option>
-                        </c:forEach>
-                    </select>
-                </div>
+                <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this)">
+                    <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>
+                    <c:forEach var="giamGia" items="${listGiamGia}">
+                        <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia}</option>
+                    </c:forEach>
+                </select>
+                    <br>
 
+                <label for="giamGiaSelect" class="sotiengiam-label"></label>
+            </div>
+
+                <script>
+                    function updateSoTienGiam(selectElement) {
+                        // Get the selected option value using this.value
+                        var selectedGiamGiaID = selectElement.value;
+
+                        // Fetch all data attributes from the selected option
+                        var allDataAttributes = $(`#giamGiaSelect option:selected`).data();
+
+                        console.log('All Data Attributes:', allDataAttributes);
+
+                        // Fetch the corresponding soTienGiam value from the data attribute
+                        var soTienGiam = allDataAttributes.sotiengiam;
+
+                        console.log('Selected GiamGiaID:', selectedGiamGiaID);
+                        console.log('soTienGiam:', soTienGiam);
+
+                        // Get the label element
+                        var labelElement = $('.sotiengiam-label');
+
+                        // Update the label with the fetched soTienGiam value
+                        labelElement.text("Giảm Giá:  -"+soTienGiam);
+
+                        // Show or hide the label based on whether a discount is selected
+                        if (soTienGiam !== undefined) {
+                            labelElement.show();
+                        } else {
+                            labelElement.hide();
+                        }
+                    }
+                </script>
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Thông tin khách hàng</h4>
