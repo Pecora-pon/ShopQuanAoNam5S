@@ -34,38 +34,49 @@ public class KhService {
     public Respon<KhachHang> addKH(KhachHang khachHang, HttpServletRequest request)throws MessagingException {
         khachHang.setChucVu("ROLE_USER");
         Respon<KhachHang> respon=new Respon<>();
-        if(!khachHang.getUsername().isEmpty() || !khachHang.getEmail().isEmpty()||!khachHang.getPassword().isEmpty()){
-            if(isValidEmail(khachHang.getEmail())){
-                if(!khachHangRepo.findByusername(khachHang.getUsername()).isPresent()){
-                    if(!khachHangRepo.findByEmail(khachHang.getEmail()).isPresent()){
-                        khachHang.setPassword(passwordEncoder.encode(khachHang.getPassword()));
-                        MimeMessage message = mailSender.createMimeMessage();
-                        MimeMessageHelper helper = new MimeMessageHelper(message,"UTF-8");
+        if(!khachHang.getUsername().isEmpty() || !khachHang.getEmail().isEmpty()||!khachHang.getPassword().isEmpty()||!khachHang.getHoTen().isEmpty()||!khachHang.getSoDienThoai().isEmpty()){
+            if(isvalidate(request.getParameter("password"))){
+              if(isvalidSDT(request.getParameter("soDienThoai"))){
+                  if(isValidEmail(khachHang.getEmail())){
+                      if(!khachHangRepo.findBySoDienThoai(khachHang.getSoDienThoai()).isPresent()){
+                          if(!khachHangRepo.findByusername(khachHang.getUsername()).isPresent()){
+                              if(!khachHangRepo.findByEmail(khachHang.getEmail()).isPresent()){
+                                  khachHang.setPassword(passwordEncoder.encode(khachHang.getPassword()));
+                                  MimeMessage message = mailSender.createMimeMessage();
+                                  MimeMessageHelper helper = new MimeMessageHelper(message,"UTF-8");
 
-                        helper.setTo(khachHang.getEmail());
-                        String subject = "Đây là mail xác nhận đăng ký tài khoản của bạn đã thành công";
+                                  helper.setTo(khachHang.getEmail());
+                                  String subject = "Đây là mail xác nhận đăng ký tài khoản của bạn đã thành công";
 
-                        String content = "<p>Chào bạn " +khachHang.getHoTen()+", </p>"+ "<p>Bạn đã đăng ký thành công tài khoản của mình.</p>"
-                                + "<p>Cảm ơn bạn đã tin tưởng 5sOnline, "
-                                + "hãy đăng nhập và đặt mua chiếc áo mà bạn thích ngay nào!!!</p>"
-                                +"<p>Đây là thông tin đăng nhập của bạn</p>"
-                                +"<p>Tài khoản: "+khachHang.getUsername()+"</p>"
-                                +"<p>Mật khẩu: "+request.getParameter("password")+"</p>";
-                        helper.setSubject(subject);
-                        helper.setText(content,true);
-                        mailSender.send(message);
-                        khachHangRepo.save(khachHang);
-                        respon.setStatus("Đăng kí thành công ");
-                    }else{
-                        respon.setError("Email đã đăng kí");
-                    }
-                }else {
-                    respon.setError("Tên đăng nhập đã tồn tại");
-                }
-            }else{
-                respon.setError("Vui lòng nhập email đúng định dạng");
+                                  String content = "<p>Chào bạn " +khachHang.getHoTen()+", </p>"+ "<p>Bạn đã đăng ký thành công tài khoản của mình.</p>"
+                                          + "<p>Cảm ơn bạn đã tin tưởng 5sOnline, "
+                                          + "hãy đăng nhập và đặt mua chiếc áo mà bạn thích ngay nào!!!</p>"
+                                          +"<p>Đây là thông tin đăng nhập của bạn</p>"
+                                          +"<p>Tài khoản: "+khachHang.getUsername()+"</p>"
+                                          +"<p>Mật khẩu: "+request.getParameter("password")+"</p>";
+                                  helper.setSubject(subject);
+                                  helper.setText(content,true);
+                                  mailSender.send(message);
+                                  khachHangRepo.save(khachHang);
+                                  respon.setStatus("Đăng kí thành công ");
+                              }else{
+                                  respon.setError("Email đã đăng kí");
+                              }
+                          }else {
+                              respon.setError("Tên đăng nhập đã tồn tại");
+                          }
+                      }else {
+                          respon.setError("Số điện thoại đã đăng kí");
+                      }
+                  }else{
+                      respon.setError("Vui lòng nhập email đúng định dạng");
+                  }
+              }else {
+                  respon.setError("Vui lòng nhập số điện thoại đúng định dạng");
+              }
+            }else {
+                respon.setError("Mật khẩu có ít nhất 8 ký tự, bao gồm ít nhất một chữ cái viết thường, một chữ cái viết hoa, và một số và không để khoảng trắng");
             }
-
         }else {
             respon.setError("Vui lòng nhập đẩy đủ dữ liệu");
         }
@@ -112,6 +123,21 @@ public class KhService {
         Pattern pattern = Pattern.compile(emailRegex);
         Matcher matcher = pattern.matcher(email);
         return matcher.matches();
+
+    }
+    private boolean isvalidate(String matkhau){
+         String matkhauregex ="^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)\\P{Z}{8,}$";
+         Pattern pattern = Pattern.compile(matkhauregex);
+         Matcher matcher= pattern.matcher(matkhau);
+         return matcher.matches();
+
+    }
+    private boolean isvalidSDT(String soDienThoai){
+        String sdtRegex = "^\\+?[0-9]{1,4}[-.\\s]?[0-9]{1,14}$";
+        Pattern pattern = Pattern.compile(sdtRegex);
+        Matcher matcher = pattern.matcher(soDienThoai);
+        return matcher.matches();
+
     }
 
     public void updateResetPasswordToken(String token, String email)  {
