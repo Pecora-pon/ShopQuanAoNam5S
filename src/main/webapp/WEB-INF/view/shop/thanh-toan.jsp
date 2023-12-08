@@ -251,10 +251,11 @@
                                value="${tt.email}" readonly="">
                     </div>
 
-                    <div class="col-md-12">
-                        <label>Địa Chỉ</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;">
-                            <option value="" label="Chọn ThongTinVanChuyen"/>
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Địa Chỉ</label>
+                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()">
+                            <option class="form-control" selected="true" disabled="true">Mời bạn chọn địa chỉ</option>
+                            <option value="thong-tin-van-chuyen/page">Thêm địa chỉ mới</option>
                             <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
                                 <option value="${thongTinVanChuyen.thongTinVanChuyenID}">${thongTinVanChuyen.diaChi}</option>
                             </c:forEach>
@@ -402,6 +403,7 @@
             } else if (paymentMethod.value === "2") {
                 form.method = "post";  // Đổi phương thức thành GET
                 form.action = "/submitOrder";
+
                 // Submit the form
                 form.submit();
             }
@@ -427,6 +429,19 @@
         } else {
             // Nếu giá trị không hợp lệ, có thể xử lý theo cách khác hoặc báo lỗi
             console.error("Invalid number format");
+        }
+    }
+</script>
+<script type="text/javascript">
+    function redirectToPage() {
+        var selectedValue = document.getElementById("yourSelect").value;
+        // Assuming selected values correspond to the target page URLs
+        if (selectedValue === "thong-tin-van-chuyen/page") {
+            // Assuming selected values correspond to the target page URLs
+            var targetPageUrl = "/" + selectedValue;
+
+            // Redirect to the selected page
+            window.location.href = targetPageUrl;
         }
     }
 </script>
