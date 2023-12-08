@@ -76,7 +76,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         List<DonHangChiTiet> donHangChiTiets=new ArrayList<>();
         int gg= donHang1.getGiamGia().getGiamGiaID();
         GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
-         if(tt>=2000) {
+         if(tt>=500000) {
              float gia = giamGia.getSoTienGiam();
              for (Integer dh : gioHangID) {
                  GioHang gioHang = gioHangRepo.getById(dh);
@@ -97,10 +97,32 @@ public class ThanhToanServiceImpl implements ThanhToanService {
                  donHangChiTiets.add(donHangChiTiet);
                  sanPhamService.capnhat(sp, sl);
              }
+         }else {
+             float gia = giamGia.getSoTienGiam();
+             for (Integer dh : gioHangID) {
+                 GioHang gioHang = gioHangRepo.getById(dh);
+                 gioHang.getSanPham().getSanPhamID();
+                 UUID sp = gioHang.getSanPham().getSanPhamID();
+                 gioHang.getSoLuongDat();
+
+
+                 float tiendagiam = tt - gia;
+                 int sl = gioHang.getSoLuongDat();
+                 System.out.println(gioHang);
+                 DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
+                 donHangChiTiet.setSoLuong(gioHang.getSoLuongDat());
+                 donHangChiTiet.setDonHang(donHang1);
+                 donHangChiTiet.setTrangThai(0);
+                 donHangChiTiet.setTongTien(tiendagiam + 32000);
+                 donHangChiTiet.setSanPham(gioHang.getSanPham());
+                 donHangChiTiets.add(donHangChiTiet);
+                 sanPhamService.capnhat(sp, sl);
+             }
          }
 
         donHangChiTietRepo.saveAll(donHangChiTiets);
         return donHang1;
+
     }
 
     @Override
@@ -111,7 +133,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         SanPham sanPham1 = sanPhamRepo.findById(sanPham).orElse(null);
         int gg=donHang1.getGiamGia().getGiamGiaID();
         GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
-        if (tt>2000) {
+        if (tt>500000) {
             float gia = giamGia.getSoTienGiam();
             float tiendagiam=tt-gia;
             DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
@@ -123,6 +145,17 @@ public class ThanhToanServiceImpl implements ThanhToanService {
             donHangChiTietRepo.save(donHangChiTiet);
             sanPhamService.capnhat(sanPham, sl);
 //
+        }else {
+            float gia = giamGia.getSoTienGiam();
+            float tiendagiam=tt-gia;
+            DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
+            donHangChiTiet.setSanPham(sanPham1);
+            donHangChiTiet.setSoLuong(sl);
+            donHangChiTiet.setTongTien(tiendagiam + 32000);
+            donHangChiTiet.setTrangThai(0);
+            donHangChiTiet.setDonHang(donHang1);
+            donHangChiTietRepo.save(donHangChiTiet);
+            sanPhamService.capnhat(sanPham, sl);
         }
         return donHang1;
     }
