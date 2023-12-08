@@ -205,19 +205,85 @@
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
                     <li class="list-group-item d-flex justify-content-between">
-                        <input type="text" name="amount" value="${totalPriceLong}" readonly>
+                        <input type="text" value="${totalPriceLong}" readonly>
                     </li>
+
+                    <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
+                    <c:choose>
+                        <c:when test="${totalPriceLong > 500000}">
+                            <!-- Nếu totalPriceLong lớn hơn 500000 -->
+                            <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}" />
+                            <p>Phí ship : 0đ</p>
+                            <li class="list-group-item d-flex justify-content-between">
+                               Tổng tiền: <input type="text" name="amount" value="${updatedTotalPriceLong1}" readonly>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <!-- Nếu totalPriceLong không lớn hơn 500000 -->
+                            <%-- Cộng thêm 50000 vào totalPriceLong --%>
+                            <%-- Tạo biến mới để lưu giá trị --%>
+                            <p>Phí ship của bạn: 32000đ</p>
+                            <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}" />
+                            <li class="list-group-item d-flex justify-content-between">
+                                <input type="text" name="amount" value="${updatedTotalPriceLong}" readonly>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
+
                 </ul>
 
 
+                <style>
+                    .sotiengiam-label {
+                        font-weight: bold;
+                        color: #007BFF; /* Màu sắc tùy chọn */
+                        margin-top: 10px; /* Khoảng cách giữa select box và label, tùy chỉnh theo nhu cầu */
+                        display: block; /* Hiển thị label dưới dạng block để nó xuống dòng */
+                    }
+                </style>
                 <div class="input-group">
-                    <select name="giamGia.giamGiaID" class="form-control">
-                        <option value="" label="Chọn Giảm Giá"/>
+                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this)">
+                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>
                         <c:forEach var="giamGia" items="${listGiamGia}">
-                            <option value="${giamGia.giamGiaID}">${giamGia.maGiamGia}</option>
+                            <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia}</option>
                         </c:forEach>
                     </select>
+                    <br>
+
+                    <label for="giamGiaSelect" class="sotiengiam-label"></label>
                 </div>
+
+                <script>
+                    function updateSoTienGiam(selectElement) {
+                        // Get the selected option value using this.value
+                        var selectedGiamGiaID = selectElement.value;
+
+                        // Fetch all data attributes from the selected option
+                        var allDataAttributes = $(`#giamGiaSelect option:selected`).data();
+
+                        console.log('All Data Attributes:', allDataAttributes);
+
+                        // Fetch the corresponding soTienGiam value from the data attribute
+                        var soTienGiam = allDataAttributes.sotiengiam;
+
+                        console.log('Selected GiamGiaID:', selectedGiamGiaID);
+                        console.log('soTienGiam:', soTienGiam);
+
+                        // Get the label element
+                        var labelElement = $('.sotiengiam-label');
+
+                        // Update the label with the fetched soTienGiam value
+                        labelElement.text("Giảm Giá:  -"+soTienGiam);
+
+                        // Show or hide the label based on whether a discount is selected
+                        if (soTienGiam !== undefined) {
+                            labelElement.show();
+                        } else {
+                            labelElement.hide();
+                        }
+                    }
+                </script>
 
             </div>
             <div class="col-md-8 order-md-1">

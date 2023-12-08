@@ -207,9 +207,31 @@
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
                     <li class="list-group-item d-flex justify-content-between">
                         <span>Tổng thành tiền</span>
-                        <input type="text" name="amount" value="${totalPriceLong}" readonly>
-
+                        <input type="text" value="${totalPriceLong}" readonly>
                     </li>
+
+                    <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
+                    <c:choose>
+                        <c:when test="${totalPriceLong > 500000}">
+                            <!-- Nếu totalPriceLong lớn hơn 500000 -->
+                            <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}" />
+                            <p>Phí ship : 0đ</p>
+                            <li class="list-group-item d-flex justify-content-between">
+                                Tổng tiền: <input type="text" name="amount" value="${updatedTotalPriceLong1}" readonly>
+                            </li>
+                        </c:when>
+                        <c:otherwise>
+                            <!-- Nếu totalPriceLong không lớn hơn 500000 -->
+                            <%-- Cộng thêm 50000 vào totalPriceLong --%>
+                            <%-- Tạo biến mới để lưu giá trị --%>
+                            <p>Phí ship của bạn: 32000đ</p>
+                            <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}" />
+                            <li class="list-group-item d-flex justify-content-between">
+                                <input type="text" name="amount" value="${updatedTotalPriceLong}" readonly>
+                            </li>
+                        </c:otherwise>
+                    </c:choose>
+
                 </ul>
 
                 <style>
@@ -293,10 +315,11 @@
                         <input type="text" class="form-control" name="email" id="email"
                                value="${tt.email}" readonly="">
                     </div>
-                    <div class="col-md-12">
-                        <label >Địa Chỉ</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" style="width: 100%; padding: 8px; border: 1px solid #ccc; border-radius: 4px; box-sizing: border-box;">
-                            <option value="" label="Chọn ThongTinVanChuyen"/>
+                    <div class="mb-3 col-md-12">
+                        <label class="form-label">Địa Chỉ</label>
+                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()">
+                            <option class="form-control" selected="true" disabled="true">Mời bạn chọn địa chỉ</option>
+                            <option value="thong-tin-van-chuyen/page">Thêm địa chỉ mới</option>
                             <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
                                 <option value="${thongTinVanChuyen.thongTinVanChuyenID}">${thongTinVanChuyen.diaChi}</option>
                             </c:forEach>
@@ -438,7 +461,7 @@
                 form.action = "/themmoiny";
             } else if (paymentMethod.value === "2") {
                 form.method = "post";  // Đổi phương thức thành GET
-                form.action = "/submitOrder";
+                form.action = "/submitOrder1";
             }
             // Add any additional conditions for other payment methods if needed.
 
@@ -465,6 +488,19 @@
         } else {
             // Nếu giá trị không hợp lệ, có thể xử lý theo cách khác hoặc báo lỗi
             console.error("Invalid number format");
+        }
+    }
+</script>
+<script type="text/javascript">
+    function redirectToPage() {
+        var selectedValue = document.getElementById("yourSelect").value;
+        // Assuming selected values correspond to the target page URLs
+        if (selectedValue === "thong-tin-van-chuyen/page") {
+            // Assuming selected values correspond to the target page URLs
+            var targetPageUrl = "/" + selectedValue;
+
+            // Redirect to the selected page
+            window.location.href = targetPageUrl;
         }
     }
 </script>
