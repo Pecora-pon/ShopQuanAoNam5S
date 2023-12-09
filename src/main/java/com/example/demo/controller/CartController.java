@@ -59,7 +59,7 @@ public class CartController {
         model.addAttribute("listSize",sizeList);
         model.addAttribute("listGioHang", gioHangList);
         model.addAttribute("sp",new GioHang());
-        return "redirect:/list-san-pham/page";
+        return "redirect:/gio-hang";
     }
 
     @RequestMapping("/gio-hang-update/{gioHangID}")

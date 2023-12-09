@@ -76,7 +76,7 @@ public class NhanVienController {
 //        response.setHeader(hea/derKey, headerValue);
 
         List<NhanVien> listNhanVien = nhanVienService.getAll();
-
+        model.addAttribute("listNhanVien",listNhanVien);
 //        NhanVienExelExporter nhanVienExelExporter = new NhanVienExelExporter(listNhanVien);
 
 //        nhanVienExelExporter.export(response);

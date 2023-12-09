@@ -130,6 +130,7 @@ public class ThanhToanController {
         return "shop/thanh-toann";
    }
     @PostMapping("/themmoiny")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
     public String themmoinay(@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,@RequestParam("soLuongDat")int sl,@RequestParam("amount")float tt, Model model,Principal principal){
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
