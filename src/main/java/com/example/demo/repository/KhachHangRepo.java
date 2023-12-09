@@ -2,7 +2,9 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.KhachHang;
 import com.example.demo.entity.NhanVien;
+import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -25,5 +27,11 @@ public interface KhachHangRepo extends JpaRepository<KhachHang,Integer> {
     Optional<KhachHang> findBySoDienThoai(String soDienThoai);
     KhachHang findByemail(String email);
     KhachHang findByResetPasswordToken(String token);
+//    @Transactional
+//    @Modifying
+//    @Query(value = "Update KhachHang set trangThai = 0 where khachHangID =:khachHangID",nativeQuery = true)
+//    void deleteByI(@Param("khachHangID") int chatLieuID);
+//    @Query(value = "select * from KhachHang p WHERE p.trangThai =1 order by p.khachHangID desc",nativeQuery = true)
+//    List<KhachHang> getAll();
 }
 
