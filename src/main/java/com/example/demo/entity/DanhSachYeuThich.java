@@ -30,7 +30,5 @@ public class DanhSachYeuThich {
     @ManyToOne
     @JoinColumn(name = "KhachHangID")
     private KhachHang khachHang;
-
-
 }
 

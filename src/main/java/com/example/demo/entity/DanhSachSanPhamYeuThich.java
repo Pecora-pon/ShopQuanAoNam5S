@@ -25,7 +25,7 @@ public class DanhSachSanPhamYeuThich {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "DanhSachSanPhamYeuThichID")
+    @Column(name = "DanhSachSanPhamYeuThich")
     private Integer danhSachSanPhamYeuThichID;
 
     @ManyToOne
