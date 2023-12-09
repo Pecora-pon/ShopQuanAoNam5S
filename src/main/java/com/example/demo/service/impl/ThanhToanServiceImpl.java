@@ -113,7 +113,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
                  donHangChiTiet.setSoLuong(gioHang.getSoLuongDat());
                  donHangChiTiet.setDonHang(donHang1);
                  donHangChiTiet.setTrangThai(0);
-                 donHangChiTiet.setTongTien(tiendagiam + 32000);
+                 donHangChiTiet.setTongTien(tiendagiam);
                  donHangChiTiet.setSanPham(gioHang.getSanPham());
                  donHangChiTiets.add(donHangChiTiet);
                  sanPhamService.capnhat(sp, sl);
@@ -135,7 +135,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
         if (tt>500000) {
             float gia = giamGia.getSoTienGiam();
-            float tiendagiam=tt-gia;
+            float tiendagiam=tt - gia;
             DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
             donHangChiTiet.setSanPham(sanPham1);
             donHangChiTiet.setSoLuong(sl);
@@ -151,7 +151,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
             DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
             donHangChiTiet.setSanPham(sanPham1);
             donHangChiTiet.setSoLuong(sl);
-            donHangChiTiet.setTongTien(tiendagiam + 32000);
+            donHangChiTiet.setTongTien(tiendagiam);
             donHangChiTiet.setTrangThai(0);
             donHangChiTiet.setDonHang(donHang1);
             donHangChiTietRepo.save(donHangChiTiet);

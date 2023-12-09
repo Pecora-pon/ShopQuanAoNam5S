@@ -17,7 +17,7 @@ public class NhanVienImpl implements NhanVienService {
     private NhanVienRepo nhanVienRepo;
     @Override
     public List<NhanVien> getAll() {
-        return nhanVienRepo.findAll();
+        return nhanVienRepo.getAll();
     }
 
     @Override
@@ -50,7 +50,7 @@ public class NhanVienImpl implements NhanVienService {
 
     @Override
     public void delete(Integer nhanVienID) {
-        nhanVienRepo.deleteById(nhanVienID);
+        nhanVienRepo.deleteByI(nhanVienID);
 
     }
 
@@ -62,7 +62,7 @@ public class NhanVienImpl implements NhanVienService {
     @Override
     public Page<NhanVien> getPage(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
-        return nhanVienRepo.findAll(pageable);
+        return nhanVienRepo.findByTrangThai(1,pageable);
     }
 
     @Override
