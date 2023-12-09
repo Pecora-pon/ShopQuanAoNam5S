@@ -118,12 +118,12 @@
                     </nav>
                 </div>
                 <div class="col-lg-3 col-md-3">
-<%--                    <div class="header__nav__option">--%>
-<%--                        <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
-<%--                        <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
-<%--                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
-<%--                        <div class="price">$0.00</div>--%>
-<%--                    </div>--%>
+                    <div class="header__nav__option">
+                        <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+                        <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                        <div class="price">$0.00</div>
+                    </div>
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -181,12 +181,13 @@
                 </div>
             </div>
         </div>
+
         <div class="product__details__content">
             <div class="container">
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="product__details__text">
-                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post">
+                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post" onclick="return validateAndSubmit()">
                             <c:forEach items="l">
                             <h4 value="${sp.tenSanPham}">${sp.tenSanPham}</h4>
                             <h3 value="${sp.giaSanPham}">${sp.giaSanPham}</h3>
@@ -559,7 +560,22 @@
         </div>
     </footer>
     <!-- Footer Section End -->
+    <script>
+        function validateAndSubmit() {
+            // Lấy giá trị số lượng đặt từ ô nhập liệu
+            var soLuongDat = parseInt(document.getElementById('soLuongDatInput').value);
 
+            // Kiểm tra nếu số lượng đặt là nhỏ hơn 1
+            if (soLuongDat < 1) {
+                // Hiển thị thông báo lỗi
+                alert('Số lượng đặt phải lớn hơn hoặc bằng 1.');
+                return false; // Ngăn chặn form từ việc submit
+            }
+
+            // Tiếp tục submit form nếu số lượng đặt hợp lệ
+            return true;
+        }
+    </script>
     <!-- Search Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
@@ -578,7 +594,6 @@
     <script src="../mainshop/mainshop2/js/jquery.nicescroll.min.js"></script>
     <script src="../mainshop/mainshop2/js/jquery.magnific-popup.min.js"></script>
     <script src="../mainshop/mainshop2/js/jquery.countdown.min.js"></script>
-    <script src="../mainshop/mainshop2/js/jquery.slicknav.js"></script>
     <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
     <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
     <script src="../mainshop/mainshop2/js/main.js"></script>
