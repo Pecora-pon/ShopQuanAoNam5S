@@ -1,9 +1,11 @@
 package com.example.demo.controller;
 
+import com.example.demo.config.SanPhamExel;
 import com.example.demo.entity.*;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.*;
 import com.example.demo.service.impl.FileUploaderServiceImpl;
+import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -22,6 +24,9 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.StandardCopyOption;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
@@ -241,5 +246,22 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
         model.addAttribute("listSanPham",list);
         model.addAttribute("sp",new SanPham());
         return "sanpham/sanpham";
+    }
+    @GetMapping("/san-pham/exportexel")
+    public void exportexel(HttpServletResponse response)throws IOException{
+        response.setContentType("application/octet-stream");
+        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
+        String currentDateTime = dateFormatter.format(new Date());
+
+        String headerKey = "Content-Disposition";
+        String headerValue = "attachment; filename=sanpham_" + currentDateTime + ".xlsx";
+        response.setHeader(headerKey, headerValue);
+
+        List<SanPham> listSanPham = sanPhamService.getAll();
+
+        SanPhamExel excelExporter = new SanPhamExel(listSanPham);
+
+        excelExporter.export(response);
+
     }
 }
