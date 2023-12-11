@@ -2,6 +2,8 @@ package com.example.demo.config;
 
 import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.repository.NhanVienRepo;
+import com.example.demo.servicesecurity.CustomAuthenticationSuccessHandler;
+import com.example.demo.servicesecurity.CustomLogoutSuccessHandler;
 import com.example.demo.servicesecurity.UserInfoService;
 import com.example.demo.servicesecuritykh.KhInfoService;
 import com.example.demo.servicesecuritykh.KhInfoUserDetails;
@@ -11,6 +13,7 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationProvider;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
@@ -21,6 +24,7 @@ import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 //
 @RequiredArgsConstructor
 @Configuration
+@EnableWebSecurity
 public class SecurityConfig  {
 private final NhanVienRepo nhanVienRepo;
 private final KhachHangRepo khachHangRepo;
@@ -40,8 +44,12 @@ public UserDetailsService userDetailsServicekh(){
                 .authorizeRequests(authorize -> authorize
                         .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/gio-hang")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/danh-sach-yt/hien-thi")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/hien-thi")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/dangxem")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/themngay/{sanPhamID}")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/danh-sach-yt/them/{sanPhamID}")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/themmoiny")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/thanh-toan")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/them-gio-hang/{sanPhamID}")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/chat-lieu")).hasAuthority("ROLE_ADMIN")
@@ -54,10 +62,11 @@ public UserDetailsService userDetailsServicekh(){
                         .requestMatchers(new AntPathRequestMatcher("/giam-gia-chi-tiet")).hasAuthority("ROLE_ADMIN")
                 )
                 .formLogin().loginPage("/login")
+                .successHandler(customAuthenticationSuccessHandler())
                 .and()
                 .logout()
                 .logoutUrl("/logout")
-                .logoutSuccessUrl("/trang-chu")
+                .logoutSuccessHandler(customLogoutSuccessHandler())
                 .permitAll()
                 .and()
                 .userDetailsService(userDetailsService())
@@ -65,6 +74,7 @@ public UserDetailsService userDetailsServicekh(){
                 .build();
 
     }
+
 //@Bean
 //    public AuthenticationProvider authenticationProvider(){
 //    DaoAuthenticationProvider authenticationProvider=new DaoAuthenticationProvider();
@@ -73,9 +83,18 @@ public UserDetailsService userDetailsServicekh(){
 //    authenticationProvider.setPasswordEncoder(passwordEncoder());
 //    return authenticationProvider;
 //}
-
+@Bean("customAuthenticationSuccessHandler")
+public CustomAuthenticationSuccessHandler customAuthenticationSuccessHandler() {
+    return new CustomAuthenticationSuccessHandler();
+}
+    @Bean("customLogoutSuccessHandler")
+    public CustomLogoutSuccessHandler customLogoutSuccessHandler() {
+        return new CustomLogoutSuccessHandler();
+    }
 @Bean
     public PasswordEncoder passwordEncoder(){
     return new BCryptPasswordEncoder();
 }
+
+
 }
