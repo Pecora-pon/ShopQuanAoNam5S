@@ -29,7 +29,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Sản phẩm</title>
+    <title>Nhân viên</title>
 
     <meta name="description" content=""/>
 
@@ -630,6 +630,10 @@
                             <div class="mt-2">
 
                                 <a href="/uploadexel" >Importexel</a>
+
+                                <a href="/san-pham/exportexel">ExportExel</a>
+
+
 
                             </div>
                             <div class="row">
