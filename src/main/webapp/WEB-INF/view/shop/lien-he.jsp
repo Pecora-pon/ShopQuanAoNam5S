@@ -191,7 +191,7 @@
                 <div class="col-lg-3 col-md-6 col-sm-6">
                     <div class="footer__about">
                         <div class="footer__logo">
-                            <a href="#"><img src="../mainshop/mainshop2/img/footer-logo.png" alt=""></a>
+                            <a href="#"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
                         <a href="#"><img src="../mainshop/mainshop2/img/payment.png" alt=""></a>
