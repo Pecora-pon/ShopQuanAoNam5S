@@ -10,7 +10,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
+    <title>5S-Fashion | Thông Báo Thành Công</title>
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
     <title>Thông Báo Thành Công</title>--%>
     <%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
@@ -356,7 +356,7 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="footer__about">
                     <div class="footer__logo">
-                        <a href="#"><img src="../mainshop/mainshop2/img/footer-logo.png" alt=""></a>
+                        <a href="#"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
                     </div>
                     <p>The customer is at the heart of our unique business model, which includes design.</p>
                     <a href="#"><img src="../mainshop/mainshop2/img/payment.png" alt=""></a>
