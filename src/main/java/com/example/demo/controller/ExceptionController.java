@@ -1,6 +1,7 @@
 package com.example.demo.controller;
 
 import org.springframework.http.HttpStatus;
+import org.springframework.security.access.AccessDeniedException;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -19,5 +20,11 @@ public class ExceptionController {
     public String handleIllegalArgumentException(IllegalArgumentException e, Model model) {
         model.addAttribute("error", e.getMessage());
         return "error/bad_request";
+    }
+    @ExceptionHandler(AccessDeniedException.class)
+    @ResponseStatus(HttpStatus.FORBIDDEN)
+    public String handleAccessDeniedException(AccessDeniedException e, Model model) {
+        model.addAttribute("error", e.getMessage());
+        return "error/403";
     }
 }
