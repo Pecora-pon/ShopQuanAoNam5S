@@ -65,7 +65,10 @@ public class DanhSachYeuThichServiceImpl implements DanhSachYeuThichService {
 
     @Override
     public void delete(Integer DanhSachYTID) {
+        DanhSachSanPhamYeuThich ds=repods.getById(DanhSachYTID);
+        int dss=ds.getDanhSachYeuThich().getDanhSachYeuThichID();
         repods.deleteById(DanhSachYTID);
+        repo.deleteById(dss);
 
     }
 
@@ -76,12 +79,27 @@ public class DanhSachYeuThichServiceImpl implements DanhSachYeuThichService {
 
     @Override
     public DanhSachYeuThich them(DanhSachYeuThich danhSachYeuThich, UUID sanPhamID) {
-        DanhSachYeuThich ds=repo.save(danhSachYeuThich);
-        SanPham sp=sanPhamRepo.findById(sanPhamID).orElse(null);
-        DanhSachSanPhamYeuThich dssp=new DanhSachSanPhamYeuThich();
-        dssp.setDanhSachYeuThich(ds);
-        dssp.setSanPham(sp);
-        repods.save(dssp);
+        DanhSachYeuThich ds = repo.save(danhSachYeuThich);
+
+        // Kiểm tra xem SanPham đã tồn tại trong danh sách yêu thích hay chưa
+        SanPham sp = sanPhamRepo.findById(sanPhamID).orElse(null);
+        if (sp != null) {
+            // Kiểm tra xem đã tồn tại trong danh sách yêu thích hay chưa
+            boolean sanPhamDaTonTai = repods.existsBySanPham_SanPhamID(sanPhamID);
+
+            if (!sanPhamDaTonTai) {
+                // Nếu chưa tồn tại, thêm mới
+                DanhSachSanPhamYeuThich dssp = new DanhSachSanPhamYeuThich();
+                dssp.setDanhSachYeuThich(ds);
+                dssp.setSanPham(sp);
+                repods.save(dssp);
+            } else {
+                // Nếu đã tồn tại, bạn có thể thực hiện các hành động khác hoặc đưa ra thông báo
+                // Ví dụ: throw new YourCustomException("SanPham đã tồn tại trong danh sách yêu thích");
+                System.out.println("Sản Phẩm đã tồn tại");
+            }
+        }
+
         return ds;
     }
 
