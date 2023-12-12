@@ -35,7 +35,7 @@ public class GioHang {
     @JoinColumn(name = "KhachHangID")
     private KhachHang khachHang;
     @Column(name = "TongTien")
-    private Double tongTien;
+    private Float tongTien;
     @Column(name="trangThai")
     private int trangThai;
 }
