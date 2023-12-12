@@ -64,14 +64,20 @@ public class GioHangImpl implements CartService {
     public GioHang insert(GioHang gioHang,UUID sanPhamID) {
         SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
         System.out.println(sanPham);
-        int mausac=sanPham.getMauSac().getMauSacID();
-        gioHang.setTrangThai(0);
-        sanPham.getMauSac().setMauSacID(mausac);
-        gioHang.setSanPham(sanPham);
+        int slton=sanPham.getSoLuongTon();
         int sl=gioHang.getSoLuongDat();
-        float gia=sanPham.getGiaSanPham();
-        if(gioHang.getTongTien()==null){
-            gioHang.setTongTien(gia*sl);
+        if(slton<sl){
+            System.out.println("Số lượng tồn của sản phẩm không đủ");
+            return null;
+        }else {
+            int mausac = sanPham.getMauSac().getMauSacID();
+            gioHang.setTrangThai(0);
+            sanPham.getMauSac().setMauSacID(mausac);
+            gioHang.setSanPham(sanPham);
+            float gia = sanPham.getGiaSanPham();
+            if (gioHang.getTongTien() == null) {
+                gioHang.setTongTien(gia * sl);
+            }
         }
 
       return gioHangRepo.save(gioHang);
