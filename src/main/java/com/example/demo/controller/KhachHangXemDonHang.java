@@ -84,6 +84,36 @@ public class KhachHangXemDonHang {
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/chitiet";
     }
+    @GetMapping("/detail1/{donHang}")
+    public String detail1(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/khach-hang-xem-don/chitiet";
+    }
+    @GetMapping("/detail2/{donHang}")
+    public String detail2(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/khach-hang-xem-don/chitiet";
+    }
+    @GetMapping("/detail3/{donHang}")
+    public String detail3(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/khach-hang-xem-don/chitiet";
+    }
+    @GetMapping("/detail4/{donHang}")
+    public String detail4(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/khach-hang-xem-don/chitiet";
+    }
+    @GetMapping("/detail5/{donHang}")
+    public String detail5(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/review-nguoi-dung/index";
+    }
     @GetMapping("/timkiemten")
     public String detail1(@RequestParam("ten")String ten, Model model){
         List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
