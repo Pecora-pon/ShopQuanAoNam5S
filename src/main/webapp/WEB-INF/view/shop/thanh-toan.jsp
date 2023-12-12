@@ -9,7 +9,7 @@
     <meta charset="UTF-8">
     <meta name="description" content="Male_Fashion Template">
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.thongTinVanChuyen.thongTinVanChuyenID0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>5S-Fashion | Thanh toán</title>
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
@@ -169,7 +169,7 @@
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
     <form class="needs-validation" id="paymentForm" enctype="multipart/form-data" method="post"
-          action="/themmoi">
+          action="/themmoi" onsubmit="return submitForm()">
         <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
         <div class="py-5 text-center">
@@ -188,18 +188,18 @@
                     <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
                     <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
                     <c:forEach items="${listGioHang}" var="gh">
-                    <li class="list-group-item d-flex justify-content-between lh-condensed">
-                        <div>
-                         <ul>
+                        <li class="list-group-item d-flex justify-content-between lh-condensed">
+                            <div>
+                                <ul>
 
-                                 <li>${gh.sanPham.tenSanPham} - ${gh.sanPham.giaSanPham} - ${gh.soLuongDat} - ${gh.sanPham.giaSanPham*gh.soLuongDat}</li>
-                             <input type="hidden" name="gioHangID[]" value="${gh.gioHangID}">
-                         </ul>
-                        </div>
-<%--                        <span class="text-muted">23600000</span>--%>
-                    </li>   <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
+                                    <li>${gh.sanPham.tenSanPham} - ${gh.sanPham.giaSanPham} - ${gh.soLuongDat} - ${gh.sanPham.giaSanPham*gh.soLuongDat}</li>
+                                    <input type="hidden" name="gioHangID[]" value="${gh.gioHangID}">
+                                </ul>
+                            </div>
+                                <%--                        <span class="text-muted">23600000</span>--%>
+                        </li>   <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
                         <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
-<%--                        <input type="hidden" name="tongTien" value="${totalPrice}">--%>
+                        <%--                        <input type="hidden" name="tongTien" value="${totalPrice}">--%>
                     </c:forEach>
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
@@ -207,7 +207,7 @@
 
                     <li class="list-group-item d-flex justify-content-between">
 
-                       Tạm tính : <input type="text" name="totalprice" value="${totalPriceLong}" readonly>
+                        Tạm tính : <input type="text" name="totalprice" value="${totalPriceLong}" readonly>
                     </li>
 
 
@@ -226,7 +226,7 @@
                 </style>
                 <div class="input-group">
                     <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this) " required>
-<%--                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>--%>
+                        <%--                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>--%>
                         <c:forEach var="giamGia" items="${listGiamGia}">
                             <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
                         </c:forEach>
@@ -317,73 +317,75 @@
                 </script>
 
             </div>
-            <div class="col-md-8 order-md-1">
-                <h4 class="mb-3">Thông tin khách hàng</h4>
 
-                <div class="row">
-                    <div class="col-md-12">
-                        <label for="hoTen">Họ tên</label>
-                        <input type="text" class="form-control" name="hoTen" id="hoTen"
-                               value="${tt.hoTen}" readonly="">
-                        <input type="hidden" name="tenKhach" value="${tt.hoTen}">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="kh_gioitinh">Giới tính</label>
-                        <input type="text" class="form-control" name="kh_gioitinh" id="kh_gioitinh" value="Nam"
-                               readonly="">
-                    </div>
-<%--                    <div class="col-md-12">--%>
-<%--                        <label for="diaChi">Địa chỉ</label>--%>
-<%--                        <input type="text" class="form-control" name="diaChi" id="diaChi"--%>
-<%--                               value="${tt.diaChi}" readonly="">--%>
-<%--                    </div>--%>
-                    <div class="col-md-12">
-                        <label for="soDienThoai">Điện thoại</label>
-                        <input type="text" class="form-control" name="soDienThoai" id="soDienThoai"
-                               value="${tt.soDienThoai}" readonly="">
-                    </div>
-                    <div class="col-md-12">
-                        <label for="email">Email</label>
-                        <input type="text" class="form-control" name="email" id="email"
-                               value="${tt.email}" readonly="">
+                <div class="col-md-8 order-md-1">
+                    <h4 class="mb-3">Thông tin khách hàng</h4>
+
+                    <div class="row">
+                        <div class="col-md-12">
+                            <label for="hoTen">Họ tên</label>
+                            <input type="text" class="form-control" name="hoTen" id="hoTen"
+                                   value="${tt.hoTen}" readonly="">
+                            <input type="hidden" name="tenKhach" value="${tt.hoTen}">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="kh_gioitinh">Giới tính</label>
+                            <input type="text" class="form-control" name="kh_gioitinh" id="kh_gioitinh" value="Nam"
+                                   readonly="">
+                        </div>
+                        <%--                    <div class="col-md-12">--%>
+                        <%--                        <label for="diaChi">Địa chỉ</label>--%>
+                        <%--                        <input type="text" class="form-control" name="diaChi" id="diaChi"--%>
+                        <%--                               value="${tt.diaChi}" readonly="">--%>
+                        <%--                    </div>--%>
+                        <div class="col-md-12">
+                            <label for="soDienThoai">Điện thoại</label>
+                            <input type="text" class="form-control" name="soDienThoai" id="soDienThoai"
+                                   value="${tt.soDienThoai}" readonly="">
+                        </div>
+                        <div class="col-md-12">
+                            <label for="email">Email</label>
+                            <input type="text" class="form-control" name="email" id="email"
+                                   value="${tt.email}" readonly="">
+                        </div>
+
+                        <div class="mb-3 col-md-12">
+                            <label class="form-label">Địa Chỉ</label>
+                            <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()" required>
+                                <option class="form-control" value="" selected disabled hidden>Mời bạn chọn địa chỉ</option>
+                                <option value="thong-tin-van-chuyen/page">Thêm địa chỉ mới</option>
+                                <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
+                                    <option value="${thongTinVanChuyen.thongTinVanChuyenID}">${thongTinVanChuyen.diaChi}</option>
+                                </c:forEach>
+                            </select>
+                        </div>
+
+                        <div class="col-md-12">
+                            <label for="note">Note</label>
+                            <input type="text" class="form-control" name="note" id="note" value=""
+                                   readonly="">
+                        </div>
                     </div>
 
-                    <div class="mb-3 col-md-12">
-                        <label class="form-label">Địa Chỉ</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()" required>
-                            <option class="form-control" selected="true" disabled="true">Mời bạn chọn địa chỉ</option>
-                            <option value="thong-tin-van-chuyen/page">Thêm địa chỉ mới</option>
-                            <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
-                                <option value="${thongTinVanChuyen.thongTinVanChuyenID}">${thongTinVanChuyen.diaChi}</option>
-                            </c:forEach>
-                        </select>
-                    </div>
+                    <h4 class="mb-3">Hình thức thanh toán</h4>
+                    <div class="d-block my-3">
+                        <div class="custom-control custom-radio">
+                            <input id="httt-1" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
+                                   value="1">
+                            <label class="custom-control-label" for="httt-1">Tiền mặt</label>
+                        </div>
+                        <div class="custom-control custom-radio">
+                            <input id="httt-2" name="hinhThucThanhToan"  type="radio" class="custom-control-input" required=""
+                                   value="2">
+                            <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
+                        </div>
 
-                    <div class="col-md-12">
-                        <label for="note">Note</label>
-                        <input type="text" class="form-control" name="note" id="note" value=""
-                               readonly="">
                     </div>
+                    <hr class="mb-4">
+                    <button class="btn btn-primary btn-lg btn-block" type="submit">Đặt hàng</button>
+
                 </div>
 
-                <h4 class="mb-3">Hình thức thanh toán</h4>
-                <div class="d-block my-3">
-                    <div class="custom-control custom-radio">
-                        <input id="httt-1" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
-                               value="1">
-                        <label class="custom-control-label" for="httt-1">Tiền mặt</label>
-                    </div>
-                    <div class="custom-control custom-radio">
-                        <input id="httt-2" name="hinhThucThanhToan"  type="radio" class="custom-control-input" required=""
-                               value="2">
-                        <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
-                    </div>
-
-                </div>
-                <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="submitForm()">Đặt hàng</button>
-
-            </div>
         </div>
     </form>
 
@@ -483,25 +485,26 @@
     function submitForm() {
         var form = document.getElementById("paymentForm");
         var paymentMethod = document.querySelector('input[name="hinhThucThanhToan"]:checked');
-        var selectedGiamGia = document.querySelector('select[name="giamGia.giamGiaID"]:checked');
-
         var radioTienMat = document.getElementById("httt-1");
 
         if (paymentMethod) {
             if (paymentMethod.value === "1") {
                 if (radioTienMat.checked) {
-
-                        alert("Bạn có chắc chắn muốn đặt hàng");
+                    var confirmOrder = confirm("Bạn có chắc chắn muốn đặt hàng?");
+                    if (confirmOrder) {
                         // Submit the form
                         form.method = "post";
                         form.action = "/themmoi";
                         form.submit();
-
+                    } else {
+                        // Handle the case where the user canceled the order
+                    }
                 } else {
                     // Handle other cases for "Tiền mặt" if needed
                 }
             } else if (paymentMethod.value === "2") {
-                form.method = "post";  // Đổi phương thức thành GET
+                // Đổi phương thức thành POST và action thành "/submitOrder"
+                form.method = "post";
                 form.action = "/submitOrder";
 
                 // Submit the form
@@ -510,7 +513,6 @@
             // Add any additional conditions for other payment methods if needed.
         } else {
             // Handle the case where no payment method is selected
-
             alert("Vui lòng chọn hình thức thanh toán.");
         }
     }
@@ -546,6 +548,7 @@
         }
     }
 </script>
+
 </body>
 
 </html>
