@@ -226,7 +226,7 @@
                 </style>
                 <div class="input-group">
                     <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this) " required>
-                        <%--                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>--%>
+                        <option class="form-control" value="" selected disabled hidden>Mời bạn chọn mã giảm giá</option>
                         <c:forEach var="giamGia" items="${listGiamGia}">
                             <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
                         </c:forEach>

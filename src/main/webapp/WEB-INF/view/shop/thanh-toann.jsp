@@ -169,7 +169,7 @@
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
     <form class="needs-validation" id="paymentForm" enctype="multipart/form-data"  method="post"
-          action="/themmoiny">
+          action="/themmoiny" onsubmit="return submitForm()">
         <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
         <div class="py-5 text-center">
@@ -226,7 +226,7 @@
                 </style>
                 <div class="input-group">
                     <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this) " required>
-                        <%--                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>--%>
+                        <option class="form-control" value="" selected disabled hidden>Mời bạn chọn mã giảm giá</option>
                         <c:forEach var="giamGia" items="${listGiamGia}">
                             <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
                         </c:forEach>
@@ -315,6 +315,7 @@
                     }
 
                 </script>
+
             </div>
             <div class="col-md-8 order-md-1">
                 <h4 class="mb-3">Thông tin khách hàng</h4>
@@ -348,8 +349,8 @@
                     </div>
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Địa Chỉ</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()">
-                            <option class="form-control" selected="true" disabled="true">Mời bạn chọn địa chỉ</option>
+                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()"required>
+                            <option class="form-control" value="" selected disabled hidden>Mời bạn chọn địa chỉ</option>
                             <option value="thong-tin-van-chuyen/page">Thêm địa chỉ mới</option>
                             <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
                                 <option value="${thongTinVanChuyen.thongTinVanChuyenID}">${thongTinVanChuyen.diaChi}</option>
@@ -378,7 +379,7 @@
 
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit" onclick="submitForm()">Đặt hàng</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit" >Đặt hàng</button>
 
             </div>
         </div>
