@@ -17,6 +17,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
@@ -32,7 +33,7 @@ public class PaymentController {
    @Autowired
     ThanhToanService thanhToanService;
     @PostMapping("/submitOrder")
-    public String submidOrder(@RequestParam("amount") Long orderTotal,
+    public String submidOrder(@RequestParam("amount") long orderTotal,
                               HttpServletRequest request, @ModelAttribute("t") DonHang donHang, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") float tt, Model model, Principal principal) throws UnsupportedEncodingException {
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
