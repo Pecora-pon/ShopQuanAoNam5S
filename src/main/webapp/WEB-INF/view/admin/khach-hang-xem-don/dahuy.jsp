@@ -248,18 +248,12 @@
                         <td>${dhct.lyDoHuy}</td>
                         <td>${dhct.tongTien}</td>
                         <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/don-hang-chi-tiet/${dhct.donHangChiTietID}"><i
-                                            class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                    <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i
-                                            class="bx bx-trash me-1"></i> Xóa</a>
-                                </div>
-                            </div>
+
+<%--                                    <a class="dropdown-item" href="/don-hang-chi-tiet/${dhct.donHangChiTietID}"><i--%>
+<%--                                            class="bx bx-edit-alt me-1"></i> Sửa</a>--%>
+                                    <a class="dropdown-item" href="/detail1/${dhct.donHang.donHangID}"><i
+                                            class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
+
                         </td>
                     </tr>
                 </c:forEach>

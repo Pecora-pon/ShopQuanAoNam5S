@@ -70,8 +70,12 @@
     </div>
     <div class="offcanvas__nav__option">
         <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
-        <a href="#"><img src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/heart.png" alt=""></a>
-        <a href="#"><img src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/cart.png" alt=""> <span>0</span></a>
+        <a href="#"><img
+                src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/heart.png"
+                alt=""></a>
+        <a href="#"><img
+                src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/cart.png"
+                alt=""> <span>0</span></a>
         <div class="price">$0.00</div>
     </div>
     <div id="mobile-menu-wrap"></div>
@@ -114,7 +118,8 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="../mainshop/mainshop2/index.html"><img src="../../../../../../../malefashion-master/malefashion-master/img/logo.png" alt=""></a>
+                    <a href="../mainshop/mainshop2/index.html"><img
+                            src="../../../../../../../malefashion-master/malefashion-master/img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -135,12 +140,12 @@
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
-<%--                <div class="header__nav__option">--%>
-<%--                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
-<%--                    <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
-<%--                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
-<%--                    <div class="price">$0.00</div>--%>
-<%--                </div>--%>
+                <%--                <div class="header__nav__option">--%>
+                <%--                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                <%--                    <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
+                <%--                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
+                <%--                    <div class="price">$0.00</div>--%>
+                <%--                </div>--%>
             </div>
         </div>
         <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -233,7 +238,7 @@
                         <td scope="row">${i.index+1}</td>
                         <td>${dhct.donHang.donHangID}</td>
                             <%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
-                        <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
+                        <td><img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                         </td>
                         <td>${dhct.sanPham.tenSanPham}</td>
                         <td>${dhct.soLuong}</td>
@@ -248,18 +253,15 @@
                         <td>${dhct.lyDoHuy}</td>
                         <td>${dhct.tongTien}</td>
                         <td>
-                            <div class="dropdown">
-                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                        data-bs-toggle="dropdown">
-                                    <i class="bx bx-dots-vertical-rounded"></i>
-                                </button>
-                                <div class="dropdown-menu">
-                                    <a class="dropdown-item" href="/don-hang-chi-tiet/${dhct.donHangChiTietID}"><i
-                                            class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                    <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i
-                                            class="bx bx-trash me-1"></i> Xóa</a>
-                                </div>
-                            </div>
+
+
+                                <%--                                    <a class="dropdown-item" href="/don-hang-chi-tiet/${dhct.donHangChiTietID}"><i--%>
+                                <%--                                            class="bx bx-edit-alt me-1"></i> Sửa</a>--%>
+                            <a class="dropdown-item" href="/detail2/${dhct.donHang.donHangID}"><i
+                                    class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
+                            <a class="dropdown-item" href="/detail5/${dhct.donHang.donHangID}"><i
+                                    class="bx bx-edit-alt me-1"></i>Bình Luận Về Sản Phẩm</a>
+
                         </td>
                     </tr>
                 </c:forEach>
@@ -295,7 +297,8 @@
                                 <li class="page-item active"><span class="page-link">${page}</span></li>
                             </c:when>
                             <c:otherwise>
-                                <li class="page-item"><a class="page-link" href="/khach-hang-xem/page3?page=${page}">${page}</a></li>
+                                <li class="page-item"><a class="page-link"
+                                                         href="/khach-hang-xem/page3?page=${page}">${page}</a></li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -388,9 +391,11 @@
                     <p>Copyright ©
                         <script>
                             document.write(new Date().getFullYear());
-                        </script>2020
+                        </script>
+                        2020
                         All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                                                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                                                            aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
                     </p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </div>

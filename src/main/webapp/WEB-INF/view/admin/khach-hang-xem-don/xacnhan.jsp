@@ -252,6 +252,8 @@
 <%--                            <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
     <a class="dropdown-item" href="/khxacnhan/${dhct.donHang.donHangID}"><i
             class="bx bx-edit-alt me-1"></i> Xác Nhận</a>
+    <a class="dropdown-item" href="/detail4/${dhct.donHang.donHangID}"><i
+            class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
                         </td>
                     </tr>
                 </c:forEach>
