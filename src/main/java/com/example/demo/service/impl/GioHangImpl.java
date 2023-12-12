@@ -69,7 +69,7 @@ public class GioHangImpl implements CartService {
         sanPham.getMauSac().setMauSacID(mausac);
         gioHang.setSanPham(sanPham);
         int sl=gioHang.getSoLuongDat();
-        double gia=sanPham.getGiaSanPham();
+        float gia=sanPham.getGiaSanPham();
         if(gioHang.getTongTien()==null){
             gioHang.setTongTien(gia*sl);
         }
