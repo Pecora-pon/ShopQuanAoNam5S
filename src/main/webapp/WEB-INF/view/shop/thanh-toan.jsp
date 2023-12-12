@@ -204,31 +204,13 @@
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
+
                     <li class="list-group-item d-flex justify-content-between">
-                        <input type="text" value="${totalPriceLong}" readonly>
+
+                       Tạm tính : <input type="text" name="totalprice" value="${totalPriceLong}" readonly>
                     </li>
 
-                    <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
-                    <c:choose>
-                        <c:when test="${totalPriceLong > 500000}">
-                            <!-- Nếu totalPriceLong lớn hơn 500000 -->
-                            <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}" />
-                            <p>Phí ship : 0đ</p>
-                            <li class="list-group-item d-flex justify-content-between">
-                               Tổng tiền: <input type="text" name="amount" value="${updatedTotalPriceLong1}" readonly>
-                            </li>
-                        </c:when>
-                        <c:otherwise>
-                            <!-- Nếu totalPriceLong không lớn hơn 500000 -->
-                            <%-- Cộng thêm 50000 vào totalPriceLong --%>
-                            <%-- Tạo biến mới để lưu giá trị --%>
-                            <p>Phí ship của bạn: 32000đ</p>
-                            <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}" />
-                            <li class="list-group-item d-flex justify-content-between">
-                                <input type="text" name="amount" value="${updatedTotalPriceLong - giamGiaSelect}" readonly>
-                            </li>
-                        </c:otherwise>
-                    </c:choose>
+
 
 
                 </ul>
@@ -243,17 +225,38 @@
                     }
                 </style>
                 <div class="input-group">
-                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this)">
-                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>
+                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this) " required>
+<%--                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>--%>
                         <c:forEach var="giamGia" items="${listGiamGia}">
-                            <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia}</option>
+                            <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
                         </c:forEach>
                     </select>
                     <br>
 
                     <label for="giamGiaSelect" class="sotiengiam-label"></label>
                 </div>
+                <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
+                <c:choose>
+                    <c:when test="${totalPriceLong > 500000}">
+                        <!-- Nếu totalPriceLong lớn hơn 500000 -->
+                        <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}" />
+                        <p>Phí ship : 0đ</p>
+                        <li class="list-group-item d-flex justify-content-between">
+                            Tổng tiền : <input type="text" name="amount" value="${updatedTotalPriceLong1}" readonly>
+                        </li>
+                    </c:when>
+                    <c:otherwise>
+                        <!-- Nếu totalPriceLong không lớn hơn 500000 -->
+                        <%-- Cộng thêm 50000 vào totalPriceLong --%>
+                        <%-- Tạo biến mới để lưu giá trị --%>
+                        <p>Phí ship của bạn: 32000đ</p>
+                        <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}" />
+                        <li class="list-group-item d-flex justify-content-between">
 
+                            Tổng tiền :  <input type="text" name="amount" value="${updatedTotalPriceLong }" readonly>
+                        </li>
+                    </c:otherwise>
+                </c:choose>
                 <script>
                     function updateSoTienGiam(selectElement) {
                         // Get the selected option value using this.value
@@ -274,7 +277,7 @@
                         var labelElement = $('.sotiengiam-label');
 
                         // Update the label with the fetched soTienGiam value
-                        labelElement.text("Giảm Giá:  -"+soTienGiam);
+                        labelElement.text("Giảm Giá:  -" + soTienGiam);
 
                         // Show or hide the label based on whether a discount is selected
                         if (soTienGiam !== undefined) {
@@ -282,7 +285,35 @@
                         } else {
                             labelElement.hide();
                         }
+                        updateTongTien(soTienGiam);
                     }
+
+                    function updateTongTien(soTienGiam) {
+                        // Kiểm tra nếu có giảm giá
+                        if (soTienGiam !== undefined) {
+                            // Lấy giá trị tổng tiền hiện tại
+                            var totalPriceLong = parseInt("${totalPriceLong}");
+
+                            // Nếu tổng tiền hiện tại lớn hơn 500000, thì chỉ trừ giảm giá
+                            if (totalPriceLong > 500000) {
+                                totalPriceLong -= parseFloat(soTienGiam);
+                            } else {
+                                // Nếu tổng tiền hiện tại không lớn hơn 500000, cộng giảm giá và phí ship
+                                totalPriceLong -= parseFloat(soTienGiam);
+                                totalPriceLong += 32000;
+                            }
+
+                            // Cập nhật giá trị tổng tiền mới vào input
+                            $("input[name='amount']").val(totalPriceLong);
+
+                            // Log để kiểm tra xem giá trị đã chuyển đổi đúng chưa
+                            console.log('Tổng Tiền Mới (Long):', totalPriceLong);
+                        } else {
+                            // Hiển thị thông báo yêu cầu chọn mã giảm giá
+                            alert("Vui lòng chọn mã giảm giá trước khi thanh toán.");
+                        }
+                    }
+
                 </script>
 
             </div>
@@ -319,7 +350,7 @@
 
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Địa Chỉ</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()">
+                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()" required>
                             <option class="form-control" selected="true" disabled="true">Mời bạn chọn địa chỉ</option>
                             <option value="thong-tin-van-chuyen/page">Thêm địa chỉ mới</option>
                             <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
@@ -452,16 +483,20 @@
     function submitForm() {
         var form = document.getElementById("paymentForm");
         var paymentMethod = document.querySelector('input[name="hinhThucThanhToan"]:checked');
+        var selectedGiamGia = document.querySelector('select[name="giamGia.giamGiaID"]:checked');
+
         var radioTienMat = document.getElementById("httt-1");
 
         if (paymentMethod) {
             if (paymentMethod.value === "1") {
                 if (radioTienMat.checked) {
-                    alert("Bạn có chắc chắn muốn đặt hàng");
-                    // Submit the form
-                    form.method = "post";
-                    form.action = "/themmoi";
-                    form.submit();
+
+                        alert("Bạn có chắc chắn muốn đặt hàng");
+                        // Submit the form
+                        form.method = "post";
+                        form.action = "/themmoi";
+                        form.submit();
+
                 } else {
                     // Handle other cases for "Tiền mặt" if needed
                 }
@@ -475,6 +510,7 @@
             // Add any additional conditions for other payment methods if needed.
         } else {
             // Handle the case where no payment method is selected
+
             alert("Vui lòng chọn hình thức thanh toán.");
         }
     }
