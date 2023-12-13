@@ -57,7 +57,6 @@
         <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
         <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
         <a href="#"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
-        <div class="price">$0.00</div>
     </div>
     <div id="mobile-menu-wrap"></div>
     <div class="offcanvas__text">
@@ -99,7 +98,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="./index.html"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
+                    <a href="/shop/main-shop"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -110,11 +109,11 @@
                         <li><a href="#">Tìm hiểu thêm</a>
                             <ul class="dropdown">
                                 <li><a href="/shop/about">Về chúng tôi</a></li>
-                                <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
-                                <li><a href="./blog-details.html">Blog</a></li>
+                                <li><a href="/gio-hang">Giỏ hàng</a></li>
+                                <li><a href="/shop/blog">Blog</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="/shop/blog">Blog</a></li>
                         <li><a href="/shop/lien-he">Liên hệ</a></li>
                     </ul>
                 </nav>
@@ -122,10 +121,9 @@
             </div>
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
-                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+<%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
                     <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
                     <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
-                    <div class="price">$0.00</div>
                 </div>
             </div>
         </div>
@@ -142,7 +140,7 @@
                 <div class="breadcrumb__text">
                     <h4>Shop</h4>
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="/shop/main-shop">Home</a>
                         <span>Shop</span>
                     </div>
                 </div>
@@ -169,7 +167,7 @@
 
                             <div class="card">
                                 <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
+                                    <a data-toggle="collapse" data-target="#collapseTwo">Thương hiệu</a>
                                 </div>
                                 <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
@@ -186,7 +184,7 @@
                             </div>
                             <div class="card">
                                 <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
+                                    <a data-toggle="collapse" data-target="#collapseThree">Giá</a>
                                 </div>
                                 <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
@@ -198,7 +196,7 @@
                                                 <li><a href="/list-san-pham/page?minPrice=100000&maxPrice=150000">100000Đ - 150000Đ</a></li>
                                                 <li><a href="/list-san-pham/page?minPrice=150000&maxPrice=200000">150000Đ - 200000Đ</a></li>
                                                 <li><a href="/list-san-pham/page?minPrice=200000&maxPrice=250000">200000Đ - 250000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=0&maxPrice=99999999999999">250000+</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=250000&maxPrice=10000000">250000+</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -261,62 +259,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
-                                </div>
-                                <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__color">
-                                            <label class="c-1" for="sp-1">
-                                                <input type="radio" id="sp-1">
-                                            </label>
-                                            <label class="c-2" for="sp-2">
-                                                <input type="radio" id="sp-2">
-                                            </label>
-                                            <label class="c-3" for="sp-3">
-                                                <input type="radio" id="sp-3">
-                                            </label>
-                                            <label class="c-4" for="sp-4">
-                                                <input type="radio" id="sp-4">
-                                            </label>
-                                            <label class="c-5" for="sp-5">
-                                                <input type="radio" id="sp-5">
-                                            </label>
-                                            <label class="c-6" for="sp-6">
-                                                <input type="radio" id="sp-6">
-                                            </label>
-                                            <label class="c-7" for="sp-7">
-                                                <input type="radio" id="sp-7">
-                                            </label>
-                                            <label class="c-8" for="sp-8">
-                                                <input type="radio" id="sp-8">
-                                            </label>
-                                            <label class="c-9" for="sp-9">
-                                                <input type="radio" id="sp-9">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
-                                </div>
-                                <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__tags">
-                                            <a href="#">Product</a>
-                                            <a href="#">Bags</a>
-                                            <a href="#">Shoes</a>
-                                            <a href="#">Fashio</a>
-                                            <a href="#">Clothing</a>
-                                            <a href="#">Hats</a>
-                                            <a href="#">Accessories</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+
+
                         </div>
                     </div>
                 </div>
@@ -329,16 +273,16 @@
                                 <p>Showing ${itemsPerPage} of ${totalItems}</p>
                             </div>
                         </div>
-                        <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__right">
-                                <p>Sort by Price:</p>
-                                <select>
-                                    <option value="">Low To High</option>
-                                    <option value="">$0 - $55</option>
-                                    <option value="">$55 - $100</option>
-                                </select>
-                            </div>
-                        </div>
+<%--                        <div class="col-lg-6 col-md-6 col-sm-6">--%>
+<%--                            <div class="shop__product__option__right">--%>
+<%--                                <p>Sort by Price:</p>--%>
+<%--                                <select>--%>
+<%--                                    <option value="">Low To High</option>--%>
+<%--                                    <option value="">$0 - $55</option>--%>
+<%--                                    <option value="">$55 - $100</option>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
                     </div>
                 </div>
                 <!-- Sản Phẩm -->

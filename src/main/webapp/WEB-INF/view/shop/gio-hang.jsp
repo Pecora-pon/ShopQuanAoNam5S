@@ -112,7 +112,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="../mainshop/mainshop2/index.html"><img src="../../../../../../../malefashion-master/malefashion-master/img/logo.png" alt=""></a>
+                        <a href="/shop/main-shop"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -123,27 +123,26 @@
                             <li><a href="#">Tìm hiểu thêm</a>
                                 <ul class="dropdown">
                                     <li><a href="/shop/about">Về chúng tôi</a></li>
-                                    <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
-                                    <li><a href="./blog-details.html">Blog</a></li>
+                                    <li><a href="/gio-hang">Giỏ hàng</a></li>
+                                    <li><a href="/shop/blog">Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="/shop/blog">Blog</a></li>
                             <li><a href="/shop/lien-he">Liên hệ</a></li>
                         </ul>
                     </nav>
+
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+                        <%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
                         <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
                         <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
-                        <div class="price">$0.00</div>
                     </div>
                 </div>
             </div>
             <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
-    </header>
     <!-- Header Section End -->
 
     <!-- Breadcrumb Section Begin -->
@@ -154,8 +153,8 @@
                     <div class="breadcrumb__text">
                         <h4>Shopping Cart</h4>
                         <div class="breadcrumb__links">
-                            <a href="../mainshop/mainshop2/index.html">Home</a>
-                            <a href="../mainshop/mainshop2/shop.html">Shop</a>
+                            <a href="/shop/main-shop">Home</a>
+                            <a href="/list-san-pham/page">Shop</a>
                             <span>Shopping Cart</span>
                         </div>
                     </div>
@@ -265,20 +264,19 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-                    <div class="cart__discount">
-                        <h6>Discount codes</h6>
-                        <form action="#">
-                            <input type="text" placeholder="Coupon code">
-                            <button type="submit">Apply</button>
-                        </form>
-                    </div>
+<%--                    <div class="cart__discount">--%>
+<%--                        <h6>Discount codes</h6>--%>
+<%--                        <form action="#">--%>
+<%--                            <input type="text" placeholder="Coupon code">--%>
+<%--                            <button type="submit">Apply</button>--%>
+<%--                        </form>--%>
+<%--                    </div>--%>
                     <div class="cart__total">
-                        <h6>Cart total</h6>
+                        <h6>Tổng tiền trong giỏ hàng</h6>
                         <ul>
-                            <li>Subtotal <span>${totalPrice}</span></li>
-                            <li>Total <span>$ 169.50</span></li>
+                            <li>Tổng tiền <span>${totalPrice}</span></li>
                         </ul>
-                        <a href="#" class="primary-btn">Proceed to checkout</a>
+<%--                        <a href="#" class="primary-btn">Proceed to checkout</a>--%>
                     </div>
                 </div>
             </div>

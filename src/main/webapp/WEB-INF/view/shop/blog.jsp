@@ -14,14 +14,14 @@
         rel="stylesheet">
 
     <!-- Css Styles -->
-    <link rel="stylesheet" href="css/bootstrap.min.css" type="text/css">
-    <link rel="stylesheet" href="css/font-awesome.min.css" type="text/css">
-    <link rel="stylesheet" href="css/elegant-icons.css" type="text/css">
-    <link rel="stylesheet" href="css/magnific-popup.css" type="text/css">
-    <link rel="stylesheet" href="css/nice-select.css" type="text/css">
-    <link rel="stylesheet" href="css/owl.carousel.min.css" type="text/css">
-    <link rel="stylesheet" href="css/slicknav.min.css" type="text/css">
-    <link rel="stylesheet" href="css/style.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/bootstrap.min.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/font-awesome.min.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/elegant-icons.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/magnific-popup.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/nice-select.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/owl.carousel.min.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/slicknav.min.css" type="text/css">
+    <link rel="stylesheet" href="../mainshop/mainshop2/css/style.css" type="text/css">
 </head>
 
 <body>
@@ -48,10 +48,9 @@
             </div>
         </div>
         <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-            <a href="#"><img src="img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
+            <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+            <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+            <a href="#"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
         </div>
         <div id="mobile-menu-wrap"></div>
         <div class="offcanvas__text">
@@ -93,7 +92,7 @@
             <div class="row">
                 <div class="col-lg-3 col-md-3">
                     <div class="header__logo">
-                        <a href="./index.html"><img src="img/logo.png" alt=""></a>
+                        <a href="/shop/main-shop"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-6">
@@ -104,21 +103,21 @@
                             <li><a href="#">Tìm hiểu thêm</a>
                                 <ul class="dropdown">
                                     <li><a href="/shop/about">Về chúng tôi</a></li>
-                                    <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
-                                    <li><a href="./blog-details.html">Blog</a></li>
+                                    <li><a href="/gio-hang">Giỏ hàng</a></li>
+                                    <li><a href="/shop/blog">Blog</a></li>
                                 </ul>
                             </li>
-                            <li><a href="./blog.html">Blog</a></li>
+                            <li><a href="/shop/blog">Blog</a></li>
                             <li><a href="/shop/lien-he">Liên hệ</a></li>
                         </ul>
                     </nav>
+
                 </div>
                 <div class="col-lg-3 col-md-3">
                     <div class="header__nav__option">
-                        <a href="#" class="search-switch"><img src="img/icon/search.png" alt=""></a>
-                        <a href="#"><img src="img/icon/heart.png" alt=""></a>
-                        <a href="#"><img src="img/icon/cart.png" alt=""> <span>0</span></a>
-                        <div class="price">$0.00</div>
+                        <%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                        <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
                     </div>
                 </div>
             </div>
@@ -147,7 +146,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 16 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 16 February 2020</span>
                             <h5>What Curling Irons Are The Best Ones</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -157,7 +156,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 21 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 21 February 2020</span>
                             <h5>Eternity Bands Do Last Forever</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -167,7 +166,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-3.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 28 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 28 February 2020</span>
                             <h5>The Health Benefits Of Sunglasses</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -177,7 +176,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-4.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 16 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 16 February 2020</span>
                             <h5>Aiming For Higher The Mastopexy</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -187,7 +186,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-5.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 21 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 21 February 2020</span>
                             <h5>Wedding Rings A Gift For A Lifetime</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -197,7 +196,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-6.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 28 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 28 February 2020</span>
                             <h5>The Different Methods Of Hair Removal</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -207,7 +206,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-7.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 16 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 16 February 2020</span>
                             <h5>Hoop Earrings A Style From History</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -217,7 +216,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-8.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 21 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 21 February 2020</span>
                             <h5>Lasik Eye Surgery Are You Ready</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -227,7 +226,7 @@
                     <div class="blog__item">
                         <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-9.jpg"></div>
                         <div class="blog__item__text">
-                            <span><img src="img/icon/calendar.png" alt=""> 28 February 2020</span>
+                            <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 28 February 2020</span>
                             <h5>Lasik Eye Surgery Are You Ready</h5>
                             <a href="#">Read More</a>
                         </div>
@@ -248,7 +247,7 @@
                             <a href="#"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
                         </div>
                         <p>The customer is at the heart of our unique business model, which includes design.</p>
-                        <a href="#"><img src="img/payment.png" alt=""></a>
+                        <a href="#"><img src="../mainshop/mainshop2/img/payment.png" alt=""></a>
                     </div>
                 </div>
                 <div class="col-lg-2 offset-lg-1 col-md-3 col-sm-6">
@@ -317,16 +316,16 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
-    <script src="js/jquery-3.3.1.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
-    <script src="js/jquery.nice-select.min.js"></script>
-    <script src="js/jquery.nicescroll.min.js"></script>
-    <script src="js/jquery.magnific-popup.min.js"></script>
-    <script src="js/jquery.countdown.min.js"></script>
-    <script src="js/jquery.slicknav.js"></script>
-    <script src="js/mixitup.min.js"></script>
-    <script src="js/owl.carousel.min.js"></script>
-    <script src="js/main.js"></script>
+    <script src="../mainshop/mainshop2/js/jquery-3.3.1.min.js"></script>
+    <script src="../mainshop/mainshop2/js/bootstrap.min.js"></script>
+    <script src="../mainshop/mainshop2/js/jquery.nice-select.min.js"></script>
+    <script src="../mainshop/mainshop2/js/jquery.nicescroll.min.js"></script>
+    <script src="../mainshop/mainshop2/js/jquery.magnific-popup.min.js"></script>
+    <script src="../mainshop/mainshop2/js/jquery.countdown.min.js"></script>
+    <script src="../mainshop/mainshop2/js/jquery.slicknav.js"></script>
+    <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
+    <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
+    <script src="../mainshop/mainshop2/js/main.js"></script>
 </body>
 
 </html>
