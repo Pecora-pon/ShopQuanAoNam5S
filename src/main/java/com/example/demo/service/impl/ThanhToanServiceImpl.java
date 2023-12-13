@@ -74,8 +74,8 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         donHang.setTrangThai(0);
         DonHang donHang1 = donHangRepo.save(donHang);
         List<DonHangChiTiet> donHangChiTiets=new ArrayList<>();
-        int gg= donHang1.getGiamGia().getGiamGiaID();
-        GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
+
+//        GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
          if(tt>=500000) {
 
              for (Integer dh : gioHangID) {
@@ -131,10 +131,10 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         donHang.setTrangThai(0);
         DonHang donHang1 = donHangRepo.save(donHang);
         SanPham sanPham1 = sanPhamRepo.findById(sanPham).orElse(null);
-        int gg=donHang1.getGiamGia().getGiamGiaID();
-        GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
-        if (tt>500000) {
 
+//        GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
+
+          List<DonHangChiTiet> donHangChiTiets=new ArrayList<>();
 
             DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
             donHangChiTiet.setSanPham(sanPham1);
@@ -145,17 +145,11 @@ public class ThanhToanServiceImpl implements ThanhToanService {
             donHangChiTietRepo.save(donHangChiTiet);
             sanPhamService.capnhat(sanPham, sl);
 //
-        }else {
 
-            DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
-            donHangChiTiet.setSanPham(sanPham1);
-            donHangChiTiet.setSoLuong(sl);
-            donHangChiTiet.setTongTien(tt);
-            donHangChiTiet.setTrangThai(0);
-            donHangChiTiet.setDonHang(donHang1);
-            donHangChiTietRepo.save(donHangChiTiet);
-            sanPhamService.capnhat(sanPham, sl);
-        }
+//        if (donHangChiTiet != null) {
+//            donHangChiTiet.setDonHang(donHang1);
+//            donHangChiTiets.add(donHangChiTiet);
+//        }
         return donHang1;
     }
 
@@ -170,9 +164,9 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         List<DonHangChiTiet> donHangChiTiets = new ArrayList<>();
 
         // Kiểm tra nếu giảm giá không phải là null
-        if (donHang1.getGiamGia() != null) {
-            int gg = donHang1.getGiamGia().getGiamGiaID();
-            GiamGia giamGia = giamGiaRepo.findById(gg).orElse(null);
+//        if (donHang1.getGiamGia() != null) {
+//            int gg = donHang1.getGiamGia().getGiamGiaID();
+//            GiamGia giamGia = giamGiaRepo.findById(gg).orElse(null);
 
             for (GioHang gioHang : gioHangList) {
                 UUID sp = gioHang.getSanPham().getSanPhamID();
@@ -188,7 +182,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
 
                 sanPhamService.capnhat(sp, sl);
             }
-        }
+
 
         // Thêm đối tượng DonHangChiTiet từ session vào danh sách
         if (donHangChiTiet != null) {
