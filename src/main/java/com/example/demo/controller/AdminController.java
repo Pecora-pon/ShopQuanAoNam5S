@@ -30,7 +30,10 @@ public class AdminController {
     public String login() {
         return "admin/login";
     }
-
+    @GetMapping("/that-bai")
+    public String thatbai(){
+        return "shop/thatbai";
+    }
 
 
 

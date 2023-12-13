@@ -4,11 +4,16 @@ import com.example.demo.DTO.PaymentResDTO;
 import com.example.demo.config.Config;
 import com.example.demo.config.VNPayService;
 import com.example.demo.entity.DonHang;
+import com.example.demo.entity.DonHangChiTiet;
+import com.example.demo.entity.GioHang;
 import com.example.demo.entity.KhachHang;
+import com.example.demo.entity.SanPham;
+import com.example.demo.repository.GioHangRepo;
 import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.service.SanPhamService;
 import com.example.demo.service.ThanhToanService;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -22,59 +27,76 @@ import java.net.URLEncoder;
 import java.nio.charset.StandardCharsets;
 import java.security.Principal;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.util.*;
 @Controller
 public class PaymentController {
-
+    @Autowired
+    public HttpSession session;
     @Autowired
     private VNPayService vnPayService;
-   @Autowired
+    @Autowired
     KhachHangRepo khachHangRepo;
-   @Autowired
+    @Autowired
     ThanhToanService thanhToanService;
+    @Autowired
+    GioHangRepo gioHangRepo;
     @PostMapping("/submitOrder")
     public String submidOrder(@RequestParam("amount") long orderTotal,
-                              HttpServletRequest request, @ModelAttribute("t") DonHang donHang, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") float tt, Model model, Principal principal) throws UnsupportedEncodingException {
+                              HttpServletRequest request, @ModelAttribute("t") DonHang donHang,
+                              @ModelAttribute("t2") DonHangChiTiet donHangChiTiet, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") Float tt, Model model, Principal principal) throws UnsupportedEncodingException {
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+        session.setAttribute("donHangSession", donHang);
+        session.setAttribute("donHangChiTietSession", donHangChiTiet); // Lưu đối tượng DonHangChiTiet vào session
+        session.setAttribute("ttSession", tt);
         String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
-        DonHang donHang1= thanhToanService.themmoi(donHang,giohangID,tt);
-        model.addAttribute("t",donHang1);
-        return "redirect:" + vnpayUrl;
-    }
+        List<GioHang> gioHangList = gioHangRepo.findByKhachHang(khachHang);
+        session.setAttribute("gioHangListSession", gioHangList);
 
-    @PostMapping("/submitOrder1")
-    public String submidOrder1(@RequestParam("amount") Long orderTotal,
-                              HttpServletRequest request, @ModelAttribute("t") DonHang donHang,@RequestParam("soLuongDat")int sl, @RequestParam("sanPhamID") UUID id, @RequestParam("amount") float tt, Model model, Principal principal) throws UnsupportedEncodingException {
-        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-        String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
-        String logname=principal.getName();
-        KhachHang khachHang=khachHangRepo.findByUsername(logname);
-        donHang.setKhachHang(khachHang);
-        DonHang donHang2 = thanhToanService.themmoingay(donHang,id,sl,tt);
-        model.addAttribute("t",donHang2);
         return "redirect:" + vnpayUrl;
     }
 
 
     @GetMapping("/vnpay-payment")
-    public String GetMapping(HttpServletRequest request, Model model){
+    public String GetMapping(HttpServletRequest request, Model model, HttpSession session){
+
         int paymentStatus = vnPayService.orderReturn(request);
+        if(paymentStatus == 1){
+            DonHang donHangFromSession = (DonHang) session.getAttribute("donHangSession");
+            List<GioHang> gioHangList = (List<GioHang>) session.getAttribute("gioHangListSession");
+//        List<Integer> gioHangIDs = (List<Integer>) session.getAttribute("gioHangListSession"); // Sửa thành List<Integer>
 
-        String orderInfo = request.getParameter("vnp_OrderInfo");
-        String paymentTime = request.getParameter("vnp_PayDate");
-        String transactionId = request.getParameter("vnp_TransactionNo");
-        String totalPrice = request.getParameter("vnp_Amount");
+            DonHangChiTiet donHangChiTietFromSession = (DonHangChiTiet) session.getAttribute("donHangChiTietSession"); // Lấy đối tượng DonHangChiTiet từ session
+            Float tt = (Float) session.getAttribute("ttSession");
+            String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
+            String orderInfo = request.getParameter("vnp_OrderInfo");
+            String paymentTime = request.getParameter("vnp_PayDate");
+            String transactionId = request.getParameter("vnp_TransactionNo");
+            String totalPrice = request.getParameter("vnp_Amount");
+            model.addAttribute("orderId", orderInfo);
+            model.addAttribute("totalPrice", totalPrice);
+            model.addAttribute("paymentTime", paymentTime);
+            model.addAttribute("transactionId", transactionId);
+            DonHang donHang1 = thanhToanService.themmoi2(donHangFromSession,gioHangList,tt,donHangChiTietFromSession);
+            model.addAttribute("t",donHang1);
+            session.removeAttribute("donHangSession");
+            session.removeAttribute("ttSession");
+            return "shop/thong-bao";
 
-        model.addAttribute("orderId", orderInfo);
-        model.addAttribute("totalPrice", totalPrice);
-        model.addAttribute("paymentTime", paymentTime);
-        model.addAttribute("transactionId", transactionId);
+        }else {
+            session.removeAttribute("gioHangListSession");
+            session.removeAttribute("donHangSession");
+            session.removeAttribute("ttSession");
+            session.removeAttribute("donHangChiTietSession");
+            return "redirect:/that-bai";
 
-        return paymentStatus == 1 ? "shop/thong-bao" : "shop/thatbai";
+        }
+
     }
+
 
 
 //    @PostMapping(value="/melusinepay",produces = "text/html; charset=UTF-8")
@@ -145,5 +167,4 @@ public class PaymentController {
 //        String paymentUrl = Config.vnp_PayUrl + "?" + queryUrl;
 //
 //        return paymentUrl;
-    }
-
+}

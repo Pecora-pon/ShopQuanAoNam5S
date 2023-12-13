@@ -158,6 +158,49 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         }
         return donHang1;
     }
+
+    @Override
+    public DonHang themmoi2(DonHang donHang, List<GioHang> gioHangList, float tt, DonHangChiTiet donHangChiTiet) {
+        donHang.setNgayDatHang(LocalDate.now());
+        donHang.setTrangThai(0);
+
+        // Lưu đối tượng DonHang vào cơ sở dữ liệu
+        DonHang donHang1 = donHangRepo.save(donHang);
+
+        List<DonHangChiTiet> donHangChiTiets = new ArrayList<>();
+
+        // Kiểm tra nếu giảm giá không phải là null
+        if (donHang1.getGiamGia() != null) {
+            int gg = donHang1.getGiamGia().getGiamGiaID();
+            GiamGia giamGia = giamGiaRepo.findById(gg).orElse(null);
+
+            for (GioHang gioHang : gioHangList) {
+                UUID sp = gioHang.getSanPham().getSanPhamID();
+                int sl = gioHang.getSoLuongDat();
+
+                DonHangChiTiet donHangChiTietItem = new DonHangChiTiet();
+                donHangChiTietItem.setSoLuong(gioHang.getSoLuongDat());
+                donHangChiTietItem.setDonHang(donHang1);
+                donHangChiTietItem.setTrangThai(0);
+                donHangChiTietItem.setTongTien(tt);
+                donHangChiTietItem.setSanPham(gioHang.getSanPham());
+                donHangChiTiets.add(donHangChiTietItem);
+
+                sanPhamService.capnhat(sp, sl);
+            }
+        }
+
+        // Thêm đối tượng DonHangChiTiet từ session vào danh sách
+        if (donHangChiTiet != null) {
+            donHangChiTiet.setDonHang(donHang1);
+            donHangChiTiets.add(donHangChiTiet);
+        }
+
+        // Lưu đối tượng DonHangChiTiet vào cơ sở dữ liệu
+        donHangChiTietRepo.saveAll(donHangChiTiets);
+
+        return donHang1;
+    }
 //    @Override
 //    public KhachHang kh(String ten) {
 //

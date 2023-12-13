@@ -462,6 +462,24 @@
 <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    function deleteOrder(donHangID, rowIndex) {
+        $.ajax({
+            url: '/huydx/' + donHangID,
+            type: 'GET',
+            success: function (response) {
+                // Xóa dòng khỏi giao diện người dùng
+                $('#row_' + rowIndex).remove();
+                console.log(response);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+</script>
 </body>
 
 </html>

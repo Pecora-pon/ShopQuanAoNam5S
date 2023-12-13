@@ -3,6 +3,7 @@ package com.example.demo.repository;
 
 import com.example.demo.entity.ChatLieu;
 import com.example.demo.entity.GioHang;
+import com.example.demo.entity.KhachHang;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -21,5 +22,7 @@ List<GioHang>findByKhachHang_Username(String username);
     void deleteByI(@Param("gioHangID") int gioHangID);
     @Query(value = "select * from GioHang p WHERE p.trangThai =0 order by p.gioHangID desc",nativeQuery = true)
     List<GioHang> getAll();
+    List<GioHang> findByKhachHang(KhachHang khachHang);
+
 }
 

@@ -12,5 +12,7 @@ public interface ThanhToanService {
 //    KhachHang kh(String ten);
    DonHang themmoi(DonHang donHang,List<Integer> danhSachGioHangs,float tt);
     DonHang themmoingay(DonHang donHang,UUID sanPham,int sl,float tt);
+    DonHang themmoi2(DonHang donHang,List<GioHang> danhSachGioHangs,float tt,DonHangChiTiet donHangChiTiet);
+
 
 }
