@@ -58,6 +58,18 @@ public class PaymentController {
 
         return "redirect:" + vnpayUrl;
     }
+    @PostMapping("/submitOrder1")
+    public String submidOrder1(@RequestParam("amount") Long orderTotal,
+                               HttpServletRequest request, @ModelAttribute("t") DonHang donHang,@RequestParam("soLuongDat")int sl, @RequestParam("sanPhamID") UUID id, @RequestParam("amount") float tt, Model model, Principal principal) throws UnsupportedEncodingException {
+        String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
+        String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
+        String logname=principal.getName();
+        KhachHang khachHang=khachHangRepo.findByUsername(logname);
+        donHang.setKhachHang(khachHang);
+        DonHang donHang2 = thanhToanService.themmoingay(donHang,id,sl,tt);
+        model.addAttribute("t",donHang2);
+        return "redirect:" + vnpayUrl;
+    }
 
 
     @GetMapping("/vnpay-payment")
