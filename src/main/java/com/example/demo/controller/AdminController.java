@@ -34,6 +34,10 @@ public class AdminController {
     public String thatbai(){
         return "shop/thatbai";
     }
+    @GetMapping("/shop/blog")
+    public String blog(){
+        return "shop/blog";
+    }
 
 
 
