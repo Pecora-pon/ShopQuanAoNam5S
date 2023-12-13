@@ -177,70 +177,112 @@
                                     <th>Product</th>
                                     <th>Quantity</th>
                                     <th>Total</th>
+
                                     <th></th>
                                 </tr>
                             </thead>
                             <form method="post" action="/list-gh" onsubmit="return validateQuantity()">
-                            <c:forEach items="${listGioHang}" var="gh">
-                            <tbody>
-
-                                <tr>
-                                    <td class="product__cart__item">
-                                        <div class="product__cart__item__pic" >
-                                            <img src="/getimage/${gh.sanPham.hinhAnhURL}" style="max-height: 60px;max-height: 60px;">
-                                        </div>
-                                        <div class="product__cart__item__text">
-                                            <h6>${gh.sanPham.tenSanPham}</h6>
-                                            <h5>${gh.sanPham.giaSanPham}</h5>
-                                        </div>
-                                    </td>
-                                    <td class="quantity__item">
-                                        <div class="quantity">
-                                            <div class="pro-qty">
-<%--                                                <h6>${gh.soLuongDat}</h6>--%>
-                                            <input type="text" id="soLuongDat_${gh.gioHangID}" name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}" >
+                                <c:forEach items="${listGioHang}" var="gh">
+                                    <tbody>
+                                    <tr>
+                                        <td class="product__cart__item">
+                                            <div class="product__cart__item__pic">
+                                                <img src="/getimage/${gh.sanPham.hinhAnhURL}" style="max-height: 60px; max-height: 60px;">
                                             </div>
-                                        </div>
-                                    </td>
-                                    <td class="cart__price">${gh.tongTien}</td>
-                                    <td>
-                                        <div class="mt-2">
-                                            <input type="checkbox" name="selectedItems" value="${gh.gioHangID}">
+                                            <div class="product__cart__item__text">
+                                                <h6>${gh.sanPham.tenSanPham}</h6>
+                                                <p>Giá: ${gh.sanPham.giaSanPham}</p>
+                                                <div class="color-size-info">
+                                                    <p>Kích thước: ${gh.sanPham.size.tenSize}</p>
+                                                    <p>Màu sắc: ${gh.sanPham.mauSac.tenMauSac}</p>
+                                                </div>
+                                            </div>
+                                        </td>
+                                        <td class="quantity__item">
+                                            <div class="quantity">
+                                                <div class="pro-qty">
+                                                    <input type="text" id="soLuongDat_${gh.gioHangID}" name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}" oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham})">
+                                                </div>
+                                            </div>
+                                        </td>
 
-                                        </div>
-                                        <span id="quantityError_${gh.gioHangID}" style="color: #ff0000;"></span>
-                                        <div class="mt-2">
-                                            <a class="dropdown-item"
-                                               href="/deletedh/${gh.gioHangID}"><i
-                                                    class="bx bx-trash me-1"></i></a>
-                                        </div>
-<%--                                        <div class="mt-2">--%>
-<%--                                            <a class="dropdown-item"--%>
-<%--                                               href="/gio-hang-update/${gh.gioHangID}"><i--%>
-<%--                                                    class="bx bx-edit-alt me-1"></i></a>--%>
-<%--                                        </div>--%>
-                                    </td>
-                                </tr>
+                                        <td class="cart__price" id="tongTien_${gh.gioHangID}">${gh.tongTien}đ</td>
 
-                            </tbody>
-                                <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
-                            </c:forEach>
+
+                                        <td>
+                                            <div class="mt-2">
+                                                <input type="checkbox" name="selectedItems" value="${gh.gioHangID}">
+                                            </div>
+                                            <span id="quantityError_${gh.gioHangID}" style="color: #ff0000;"></span>
+                                            <div class="mt-2">
+                                                <a class="dropdown-item" href="/deletedh/${gh.gioHangID}"><i class="bx bx-trash me-1"></i></a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    </tbody>
+                                    <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
+                                </c:forEach>
+
                                 <button type="submit">Apply</button>
                             </form>
                         </table>
                     </div>
                     <script>
+                        function updateTotal(gioHangID, giaSanPham) {
+                            var quantityInput = document.getElementById("soLuongDat_" + gioHangID);
+                            var totalAmountElement = document.getElementById("tongTien_" + gioHangID);
+
+                            // Lấy số lượng từ trường input và đảm bảo nó là số nguyên dương
+                            var currentQuantity = parseInt(quantityInput.value) || 0;
+                            currentQuantity = Math.max(0, currentQuantity); // Đảm bảo rằng số lượng không dưới 1
+
+                            // Cập nhật giá trị trường input với số lượng đã xử lý
+                            quantityInput.value = currentQuantity;
+
+                            // Tính tổng tiền dựa trên số lượng và giá sản phẩm
+                            var totalPrice = currentQuantity * giaSanPham;
+
+                            // Cập nhật giá trị tổng tiền hiển thị
+                            totalAmountElement.innerHTML = totalPrice;
+                        }
+                    </script>
+
+                    <script>
                         function validateQuantity() {
                             var isValid = true;
+                            var checkboxes = document.getElementsByName("selectedItems");
+                            var isChecked = false;
+
+                            // Loop through each checkbox
+                            for (var i = 0; i < checkboxes.length; i++) {
+                                if (checkboxes[i].checked) {
+                                    isChecked = true;
+                                    break; // Nếu đã tìm thấy một checkbox được chọn, thoát khỏi vòng lặp
+                                }
+                            }
+
+                            // Kiểm tra nếu không có checkbox nào được chọn
+                            if (!isChecked) {
+                                alert("Vui lòng chọn ít nhất một sản phẩm.");
+                                return false; // Chặn sự kiện submit nếu không có checkbox nào được chọn
+                            }
+
+                            // Tiếp tục submit nếu có ít nhất một checkbox được chọn
 
                             // Loop through each quantity input
                             <c:forEach items="${listGioHang}" var="gh">
                             var quantityInput = document.getElementById("soLuongDat_${gh.gioHangID}");
                             var quantityError = document.getElementById("quantityError_${gh.gioHangID}");
 
-                            // Check if quantity is 0
-                            if (parseInt(quantityInput.value) === 0) {
-                                quantityError.innerHTML = "số lượng đặt phải từ 1.";
+                            // Check if quantity is greater than available stock
+                            var availableStock = ${gh.sanPham.soLuongTon};
+                            var orderedQuantity = parseInt(quantityInput.value);
+
+                            if (orderedQuantity > availableStock) {
+                                quantityError.innerHTML = "Số lượng đặt vượt quá số lượng tồn kho.Chỉ còn "+availableStock +" sản phẩm";
+                                isValid = false;
+                            } else if (orderedQuantity <= 0) {
+                                quantityError.innerHTML = "Số lượng đặt phải từ 1 trở lên.";
                                 isValid = false;
                             } else {
                                 quantityError.innerHTML = "";
@@ -250,15 +292,16 @@
                             return isValid;
                         }
                     </script>
+
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn">
-                                <a href="#">Continue Shopping</a>
+                                <a href="/list-san-pham/page">Continue Shopping</a>
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
                             <div class="continue__btn update__btn">
-                                <a href="#"><i class="fa fa-spinner"></i> Update cart</a>
+                                <a href="/gio-hang"><i class="fa fa-spinner"></i> Update cart</a>
                             </div>
                         </div>
                     </div>
@@ -373,6 +416,7 @@
     <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
     <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
     <script src="../mainshop/mainshop2/js/main.js"></script>
+
 </body>
 
 </html>
