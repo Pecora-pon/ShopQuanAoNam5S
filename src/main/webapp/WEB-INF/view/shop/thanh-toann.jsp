@@ -113,7 +113,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="/shop/main-shop"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
+                    <a href="../mainshop/mainshop2/index.html"><img src="../../../../../../../malefashion-master/malefashion-master/img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -124,21 +124,21 @@
                         <li><a href="#">Tìm hiểu thêm</a>
                             <ul class="dropdown">
                                 <li><a href="/shop/about">Về chúng tôi</a></li>
-                                <li><a href="/gio-hang">Giỏ hàng</a></li>
-                                <li><a href="/shop/blog">Blog</a></li>
+                                <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
+                                <li><a href="./blog-details.html">Blog</a></li>
                             </ul>
                         </li>
-                        <li><a href="/shop/blog">Blog</a></li>
+                        <li><a href="./blog.html">Blog</a></li>
                         <li><a href="/shop/lien-he">Liên hệ</a></li>
                     </ul>
                 </nav>
-
             </div>
             <div class="col-lg-3 col-md-3">
                 <div class="header__nav__option">
-                    <%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                     <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
                     <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                    <div class="price">$0.00</div>
                 </div>
             </div>
         </div>
@@ -155,9 +155,9 @@
                 <div class="breadcrumb__text">
                     <h4>Shopping Cart</h4>
                     <div class="breadcrumb__links">
-                        <a href="/shop/main-shop">Home</a>
-                        <a href="/list-san-pham/page">Shop</a>
-                        <span>Thanh toán</span>
+                        <a href="../mainshop/mainshop2/index.html">Home</a>
+                        <a href="../mainshop/mainshop2/shop.html">Shop</a>
+                        <span>Shopping Cart</span>
                     </div>
                 </div>
             </div>
@@ -225,12 +225,13 @@
                     }
                 </style>
                 <div class="input-group">
-                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this) " required>
-                        <option class="form-control" value="" selected disabled hidden>Mời bạn chọn mã giảm giá</option>
+                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this) " >
+                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>
                         <c:forEach var="giamGia" items="${listGiamGia}">
                             <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
                         </c:forEach>
                     </select>
+
                     <br>
 
                     <label for="giamGiaSelect" class="sotiengiam-label"></label>
