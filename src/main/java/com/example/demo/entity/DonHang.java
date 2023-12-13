@@ -45,9 +45,9 @@ public class DonHang {
     @JoinColumn(name = "ThongTinVanChuyenID")
     private ThongTinVanChuyen thongTinVanChuyen;
 
-    @ManyToOne
-    @JoinColumn(name="GiamGiaID")
-    private GiamGia giamGia;
+//    @ManyToOne
+//    @JoinColumn(name="GiamGiaID")
+//    private GiamGia giamGia;
 
     @Column(name = "TrangThai")
     private Integer trangThai;
