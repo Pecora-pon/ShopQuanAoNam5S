@@ -60,18 +60,19 @@ public class PaymentController {
     }
     @PostMapping("/submitOrder1")
     public String submidOrder1(@RequestParam("amount") Long orderTotal,
-                               HttpServletRequest request, @ModelAttribute("t") DonHang donHang,@RequestParam("soLuongDat")int sl, @RequestParam("sanPhamID") UUID id, @RequestParam("amount") float tt, Model model, Principal principal) throws UnsupportedEncodingException {
+                               DonHangChiTiet donHangChiTiet,HttpServletRequest request, @ModelAttribute("t") DonHang donHang,@RequestParam("soLuongDat")int sl, @RequestParam("sanPhamID") UUID id, @RequestParam("amount") float tt, Model model,
+            SanPham sanPham, Principal principal) throws UnsupportedEncodingException {
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-        String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
+        String vnpayUrl = vnPayService.createOrder1(orderTotal, baseUrl);
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
+        session.setAttribute("donHangSession", donHang);
+        session.setAttribute("ttSession", tt);
+        session.setAttribute("slSession", sl);
+        session.setAttribute("sanPhamSession",sanPham);
         donHang.setKhachHang(khachHang);
-        DonHang donHang2 = thanhToanService.themmoingay(donHang,id,sl,tt);
-        model.addAttribute("t",donHang2);
         return "redirect:" + vnpayUrl;
     }
-
-
     @GetMapping("/vnpay-payment")
     public String GetMapping(HttpServletRequest request, Model model, HttpSession session){
 
@@ -96,6 +97,46 @@ public class PaymentController {
             model.addAttribute("t",donHang1);
             session.removeAttribute("donHangSession");
             session.removeAttribute("ttSession");
+            return "shop/thong-bao";
+
+        }else {
+            session.removeAttribute("gioHangListSession");
+            session.removeAttribute("donHangSession");
+            session.removeAttribute("ttSession");
+            session.removeAttribute("donHangChiTietSession");
+            return "redirect:/that-bai";
+
+        }
+
+    }
+
+
+    @GetMapping("/vnpay-payment1")
+    public String GetMapping1(HttpServletRequest request, Model model, HttpSession session){
+
+        int paymentStatus = vnPayService.orderReturn(request);
+        if(paymentStatus == 1){
+            DonHang donHangFromSession = (DonHang) session.getAttribute("donHangSession");
+
+            Float tt = (Float) session.getAttribute("ttSession");
+            int sl = (int) session.getAttribute("slSession");
+            SanPham sanPham = (SanPham) session.getAttribute("sanPhamSession");
+            UUID sanPhamId = sanPham.getSanPhamID();
+
+            String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
+            String orderInfo = request.getParameter("vnp_OrderInfo");
+            String paymentTime = request.getParameter("vnp_PayDate");
+            String transactionId = request.getParameter("vnp_TransactionNo");
+            String totalPrice = request.getParameter("vnp_Amount");
+            model.addAttribute("orderId", orderInfo);
+            model.addAttribute("totalPrice", totalPrice);
+            model.addAttribute("paymentTime", paymentTime);
+            model.addAttribute("transactionId", transactionId);
+            DonHang donHang1 = thanhToanService.themmoingay(donHangFromSession,sanPhamId,sl,tt);
+            model.addAttribute("t",donHang1);
+            session.removeAttribute("donHangSession");
+            session.removeAttribute("ttSession");
+            session.removeAttribute("slSession");
             return "shop/thong-bao";
 
         }else {
