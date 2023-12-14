@@ -30,7 +30,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Chức vụ</title>
+    <title>Đơn hàng</title>
 
     <meta name="description" content=""/>
 
@@ -205,7 +205,7 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/doimatkhau" class="menu-link">
+                            <a href="http://localhost:8080/forgot_password" class="menu-link">
                                 <div data-i18n="Notifications">Đổi mật khẩu</div>
                             </a>
                         </li>
@@ -242,36 +242,41 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="http://localhost:8080/mau-sac" class="menu-link">
                                 <div data-i18n="Accordion">Màu sắc</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="http://localhost:8080/size" class="menu-link">
                                 <div data-i18n="Accordion">Size</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
-                                <div data-i18n="Accordion">Danh mục</div>
+                            <a href="http://localhost:8080/chat-lieu" class="menu-link">
+                                <div data-i18n="Accordion">Chất liệu</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
+                            <a href="http://localhost:8080/nha-cung-cap" class="menu-link">
+                                <div data-i18n="Accordion">Nhà cung cấp</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="http://localhost:8080/thuong-hieu" class="menu-link">
                                 <div data-i18n="Accordion">Thương hiệu</div>
                             </a>
                         </li>
-                        <li class="menu-item">
-                            <a href="ui-accordion.html" class="menu-link">
-                                <div data-i18n="Accordion">Hình ảnh</div>
-                            </a>
-                        </li>
+<%--                        <li class="menu-item">--%>
+<%--                            <a href="ui-accordion.html" class="menu-link">--%>
+<%--                                <div data-i18n="Accordion">Hình ảnh</div>--%>
+<%--                            </a>--%>
+<%--                        </li>--%>
                     </ul>
                 </li>
 
                 <!-- Extended components -->
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="http://localhost:8080/san-pham" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
@@ -295,12 +300,12 @@
                         class="menu-header-text">Khách hàng &amp; Nhân viên</span>
                 </li>
                 <!-- Forms -->
-                <li class="menu-item">
-                    <a href="" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-file"></i>
-                        <div data-i18n="Analytics">Chức vụ</div>
-                    </a>
-                </li>
+<%--                <li class="menu-item">--%>
+<%--                    <a href="" class="menu-link">--%>
+<%--                        <i class="menu-icon tf-icons bx bx-file"></i>--%>
+<%--                        <div data-i18n="Analytics">Chức vụ</div>--%>
+<%--                    </a>--%>
+<%--                </li>--%>
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -308,7 +313,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/trang-chu/login" class="menu-link">
+                            <a href="http://localhost:8080/khach-hang" class="menu-link">
                                 <div data-i18n="Basic Inputs">Quản lý khách hàng</div>
                             </a>
                         </li>
@@ -321,7 +326,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="http://localhost:8080/nhan-vien" class="menu-link">
                                 <div data-i18n="Vertical Form">Quản lý nhân viên</div>
                             </a>
                         </li>
@@ -335,10 +340,10 @@
                 <%--                    </a>--%>
                 <%--                </li>--%>
                 <!-- Misc -->
-                <li class="menu-header small text-uppercase"><span
-                        class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>
+<%--                <li class="menu-header small text-uppercase"><span--%>
+<%--                        class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>--%>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="http://localhost:8080/thongke" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Thống kê</div>
                     </a>
@@ -358,7 +363,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="form-layouts-vertical.html" class="menu-link">
+                            <a href="http://localhost:8080/don-hang" class="menu-link">
                                 <div data-i18n="Vertical Form">Danh sách đơn hàng</div>
                             </a>
                         </li>
@@ -374,25 +379,25 @@
                     <%--                    </a>--%>
 
                 </li>
-                <li class="menu-item">
-                    <a href="" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-car"></i>
-                        <div data-i18n="Analytics">Vận chuyển</div>
-                    </a>
+<%--                <li class="menu-item">--%>
+<%--                    <a href="" class="menu-link">--%>
+<%--                        <i class="menu-icon tf-icons bx bx-car"></i>--%>
+<%--                        <div data-i18n="Analytics">Vận chuyển</div>--%>
+<%--                    </a>--%>
 
-                </li>
+<%--                </li>--%>
                 <!--/ Khuyến mãi -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Khuyến mại</span></li>
 
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="http://localhost:8080/giam-gia" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-basket"></i>
                         <div data-i18n="Analytics">Danh sách khuyến mại</div>
                     </a>
 
                 </li>
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="/logout" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-door-open"></i>
                         <div data-i18n="Analytics">Log out</div>
                     </a>
@@ -475,7 +480,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="http://localhost:8080/responsive/thong-tin-tai-khoan">
                                         <i class="bx bx-user me-2"></i>
                                         <span class="align-middle">My Profile</span>
                                     </a>
@@ -499,7 +504,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="auth-login-basic.html">
+                                    <a class="dropdown-item" href="/logout">
                                         <i class="bx bx-power-off me-2"></i>
                                         <span class="align-middle">Log Out</span>
                                     </a>
@@ -612,13 +617,6 @@
                                             </div>
                                             <div class="mt-2">
                                                 <button type="submit" id="myButton" class="btn btn-primary me-2"> Thanh Toán</button>
-
-                                                <script>
-                                                    document.getElementById("myButton").addEventListener("click", function() {
-                                                        alert("Bạn đã thanh toán thành công");
-                                                    });
-                                                </script>
-
 <%--                                                <button type="submit" class="btn btn-primary me-2">Thanh Toán</button>--%>
                                             </div>
                                         </div>
@@ -662,7 +660,8 @@
 <%--                                    <td>${dh.giamGia.maGiamGia}</td>--%>
                                     <td>${dh.trangThai}</td>
                                     <td>${dh.hinhThucThanhToan}</td>
-                                    <td><fmt:formatDate value="${dh.ngayDatHang}" pattern="yyyy-MM-dd" /></td>
+<%--                                    <td><fmt:formatDate value="${dh.ngayDatHang}" pattern="yyyy-MM-dd" /></td>--%>
+                                    <td>${dh.ngayDatHang}</td>
                                     <td>${dh.note}</td>
 <%--                                    <td>${dh.tongTien}</td>--%>
                                     <td>
@@ -755,6 +754,41 @@
 
 <!-- Main JS -->
 <script src="../admin/assets/js/main.js"></script>
+
+<%--<script>--%>
+<%--    function validateFormDH() {--%>
+<%--        var donHangID = document.querySelector('input[name="donHangID"]').value.trim();--%>
+<%--        var khachHang = document.querySelector('select[name="khachHangId"]').value.trim();--%>
+<%--        var tenKhach = document.querySelector('input[name="tenKhach"]').value.trim();--%>
+<%--        var soDienThoai = document.querySelector('input[name="soDienThoai"]').value.trim();--%>
+<%--        var thongTinVanChuyen = document.querySelector('select[name="thongTinVanChuyen"]').value.trim();--%>
+<%--        var trangThai = document.querySelector('input[name="trangThai"]').value.trim();--%>
+<%--        var hinhThucThanhToan = document.querySelector('input[name="hinhThucThanhToan"]').value.trim();--%>
+<%--        var ngayDatHang = document.querySelector('input[name="ngayDatHang"]').value.trim();--%>
+<%--        var note = document.querySelector('input[name="note"]').value.trim();--%>
+
+<%--        if (donHangID === "" || khachHang === "" || tenKhach === "" || soDienThoai === "" || thongTinVanChuyen === "" || trangThai === "" || hinhThucThanhToan === "" || ngayDatHang === "" || note === "") {--%>
+<%--            alert("Vui lòng nhập đầy đủ dữ liệu");--%>
+<%--            return false;--%>
+<%--        }--%>
+
+<%--        // Kiểm tra nếu có dấu cách ở đầu hoặc cuối chuỗi--%>
+<%--        if (tenKhach.startsWith(' ') || tenKhach.endsWith(' ')) {--%>
+<%--            alert("Tên Khách không được chứa dấu cách ở đầu hoặc cuối chuỗi");--%>
+<%--            return false;--%>
+<%--        }--%>
+
+<%--        // Kiểm tra số điện thoại chỉ chứa số và có đúng 10 ký tự--%>
+<%--        if (isNaN(soDienThoai) || soDienThoai.length !== 10) {--%>
+<%--            alert("Số Điện Thoại phải là số và có đúng 10 chữ số");--%>
+<%--            return false;--%>
+<%--        }--%>
+
+<%--        // Thêm logic kiểm tra bổ sung nếu cần--%>
+
+<%--        return true; // Form sẽ được submit nếu tất cả kiểm tra thành công--%>
+<%--    }--%>
+<%--</script>--%>
 
 <!-- Page JS -->
 <script src="../admin/assets/js/dashboards-analytics.js"></script>
