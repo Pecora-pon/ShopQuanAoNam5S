@@ -139,7 +139,7 @@
               <h4 class="mb-2">Chào mừng tới Quần Áo Nam 5S! 👋</h4>
               <p class="mb-4">Đăng nhập vào tài khoản</p>
 
-              <form id="formAuthentication" class="mb-3" action="/login" method="POST">
+              <form id="formAuthentication" class="mb-3" action="/login" method="POST" onsubmit="return validateForm()">
                 <div class="mb-3">
                   <label for="username" class="form-label">Tên đăng nhập</label>
                   <input
@@ -170,6 +170,15 @@
                     <span class="input-group-text cursor-pointer"><i class="bx bx-hide"></i></span>
                   </div>
                 </div>
+                <div class="mb-3">
+                  <% String error = (String) request.getAttribute("error"); %>
+                  <% if (error != null) { %>
+                  <div class="alert alert-danger">
+                    <p><%= error %></p>
+                  </div>
+                  <% } %>
+                </div>
+
 
                 <div class="mb-3">
 
@@ -209,6 +218,24 @@
 
     <!-- Main JS -->
     <script src="../admin/assets/js/main.js"></script>
+    <script>
+      function validateForm() {
+        var username = document.getElementById("username").value;
+        var password = document.getElementById("password").value;
+
+        if (username.trim() === "") {
+          alert("Vui lòng nhập tên đăng nhập.");
+          return false;
+        }
+
+        if (password.trim() === "") {
+          alert("Vui lòng nhập mật khẩu.");
+          return false;
+        }
+
+        return true;
+      }
+    </script>
 
     <!-- Page JS -->
 
