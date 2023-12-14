@@ -4,6 +4,13 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="java.security.Principal" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.Collections" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
 <head>
@@ -78,8 +85,22 @@
                     <div class="col-lg-6 col-md-5">
                         <div class="header__top__right">
                             <div class="header__top__links">
-                                <a href="#">Đăng nhập</a>
-                                <%--                                <a href="#">FAQs</a>--%>
+                                <sec:authorize access="hasRole('ROLE_USER')">
+                                    <!-- Nếu đã đăng nhập, hiển thị tên người dùng và nút đăng xuất -->
+                                    <div style="display: flex; align-items: center;">
+                                        <span style="color: white;">Xin chào, <%= request.getUserPrincipal().getName() %>!</span>
+                                        <form action="/logout" method="post" style="margin-left: 10px;">
+                                            <input type="submit" value="Đăng xuất">
+                                        </form>
+                                    </div>
+                                </sec:authorize>
+
+                                <sec:authorize access="!hasRole('ROLE_USER')">
+                                    <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
+                                    <div>
+                                        <a href="/login" style="color: white;">Đăng nhập</a>
+                                    </div>
+                                </sec:authorize>
                             </div>
                             <%--                            <div class="header__top__hover">--%>
                             <%--                                <span>Usd <i class="arrow_carrot-down"></i></span>--%>
