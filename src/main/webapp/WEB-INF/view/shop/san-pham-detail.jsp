@@ -211,15 +211,15 @@
                                 </div>
                             </div>
 
-                            <div class="product__details__cart__option">
-                                <div class="quantity">
-                                    <div class="pro-qty">
-                                        <input type="text"id="soLuongDatInput" value="1" name="soLuongDat">
+                                <div class="product__details__cart__option">
+                                    <div class="quantity">
+                                        <div class="pro-qty">
+                                            <input type="text" id="soLuongDatInput" value="1" name="soLuongDat">
+                                        </div>
                                     </div>
+                                    <button class="primary-btn" onclick="validateAndSubmit(event)">add to cart</button>
+                                    <a href="javascript:void(0);" class="primary-btn" onclick="muaNgay()">Mua Ngay</a>
                                 </div>
-                                <button class="primary-btn" onclick="validateAndSubmit(event)">add to cart</button>
-                                <a href="javascript:void(0);" class="primary-btn" onclick="muaNgay()">Mua Ngay</a>
-                            </div>
                         </c:forEach>
                         </form:form>
 <%--                            <script>--%>
@@ -465,6 +465,18 @@
     <!-- Footer Section End -->
     <script>
         function validateAndSubmit(event) {
+            var soLuongDatInput = document.getElementById("soLuongDatInput");
+            var soLuongDatValue = soLuongDatInput.value.trim();
+
+            // Kiểm tra xem giá trị có phải là một số và không để trống
+            if (/^\d+$/.test(soLuongDatValue) && soLuongDatValue !== "") {
+                // Nếu là số và không để trống, có thể thực hiện các hành động tiếp theo, ví dụ: gửi yêu cầu đặt hàng
+
+            } else {
+                // Nếu không phải là số hoặc để trống, thông báo lỗi
+                alert("Số lượng không hợp lệ. Vui lòng nhập một số nguyên dương.");
+                event.preventDefault();
+            }
             var soLuongDat = parseInt(document.getElementById('soLuongDatInput').value);
             var slton = parseInt("${sp.soLuongTon}");
 
@@ -475,6 +487,18 @@
         }
 
         function muaNgay() {
+            var soLuongDatInput = document.getElementById("soLuongDatInput");
+            var soLuongDatValue = soLuongDatInput.value.trim();
+
+            // Kiểm tra xem giá trị có phải là một số và không để trống
+            if (/^\d+$/.test(soLuongDatValue) && soLuongDatValue !== "") {
+                // Nếu là số và không để trống, có thể thực hiện các hành động tiếp theo, ví dụ: gửi yêu cầu đặt hàng
+
+            } else {
+                // Nếu không phải là số hoặc để trống, thông báo lỗi
+                alert("Số lượng không hợp lệ. Vui lòng nhập một số nguyên dương.");
+                return false;
+            }
             var soLuongDat = parseInt(document.getElementById("soLuongDatInput").value);
             var sanPhamID = "${sp.sanPhamID}";
             var slton = parseInt("${sp.soLuongTon}");
