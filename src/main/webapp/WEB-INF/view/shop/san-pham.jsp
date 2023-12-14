@@ -210,47 +210,47 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__size">
                                             <label for="xs">xs
-                                                <a href="/list-san-pham/page?sizeid=0">
+                                                <a href="/list-san-pham/page?sizeid=1">
                                                     <input id="xs">
                                                 </a>
                                             </label>
-                                            <label for="sm">s
-                                                <a href="/list-san-pham/page?sizeid=1">
+                                            <label for="sm">sm
+                                                <a href="/list-san-pham/page?sizeid=2">
                                                     <input id="sm">
                                                 </a>
 
                                             </label>
                                             <label for="md">m
-                                                <a href="/list-san-pham/page?sizeid=2">
+                                                <a href="/list-san-pham/page?sizeid=3">
                                                     <input id="md">
                                                 </a>
                                             </label>
                                             <label for="xl">xl
-                                                <a href="/list-san-pham/page?sizeid=3">
+                                                <a href="/list-san-pham/page?sizeid=4">
                                                     <input id="xl">
                                                 </a>
 
                                             </label>
                                             <label for="2xl">2xl
-                                                <a href="/list-san-pham/page?sizeid=4">
+                                                <a href="/list-san-pham/page?sizeid=5">
                                                     <input id="2xl">
                                                 </a>
 
                                             </label>
                                             <label for="xxl">xxl
-                                                <a href="/list-san-pham/page?sizeid=5">
+                                                <a href="/list-san-pham/page?sizeid=6">
                                                     <input id="xxl">
                                                 </a>
 
                                             </label>
                                             <label for="3xl">3xl
-                                                <a href="/list-san-pham/page?sizeid=6">
+                                                <a href="/list-san-pham/page?sizeid=7">
                                                     <input id="3xl">
                                                 </a>
 
                                             </label>
                                             <label for="4xl">4xl
-                                                <a href="/list-san-pham/page?sizeid=7">
+                                                <a href="/list-san-pham/page?sizeid=8">
                                                     <input id="4xl">
                                                 </a>
 
