@@ -33,9 +33,9 @@ public class GiamGiaServiceImpl implements GiamGiaService {
         Respon<GiamGia> respon=new Respon<>();
 
         if( !giamGia.getMaGiamGia().isEmpty() &&
-             !giamGia.getTenSuKien().isEmpty() &&
-                giamGia.getNgayTao() != null && giamGia.getNgayHetHan() !=null &&
-                giamGia.getNhanVien() !=null
+             !giamGia.getTenSuKien().isEmpty()
+//                giamGia.getNgayTao() != null && giamGia.getNgayHetHan() !=null &&
+//                giamGia.getNhanVien() !=null
         ){
 
             giamGiaRepo.save(giamGia);
@@ -56,8 +56,8 @@ public class GiamGiaServiceImpl implements GiamGiaService {
             giamGia1.setMaGiamGia(giamGia.getMaGiamGia());
             giamGia1.setTenSuKien(giamGia.getTenSuKien());
             giamGia1.setNhanVien(giamGia.getNhanVien());
-            giamGia1.setNgayTao(giamGia.getNgayTao());
-            giamGia1.setNgayHetHan(giamGia.getNgayHetHan());
+//            giamGia1.setNgayTao(giamGia.getNgayTao());
+//            giamGia1.setNgayHetHan(giamGia.getNgayHetHan());
             giamGia1.setSoTienGiam(giamGia.getSoTienGiam());
             giamGiaRepo.save(giamGia);
             repon.setStatus("Thành công");

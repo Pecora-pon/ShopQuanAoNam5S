@@ -6,6 +6,7 @@ import com.example.demo.entity.ThongTinVanChuyen;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.ThongTinVanChuyenRepo;
 import com.example.demo.service.ThongTinVanChuyenService;
+import jakarta.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -25,21 +26,22 @@ public class ThongTinVanChuyenServiceImpl implements ThongTinVanChuyenService {
 
     @Override
     public Respon<ThongTinVanChuyen> add(ThongTinVanChuyen thongTinVanChuyen) {
+
         Respon<ThongTinVanChuyen> respon=new Respon<>();
 
-        if( !thongTinVanChuyen.getDiaChi().isEmpty() &&
-                !thongTinVanChuyen.getPhuongThuc().isEmpty() &&
-                thongTinVanChuyen.getTrangThai() != null
-        ){
+        if( !thongTinVanChuyen.getDiaChi().isEmpty()
 
+        ){
+            thongTinVanChuyen.setPhuongThuc("Vận chuyển nhanh");
+            thongTinVanChuyen.setTrangThai(0);
             thongTinVanChuyenRepo.save(thongTinVanChuyen);
             respon.setStatus("Thành công");
         }else {
             respon.setError("Vui lòng nhập đầy đủ dữ liệu");
         }
         return respon;
-
     }
+
 
     @Override
     public Respon<ThongTinVanChuyen> update(Integer thongTinVanChuyenID, ThongTinVanChuyen thongTinVanChuyen) {
