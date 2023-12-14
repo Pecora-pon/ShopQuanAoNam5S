@@ -201,7 +201,7 @@
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/doimatkhau" class="menu-link">
+                            <a href="http://localhost:8080/forgot_password" class="menu-link">
                                 <div data-i18n="Notifications">Đổi mật khẩu</div>
                             </a>
                         </li>
@@ -238,36 +238,41 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/mau-sac" class="menu-link">
+                            <a href="http://localhost:8080/mau-sac" class="menu-link">
                                 <div data-i18n="Accordion">Màu sắc</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/size" class="menu-link">
+                            <a href="http://localhost:8080/size" class="menu-link">
                                 <div data-i18n="Accordion">Size</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/chat-lieu" class="menu-link">
-                                <div data-i18n="Accordion">Chất liêu</div>
+                            <a href="http://localhost:8080/chat-lieu" class="menu-link">
+                                <div data-i18n="Accordion">Chất liệu</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="/thuong-hieu" class="menu-link">
-                                <div data-i18n="Accordion">Thương hiệu</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="/nha-cung-cap" class="menu-link">
+                            <a href="http://localhost:8080/nha-cung-cap" class="menu-link">
                                 <div data-i18n="Accordion">Nhà cung cấp</div>
                             </a>
                         </li>
+                        <li class="menu-item">
+                            <a href="http://localhost:8080/thuong-hieu" class="menu-link">
+                                <div data-i18n="Accordion">Thương hiệu</div>
+                            </a>
+                        </li>
+                        <%--                        <li class="menu-item">--%>
+                        <%--                            <a href="ui-accordion.html" class="menu-link">--%>
+                        <%--                                <div data-i18n="Accordion">Hình ảnh</div>--%>
+                        <%--                            </a>--%>
+                        <%--                        </li>--%>
                     </ul>
                 </li>
 
                 <!-- Extended components -->
                 <li class="menu-item">
-                    <a href="/san-pham" class="menu-link">
+                    <a href="http://localhost:8080/san-pham" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
@@ -291,12 +296,12 @@
                         class="menu-header-text">Khách hàng &amp; Nhân viên</span>
                 </li>
                 <!-- Forms -->
-                <li class="menu-item">
-                    <a href="" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-file"></i>
-                        <div data-i18n="Analytics">Chức vụ</div>
-                    </a>
-                </li>
+                <%--                <li class="menu-item">--%>
+                <%--                    <a href="" class="menu-link">--%>
+                <%--                        <i class="menu-icon tf-icons bx bx-file"></i>--%>
+                <%--                        <div data-i18n="Analytics">Chức vụ</div>--%>
+                <%--                    </a>--%>
+                <%--                </li>--%>
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -304,7 +309,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/khach-hang" class="menu-link">
+                            <a href="http://localhost:8080/khach-hang" class="menu-link">
                                 <div data-i18n="Basic Inputs">Quản lý khách hàng</div>
                             </a>
                         </li>
@@ -317,7 +322,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/nhan-vien" class="menu-link">
+                            <a href="http://localhost:8080/nhan-vien" class="menu-link">
                                 <div data-i18n="Vertical Form">Quản lý nhân viên</div>
                             </a>
                         </li>
@@ -331,10 +336,10 @@
                 <%--                    </a>--%>
                 <%--                </li>--%>
                 <!-- Misc -->
-                <li class="menu-header small text-uppercase"><span
-                        class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>
+                <%--                <li class="menu-header small text-uppercase"><span--%>
+                <%--                        class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>--%>
                 <li class="menu-item">
-                    <a href="/thongke" class="menu-link">
+                    <a href="http://localhost:8080/thongke" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Thống kê</div>
                     </a>
@@ -354,16 +359,8 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="/hien-thi" class="menu-link">
+                            <a href="http://localhost:8080/don-hang" class="menu-link">
                                 <div data-i18n="Vertical Form">Danh sách đơn hàng</div>
-                            </a>
-                        </li>
-
-                    </ul>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="/hien-thi" class="menu-link">
-                                <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
                             </a>
                         </li>
 
@@ -378,18 +375,18 @@
                     <%--                    </a>--%>
 
                 </li>
-                <li class="menu-item">
-                    <a href="/long" class="menu-link">
-                        <i class="menu-icon tf-icons bx bx-car"></i>
-                        <div data-i18n="Analytics">Vận chuyển</div>
-                    </a>
+                <%--                <li class="menu-item">--%>
+                <%--                    <a href="" class="menu-link">--%>
+                <%--                        <i class="menu-icon tf-icons bx bx-car"></i>--%>
+                <%--                        <div data-i18n="Analytics">Vận chuyển</div>--%>
+                <%--                    </a>--%>
 
-                </li>
+                <%--                </li>--%>
                 <!--/ Khuyến mãi -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Khuyến mại</span></li>
 
                 <li class="menu-item">
-                    <a href="" class="menu-link">
+                    <a href="http://localhost:8080/giam-gia" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-basket"></i>
                         <div data-i18n="Analytics">Danh sách khuyến mại</div>
                     </a>
@@ -479,7 +476,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="#">
+                                    <a class="dropdown-item" href="http://localhost:8080/responsive/thong-tin-tai-khoan">
                                         <i class="bx bx-user me-2"></i>
                                         <span class="align-middle">My Profile</span>
                                     </a>
@@ -590,10 +587,10 @@
                                 <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần áo Nam 5S</a>
                             </div>
                             <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang chủ</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản phẩm</a>
+                                <a href="http://localhost:8080/trang-chu" class="footer-link me-4" target="_blank">Trang chủ</a>
+                                <a href="http://localhost:8080/list-san-pham/page" target="_blank" class="footer-link me-4">Sản phẩm</a>
 
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/" target="_blank" class="footer-link me-4">Thống kê</a>
+                                <a href="http://localhost:8080/thongke" target="_blank" class="footer-link me-4">Thống kê</a>
 
                                 <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues" target="_blank" class="footer-link me-4">Hỗ trợ</a>
                             </div>
