@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
     <meta charset="UTF-8">
@@ -206,7 +207,8 @@
                                             </div>
                                         </td>
 
-                                        <td class="cart__price" id="tongTien_${gh.gioHangID}">${gh.tongTien}đ</td>
+                                        <td class="cart__price" id="tongTien_${gh.gioHangID}">
+                                            <fmt:formatNumber value="${gh.tongTien}" pattern="#,##0"/> đ</td>
 
 
                                         <td>
@@ -317,7 +319,7 @@
                     <div class="cart__total">
                         <h6>Tổng tiền trong giỏ hàng</h6>
                         <ul>
-                            <li>Tổng tiền <span>${totalPrice}</span></li>
+                            <li>Tổng tiền <span> <fmt:formatNumber value="${totalPrice}" pattern="#,##0"/> VNĐ</span></li>
                         </ul>
 <%--                        <a href="#" class="primary-btn">Proceed to checkout</a>--%>
                     </div>

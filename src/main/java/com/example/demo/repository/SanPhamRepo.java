@@ -64,6 +64,8 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     void deleteByI(@Param("sanPhamID") UUID sanPhamID);
     @Query(value = "select * from SanPham p WHERE p.tinhTrang =0 order by p.sanPhamID desc",nativeQuery = true)
     List<SanPham> getAll();
+    @Query(value = "SELECT TOP 4 * FROM SanPham ORDER BY GiaSanPham ASC", nativeQuery = true)
+    List<SanPham> findTop4ByOrderByGiaSanPhamAsc();
 
 
 

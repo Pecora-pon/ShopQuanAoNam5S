@@ -1,3 +1,7 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html
         lang="en"
@@ -256,37 +260,28 @@
         <div class="container">
             <div class="section-title">
                 <span></span>
-                <h2>Chất lượng sản phẩm cao</h2>
+                <h2>Sản phẩm nổi bật</h2>
             </div>
             <div class="row">
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="../mainshop/mainshop2/img/blog/blog-4.jpg" alt="">
-                        <h4>John Smith</h4>
-                        <span>Fashion Design</span>
+                <c:forEach items="${listSanPham4}" var="sp">
+                    <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
+                        <div class="product__item">
+                            <div class="product__item__pic set-bg" data-setbg="/getimage/${sp.hinhAnhURL}" style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
+                                <span class="label">New</span>
+                                <ul class="product__hover">
+                                    <li><a href="/danh-sach-yt/them/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a></li>
+                                    <li><a href="/san-pham-detail/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a></li>
+                                </ul>
+                            </div>
+                            <div class="product__item__text">
+                                <h6>${sp.tenSanPham}</h6>
+                                <a href="/san-pham-detail/${sp.sanPhamID}" class="add-cart">+ Add To Cart</a>
+
+                                <h5> <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/> VND</h5>
+                            </div>
+                        </div>
                     </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="../mainshop/mainshop2/img/blog/blog-5.jpg" alt="">
-                        <h4>Christine Wise</h4>
-                        <span>C.E.O</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="../mainshop/mainshop2/img/blog/blog-8.jpg" alt="">
-                        <h4>Sean Robbins</h4>
-                        <span>Manager</span>
-                    </div>
-                </div>
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                    <div class="team__item">
-                        <img src="../mainshop/mainshop2/img/blog/blog-7.jpg" alt="">
-                        <h4>Lucy Myers</h4>
-                        <span>Delivery</span>
-                    </div>
-                </div>
+                </c:forEach>
             </div>
         </div>
     </section>

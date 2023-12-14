@@ -32,6 +32,8 @@ public class ShopController {
     private SizeService sizeService;
     @Autowired
     private MauSacService mauSacService;
+    @Autowired
+    private SanPhamService sanPhamService;
 
     //    @RequestMapping("/list-san-pham")
     //    public String getAll(Model model) {
@@ -46,6 +48,13 @@ public class ShopController {
         model.addAttribute("sp",sanPham);
         return "shop/san-pham-detail";
     }
+//    @RequestMapping("/san-pham-detail")
+//    public String list4(Model model){
+//        List<SanPham> sanPhams = sanPhamService.getTop4SanPhamByGiaThapNhat();
+//        model.addAttribute("listSanPham4", sanPhams);
+//        model.addAttribute("sp2", new SanPham());
+//        return "shop/san-pham-detail";
+//    }
 
     @RequestMapping(value = "/list-san-pham/page", method = RequestMethod.GET)
     public String page(@RequestParam(defaultValue = "1") int page,

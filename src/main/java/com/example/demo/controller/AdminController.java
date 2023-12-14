@@ -3,8 +3,10 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.KhachHang;
 import com.example.demo.entity.NhaCungCap;
+import com.example.demo.entity.SanPham;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.service.KhachHangService;
+import com.example.demo.service.SanPhamService;
 import com.example.demo.servicesecuritykh.KhService;
 import jakarta.mail.MessagingException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -26,6 +28,8 @@ public class AdminController {
     private KhService khService;
     @Autowired
     private JavaMailSender mailSender;
+    @Autowired
+    private SanPhamService sanPhamService;
     @GetMapping("/login")
     public String login() {
         return "admin/login";
@@ -61,7 +65,10 @@ public class AdminController {
     }
 
     @RequestMapping("/shop/main-shop")
-    public String mainshop() {
+    public String mainshop(Model model) {
+        List<SanPham> sanPhams = sanPhamService.getTop4SanPhamByGiaThapNhat();
+                model.addAttribute("listSanPham4", sanPhams);
+                model.addAttribute("sp", new SanPham());
         return "shop/index";
     }
 
@@ -122,5 +129,6 @@ public class AdminController {
     public String contact(){
         return "shop/lien-he";
     }
+
 
 }

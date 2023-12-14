@@ -164,4 +164,9 @@ public class SanPhamServiceImpl implements SanPhamService {
     public List<SanPham> findByThuongHieuID(int thuongHieuID) {
         return sanPhamRepo.findByThuongHieu_ThuongHieuID(thuongHieuID);
     }
+
+    @Override
+    public List<SanPham> getTop4SanPhamByGiaThapNhat() {
+        return sanPhamRepo.findTop4ByOrderByGiaSanPhamAsc();
+    }
 }

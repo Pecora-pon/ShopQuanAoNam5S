@@ -14,19 +14,29 @@ public interface SanPhamService {
 
     Respon<SanPham> add(SanPham sanPham);
 
-   Respon<SanPham> update(UUID sanPhamID, SanPham sanPham);
+    Respon<SanPham> update(UUID sanPhamID, SanPham sanPham);
 
     void delete(UUID sanPhamID);
 
     SanPham detail(UUID sanPhamID);
+
     Page<SanPham> getPage(int pageNumber, int pageSize);
-    void capnhat(UUID id,int soluong);
-    SanPham size(SanPham sanPham,UUID sanPhamID);
+
+    void capnhat(UUID id, int soluong);
+
+    SanPham size(SanPham sanPham, UUID sanPhamID);
+
     List<SanPham> findtenSanPham(String ten);
-//   SanPham themgio(UUID sanPhamID);
+
+    //   SanPham themgio(UUID sanPhamID);
 //    List<SanPham> findmausac(String mausac);
-List<SanPham> findByMauSacID(int mauSacID);
-List<SanPham> findBySizeID(int sizeID);
-List<SanPham> findByChatLieuID(int chatLieuID);
-List<SanPham> findByThuongHieuID(int thuongHieuID);
+    List<SanPham> findByMauSacID(int mauSacID);
+
+    List<SanPham> findBySizeID(int sizeID);
+
+    List<SanPham> findByChatLieuID(int chatLieuID);
+
+    List<SanPham> findByThuongHieuID(int thuongHieuID);
+
+    List<SanPham> getTop4SanPhamByGiaThapNhat();
 }

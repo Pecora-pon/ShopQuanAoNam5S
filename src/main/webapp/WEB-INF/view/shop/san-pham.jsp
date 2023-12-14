@@ -191,12 +191,12 @@
                                         <div class="shop__sidebar__price">
                                             <ul>
                                                 <li><a href="/list-san-pham/page?minPrice=0&maxPrice=50000">0Đ -
-                                                    50000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=50000&maxPrice=100000">50000Đ - 100000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=100000&maxPrice=150000">100000Đ - 150000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=150000&maxPrice=200000">150000Đ - 200000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=200000&maxPrice=250000">200000Đ - 250000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=250000&maxPrice=10000000">250000+</a></li>
+                                                    50,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=50000&maxPrice=100000">50,000Đ - 100,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=100000&maxPrice=150000">100,000Đ - 150,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=150000&maxPrice=200000">150,000Đ - 200,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=200000&maxPrice=250000">200,000Đ - 250,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?minPrice=250000&maxPrice=10000000">250,000+</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -312,7 +312,7 @@
                                             <i class="fa fa-star-o"></i>
                                         </div>
                                         <h5>
-                                            <fmt:formatNumber value="${sp.giaSanPham}" pattern="0"/> VND
+                                            <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/> VND
                                         </h5>
                                         <div class="product__color__select">
                                             <label for="pc-4">

@@ -3,6 +3,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <head>
@@ -190,7 +191,9 @@
                         <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post">
                             <c:forEach items="l">
                             <h4 value="${sp.tenSanPham}">${sp.tenSanPham}</h4>
-                            <h3 value="${sp.giaSanPham}">${sp.giaSanPham}</h3>
+                            <h3 value="${sp.giaSanPham}">
+                                <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/>
+                            </h3>
                             <div class="product__details__option">
                                 <div class="product__details__option__size">
                                     Size:
@@ -360,7 +363,38 @@
     <!-- Shop Details Section End -->
 
     <!-- Related Section Begin -->
+<%--    <section class="related spad">--%>
+<%--        <div class="container">--%>
+<%--            <div class="row">--%>
+<%--                <div class="col-lg-12">--%>
+<%--                    <h3 class="related-title">Related Product</h3>--%>
+<%--                </div>--%>
+<%--            </div>--%>
+<%--            <div class="row">--%>
+<%--               <form action="/san-pham-detail" method="get">--%>
+<%--                   <c:forEach items="${listSanPham4}" var="sp2">--%>
+<%--                       <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">--%>
+<%--                           <div class="product__item">--%>
+<%--                               <div class="product__item__pic set-bg" data-setbg="/getimage/${sp2.hinhAnhURL}" style="background-image: url(&quot;img/product/product-1.jpg&quot;);">--%>
+<%--                                   <span class="label">New</span>--%>
+<%--                                   <ul class="product__hover">--%>
+<%--                                       <li><a href="/danh-sach-yt/them/${sp2.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a></li>--%>
+<%--                                       <li><a href="/san-pham-detail/${sp2.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a></li>--%>
+<%--                                   </ul>--%>
+<%--                               </div>--%>
+<%--                               <div class="product__item__text">--%>
+<%--                                   <h6>${sp2.tenSanPham}</h6>--%>
+<%--                                   <a href="/san-pham-detail/${sp2.sanPhamID}" class="add-cart">+ Add To Cart</a>--%>
 
+<%--                                   <h5><fmt:formatNumber value="${sp2.giaSanPham}" pattern="0"/> VND</h5>--%>
+<%--                               </div>--%>
+<%--                           </div>--%>
+<%--                       </div>--%>
+<%--                   </c:forEach>--%>
+<%--               </form>--%>
+<%--            </div>--%>
+<%--        </div>--%>
+<%--    </section>--%>
     <!-- Related Section End -->
 
     <!-- Footer Section Begin -->
