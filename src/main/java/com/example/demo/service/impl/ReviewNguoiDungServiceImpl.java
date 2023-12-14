@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class ReviewNguoiDungServiceImpl implements ReviewNguoiDungService {
@@ -37,6 +38,12 @@ public class ReviewNguoiDungServiceImpl implements ReviewNguoiDungService {
     @Override
     public void delete(Integer reviewID) {
         repo.deleteById(reviewID);
+    }
+
+    @Override
+    public List<ReviewNguoiDung> findBy(UUID id) {
+        System.out.println("sldfjosidf"+id);
+        return repo.findBySanPham_SanPhamID(id);
     }
 
     @Override
