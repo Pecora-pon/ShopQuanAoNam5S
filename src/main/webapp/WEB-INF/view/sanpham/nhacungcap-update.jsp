@@ -395,7 +395,7 @@
 
                 </li>
                 <li class="menu-item">
-                    <a href="/logout" class="menu-link">
+                    <a href="/login" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-door-open"></i>
                         <div data-i18n="Analytics">Log out</div>
                     </a>
@@ -502,7 +502,7 @@
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="/logout">
+                                    <a class="dropdown-item" href="/login">
                                         <i class="bx bx-power-off me-2"></i>
                                         <span class="align-middle">Log Out</span>
                                     </a>
