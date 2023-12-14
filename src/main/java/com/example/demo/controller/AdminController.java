@@ -17,6 +17,7 @@ import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -31,9 +32,17 @@ public class AdminController {
     @Autowired
     private SanPhamService sanPhamService;
     @GetMapping("/login")
-    public String login() {
+    public String login(@RequestParam(name = "error", required = false) String error, Model model) {
+        if (error != null) {
+            model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.");
+        }
         return "admin/login";
-    }
+
+
+}
+
+
+
     @GetMapping("/that-bai")
     public String thatbai(){
         return "shop/thatbai";
