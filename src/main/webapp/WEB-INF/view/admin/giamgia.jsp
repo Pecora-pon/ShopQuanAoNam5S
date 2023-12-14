@@ -530,7 +530,7 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Thêm giảm giá
                             </button>
-                            <form:form action="/giam-gia-add" modelAttribute="gg" method="POST">
+                            <form:form action="/giam-gia-add" modelAttribute="gg" method="POST" onsubmit="return validateForm()">
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -566,22 +566,23 @@
                                                         </form:select>
                                                     </div>
 
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Ngày tạo</label>
-                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>
-                                                        <form:errors path="ngayTao"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Ngày hết hạn</label>
-                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
-                                                        <form:errors path="ngayHetHan"/>
-                                                    </div>
+<%--                                                    <div class="mb-3 col-md-6">--%>
+<%--                                                        <label class="form-label">Ngày tạo</label>--%>
+<%--                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>--%>
+<%--                                                        <form:errors path="ngayTao"/>--%>
+<%--                                                    </div>--%>
+<%--                                                    <div class="mb-3 col-md-6">--%>
+<%--                                                        <label class="form-label">Ngày hết hạn</label>--%>
+<%--                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>--%>
+<%--                                                        <form:errors path="ngayHetHan"/>--%>
+<%--                                                    </div>--%>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Số Tiền Giảm</label>
-                                                        <form:input class="form-control" path="soTienGiam" value="${gg.soTienGiam}"/>
+                                                        <form:input class="form-control" path="soTienGiam" value="${gg.soTienGiam}" pattern="\d+" title="Vui lòng nhập số"/>
                                                     </div>
 
-                                                <div class="mt-2">
+
+                                                    <div class="mt-2">
                                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                                 </div>
                                             </div>
@@ -622,8 +623,8 @@
                                 <th>Mã giảm giá</th>
                                 <th>Tên sự kiện</th>
                                 <th>Nhân viên</th>
-                                <th>Ngày tạo</th>
-                                <th>Ngày hết hạn</th>
+<%--                                <th>Ngày tạo</th>--%>
+<%--                                <th>Ngày hết hạn</th>--%>
                                 <th>Số tiền giảm</th>
                                 <th>Action</th>
                             </tr>
@@ -635,8 +636,8 @@
                                     <td>${giamgia.maGiamGia}</td>
                                     <td>${giamgia.tenSuKien}</td>
                                     <td>${giamgia.nhanVien.hoTen}</td>
-                                    <td>${giamgia.ngayTao}</td>
-                                    <td>${giamgia.ngayHetHan}</td>
+<%--                                    <td>${giamgia.ngayTao}</td>--%>
+<%--                                    <td>${giamgia.ngayHetHan}</td>--%>
                                     <td>${giamgia.soTienGiam}</td>
                                     <td>
                                         <div class="dropdown">
@@ -726,6 +727,30 @@
         alert(message);
     }
 </script>
+    <script>
+        function validateForm() {
+            var maGiamGia = document.getElementById("maGiamGia").value;
+            var tenSuKien = document.getElementById("tenSuKien").value;
+            var nhanVien = document.getElementById("nhanVien").value;
+            var soTienGiam = document.getElementById("soTienGiam").value;
+
+            if (maGiamGia === "" || tenSuKien === "" || nhanVien === "" || soTienGiam === "") {
+                alert("Vui lòng nhập đầy đủ dữ liệu");
+                return false;
+            }
+
+            // Validate if soTienGiam is a valid number
+            if (isNaN(soTienGiam)) {
+                alert("Số Tiền Giảm must be a valid number.");
+                return false;
+            }
+
+            // Additional validation logic if needed
+
+            return true; // Form will be submitted if all checks pass
+        }
+
+    </script>
 <script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
 <script src="../admin/assets/vendor/libs/popper/popper.js"></script>
 <script src="../admin/assets/vendor/js/bootstrap.js"></script>

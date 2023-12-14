@@ -182,7 +182,7 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Thêm thông tin vận chuyển
                             </button>
-                            <form:form action="/thong-tin-van-chuyen-add" modelAttribute="ttvc" method="POST">
+                            <form:form action="/thong-tin-van-chuyen-add" modelAttribute="ttvc" method="POST" onsubmit="return validateForm()">
                                 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
                                         <div class="modal-content">
@@ -196,42 +196,42 @@
                                                         <h1>Thêm địa chỉ</h1>
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Tỉnh</label>
-                                                            <select  class="form-control" name="" id="province">
+                                                            <select  class="form-control" name="province" id="province">
                                                                 <option  value="">Chọn tỉnh</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Huyện</label>
-                                                            <select class="form-control" name="" id="district">
+                                                            <select class="form-control" name="district" id="district">
                                                                 <option  value="">Chọn huyện</option>
                                                             </select>
 
                                                         </div>
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Xã</label>
-                                                            <select class="form-control" name="" id="ward">
+                                                            <select class="form-control" name="ward" id="ward">
                                                                 <option  value="">Chọn xã</option>
                                                             </select>
                                                         </div>
                                                         <div class="mb-3 col-md-6">
                                                             <label class="form-label">Số nhà,đường</label>
-                                                            <input type="text" class="form-control" id="soNha">
+                                                            <input type="text" class="form-control"name="soNha" id="soNha">
                                                         </div>
 
                                                         <div class="mb-3 col-md-12">
                                                             <label class="form-label">Địa chỉ</label>
                                                             <form:input class="form-control" path="diaChi" id="result" type="text"/>
                                                         </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Phương Thức</label>
-                                                            <form:input class="form-control" path="phuongThuc" value="${ttvc.phuongThuc}"/>
-                                                            <form:errors path="phuongThuc"/>
-                                                        </div>
-                                                        <div class="mb-3 col-md-6">
-                                                            <label class="form-label">Trạng Thái</label>
-                                                            <form:input class="form-control" path="trangThai" value="${ttvc.trangThai}"/>
-                                                            <form:errors path="trangThai"/>
-                                                        </div>
+<%--                                                        <div class="mb-3 col-md-6">--%>
+<%--                                                            <label class="form-label">Phương Thức</label>--%>
+<%--                                                            <form:input class="form-control" path="phuongThuc" value="${ttvc.phuongThuc}"/>--%>
+<%--                                                            <form:errors path="phuongThuc"/>--%>
+<%--                                                        </div>--%>
+<%--                                                        <div class="mb-3 col-md-6">--%>
+<%--                                                            <label class="form-label">Trạng Thái</label>--%>
+<%--                                                            <form:input class="form-control" path="trangThai" value="${ttvc.trangThai}"/>--%>
+<%--                                                            <form:errors path="trangThai"/>--%>
+<%--                                                        </div>--%>
 
                                                     </div>
 
@@ -274,8 +274,8 @@
                             <tr>
                                 <th> ID Vận Chuyển</th>
                                 <th>Địa chỉ</th>
-                                <th>Phương thức</th>
-                                <th>Trạng thái</th>
+<%--                                <th>Phương thức</th>--%>
+<%--                                <th>Trạng thái</th>--%>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -284,15 +284,15 @@
                                 <tr>
                                     <td>${thongtinvanchuyen.thongTinVanChuyenID}</td>
                                     <td>${thongtinvanchuyen.diaChi}</td>
-                                    <td>${thongtinvanchuyen.phuongThuc}</td>
-                                    <td>${thongtinvanchuyen.trangThai}</td>
+<%--                                    <td>${thongtinvanchuyen.phuongThuc}</td>--%>
+<%--                                    <td>${thongtinvanchuyen.trangThai}</td>--%>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/thong-tin-van-chuyen-view-update/${thongtinvanchuyen.thongTinVanChuyenID}"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
+<%--                                                <a class="dropdown-item" href="/thong-tin-van-chuyen-view-update/${thongtinvanchuyen.thongTinVanChuyenID}"><i class="bx bx-edit-alt me-1"></i> Sửa</a>--%>
                                                 <a class="dropdown-item" href="/thong-tin-van-chuyen/delete/${thongtinvanchuyen.thongTinVanChuyenID}"><i class="bx bx-trash me-1"></i> Xóa</a>
                                             </div>
                                         </div>
@@ -415,6 +415,26 @@
 
 <!-- Main JS -->
 <script src="../admin/assets/js/main.js"></script>
+<script>
+    function validateForm() {
+        // Add your validation logic here
+        var province = document.getElementById("province").value;
+        var district = document.getElementById("district").value;
+        var ward = document.getElementById("ward").value;
+        var soNha = document.getElementById("soNha").value;
+        var diaChi = document.getElementById("result").value;
+
+        if (province === "" || district === "" || ward === "" || soNha === "" || diaChi === "") {
+            alert("Please fill in all required fields.");
+            return false;
+        }
+
+        // Additional validation logic if needed
+
+        return true;
+    }
+</script>
+
 
 <!-- Page JS -->
 <script src="../admin/assets/js/dashboards-analytics.js"></script>

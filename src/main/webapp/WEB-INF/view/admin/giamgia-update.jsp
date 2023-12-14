@@ -527,7 +527,7 @@
                     <!--Table add -->
                     <div class="card">
                         <div class="card-body">
-                            <form:form action="/giam-gia/update/${gg.giamGiaID}" modelAttribute="gg" method="POST">
+                            <form:form action="/giam-gia/update/${gg.giamGiaID}" modelAttribute="gg" method="POST" onsubmit="return validateForm()">
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">ID Giảm Giá</label>
@@ -554,20 +554,24 @@
                                             </c:forEach>
                                         </form:select>
                                     </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Số Tiền Giảm</label>
+                                        <form:input class="form-control" path="soTienGiam" value="${gg.soTienGiam}" pattern="\d+" title="Vui lòng nhập số"/>
+                                    </div>
 
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Ngày tạo</label>
-                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>
-                                        <form:errors path="ngayTao"/>
-                                    </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Ngày hết hạn</label>
-                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>
-                                        <form:errors path="ngayHetHan"/>
-                                    </div>
+<%--                                    <div class="mb-3 col-md-6">--%>
+<%--                                        <label class="form-label">Ngày tạo</label>--%>
+<%--                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>--%>
+<%--                                        <form:errors path="ngayTao"/>--%>
+<%--                                    </div>--%>
+<%--                                    <div class="mb-3 col-md-6">--%>
+<%--                                        <label class="form-label">Ngày hết hạn</label>--%>
+<%--                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>--%>
+<%--                                        <form:errors path="ngayHetHan"/>--%>
+<%--                                    </div>--%>
                                 </div>
                                 <div class="mt-2">
-                                    <button type="submit" class="btn btn-primary me-2">Thêm</button>
+                                    <button type="submit" class="btn btn-primary me-2">sửa</button>
                                 </div>
                             </form:form>
                             <c:if test="${!empty repon.error}">
@@ -599,8 +603,9 @@
                                 <th>Mã giảm giá</th>
                                 <th>Tên sự kiện</th>
                                 <th>Nhân viên</th>
-                                <th>Ngày tạo</th>
-                                <th>Ngày hết hạn</th>
+<%--                                <th>Ngày tạo</th>--%>
+<%--                                <th>Ngày hết hạn</th>--%>
+                                <th>Số tiền giảm</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -611,8 +616,9 @@
                                     <td>${giamgia.maGiamGia}</td>
                                     <td>${giamgia.tenSuKien}</td>
                                     <td>${giamgia.nhanVien.hoTen}</td>
-                                    <td>${giamgia.ngayTao}</td>
-                                    <td>${giamgia.ngayHetHan}</td>
+                                    <td>${giamgia.soTienGiam}</td>
+<%--                                    <td>${giamgia.ngayTao}</td>--%>
+<%--                                    <td>${giamgia.ngayHetHan}</td>--%>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">
@@ -695,6 +701,30 @@
 <script src="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
 <script src="../admin/assets/vendor/js/menu.js"></script>
+<script>
+    function validateForm() {
+        var maGiamGia = document.getElementById("maGiamGia").value;
+        var tenSuKien = document.getElementById("tenSuKien").value;
+        var nhanVien = document.getElementById("nhanVien").value;
+        var soTienGiam = document.getElementById("soTienGiam").value;
+
+        if (maGiamGia === "" || tenSuKien === "" || nhanVien === "" || soTienGiam === "") {
+            alert("Vui lòng nhập đầy đủ dữ liệu");
+            return false;
+        }
+
+        // Validate if soTienGiam is a valid number
+        if (isNaN(soTienGiam)) {
+            alert("Số Tiền Giảm must be a valid number.");
+            return false;
+        }
+
+        // Additional validation logic if needed
+
+        return true; // Form will be submitted if all checks pass
+    }
+
+</script>
 <!-- endbuild -->
 
 <!-- Vendors JS -->
