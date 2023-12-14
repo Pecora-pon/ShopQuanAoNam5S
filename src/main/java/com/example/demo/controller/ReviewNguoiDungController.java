@@ -1,16 +1,19 @@
 package com.example.demo.controller;
 
 import com.example.demo.entity.*;
+import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.service.KhachHangService;
 import com.example.demo.service.ReviewNguoiDungService;
 import com.example.demo.service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -25,6 +28,8 @@ public class ReviewNguoiDungController {
 
     @Autowired
     private KhachHangService khachHangService;
+    @Autowired
+    KhachHangRepo khachHangRepo;
 
 
     @GetMapping("/hien-thi")
@@ -39,11 +44,15 @@ public class ReviewNguoiDungController {
 
     }
     @PostMapping("/add")
-    public String add(@ModelAttribute("rv")ReviewNguoiDung reviewNguoiDung){
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    public String add(@ModelAttribute("dh")ReviewNguoiDung reviewNguoiDung, Principal principal){
         List<KhachHang> listhk = khachHangService.getAll();
         List<SanPham> listsp = sanPhamService.getAll();
+        String logname= principal.getName();
+        KhachHang khachHang=khachHangRepo.findByUsername(logname);
+        reviewNguoiDung.setKhachHang(khachHang);
         reviewNguoiDungService.add(reviewNguoiDung);
-        return "redirect:/review/hien-thi";
+        return "redirect:/list-san-pham/page";
     }
 
     @GetMapping("/delete/{reviewID}")

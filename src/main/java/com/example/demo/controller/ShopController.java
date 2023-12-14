@@ -1,13 +1,7 @@
 package com.example.demo.controller;
 
-import com.example.demo.entity.MauSac;
-import com.example.demo.entity.NhanVien;
-import com.example.demo.entity.SanPham;
-import com.example.demo.entity.Size;
-import com.example.demo.service.MauSacService;
-import com.example.demo.service.SanPhamService;
-import com.example.demo.service.ShopService;
-import com.example.demo.service.SizeService;
+import com.example.demo.entity.*;
+import com.example.demo.service.*;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
@@ -34,6 +28,8 @@ public class ShopController {
     private MauSacService mauSacService;
     @Autowired
     private SanPhamService sanPhamService;
+    @Autowired
+    private ReviewNguoiDungService reviewNguoiDungService;
 
     //    @RequestMapping("/list-san-pham")
     //    public String getAll(Model model) {
@@ -168,6 +164,8 @@ public class ShopController {
         List<SanPham>list=shopService.getAll();
         List<Size> list1=sizeService.getAll();
         List<MauSac>list2=mauSacService.getAll();
+        List<ReviewNguoiDung> list3=reviewNguoiDungService.findBy(id);
+        model.addAttribute("rv",list3);
         model.addAttribute("listMauSac",list2);
         model.addAttribute("listSize",list1);
         model.addAttribute("listSanPham",list);
