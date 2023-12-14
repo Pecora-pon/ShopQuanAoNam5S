@@ -187,7 +187,7 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="product__details__text">
-                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post" onclick="return validateAndSubmit()">
+                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post">
                             <c:forEach items="l">
                             <h4 value="${sp.tenSanPham}">${sp.tenSanPham}</h4>
                             <h3 value="${sp.giaSanPham}">${sp.giaSanPham}</h3>
@@ -214,19 +214,36 @@
                                         <input type="text"id="soLuongDatInput" value="1" name="soLuongDat">
                                     </div>
                                 </div>
-                                <button class="primary-btn">add to cart</button>
-                                <a href="javascript:void(0);"class="primary-btn" onclick="muaNgay()">Mua Ngay</a>                            </div>
+                                <button class="primary-btn" onclick="validateAndSubmit(event)">add to cart</button>
+                                <a href="javascript:void(0);" class="primary-btn" onclick="muaNgay()">Mua Ngay</a>
+                            </div>
                         </c:forEach>
                         </form:form>
-                            <script>
-                                function muaNgay() {
-                                    var soLuongDat = document.getElementById("soLuongDatInput").value;
-                                    var sanPhamID = "${sp.sanPhamID}";
+<%--                            <script>--%>
+<%--                                function muaNgay() {--%>
+<%--                                    var soLuongDat = document.getElementById("soLuongDatInput").value;--%>
+<%--                                    var sanPhamID = "${sp.sanPhamID}";--%>
+<%--                                    var slton = parseInt("${sp.soLuongTon}"); // Giả sử "soLuongTon" là số lượng có sẵn--%>
 
-                                    // Chuyển hướng đến URL với tham số soLuongDat
-                                    window.location.href = "/themngay/" + sanPhamID + "?soLuongDat=" + soLuongDat;
-                                }
-                            </script>
+<%--                                    // Kiểm tra nếu số lượng đặt là nhỏ hơn 1--%>
+<%--                                    if (parseInt(soLuongDat) < 1) {--%>
+<%--                                        // Hiển thị thông báo lỗi--%>
+<%--                                        alert('Số lượng đặt phải lớn hơn hoặc bằng 1.');--%>
+<%--                                        return;--%>
+<%--                                    }--%>
+
+<%--                                    // Kiểm tra nếu số lượng đặt lớn hơn số lượng tồn--%>
+<%--                                    if (parseInt(soLuongDat) > slton) {--%>
+<%--                                        // Hiển thị thông báo với số lượng tồn không đủ và ghi số lượng còn lại--%>
+<%--                                        alert('Số lượng tồn không đủ. Chỉ còn ' + slton + ' sản phẩm.');--%>
+<%--                                        return;--%>
+<%--                                    }--%>
+
+<%--                                    // Nếu số lượng đủ, thì chuyển hướng đến URL với tham số soLuongDat--%>
+<%--                                    window.location.href = "/themngay/" + sanPhamID + "?soLuongDat=" + soLuongDat;--%>
+<%--                                }--%>
+<%--                            </script>--%>
+
 
                         </div>
                     </div>
@@ -413,21 +430,43 @@
     </footer>
     <!-- Footer Section End -->
     <script>
-        function validateAndSubmit() {
-            // Lấy giá trị số lượng đặt từ ô nhập liệu
+        function validateAndSubmit(event) {
             var soLuongDat = parseInt(document.getElementById('soLuongDatInput').value);
+            var slton = parseInt("${sp.soLuongTon}");
 
-            // Kiểm tra nếu số lượng đặt là nhỏ hơn 1
+            if (!validateSoLuong(soLuongDat, slton)) {
+                // Chặn sự kiện mặc định nếu số lượng không hợp lệ
+                event.preventDefault();
+            }
+        }
+
+        function muaNgay() {
+            var soLuongDat = parseInt(document.getElementById("soLuongDatInput").value);
+            var sanPhamID = "${sp.sanPhamID}";
+            var slton = parseInt("${sp.soLuongTon}");
+
+            if (validateSoLuong(soLuongDat, slton)) {
+                window.location.href = "/themngay/" + sanPhamID + "?soLuongDat=" + soLuongDat;
+            }
+        }
+
+        function validateSoLuong(soLuongDat, slton) {
             if (soLuongDat < 1) {
-                // Hiển thị thông báo lỗi
                 alert('Số lượng đặt phải lớn hơn hoặc bằng 1.');
-                return false; // Ngăn chặn form từ việc submit
+                return false;
             }
 
-            // Tiếp tục submit form nếu số lượng đặt hợp lệ
+            if (soLuongDat > slton) {
+                alert('Số lượng tồn không đủ. Chỉ còn ' + slton + ' sản phẩm.');
+                return false;
+            }
+
             return true;
         }
+
+
     </script>
+
     <!-- Search Begin -->
     <div class="search-model">
         <div class="h-100 d-flex align-items-center justify-content-center">
