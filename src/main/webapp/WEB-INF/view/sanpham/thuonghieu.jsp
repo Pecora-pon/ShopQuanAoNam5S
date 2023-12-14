@@ -2,6 +2,13 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="java.security.Principal" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.Collections" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -154,83 +161,9 @@
                 </li>
 
                 <!-- Layouts -->
-                <%--                <li class="menu-item">--%>
-                <%--                    <a href="" class="menu-link menu-toggle">--%>
-                <%--                        <i class="menu-icon tf-icons bx bx-layout"></i>--%>
-                <%--                        <div data-i18n="Layouts">Layouts</div>--%>
-                <%--                    </a>--%>
 
-                <%--                    <ul class="menu-sub">--%>
-                <%--                        <li class="menu-item">--%>
-                <%--                            <a href="layouts-without-menu.html" class="menu-link">--%>
-                <%--                                <div data-i18n="Without menu">Without menu</div>--%>
-                <%--                            </a>--%>
-                <%--                        </li>--%>
-                <%--                        <li class="menu-item">--%>
-                <%--                            <a href="layouts-without-navbar.html" class="menu-link">--%>
-                <%--                                <div data-i18n="Without navbar">Without navbar</div>--%>
-                <%--                            </a>--%>
-                <%--                        </li>--%>
-                <%--                        <li class="menu-item">--%>
-                <%--                            <a href="layouts-container.html" class="menu-link">--%>
-                <%--                                <div data-i18n="Container">Container</div>--%>
-                <%--                            </a>--%>
-                <%--                        </li>--%>
-                <%--                        <li class="menu-item">--%>
-                <%--                            <a href="layouts-fluid.html" class="menu-link">--%>
-                <%--                                <div data-i18n="Fluid">Fluid</div>--%>
-                <%--                            </a>--%>
-                <%--                        </li>--%>
-                <%--                        <li class="menu-item">--%>
-                <%--                            <a href="layouts-blank.html" class="menu-link">--%>
-                <%--                                <div data-i18n="Blank">Blank</div>--%>
-                <%--                            </a>--%>
-                <%--                        </li>--%>
-                <%--                    </ul>--%>
-                <%--                </li>--%>
 
-                <li class="menu-header small text-uppercase">
-                    <span class="menu-header-text">Account</span>
-                </li>
-                <li class="menu-item">
-                    <a href="javascript:void(0);" class="menu-link menu-toggle">
-                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
-                        <div data-i18n="Account Settings">Tài khoản</div>
-                    </a>
-                    <ul class="menu-sub">
-                        <li class="menu-item">
-                            <a href="/responsive/thong-tin-tai-khoan" class="menu-link">
-                                <div data-i18n="Account">Thông tin</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="http://localhost:8080/forgot_password" class="menu-link">
-                                <div data-i18n="Notifications">Đổi mật khẩu</div>
-                            </a>
-                        </li>
 
-                    </ul>
-                </li>
-
-                <%--                <li class="menu-item">--%>
-                <%--                    <a href="javascript:void(0);" class="menu-link menu-toggle">--%>
-                <%--                        <i class="menu-icon tf-icons bx bx-cube-alt"></i>--%>
-                <%--                        <div data-i18n="Misc">Misc</div>--%>
-                <%--                    </a>--%>
-                <%--                    <ul class="menu-sub">--%>
-                <%--                        <li class="menu-item">--%>
-                <%--                            <a href="pages-misc-error.html" class="menu-link">--%>
-                <%--                                <div data-i18n="Error">Error</div>--%>
-                <%--                            </a>--%>
-                <%--                        </li>--%>
-                <%--                        <li class="menu-item">--%>
-                <%--                            <a href="pages-misc-under-maintenance.html" class="menu-link">--%>
-                <%--                                <div data-i18n="Under Maintenance">Under Maintenance</div>--%>
-                <%--                            </a>--%>
-                <%--                        </li>--%>
-                <%--                    </ul>--%>
-                <%--                </li>--%>
-                <!-- Components -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý sản phẩm</span></li>
 
                 <!-- User interface -->
@@ -265,11 +198,7 @@
                                 <div data-i18n="Accordion">Thương hiệu</div>
                             </a>
                         </li>
-                        <%--                        <li class="menu-item">--%>
-                        <%--                            <a href="ui-accordion.html" class="menu-link">--%>
-                        <%--                                <div data-i18n="Accordion">Hình ảnh</div>--%>
-                        <%--                            </a>--%>
-                        <%--                        </li>--%>
+
                     </ul>
                 </li>
 
@@ -279,32 +208,13 @@
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
-                    <%--                    <ul class="menu-sub">--%>
-                    <%--                        <li class="menu-item">--%>
-                    <%--                            <a href="extended-ui-perfect-scrollbar.html" class="menu-link">--%>
-                    <%--                                <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>--%>
-                    <%--                            </a>--%>
-                    <%--                        </li>--%>
-                    <%--                        <li class="menu-item">--%>
-                    <%--                            <a href="extended-ui-text-divider.html" class="menu-link">--%>
-                    <%--                                <div data-i18n="Text Divider">Text Divider</div>--%>
-                    <%--                            </a>--%>
-                    <%--                        </li>--%>
-                    <%--                    </ul>--%>
                 </li>
 
 
-                <!-- Forms & Tables -->
                 <li class="menu-header small text-uppercase"><span
                         class="menu-header-text">Khách hàng &amp; Nhân viên</span>
                 </li>
-                <!-- Forms -->
-                <%--                <li class="menu-item">--%>
-                <%--                    <a href="" class="menu-link">--%>
-                <%--                        <i class="menu-icon tf-icons bx bx-file"></i>--%>
-                <%--                        <div data-i18n="Analytics">Chức vụ</div>--%>
-                <%--                    </a>--%>
-                <%--                </li>--%>
+
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -331,29 +241,13 @@
                         </li>
                     </ul>
                 </li>
-                <!-- Tables -->
-                <%--                <li class="menu-item">--%>
-                <%--                    <a href="tables-basic.html" class="menu-link">--%>
-                <%--                        <i class="menu-icon tf-icons bx bx-table"></i>--%>
-                <%--                        <div data-i18n="Tables">Tables</div>--%>
-                <%--                    </a>--%>
-                <%--                </li>--%>
-                <!-- Misc -->
-                <%--                <li class="menu-header small text-uppercase"><span--%>
-                <%--                        class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>--%>
+
                 <li class="menu-item">
                     <a href="http://localhost:8080/thongke" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Thống kê</div>
                     </a>
-                    <%--                    <a--%>
-                    <%--                            href="https://github.com/themeselection/sneat-html-admin-template-free/issues"--%>
-                    <%--                            target="_blank"--%>
-                    <%--                            class="menu-link"--%>
-                    <%--                    >--%>
-                    <%--                        <i class="menu-icon tf-icons bx bx-support"></i>--%>
-                    <%--                        <div data-i18n="Support">Support</div>--%>
-                    <%--                    </a>--%>
+
                 </li>
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -368,24 +262,8 @@
                         </li>
 
                     </ul>
-                    <%--                    <a--%>
-                    <%--                            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"--%>
-                    <%--                            target="_blank"--%>
-                    <%--                            class="menu-link"--%>
-                    <%--                    >--%>
-                    <%--                        <i class="menu-icon tf-icons bx bx-file"></i>--%>
-                    <%--                        <div data-i18n="Documentation">Đơn hàng</div>--%>
-                    <%--                    </a>--%>
-
                 </li>
-                <%--                <li class="menu-item">--%>
-                <%--                    <a href="" class="menu-link">--%>
-                <%--                        <i class="menu-icon tf-icons bx bx-car"></i>--%>
-                <%--                        <div data-i18n="Analytics">Vận chuyển</div>--%>
-                <%--                    </a>--%>
 
-                <%--                </li>--%>
-                <!--/ Khuyến mãi -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Khuyến mại</span></li>
 
                 <li class="menu-item">
@@ -396,7 +274,7 @@
 
                 </li>
                 <li class="menu-item">
-                    <a href="/login" class="menu-link">
+                    <a href="/logout" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-door-open"></i>
                         <div data-i18n="Analytics">Log out</div>
                     </a>
@@ -430,6 +308,7 @@
                                     class="form-control border-0 shadow-none"
                                     placeholder="Search..."
                                     aria-label="Search..."
+                                    id="searchInput"
                             />
                         </div>
                     </div>
@@ -437,17 +316,6 @@
 
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         <!-- Place this tag where you want the button to render. -->
-                        <li class="nav-item lh-1 me-3">
-                            <a
-                                    class="github-button"
-                                    href="https://github.com/themeselection/sneat-html-admin-template-free"
-                                    data-icon="octicon-star"
-                                    data-size="large"
-                                    data-show-count="true"
-                                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
-                            >Star</a
-                            >
-                        </li>
 
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -460,50 +328,28 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <a class="dropdown-item" href="#">
-                                        <div class="d-flex">
-                                            <div class="flex-shrink-0 me-3">
-                                                <div class="avatar avatar-online">
-                                                    <img src="../admin/assets/img/avatars/1.png" alt
-                                                         class="w-px-40 h-auto rounded-circle"/>
-                                                </div>
+                                    <div class="flex-shrink-0 me-3">
+                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
+                                            <!-- Nếu đã đăng nhập, hiển thị tên người dùng và nút đăng xuất -->
+                                            <div style="display: flex; align-items: center;">
+                                                <span style="color: black;">Xin chào, <%= request.getUserPrincipal().getName() %>!</span>
+
                                             </div>
-                                            <div class="flex-grow-1">
-                                                <span class="fw-semibold d-block">John Doe</span>
-                                                <small class="text-muted">Admin</small>
+                                        </sec:authorize>
+
+                                        <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                                            <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
+                                            <div>
+                                                <a href="/login" style="color: white;">Đăng nhập</a>
                                             </div>
-                                        </div>
-                                    </a>
+                                        </sec:authorize>
+                                    </div>
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
                                 </li>
                                 <li>
-                                    <a class="dropdown-item" href="http://localhost:8080/responsive/thong-tin-tai-khoan">
-                                        <i class="bx bx-user me-2"></i>
-                                        <span class="align-middle">My Profile</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                                        <i class="bx bx-cog me-2"></i>
-                                        <span class="align-middle">Settings</span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="#">
-                        <span class="d-flex align-items-center align-middle">
-                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
-                          <span class="flex-grow-1 align-middle">Billing</span>
-                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
-                        </span>
-                                    </a>
-                                </li>
-                                <li>
-                                    <div class="dropdown-divider"></div>
-                                </li>
-                                <li>
-                                    <a class="dropdown-item" href="/login">
+                                    <a class="dropdown-item" href="/logout">
                                         <i class="bx bx-power-off me-2"></i>
                                         <span class="align-middle">Log Out</span>
                                     </a>
@@ -659,7 +505,41 @@
 
 <!-- Page JS -->
 <script src="../admin/assets/js/dashboards-analytics.js"></script>
+<script>
+    // Đặt sự kiện khi người dùng ấn Enter trên input
+    $('#searchInput').keypress(function (e) {
+        if (e.which === 13) { // Kiểm tra nếu phím ấn là Enter
+            e.preventDefault(); // Ngăn chặn hành động mặc định của nút Enter
 
+            // Lấy giá trị từ input và chuyển đổi thành chữ thường
+            var searchTerm = $(this).val().trim().toLowerCase();
+
+            // Kiểm tra giá trị nhập và chuyển hướng tương ứng
+            if (searchTerm === 'khach hang' || searchTerm === 'khách hàng') {
+                window.location.href = '/khach-hang';
+            } else if (searchTerm === 'hien thi' || searchTerm === 'hiển thị') {
+                window.location.href = '/hien-thi';
+            } else if (searchTerm === 'chat lieu'|| searchTerm === 'chất liệu') {
+                window.location.href = '/chat-lieu';
+            } else if (searchTerm === 'mau sac'|| searchTerm === 'thương hiệu') {
+                window.location.href = '/mau-sac';
+            } else if (searchTerm === 'nhap kho'|| searchTerm === 'nhập kho') {
+                window.location.href = '/nhap-kho';
+            } else if (searchTerm === 'size') {
+                window.location.href = '/size';
+            } else if (searchTerm === 'thuong hieu'|| searchTerm === 'thương hiệu') {
+                window.location.href = '/thuong-hieu';
+            } else if (searchTerm === 'giam gia'|| searchTerm === 'giảm giá') {
+                window.location.href = '/giam-gia';
+            } else if (searchTerm === 'giam gia chi tiet'|| searchTerm === 'giảm giá chi tiết') {
+                window.location.href = '/giam-gia-chi-tiet';
+            } else {
+                // Xử lý chuyển hướng mặc định hoặc thông báo lỗi nếu cần
+                window.location.href = '/non-find' + encodeURIComponent(searchTerm.replace(/\s+/g, '-'));
+            }
+        }
+    });
+</script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>

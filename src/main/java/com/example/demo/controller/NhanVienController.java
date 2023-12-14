@@ -90,7 +90,7 @@ public class NhanVienController {
 //        helper.addAttachment("users_" + currentDateTime + ".xlsx",new ByteArrayResource(exelNhanVien));
         mailSender.send(message);
         userService.addUser(nhanVien);
-        return "admin/nhanvien";
+        return "redirect:/nhan-vien/page";
 
 
     }

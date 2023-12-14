@@ -37,9 +37,11 @@ public class AdminController {
             model.addAttribute("error", "Tên đăng nhập hoặc mật khẩu không đúng. Vui lòng thử lại.");
         }
         return "admin/login";
-
-
 }
+    @GetMapping("/non-find")
+    public String fail2(Model model){
+       return "error/404";
+    }
 
 
 

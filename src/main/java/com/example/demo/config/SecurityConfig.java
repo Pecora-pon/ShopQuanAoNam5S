@@ -42,7 +42,7 @@ public UserDetailsService userDetailsServicekh(){
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).permitAll()
+                        .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/gio-hang")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/danh-sach-yt/hien-thi")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/hien-thi")).hasAuthority("ROLE_ADMIN")
