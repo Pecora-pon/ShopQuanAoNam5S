@@ -53,7 +53,7 @@ KhachHangRepo khachHangRepo;
         model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
         model.addAttribute("ttvc",new ThongTinVanChuyen());
         model.addAttribute("repon",respon);
-            return "redirect:/thong-tin-van-chuyen";
+            return "admin/thongtinvanchuyen";
 
 
     }
