@@ -4,6 +4,7 @@ import com.example.demo.entity.ReviewNguoiDung;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface ReviewNguoiDungService {
 
@@ -14,6 +15,8 @@ public interface ReviewNguoiDungService {
     ReviewNguoiDung update(Integer reviewID, ReviewNguoiDung reviewNguoiDung);
 
     void delete(Integer reviewID);
+
+   List<ReviewNguoiDung> findBy(UUID id);
 
     ReviewNguoiDung detail(Integer reviewID);
 
