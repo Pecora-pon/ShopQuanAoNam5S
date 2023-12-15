@@ -2,13 +2,7 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="java.security.Principal" %>
-<%@ page import="java.util.Set" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.Collections" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
 ==============================================================
@@ -160,9 +154,83 @@
                 </li>
 
                 <!-- Layouts -->
+                <%--                <li class="menu-item">--%>
+                <%--                    <a href="" class="menu-link menu-toggle">--%>
+                <%--                        <i class="menu-icon tf-icons bx bx-layout"></i>--%>
+                <%--                        <div data-i18n="Layouts">Layouts</div>--%>
+                <%--                    </a>--%>
 
+                <%--                    <ul class="menu-sub">--%>
+                <%--                        <li class="menu-item">--%>
+                <%--                            <a href="layouts-without-menu.html" class="menu-link">--%>
+                <%--                                <div data-i18n="Without menu">Without menu</div>--%>
+                <%--                            </a>--%>
+                <%--                        </li>--%>
+                <%--                        <li class="menu-item">--%>
+                <%--                            <a href="layouts-without-navbar.html" class="menu-link">--%>
+                <%--                                <div data-i18n="Without navbar">Without navbar</div>--%>
+                <%--                            </a>--%>
+                <%--                        </li>--%>
+                <%--                        <li class="menu-item">--%>
+                <%--                            <a href="layouts-container.html" class="menu-link">--%>
+                <%--                                <div data-i18n="Container">Container</div>--%>
+                <%--                            </a>--%>
+                <%--                        </li>--%>
+                <%--                        <li class="menu-item">--%>
+                <%--                            <a href="layouts-fluid.html" class="menu-link">--%>
+                <%--                                <div data-i18n="Fluid">Fluid</div>--%>
+                <%--                            </a>--%>
+                <%--                        </li>--%>
+                <%--                        <li class="menu-item">--%>
+                <%--                            <a href="layouts-blank.html" class="menu-link">--%>
+                <%--                                <div data-i18n="Blank">Blank</div>--%>
+                <%--                            </a>--%>
+                <%--                        </li>--%>
+                <%--                    </ul>--%>
+                <%--                </li>--%>
 
+                <li class="menu-header small text-uppercase">
+                    <span class="menu-header-text">Account</span>
+                </li>
+                <li class="menu-item">
+                    <a href="javascript:void(0);" class="menu-link menu-toggle">
+                        <i class="menu-icon tf-icons bx bx-dock-top"></i>
+                        <div data-i18n="Account Settings">Tài khoản</div>
+                    </a>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="/responsive/thong-tin-tai-khoan" class="menu-link">
+                                <div data-i18n="Account">Thông tin</div>
+                            </a>
+                        </li>
+                        <li class="menu-item">
+                            <a href="/doimatkhau" class="menu-link">
+                                <div data-i18n="Notifications">Đổi mật khẩu</div>
+                            </a>
+                        </li>
 
+                    </ul>
+                </li>
+
+                <%--                <li class="menu-item">--%>
+                <%--                    <a href="javascript:void(0);" class="menu-link menu-toggle">--%>
+                <%--                        <i class="menu-icon tf-icons bx bx-cube-alt"></i>--%>
+                <%--                        <div data-i18n="Misc">Misc</div>--%>
+                <%--                    </a>--%>
+                <%--                    <ul class="menu-sub">--%>
+                <%--                        <li class="menu-item">--%>
+                <%--                            <a href="pages-misc-error.html" class="menu-link">--%>
+                <%--                                <div data-i18n="Error">Error</div>--%>
+                <%--                            </a>--%>
+                <%--                        </li>--%>
+                <%--                        <li class="menu-item">--%>
+                <%--                            <a href="pages-misc-under-maintenance.html" class="menu-link">--%>
+                <%--                                <div data-i18n="Under Maintenance">Under Maintenance</div>--%>
+                <%--                            </a>--%>
+                <%--                        </li>--%>
+                <%--                    </ul>--%>
+                <%--                </li>--%>
+                <!-- Components -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý sản phẩm</span></li>
 
                 <!-- User interface -->
@@ -173,47 +241,65 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="http://localhost:8080/mau-sac" class="menu-link">
+                            <a href="/mau-sac" class="menu-link">
                                 <div data-i18n="Accordion">Màu sắc</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="http://localhost:8080/size" class="menu-link">
+                            <a href="/size" class="menu-link">
                                 <div data-i18n="Accordion">Size</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="http://localhost:8080/chat-lieu" class="menu-link">
-                                <div data-i18n="Accordion">Chất liệu</div>
+                            <a href="/chat-lieu" class="menu-link">
+                                <div data-i18n="Accordion">Chất liêu</div>
                             </a>
                         </li>
                         <li class="menu-item">
-                            <a href="http://localhost:8080/nha-cung-cap" class="menu-link">
-                                <div data-i18n="Accordion">Nhà cung cấp</div>
-                            </a>
-                        </li>
-                        <li class="menu-item">
-                            <a href="http://localhost:8080/thuong-hieu" class="menu-link">
+                            <a href="/thuong-hieu" class="menu-link">
                                 <div data-i18n="Accordion">Thương hiệu</div>
                             </a>
                         </li>
-
+                        <li class="menu-item">
+                            <a href="/nha-cung-cap" class="menu-link">
+                                <div data-i18n="Accordion">Nhà cung cấp</div>
+                            </a>
+                        </li>
                     </ul>
                 </li>
 
                 <!-- Extended components -->
                 <li class="menu-item">
-                    <a href="http://localhost:8080/san-pham" class="menu-link">
+                    <a href="/san-pham" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
+                    <%--                    <ul class="menu-sub">--%>
+                    <%--                        <li class="menu-item">--%>
+                    <%--                            <a href="extended-ui-perfect-scrollbar.html" class="menu-link">--%>
+                    <%--                                <div data-i18n="Perfect Scrollbar">Perfect scrollbar</div>--%>
+                    <%--                            </a>--%>
+                    <%--                        </li>--%>
+                    <%--                        <li class="menu-item">--%>
+                    <%--                            <a href="extended-ui-text-divider.html" class="menu-link">--%>
+                    <%--                                <div data-i18n="Text Divider">Text Divider</div>--%>
+                    <%--                            </a>--%>
+                    <%--                        </li>--%>
+                    <%--                    </ul>--%>
                 </li>
 
 
+                <!-- Forms & Tables -->
                 <li class="menu-header small text-uppercase"><span
                         class="menu-header-text">Khách hàng &amp; Nhân viên</span>
                 </li>
-
+                <!-- Forms -->
+                <li class="menu-item">
+                    <a href="" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-file"></i>
+                        <div data-i18n="Analytics">Chức vụ</div>
+                    </a>
+                </li>
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
                         <i class="menu-icon tf-icons bx bx-detail"></i>
@@ -221,7 +307,7 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="http://localhost:8080/khach-hang" class="menu-link">
+                            <a href="/khach-hang" class="menu-link">
                                 <div data-i18n="Basic Inputs">Quản lý khách hàng</div>
                             </a>
                         </li>
@@ -234,19 +320,35 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="http://localhost:8080/nhan-vien" class="menu-link">
+                            <a href="/nhan-vien" class="menu-link">
                                 <div data-i18n="Vertical Form">Quản lý nhân viên</div>
                             </a>
                         </li>
                     </ul>
                 </li>
-
+                <!-- Tables -->
+                <%--                <li class="menu-item">--%>
+                <%--                    <a href="tables-basic.html" class="menu-link">--%>
+                <%--                        <i class="menu-icon tf-icons bx bx-table"></i>--%>
+                <%--                        <div data-i18n="Tables">Tables</div>--%>
+                <%--                    </a>--%>
+                <%--                </li>--%>
+                <!-- Misc -->
+                <li class="menu-header small text-uppercase"><span
+                        class="menu-header-text">Đơn hàng &amp; Vận chuyển</span></li>
                 <li class="menu-item">
-                    <a href="http://localhost:8080/thongke" class="menu-link">
+                    <a href="/thongke" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-file"></i>
                         <div data-i18n="Analytics">Thống kê</div>
                     </a>
-
+                    <%--                    <a--%>
+                    <%--                            href="https://github.com/themeselection/sneat-html-admin-template-free/issues"--%>
+                    <%--                            target="_blank"--%>
+                    <%--                            class="menu-link"--%>
+                    <%--                    >--%>
+                    <%--                        <i class="menu-icon tf-icons bx bx-support"></i>--%>
+                    <%--                        <div data-i18n="Support">Support</div>--%>
+                    <%--                    </a>--%>
                 </li>
                 <li class="menu-item">
                     <a href="javascript:void(0);" class="menu-link menu-toggle">
@@ -255,18 +357,42 @@
                     </a>
                     <ul class="menu-sub">
                         <li class="menu-item">
-                            <a href="http://localhost:8080/don-hang" class="menu-link">
+                            <a href="/hien-thi" class="menu-link">
                                 <div data-i18n="Vertical Form">Danh sách đơn hàng</div>
                             </a>
                         </li>
 
                     </ul>
-                </li>
+                    <ul class="menu-sub">
+                        <li class="menu-item">
+                            <a href="/hien-thi" class="menu-link">
+                                <div data-i18n="Vertical Form">Đơn hàng chi tiết</div>
+                            </a>
+                        </li>
 
+                    </ul>
+                    <%--                    <a--%>
+                    <%--                            href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"--%>
+                    <%--                            target="_blank"--%>
+                    <%--                            class="menu-link"--%>
+                    <%--                    >--%>
+                    <%--                        <i class="menu-icon tf-icons bx bx-file"></i>--%>
+                    <%--                        <div data-i18n="Documentation">Đơn hàng</div>--%>
+                    <%--                    </a>--%>
+
+                </li>
+                <li class="menu-item">
+                    <a href="/long" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-car"></i>
+                        <div data-i18n="Analytics">Vận chuyển</div>
+                    </a>
+
+                </li>
+                <!--/ Khuyến mãi -->
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Khuyến mại</span></li>
 
                 <li class="menu-item">
-                    <a href="http://localhost:8080/giam-gia" class="menu-link">
+                    <a href="" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-basket"></i>
                         <div data-i18n="Analytics">Danh sách khuyến mại</div>
                     </a>
@@ -307,7 +433,6 @@
                                     class="form-control border-0 shadow-none"
                                     placeholder="Search..."
                                     aria-label="Search..."
-                                    id="searchInput"
                             />
                         </div>
                     </div>
@@ -315,6 +440,17 @@
 
                     <ul class="navbar-nav flex-row align-items-center ms-auto">
                         <!-- Place this tag where you want the button to render. -->
+                        <li class="nav-item lh-1 me-3">
+                            <a
+                                    class="github-button"
+                                    href="https://github.com/themeselection/sneat-html-admin-template-free"
+                                    data-icon="octicon-star"
+                                    data-size="large"
+                                    data-show-count="true"
+                                    aria-label="Star themeselection/sneat-html-admin-template-free on GitHub"
+                            >Star</a
+                            >
+                        </li>
 
                         <!-- User -->
                         <li class="nav-item navbar-dropdown dropdown-user dropdown">
@@ -327,22 +463,44 @@
                             </a>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li>
-                                    <div class="flex-shrink-0 me-3">
-                                        <sec:authorize access="hasRole('ROLE_ADMIN')">
-                                            <!-- Nếu đã đăng nhập, hiển thị tên người dùng và nút đăng xuất -->
-                                            <div style="display: flex; align-items: center;">
-                                                <span style="color: black;">Xin chào, <%= request.getUserPrincipal().getName() %>!</span>
-
+                                    <a class="dropdown-item" href="#">
+                                        <div class="d-flex">
+                                            <div class="flex-shrink-0 me-3">
+                                                <div class="avatar avatar-online">
+                                                    <img src="../admin/assets/img/avatars/1.png" alt
+                                                         class="w-px-40 h-auto rounded-circle"/>
+                                                </div>
                                             </div>
-                                        </sec:authorize>
-
-                                        <sec:authorize access="!hasRole('ROLE_ADMIN')">
-                                            <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
-                                            <div>
-                                                <a href="/login" style="color: white;">Đăng nhập</a>
+                                            <div class="flex-grow-1">
+                                                <span class="fw-semibold d-block">John Doe</span>
+                                                <small class="text-muted">Admin</small>
                                             </div>
-                                        </sec:authorize>
-                                    </div>
+                                        </div>
+                                    </a>
+                                </li>
+                                <li>
+                                    <div class="dropdown-divider"></div>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="bx bx-user me-2"></i>
+                                        <span class="align-middle">My Profile</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                                        <i class="bx bx-cog me-2"></i>
+                                        <span class="align-middle">Settings</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a class="dropdown-item" href="#">
+                        <span class="d-flex align-items-center align-middle">
+                          <i class="flex-shrink-0 bx bx-credit-card me-2"></i>
+                          <span class="flex-grow-1 align-middle">Billing</span>
+                          <span class="flex-shrink-0 badge badge-center rounded-pill bg-danger w-px-20 h-px-20">4</span>
+                        </span>
+                                    </a>
                                 </li>
                                 <li>
                                     <div class="dropdown-divider"></div>
@@ -458,7 +616,7 @@
                     </div>
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <form action="/timkiemngayvc1" method="get" class="d-flex align-items-center">
+                            <form action="/timkiemtenxn3" method="get" class="d-flex align-items-center">
                                 <label class="me-2">Ngày Đặt:</label>
                                 <input type="date" name="ngaydat" class="form-control" required>
                                 <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -466,7 +624,7 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <form action="/timkiemtenvc1" method="get" class="d-flex align-items-center">
+                            <form action="/timkiemngayxn3" method="get" class="d-flex align-items-center">
                                 <label class="me-2">Tên Sản Phẩm:</label>
                                 <input type="text" name="ten" class="form-control" required>
                                 <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -474,7 +632,7 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <form action="/timkiemtongtienvc1" method="get" class="d-flex align-items-center">
+                            <form action="/timkiemtongtienxn3" method="get" class="d-flex align-items-center">
                                 <label class="me-2">Tổng Tiền:</label>
                                 <input type="text" name="tongTien" class="form-control" required>
                                 <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -485,13 +643,13 @@
                     <!--Table add -->
 
                     <div class="card">
-                        <h5 class="card-header">Vận Chuyển</h5>
+                        <h5 class="card-header">Chờ Xác Nhận</h5>
                         <table class="table">
                             <thead>
                             <tr>
                                 <th>STT</th>
                                 <th>Đơn Hang ID</th>
-<%--                                <th>ID Sản Phẩm</th>--%>
+                                <%--                                <th>ID Sản Phẩm</th>--%>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
                                 <th>Khách Hàng</th>
@@ -512,14 +670,13 @@
                                         <%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
                                     <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                                     </td>
-
-
                                     <td>${dhct.sanPham.tenSanPham}</td>
                                     <td>${dhct.donHang.khachHang.username}</td>
                                     <td>${dhct.soLuong}</td>
                                     <td>${dhct.donHang.ngayDatHang}</td>
                                     <input type="hidden" name="soLuong" value="${dhct.soLuong}">
                                     <td>
+                                        <c:if test="${dhct.trangThai == 6}"> Đơn hàng chờ xác nhận </c:if>
                                         <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
                                         <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
                                         <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
@@ -536,18 +693,32 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-
-                                                <a class="dropdown-item" href="/chuyenvc/${dhct.donHang.donHangID}"><i
-                                                        class="bx bx-edit-alt me-1"></i></i> Chuyển trang thai</a>
-                                                    <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-                                                <a class="dropdown-item" href="/huyddd/${dhct.donHang.donHangID}"><i
+                                                <a class="dropdown-item" href="/chuyentttt/${dhct.donHang.donHangID}"><i
+                                                        class="bx bx-edit-alt me-1"></i>Không chấp nhận</a>
+                                                <a class="dropdown-item" href="/huycho1/${dhct.donHang.donHangID}"><i
                                                         class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
+                                                    <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
+
                                             </div>
                                         </div>
                                     </td>
                                 </tr>
                             </c:forEach>
                             </tbody>
+                            <nav aria-label="Page navigation example">
+                                <ul class="pagination">
+                                    <c:forEach begin="0" end="${totalPages}" var="page">
+                                        <c:choose>
+                                            <c:when test="${page == currentPage}">
+                                                <li class="page-item active"><span class="page-link">${page}</span></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item"><a class="page-link" href="/don-hang-chi-tiet/page6?page=${page}">${page}</a></li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
+                                </ul>
+                            </nav>
                             <style>
                                 .btn-container {
                                     display: flex;
@@ -573,20 +744,6 @@
                                 <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
                             </div>
                         </table>
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <c:forEach begin="0" end="${totalPages}" var="page">
-                                    <c:choose>
-                                        <c:when test="${page == currentPage}">
-                                            <li class="page-item active"><span class="page-link">${page}</span></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="page-item"><a class="page-link" href="/don-hang-chi-tiet/page1?page=${page}">${page}</a></li>
-                                        </c:otherwise>
-                                    </c:choose>
-                                </c:forEach>
-                            </ul>
-                        </nav>
                     </div>
                     <script>
                         // Updated function to handle confirmation and redirection
@@ -595,18 +752,13 @@
 
                             var link = event.currentTarget;
                             var donHangID = link.getAttribute('data-donhangid');
-                            var confirmations=confirm("Bạn có chắc chắn");
+
                             var confirmation = confirm("Bạn Có chắc chắn?");
                             if (confirmation) {
                                 // If the user clicks "OK", navigate to the cancellation page
-                                window.location.href = "/chuyentc/" + donHangID;
+                                window.location.href = "/huy/" + donHangID;
                             } else {
                                 // If the user clicks "Cancel", do nothing
-                                return false;
-                            }
-                            if(confirmations){
-                                window.location.href="/huyddd/"+donHangID;
-                            }else {
                                 return false;
                             }
                         }
@@ -678,41 +830,7 @@
 
 <!-- Page JS -->
 <script src="../admin/assets/js/dashboards-analytics.js"></script>
-<script>
-    // Đặt sự kiện khi người dùng ấn Enter trên input
-    $('#searchInput').keypress(function (e) {
-        if (e.which === 13) { // Kiểm tra nếu phím ấn là Enter
-            e.preventDefault(); // Ngăn chặn hành động mặc định của nút Enter
 
-            // Lấy giá trị từ input và chuyển đổi thành chữ thường
-            var searchTerm = $(this).val().trim().toLowerCase();
-
-            // Kiểm tra giá trị nhập và chuyển hướng tương ứng
-            if (searchTerm === 'khach hang' || searchTerm === 'khách hàng') {
-                window.location.href = '/khach-hang';
-            } else if (searchTerm === 'hien thi' || searchTerm === 'hiển thị') {
-                window.location.href = '/hien-thi';
-            } else if (searchTerm === 'chat lieu'|| searchTerm === 'chất liệu') {
-                window.location.href = '/chat-lieu';
-            } else if (searchTerm === 'mau sac'|| searchTerm === 'thương hiệu') {
-                window.location.href = '/mau-sac';
-            } else if (searchTerm === 'nhap kho'|| searchTerm === 'nhập kho') {
-                window.location.href = '/nhap-kho';
-            } else if (searchTerm === 'size') {
-                window.location.href = '/size';
-            } else if (searchTerm === 'thuong hieu'|| searchTerm === 'thương hiệu') {
-                window.location.href = '/thuong-hieu';
-            } else if (searchTerm === 'giam gia'|| searchTerm === 'giảm giá') {
-                window.location.href = '/giam-gia';
-            } else if (searchTerm === 'giam gia chi tiet'|| searchTerm === 'giảm giá chi tiết') {
-                window.location.href = '/giam-gia-chi-tiet';
-            } else {
-                // Xử lý chuyển hướng mặc định hoặc thông báo lỗi nếu cần
-                window.location.href = '/non-find' + encodeURIComponent(searchTerm.replace(/\s+/g, '-'));
-            }
-        }
-    });
-</script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>

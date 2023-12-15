@@ -495,6 +495,7 @@
 <%--                                <th>ID Sản Phẩm</th>--%>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
+                                <th>Khách Hàng</th>
                                 <th>Số Lượng</th>
                                 <th>Ngày Đặt</th>
                                 <th>Trạng Thái</th>
@@ -512,6 +513,7 @@
                                     <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                                     </td>
                                     <td>${dhct.sanPham.tenSanPham}</td>
+                                    <td>${dhct.donHang.khachHang.username}</td>
                                     <td>${dhct.soLuong}</td>
                                     <td>${dhct.donHang.ngayDatHang}</td>
                                     <td>
@@ -530,10 +532,7 @@
                                                 <i class="bx bx-dots-vertical-rounded"></i>
                                             </button>
                                             <div class="dropdown-menu">
-                                                <a class="dropdown-item" href="/don-hang-chi-tiet/${dhct.donHangChiTietID}"><i
-                                                        class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i
-                                                        class="bx bx-trash me-1"></i> Xóa</a>
+
                                             </div>
                                         </div>
                                     </td>
@@ -555,10 +554,12 @@
                             </style>
 
                             <div class="btn-container">
-                                <a href="/hien-thi" class="primary-btn" >Xem Đơn</a>
+                                <a href="/don-hang" class="primary-btn">Chờ Xác Nhận</a>
+                                <a href="/hien-thi1" class="primary-btn" >Xem Đơn</a>
                                 <a href="/long" class="primary-btn" >Vận chuyển</a>
                                 <a href="/longg" class="primary-btn" >Đơn Hàng Cần Xác nhận</a>
                                 <a href="/longgg" class="primary-btn" >Thành Công</a>
+                                <a href="/hien-thi2" class="primary-btn" >Đơn hàng chờ hủy</a>
                                 <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
                             </div>
                             </tbody>
