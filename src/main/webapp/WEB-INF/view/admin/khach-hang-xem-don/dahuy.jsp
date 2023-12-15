@@ -253,6 +253,7 @@
                         <td>${dhct.soLuong}</td>
                         <td>${dhct.donHang.ngayDatHang}</td>
                         <td>
+                            <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
                             <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
                             <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
                             <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
@@ -287,6 +288,7 @@
                 </style>
 
                 <div class="btn-container">
+                    <a href="/choxacnhan" class="primary-btn">Chờ Xác Nhận</a>
                     <a href="/dangxem" class="primary-btn">Xem Đơn Hàng</a>
                     <a href="/vanchuyen" class="primary-btn">Vận Chuyển</a>
                     <a href="/xacnhan" class="primary-btn">Xác Nhận</a>

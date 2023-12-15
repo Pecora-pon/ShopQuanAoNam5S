@@ -253,6 +253,7 @@
                         <td>${dhct.soLuong}</td>
                         <td>${dhct.donHang.ngayDatHang}</td>
                         <td>
+                            <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
                             <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
                             <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
                             <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
@@ -262,13 +263,24 @@
                         <td>${dhct.lyDoHuy}</td>
                         <td>${dhct.tongTien}</td>
                         <td>
-                            <a class="dropdown-item" href="/huydx/${dhct.donHang.donHangID}"><i
+                            <a class="dropdown-item" href="/huydacho/${dhct.donHang.donHangID}"><i
                                     class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
                             <a class="dropdown-item" href="/detail/${dhct.donHang.donHangID}"><i
                                     class="bx bx-trash me-1"></i>Chi Tiết</a>
                         </td>
                     </tr>
                 </c:forEach>
+                <script>
+                    function confirmCancelOrder(donHangID) {
+                        var confirmCancel = confirm("Bạn có chắc chắn muốn hủy đơn hàng?");
+                        if (confirmCancel) {
+                            // Nếu người dùng chấp nhận, chuyển hướng đến trang hủy đơn hàng
+                            window.location.href = "/huydacho/" + donHangID;
+                        } else {
+                            // Người dùng đã hủy xác nhận, không thực hiện chuyển hướng
+                        }
+                    }
+                </script>
                 <style>
                     .btn-container {
                         display: flex;
@@ -285,6 +297,7 @@
                 </style>
 
                 <div class="btn-container">
+                    <a href="/choxacnhan" class="primary-btn">Chờ Xác Nhận</a>
                     <a href="/dangxem" class="primary-btn">Xem Đơn Hàng</a>
                     <a href="/vanchuyen" class="primary-btn">Vận Chuyển</a>
                     <a href="/xacnhan" class="primary-btn">Xác Nhận</a>

@@ -3,13 +3,6 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
-<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
-<%@ page import="java.security.Principal" %>
-<%@ page import="java.util.Set" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.Collections" %>
-<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <head>
     <meta charset="UTF-8">
@@ -17,7 +10,7 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>5S-Fashion | Thông Báo Thành Công</title>
+    <title>5S-Fashin | Thông Báo Thành Công</title>
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
     <title>Thông Báo Thành Công</title>--%>
     <%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
@@ -95,30 +88,23 @@
             <div class="row">
                 <div class="col-lg-6 col-md-7">
                     <div class="header__top__left">
-                        <p>Miễn phí vận chuyển, 30-ngày trả lại hoặc hoàn tiền.</p>
+                        <p>Free shipping, 30-day return or refund guarantee.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
                     <div class="header__top__right">
                         <div class="header__top__links">
-                            <sec:authorize access="hasRole('ROLE_USER')">
-                                <!-- Nếu đã đăng nhập, hiển thị tên người dùng và nút đăng xuất -->
-                                <div style="display: flex; align-items: center;">
-                                    <span style="color: white;">Xin chào, <%= request.getUserPrincipal().getName() %>!</span>
-                                    <form action="/logout" method="post" style="margin-left: 10px;">
-                                        <input type="submit" value="Đăng xuất">
-                                    </form>
-                                </div>
-                            </sec:authorize>
-
-                            <sec:authorize access="!hasRole('ROLE_USER')">
-                                <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
-                                <div>
-                                    <a href="/login" style="color: white;">Đăng nhập</a>
-                                </div>
-                            </sec:authorize>
+                            <a href="/logout">Sign in</a>
+                            <a href="#">FAQs</a>
                         </div>
-
+                        <div class="header__top__hover">
+                            <span>Usd <i class="arrow_carrot-down"></i></span>
+                            <ul>
+                                <li>USD</li>
+                                <li>EUR</li>
+                                <li>USD</li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -149,12 +135,12 @@
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
-<%--                <div class="header__nav__option">--%>
-<%--                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
-<%--                    <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
-<%--                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
-<%--                    <div class="price">$0.00</div>--%>
-<%--                </div>--%>
+                <%--                <div class="header__nav__option">--%>
+                <%--                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                <%--                    <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
+                <%--                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
+                <%--                    <div class="price">$0.00</div>--%>
+                <%--                </div>--%>
             </div>
         </div>
         <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -197,7 +183,7 @@
         </div>
         <div class="row">
             <div class="col-md-4 mb-3">
-                <form action="/timkiemngayvc" method="get" class="d-flex align-items-center">
+                <form action="/timkiemngaycxn" method="get" class="d-flex align-items-center">
                     <label class="me-2">Ngày Đặt:</label>
                     <input type="date" name="ngaydat" class="form-control" required>
                     <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -205,7 +191,7 @@
             </div>
 
             <div class="col-md-4 mb-3">
-                <form action="/timkiemtenvc" method="get" class="d-flex align-items-center">
+                <form action="/timkiemtencxn" method="get" class="d-flex align-items-center">
                     <label class="me-2">Tên Sản Phẩm:</label>
                     <input type="text" name="ten" class="form-control" required>
                     <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -213,7 +199,7 @@
             </div>
 
             <div class="col-md-4 mb-3">
-                <form action="/timkiemtongtienvc" method="get" class="d-flex align-items-center">
+                <form action="/timkiemtongtiencxn" method="get" class="d-flex align-items-center">
                     <label class="me-2">Tổng Tiền:</label>
                     <input type="text" name="tongTien" class="form-control" required>
                     <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -224,7 +210,7 @@
         <!--Table add -->
 
         <div class="card">
-            <h5 class="card-header">Vận Chuyển</h5>
+            <h5 class="card-header">Chờ Xác Nhận</h5>
             <table class="table">
                 <thead>
                 <tr>
@@ -234,7 +220,7 @@
                     <th>Hình Ảnh</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Số Lượng</th>
-                    <th>Ngay Đặt</th>
+                    <th>Ngày Đặt</th>
                     <th>Trạng Thái</th>
                     <th>Lý Do Hủy</th>
                     <th>Tổng Tiền</th>
@@ -263,10 +249,10 @@
                         <td>${dhct.lyDoHuy}</td>
                         <td>${dhct.tongTien}</td>
                         <td>
-<%--                            <a class="dropdown-item" href="/huyt/${dhct.donHang.donHangID}"><i--%>
-<%--                                    class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>--%>
-                            <a class="dropdown-item" href="/detail3/${dhct.donHang.donHangID}"><i
-                                    class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
+                            <a class="dropdown-item" href="/huycho/${dhct.donHang.donHangID}"><i
+                                    class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
+                            <a class="dropdown-item" href="/detail/${dhct.donHang.donHangID}"><i
+                                    class="bx bx-trash me-1"></i>Chi Tiết</a>
                         </td>
                     </tr>
                 </c:forEach>
@@ -303,7 +289,7 @@
                                 <li class="page-item active"><span class="page-link">${page}</span></li>
                             </c:when>
                             <c:otherwise>
-                                <li class="page-item"><a class="page-link" href="/khach-hang-xem/page1?page=${page}">${page}</a></li>
+                                <li class="page-item"><a class="page-link" href="/khach-hang-xem/page5?page=${page}">${page}</a></li>
                             </c:otherwise>
                         </c:choose>
                     </c:forEach>
@@ -321,7 +307,7 @@
                 var confirmation = confirm("Bạn Có chắc chắn?");
                 if (confirmation) {
                     // If the user clicks "OK", navigate to the cancellation page
-                    window.location.href = "/huyt/" + donHangID;
+                    window.location.href = "/huydx/" + donHangID;
                 } else {
                     // If the user clicks "Cancel", do nothing
                     return false;
@@ -336,6 +322,7 @@
                 });
             });
         </script>
+
         <!--Footer -->
         <footer class="content-footer footer bg-footer-theme">
             <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
@@ -364,7 +351,28 @@
         </footer>
         <!--Footer -->
     </div>
-</div>
+</div><script>
+    // Hàm xác nhận khi liên kết được bấm
+    function confirmAction() {
+        // Sử dụng SweetAlert để hiển thị thông báo xác nhận
+        Swal.fire({
+            title: 'Xác nhận',
+            text: 'Bạn có chắc chắn muốn thực hiện hành động này?',
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#3085d6',
+            cancelButtonColor: '#d33',
+            confirmButtonText: 'Đồng ý',
+            cancelButtonText: 'Hủy bỏ'
+        }).then((result) => {
+            // Nếu người dùng đồng ý, bạn có thể thực hiện hành động mong muốn ở đây
+            if (result.isConfirmed) {
+                // Thực hiện hành động, ví dụ: chuyển hướng đến một trang cụ thể
+                window.location.href = "/huydx/${dhct.donHang.donHangID}";
+            }
+        });
+    }
+</script>
 <!-- Shopping Cart Section End -->
 
 <!-- Footer Section Begin -->
@@ -456,6 +464,24 @@
 <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+    function deleteOrder(donHangID, rowIndex) {
+        $.ajax({
+            url: '/huydx/' + donHangID,
+            type: 'GET',
+            success: function (response) {
+                // Xóa dòng khỏi giao diện người dùng
+                $('#row_' + rowIndex).remove();
+                console.log(response);
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+</script>
 </body>
 
 </html>
