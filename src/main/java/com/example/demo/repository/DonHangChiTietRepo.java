@@ -29,14 +29,31 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     List<DonHangChiTiet>findByDonHang_KhachHang_Username3(String username);
     @Query("select p from DonHangChiTiet p WHERE p.donHang.khachHang.username =:username and p.trangThai =4 order by p.donHangChiTietID desc")
     List<DonHangChiTiet>findByDonHang_KhachHang_Username4(String username);
-    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang=:ngayDatHang")
+    @Query("select p from DonHangChiTiet p WHERE p.donHang.khachHang.username =:username and p.trangThai =5 order by p.donHangChiTietID desc")
+    List<DonHangChiTiet>findByDonHang_KhachHang_Username5(String username);
+    @Query("select p from DonHangChiTiet p WHERE p.donHang.khachHang.username =:username and p.trangThai =6 order by p.donHangChiTietID desc")
+    List<DonHangChiTiet>findByDonHang_KhachHang_Username6(String username);
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1%")
     List<DonHangChiTiet> findByDonHang_NgayDatHang(@Param("ngayDatHang") LocalDate ngaydathang);
-    @Query("Select p from DonHangChiTiet p where p.sanPham.tenSanPham =:tenSanPham")
+    @Query("Select p from DonHangChiTiet p where p.sanPham.tenSanPham LIKE %?1%")
     List<DonHangChiTiet> findBySanPham_TenSanPham(@Param("tenSanPham") String tenSanPham);
-    @Query("select p from DonHangChiTiet p where p.tongTien =:tongTien")
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1%")
     List<DonHangChiTiet> findByTongTien(@Param("tongTien") Float tongTien);
     List<DonHangChiTiet> findByDonHang_DonHangID(UUID id);
 
+
+    @Transactional
+    @Modifying
+    @Query(value = "Update DonHangChiTiet set trangThai = 6 where donHangID =:donHangID",nativeQuery = true)
+    void chuyenTrangThaiChoHuy(@Param("donHangID") UUID donHangChiTietID);
+    @Query(value = "select * from DonHangChiTiet p WHERE p.trangThai =6 order by p.donHangChiTietID desc",nativeQuery = true)
+    List<DonHangChiTiet> getAlllll();
+    @Transactional
+    @Modifying
+    @Query(value = "Update DonHangChiTiet set trangThai = 0 where donHangID =:donHangID",nativeQuery = true)
+    void chuyenTrangThaiCho(@Param("donHangID") UUID donHangChiTietID);
+    @Query(value = "select * from DonHangChiTiet p WHERE p.trangThai =5 order by p.donHangChiTietID desc",nativeQuery = true)
+    List<DonHangChiTiet> getAllll();
     @Transactional
     @Modifying
     @Query(value = "Update DonHangChiTiet set trangThai = 1 where donHangID =:donHangID",nativeQuery = true)
@@ -65,9 +82,9 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     void chuyensanghuy(@Param("donHangID") UUID donHangChiTietID);
     @Query(value = "select * from DonHangChiTiet p WHERE p.trangThai =4 order by p.donHangChiTietID desc",nativeQuery = true)
     List<DonHangChiTiet> getHuyy();
-    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.soLuong) AS totalQuantity FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 GROUP BY MONTH(dhc.ngayNhan)")
+    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.soLuong) AS totalQuantity FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 and dhc.trangThai=3 GROUP BY MONTH(dhc.ngayNhan)")
     List<Object[]> getTotalQuantityByMonthInYear2023();
-    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 GROUP BY MONTH(dhc.ngayNhan)")
+    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 and dhc.trangThai=3 GROUP BY MONTH(dhc.ngayNhan)")
     List<Object[]> getTotalRevenueByMonthInYear2023();
 
     @Query("SELECT dhc.trangThai, COUNT(dhc) FROM DonHangChiTiet dhc GROUP BY dhc.trangThai")
