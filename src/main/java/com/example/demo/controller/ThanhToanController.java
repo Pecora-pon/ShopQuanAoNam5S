@@ -79,7 +79,7 @@ public class ThanhToanController {
         return "shop/thanh-toan";
    }
    @PostMapping("/themmoi")
-    public String themmoi(@RequestParam("email")String email, @RequestParam("hoTen")String hoTen, @ModelAttribute("t") DonHang donHang, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") float tt, Model model, Principal principal, HttpServletResponse response)throws MessagingException, IOException {
+    public String themmoi(@RequestParam("email")String email, @RequestParam("hoTen")String hoTen, @ModelAttribute("t") DonHang donHang, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") float tt,@RequestParam("trangThai")int trang, Model model, Principal principal, HttpServletResponse response)throws MessagingException, IOException {
         String logname=principal.getName();
 //       response.setContentType("application/pdf");
 //        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
@@ -90,7 +90,7 @@ public class ThanhToanController {
 //        response.setHeader(headerKey, headerValue);
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
-       DonHang donHang1= thanhToanService.themmoi(donHang,giohangID,tt);
+       DonHang donHang1= thanhToanService.themmoi(donHang,giohangID,tt,trang);
         model.addAttribute("t",donHang1);
 //        DonHangPDF donHangPDF = new DonHangPDF();
 //       byte[] pdfDonHang = donHangPDF.exportpdf(donHang);
@@ -131,11 +131,11 @@ public class ThanhToanController {
    }
     @PostMapping("/themmoiny")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String themmoinay(@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,@RequestParam("soLuongDat")int sl,@RequestParam("amount")float tt, Model model,Principal principal){
+    public String themmoinay(@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,@RequestParam("soLuongDat")int sl,@RequestParam("amount")float tt,@RequestParam("trangThai")int trang, Model model,Principal principal){
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
-        DonHang donHang1= thanhToanService.themmoingay(donHang,id,sl,tt);
+        DonHang donHang1= thanhToanService.themmoingay(donHang,id,sl,tt,trang);
         model.addAttribute("t",donHang1);
         return "shop/thong-bao";
     }

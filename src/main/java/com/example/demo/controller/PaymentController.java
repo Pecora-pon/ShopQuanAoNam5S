@@ -44,23 +44,31 @@ public class PaymentController {
     @PostMapping("/submitOrder")
     public String submidOrder(@RequestParam("amount") long orderTotal,
                               HttpServletRequest request, @ModelAttribute("t") DonHang donHang,
-                              @ModelAttribute("t2") DonHangChiTiet donHangChiTiet, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") Float tt, Model model, Principal principal) throws UnsupportedEncodingException {
+                              @ModelAttribute("t2") DonHangChiTiet donHangChiTiet, @RequestParam("gioHangID[]")List<Integer>  giohangID, @RequestParam("amount") Float tt,@RequestParam("trangThai")int trang, Model model, Principal principal) throws UnsupportedEncodingException {
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
-        session.setAttribute("donHangSession", donHang);
-        session.setAttribute("donHangChiTietSession", donHangChiTiet); // Lưu đối tượng DonHangChiTiet vào session
+        // Lưu đối tượng DonHangChiTiet vào session
         session.setAttribute("ttSession", tt);
         String vnpayUrl = vnPayService.createOrder(orderTotal, baseUrl);
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
-        List<GioHang> gioHangList = gioHangRepo.findByKhachHang(khachHang);
+//        List<GioHang> gioHangList = gioHangRepo.findByKhachHang(khachHang);
+        List<GioHang> gioHangList = new ArrayList<>();
+        for (Integer gh : giohangID) {
+            GioHang gioHangItem = gioHangRepo.getById(gh);
+            gioHangItem.getSanPham().getSanPhamID();
+            donHangChiTiet.setSanPham(gioHangItem.getSanPham());
+            gioHangList.add(gioHangItem);
+        }
+        session.setAttribute("trangSession",trang);
+        session.setAttribute("donHangSession", donHang);
+        session.setAttribute("donHangChiTietSession", donHangChiTiet);
         session.setAttribute("gioHangListSession", gioHangList);
-
         return "redirect:" + vnpayUrl;
     }
     @PostMapping("/submitOrder1")
     public String submidOrder1(@RequestParam("amount") Long orderTotal,
-                               DonHangChiTiet donHangChiTiet,HttpServletRequest request, @ModelAttribute("t") DonHang donHang,@RequestParam("soLuongDat")int sl, @RequestParam("sanPhamID") UUID id, @RequestParam("amount") float tt, Model model,
+                               DonHangChiTiet donHangChiTiet,HttpServletRequest request, @ModelAttribute("t") DonHang donHang,@RequestParam("soLuongDat")int sl,@RequestParam("trangThai")int trang, @RequestParam("sanPhamID") UUID id, @RequestParam("amount") float tt, Model model,
             SanPham sanPham, Principal principal) throws UnsupportedEncodingException {
         String baseUrl = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort();
         String vnpayUrl = vnPayService.createOrder1(orderTotal, baseUrl);
@@ -68,6 +76,7 @@ public class PaymentController {
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         session.setAttribute("donHangSession", donHang);
         session.setAttribute("ttSession", tt);
+        session.setAttribute("trangSession", trang);
         session.setAttribute("slSession", sl);
         session.setAttribute("sanPhamSession",sanPham);
         donHang.setKhachHang(khachHang);
@@ -84,6 +93,7 @@ public class PaymentController {
 
             DonHangChiTiet donHangChiTietFromSession = (DonHangChiTiet) session.getAttribute("donHangChiTietSession"); // Lấy đối tượng DonHangChiTiet từ session
             Float tt = (Float) session.getAttribute("ttSession");
+            int trang=(int) session.getAttribute("trangSession");
             String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
             String orderInfo = request.getParameter("vnp_OrderInfo");
             String paymentTime = request.getParameter("vnp_PayDate");
@@ -93,7 +103,7 @@ public class PaymentController {
             model.addAttribute("totalPrice", totalPrice);
             model.addAttribute("paymentTime", paymentTime);
             model.addAttribute("transactionId", transactionId);
-            DonHang donHang1 = thanhToanService.themmoi2(donHangFromSession,gioHangList,tt,donHangChiTietFromSession);
+            DonHang donHang1 = thanhToanService.themmoi2(donHangFromSession,gioHangList,tt,donHangChiTietFromSession,trang);
             model.addAttribute("t",donHang1);
             session.removeAttribute("donHangSession");
             session.removeAttribute("ttSession");
@@ -104,6 +114,7 @@ public class PaymentController {
             session.removeAttribute("donHangSession");
             session.removeAttribute("ttSession");
             session.removeAttribute("donHangChiTietSession");
+            session.removeAttribute("trangSession");
             return "redirect:/that-bai";
 
         }
@@ -124,6 +135,7 @@ public class PaymentController {
             UUID sanPhamId = sanPham.getSanPhamID();
 
             String vnp_ResponseCode = request.getParameter("vnp_ResponseCode");
+            int trang=(int)session.getAttribute("trangSession");
             String orderInfo = request.getParameter("vnp_OrderInfo");
             String paymentTime = request.getParameter("vnp_PayDate");
             String transactionId = request.getParameter("vnp_TransactionNo");
@@ -132,7 +144,7 @@ public class PaymentController {
             model.addAttribute("totalPrice", totalPrice);
             model.addAttribute("paymentTime", paymentTime);
             model.addAttribute("transactionId", transactionId);
-            DonHang donHang1 = thanhToanService.themmoingay(donHangFromSession,sanPhamId,sl,tt);
+            DonHang donHang1 = thanhToanService.themmoingay(donHangFromSession,sanPhamId,sl,tt,trang);
             model.addAttribute("t",donHang1);
             session.removeAttribute("donHangSession");
             session.removeAttribute("ttSession");
@@ -144,6 +156,7 @@ public class PaymentController {
             session.removeAttribute("donHangSession");
             session.removeAttribute("ttSession");
             session.removeAttribute("donHangChiTietSession");
+            session.removeAttribute("trangSession");
             return "redirect:/that-bai";
 
         }

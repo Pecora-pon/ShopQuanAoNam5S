@@ -23,6 +23,13 @@ import java.util.UUID;
 public class KhachHangXemDonHang {
     @Autowired
     private DonHangChiTietService donHangChiTietService;
+    @GetMapping("/choxacnhan")
+    public String choxacnhan(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model, Authentication authentication){
+        String username=authentication.getName();
+        List<DonHangChiTiet> list=donHangChiTietService.findkhachHang5(username);
+        model.addAttribute("list",list);
+        return "admin/khach-hang-xem-don/choxacnhan";
+    }
     @GetMapping("/dangxem")
     public String dangxem(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model, Authentication authentication){
         String username=authentication.getName();
@@ -58,10 +65,15 @@ public class KhachHangXemDonHang {
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/dahuy";
     }
-    @GetMapping("/huydx/{donHangID}")
-    public String huys(@PathVariable("donHangID")UUID id){
+//    @GetMapping("/huydx/{donHangID}")
+//    public String huys(@PathVariable("donHangID")UUID id){
+//        donHangChiTietService.chuyensanghuy(id);
+//        return "redirect:/dangxem";
+//    }
+    @GetMapping("/huycho/{donHangID}")
+    public String huycho(@PathVariable("donHangID")UUID id){
         donHangChiTietService.chuyensanghuy(id);
-        return "redirect:/dangxem";
+        return "redirect:/choxacnhan";
     }
     @GetMapping("/huyt/{donHangID}")
     public String huyy(@PathVariable("donHangID")UUID id){
@@ -72,6 +84,11 @@ public class KhachHangXemDonHang {
     public String huyyy(@PathVariable("donHangID")UUID id){
         donHangChiTietService.chuyensanghuy(id);
         return "redirect:/xacnhan";
+    }
+    @GetMapping("/huydacho/{donHangID}")
+    public String huyyyy(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyensangchohuy(id);
+        return "redirect:/dangxem";
     }
    @GetMapping("/khxacnhan/{donHangID}")
     public String xn(@PathVariable("donHangID")UUID id){
@@ -112,7 +129,7 @@ public class KhachHangXemDonHang {
     public String detail5(@PathVariable("donHang")UUID donHang,Model model){
         List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
         model.addAttribute("list",list);
-        return "admin/review-nguoi-dung/index";
+        return "admin/review-nguoi-dung/chitiet";
     }
     @GetMapping("/timkiemten")
     public String detail1(@RequestParam("ten")String ten, Model model){
@@ -204,9 +221,27 @@ public class KhachHangXemDonHang {
         model.addAttribute("list", list);
         return "admin/khach-hang-xem-don/thanhcong";
     }
+    @GetMapping("/timkiemtencxn")
+    public String detailcxn(@RequestParam("ten")String ten, Model model){
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        model.addAttribute("list",list);
+        return "admin/khach-hang-xem-don/choxacnhan";
+    }
+    @GetMapping("/timkiemngaycxn")
+    public String timKiemTheoNgaytcxn(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        model.addAttribute("list", list);
+        return "admin/khach-hang-xem-don/choxacnhan";
+    }
+    @GetMapping("/timkiemtongtiencxn")
+    public String timKiemtongtiencxn(@RequestParam("tongTien") Float tongTien, Model model) {
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        model.addAttribute("list", list);
+        return "admin/khach-hang-xem-don/choxacnhan";
+    }
     @GetMapping("/khach-hang-xem/page")
     public String page(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "3") int size,
+                       @RequestParam(defaultValue = "6") int size,
                        Model model,
                        @Param("keyword") String keyword){
         Page<DonHangChiTiet> page1 = donHangChiTietService.getPage(page,size);
@@ -230,7 +265,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/khach-hang-xem/page1")
     public String page1(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "3") int size,
+                       @RequestParam(defaultValue = "6") int size,
                        Model model,
                        @Param("keyword") String keyword){
         Page<DonHangChiTiet> page1 = donHangChiTietService.getPage1(page,size);
@@ -254,7 +289,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/khach-hang-xem/page2")
     public String page2(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "3") int size,
+                       @RequestParam(defaultValue = "6") int size,
                        Model model,
                        @Param("keyword") String keyword){
         Page<DonHangChiTiet> page1 = donHangChiTietService.getPage2(page,size);
@@ -278,7 +313,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/khach-hang-xem/page3")
     public String page3(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "3") int size,
+                       @RequestParam(defaultValue = "6") int size,
                        Model model,
                        @Param("keyword") String keyword){
         Page<DonHangChiTiet> page1 = donHangChiTietService.getPage3(page,size);
@@ -302,10 +337,34 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/khach-hang-xem/page4")
     public String page4(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "3") int size,
+                       @RequestParam(defaultValue = "6") int size,
                        Model model,
                        @Param("keyword") String keyword){
         Page<DonHangChiTiet> page1 = donHangChiTietService.getPage4(page,size);
+        List<DonHangChiTiet> list =page1.getContent();
+        List<DonHangChiTiet> list1 = donHangChiTietService.getAll();
+        if(keyword !=null){
+            list1     = this.donHangChiTietService.findTenKhachHang(keyword);
+        }
+        int totalItems = list1.size();
+        int itemsPerPage = size;
+        int totalPages = (int) Math.floor((double) totalItems / itemsPerPage);
+        int currentPage = page;
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("itemsPerPage", itemsPerPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("list",list);
+        model.addAttribute("dh",new DonHang());
+        return "admin/khach-hang-xem-don/dadat";
+
+    }
+    @GetMapping("/khach-hang-xem/page5")
+    public String page5(@RequestParam(defaultValue = "0") int page,
+                        @RequestParam(defaultValue = "6") int size,
+                        Model model,
+                        @Param("keyword") String keyword){
+        Page<DonHangChiTiet> page1 = donHangChiTietService.getPage5(page,size);
         List<DonHangChiTiet> list =page1.getContent();
         List<DonHangChiTiet> list1 = donHangChiTietService.getAll();
         if(keyword !=null){
