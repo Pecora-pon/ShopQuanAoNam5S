@@ -65,6 +65,16 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
         return donHangChiTietRepo.findByTrangThai(4,pageable);
     }
+    @Override
+    public Page<DonHangChiTiet> getPage5(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return donHangChiTietRepo.findByTrangThai(5,pageable);
+    }
+    @Override
+    public Page<DonHangChiTiet> getPage6(int pageNumber, int pageSize) {
+        Pageable pageable = PageRequest.of(pageNumber,pageSize);
+        return donHangChiTietRepo.findByTrangThai(6,pageable);
+    }
 
     @Override
     public void delete(Integer donHangChiTietID) {
@@ -84,8 +94,18 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
     @Override
+    public List<DonHangChiTiet> getAllll() {
+        return donHangChiTietRepo.getAllll();
+    }
+
+    @Override
     public List<DonHangChiTiet> getTC() {
         return donHangChiTietRepo.getA();
+    }
+
+    @Override
+    public List<DonHangChiTiet> getAlllll() {
+        return donHangChiTietRepo.getAlllll();
     }
 
     @Override
@@ -100,6 +120,11 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
     @Override
+    public void chuyentrangthaicho(UUID id) {
+     donHangChiTietRepo.chuyenTrangThaiCho(id);
+    }
+
+    @Override
     public void chuyensanghuy(UUID id) {
       donHangChiTietRepo.chuyensanghuy(id);
       List<DonHangChiTiet> list =donHangChiTietRepo.findById(id);
@@ -108,6 +133,11 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
           UUID sp = dhct.getSanPham().getSanPhamID();
           sanPhamService.capnhat(sp, -sl);
       }
+    }
+
+    @Override
+    public void chuyensangchohuy(UUID id) {
+     donHangChiTietRepo.chuyenTrangThaiChoHuy(id);
     }
 
     @Override
@@ -135,6 +165,15 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
         return donHangChiTietRepo.findByDonHang_KhachHang_Username4(username);
     }
 
+    @Override
+    public List<DonHangChiTiet> findkhachHang5(String username) {
+        return donHangChiTietRepo.findByDonHang_KhachHang_Username5(username);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findkhachHang6(String username) {
+        return donHangChiTietRepo.findByDonHang_KhachHang_Username6(username);
+    }
 
 
     @Override
