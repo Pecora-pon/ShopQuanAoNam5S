@@ -10,9 +10,9 @@ public interface ThanhToanService {
     List<GioHang> detail(List<Integer> gioHangID, Map<String, String> params);
     SanPham deltail1(UUID sanPham,int sl);
 //    KhachHang kh(String ten);
-   DonHang themmoi(DonHang donHang,List<Integer> danhSachGioHangs,float tt);
-    DonHang themmoingay(DonHang donHang,UUID sanPham,int sl,float tt);
-    DonHang themmoi2(DonHang donHang,List<GioHang> danhSachGioHangs,float tt,DonHangChiTiet donHangChiTiet);
+   DonHang themmoi(DonHang donHang,List<Integer> danhSachGioHangs,float tt,int trang);
+    DonHang themmoingay(DonHang donHang,UUID sanPham,int sl,float tt,int trangthai);
+    DonHang themmoi2(DonHang donHang,List<GioHang> danhSachGioHangs,float tt,DonHangChiTiet donHangChiTiet,int trang);
 
 
 }
