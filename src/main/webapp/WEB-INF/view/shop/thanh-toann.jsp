@@ -385,7 +385,8 @@
                                readonly="">
                     </div>
                 </div>
-
+                <input type="hidden" id="trangThaiInput" name="trangThai" value="0"> <!-- Giá trị mặc định là 0 -->
+                <!-- Các trường khác của biểu mẫu -->
                 <h4 class="mb-3">Hình thức thanh toán</h4>
                 <div class="d-block my-3">
                     <div class="custom-control custom-radio">
@@ -504,11 +505,16 @@
         var form = document.getElementById("paymentForm");
         var paymentMethod = document.querySelector('input[name="hinhThucThanhToan"]:checked');
         var radioTienMat= document.getElementById("httt-1");
+        var trangThaiInput = document.getElementById("trangThaiInput"); // Thêm dòng này
+        console.log("Setting trangThaiInput to:", trangThaiInput.value);
+        console.log("Payment Method:", paymentMethod ? paymentMethod.value : "None");
+        console.log("Radio Tien Mat Checked:", radioTienMat.checked);
         if(radioTienMat.checked){
             alert("Bạn có chắc chắn muốn đặt hàng");
-        }else {
-
         }
+            trangThaiInput.value = paymentMethod && paymentMethod.value === "1" ? "5" : "0";
+            console.log("Updated Trang Thai:", trangThaiInput.value);
+
         if (paymentMethod) {
             if (paymentMethod.value === "1") {
                 form.method = "post";

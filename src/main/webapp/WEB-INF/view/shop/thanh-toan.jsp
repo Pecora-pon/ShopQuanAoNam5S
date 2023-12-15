@@ -388,7 +388,7 @@
                                    readonly="">
                         </div>
                     </div>
-
+                    <input type="hidden" id="trangThaiInput" name="trangThai" value="0">
                     <h4 class="mb-3">Hình thức thanh toán</h4>
                     <div class="d-block my-3">
                         <div class="custom-control custom-radio">
@@ -508,7 +508,9 @@
         var form = document.getElementById("paymentForm");
         var paymentMethod = document.querySelector('input[name="hinhThucThanhToan"]:checked');
         var radioTienMat = document.getElementById("httt-1");
+        var trangThaiInput = document.getElementById("trangThaiInput"); // Thêm dòng này
 
+        trangThaiInput.value = paymentMethod && paymentMethod.value === "1" ? "5" : "0";
         if (paymentMethod) {
             if (paymentMethod.value === "1") {
                 if (radioTienMat.checked) {
