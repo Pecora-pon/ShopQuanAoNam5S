@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -76,8 +75,12 @@
     </div>
     <div class="offcanvas__nav__option">
         <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
-        <a href="#"><img src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/heart.png" alt=""></a>
-        <a href="#"><img src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/cart.png" alt=""> <span>0</span></a>
+        <a href="#"><img
+                src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/heart.png"
+                alt=""></a>
+        <a href="#"><img
+                src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/cart.png"
+                alt=""> <span>0</span></a>
         <div class="price">$0.00</div>
     </div>
     <div id="mobile-menu-wrap"></div>
@@ -134,7 +137,8 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="../mainshop/mainshop2/index.html"><img src="../../../../../../../malefashion-master/malefashion-master/img/logo.png" alt=""></a>
+                    <a href="../mainshop/mainshop2/index.html"><img
+                            src="../../../../../../../malefashion-master/malefashion-master/img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -186,10 +190,10 @@
     </div>
 </section>
 <!-- Breadcrumb Section End -->
-<a href="/dangxem" class="primary-btn" >Xem Đơn Hang</a>
+<a href="/dangxem" class="primary-btn">Xem Đơn Hang</a>
 <!-- Shopping Cart Section Begin -->
 <div class="container mt-4">
-    <form class="needs-validation" id="paymentForm" enctype="multipart/form-data"  method="post"
+    <form class="needs-validation" id="paymentForm" enctype="multipart/form-data" method="post"
           action="/themmoiny" onsubmit="return submitForm()">
         <input type="hidden" name="kh_tendangnhap" value="dnpcuong">
 
@@ -210,18 +214,20 @@
                     <input type="hidden" name="sanphamgiohang[1][gia]" value="11800000.00">
                     <input type="hidden" name="sanphamgiohang[1][soluong]" value="2">
 
-                        <li class="list-group-item d-flex justify-content-between lh-condensed">
-                            <div>
-                                <ul>
+                    <li class="list-group-item d-flex justify-content-between lh-condensed">
+                        <div>
+                            <ul>
 
-                                    <li>${sp.tenSanPham} - ${sp.giaSanPham} - ${soLuongDat} - ${sp.giaSanPham*soLuongDat}</li>
-                                    <input type="hidden" name="sanPhamID" value="${sp.sanPhamID}">
-                                </ul>
-                            </div>
-                                <%--                        <span class="text-muted">23600000</span>--%>
-                        </li>   <c:set var="totalPrice" value="${totalPrice + sp.giaSanPham*soLuongDat }" />
-                           <c:set var="totalPriceLong" value="${Math.round(totalPrice)}"></c:set>
-                        <input type="hidden" name="tongTien" value="${totalPrice}">
+                                <li>${sp.tenSanPham} - ${sp.giaSanPham} - ${soLuongDat}
+                                    - ${sp.giaSanPham*soLuongDat}</li>
+                                <input type="hidden" name="sanPhamID" value="${sp.sanPhamID}">
+                            </ul>
+                        </div>
+                        <%--                        <span class="text-muted">23600000</span>--%>
+                    </li>
+                    <c:set var="totalPrice" value="${totalPrice + sp.giaSanPham*soLuongDat }"/>
+                    <c:set var="totalPriceLong" value="${Math.round(totalPrice)}"></c:set>
+                    <input type="hidden" name="tongTien" value="${totalPrice}">
                     <input type="hidden" name="soLuongDat" value="${soLuongDat}">
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
@@ -230,8 +236,6 @@
 
                         Tạm tính : <input type="text" name="totalprice" value="${totalPriceLong}" readonly>
                     </li>
-
-
 
 
                 </ul>
@@ -246,10 +250,12 @@
                     }
                 </style>
                 <div class="input-group">
-                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select" onchange="updateSoTienGiam(this) " >
+                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select"
+                            onchange="updateSoTienGiam(this) ">
                         <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>
                         <c:forEach var="giamGia" items="${listGiamGia}">
-                            <option value="${giamGia.giamGiaID}" data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
+                            <option value="${giamGia.giamGiaID}"
+                                    data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
                         </c:forEach>
                     </select>
 
@@ -257,11 +263,11 @@
 
                     <label for="giamGiaSelect" class="sotiengiam-label"></label>
                 </div>
-                <c:set var="totalPriceLong" value="${Math.round(totalPrice)}" />
+                <c:set var="totalPriceLong" value="${Math.round(totalPrice)}"/>
                 <c:choose>
                     <c:when test="${totalPriceLong > 500000}">
                         <!-- Nếu totalPriceLong lớn hơn 500000 -->
-                        <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}" />
+                        <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}"/>
                         <p>Phí ship : 0đ</p>
                         <li class="list-group-item d-flex justify-content-between">
                             Tổng tiền : <input type="text" name="amount" value="${updatedTotalPriceLong1}" readonly>
@@ -272,10 +278,10 @@
                         <%-- Cộng thêm 50000 vào totalPriceLong --%>
                         <%-- Tạo biến mới để lưu giá trị --%>
                         <p>Phí ship của bạn: 32000đ</p>
-                        <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}" />
+                        <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}"/>
                         <li class="list-group-item d-flex justify-content-between">
 
-                            Tổng tiền :  <input type="text" name="amount" value="${updatedTotalPriceLong }" readonly>
+                            Tổng tiền : <input type="text" name="amount" value="${updatedTotalPriceLong }" readonly>
                         </li>
                     </c:otherwise>
                 </c:choose>
@@ -354,11 +360,11 @@
                         <input type="text" class="form-control" name="kh_gioitinh" id="kh_gioitinh" value="Nam"
                                readonly="">
                     </div>
-<%--                    <div class="col-md-12">--%>
-<%--                        <label for="diaChi">Địa chỉ</label>--%>
-<%--                        <input type="text" class="form-control" name="diaChi" id="diaChi"--%>
-<%--                               value="${tt.diaChi}" readonly="">--%>
-<%--                    </div>--%>
+                    <%--                    <div class="col-md-12">--%>
+                    <%--                        <label for="diaChi">Địa chỉ</label>--%>
+                    <%--                        <input type="text" class="form-control" name="diaChi" id="diaChi"--%>
+                    <%--                               value="${tt.diaChi}" readonly="">--%>
+                    <%--                    </div>--%>
                     <div class="col-md-12">
                         <label for="soDienThoai">Điện thoại</label>
                         <input type="text" class="form-control" name="soDienThoai" id="soDienThoai"
@@ -371,7 +377,8 @@
                     </div>
                     <div class="mb-3 col-md-12">
                         <label class="form-label">Địa Chỉ</label>
-                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;" id="yourSelect" onchange="redirectToPage()"required>
+                        <select name="thongTinVanChuyen.thongTinVanChuyenID" class="form-control" style="width: 100%;"
+                                id="yourSelect" onchange="redirectToPage()" required>
                             <option class="form-control" value="" selected disabled hidden>Mời bạn chọn địa chỉ</option>
                             <option value="thong-tin-van-chuyen/page">Thêm địa chỉ mới</option>
                             <c:forEach var="thongTinVanChuyen" items="${listThongTinVanChuyen}">
@@ -390,19 +397,21 @@
                 <h4 class="mb-3">Hình thức thanh toán</h4>
                 <div class="d-block my-3">
                     <div class="custom-control custom-radio">
-                        <input id="httt-1" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
+                        <input id="httt-1" name="hinhThucThanhToan" type="radio" class="custom-control-input"
+                               required=""
                                value="1">
                         <label class="custom-control-label" for="httt-1">Tiền mặt</label>
                     </div>
                     <div class="custom-control custom-radio">
-                        <input id="httt-2" name="hinhThucThanhToan" type="radio" class="custom-control-input" required=""
+                        <input id="httt-2" name="hinhThucThanhToan" type="radio" class="custom-control-input"
+                               required=""
                                value="2">
                         <label class="custom-control-label" for="httt-2">Chuyển khoản</label>
                     </div>
 
                 </div>
                 <hr class="mb-4">
-                <button class="btn btn-primary btn-lg btn-block" type="submit" >Đặt hàng</button>
+                <button class="btn btn-primary btn-lg btn-block" type="submit">Đặt hàng</button>
 
             </div>
         </div>
@@ -466,9 +475,11 @@
                     <p>Copyright ©
                         <script>
                             document.write(new Date().getFullYear());
-                        </script>2020
+                        </script>
+                        2020
                         All rights reserved | This template is made with <i class="fa fa-heart-o"
-                                                                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                                                            aria-hidden="true"></i> by <a
+                                href="https://colorlib.com" target="_blank">Colorlib</a>
                     </p>
                     <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                 </div>
@@ -504,29 +515,34 @@
     function submitForm() {
         var form = document.getElementById("paymentForm");
         var paymentMethod = document.querySelector('input[name="hinhThucThanhToan"]:checked');
-        var radioTienMat= document.getElementById("httt-1");
+        var radioTienMat = document.getElementById("httt-1");
         var trangThaiInput = document.getElementById("trangThaiInput"); // Thêm dòng này
-        console.log("Setting trangThaiInput to:", trangThaiInput.value);
-        console.log("Payment Method:", paymentMethod ? paymentMethod.value : "None");
-        console.log("Radio Tien Mat Checked:", radioTienMat.checked);
-        if(radioTienMat.checked){
-            alert("Bạn có chắc chắn muốn đặt hàng");
-        }
-            trangThaiInput.value = paymentMethod && paymentMethod.value === "1" ? "5" : "0";
-            console.log("Updated Trang Thai:", trangThaiInput.value);
 
+        trangThaiInput.value = paymentMethod && paymentMethod.value === "1" ? "5" : "0";
         if (paymentMethod) {
             if (paymentMethod.value === "1") {
-                form.method = "post";
-                form.action = "/themmoiny";
+                if (radioTienMat.checked) {
+                    var confirmOrder = confirm("Bạn có chắc chắn muốn đặt hàng?");
+                    if (confirmOrder) {
+                        // Submit the form
+                        form.method = "post";
+                        form.action = "/themmoiny";
+                        form.submit();
+                    } else {
+                        return false;
+                    }
+                } else {
+                    // Handle other cases for "Tiền mặt" if needed
+                }
             } else if (paymentMethod.value === "2") {
-                form.method = "post";  // Đổi phương thức thành GET
+                // Đổi phương thức thành POST và action thành "/submitOrder"
+                form.method = "post";
                 form.action = "/submitOrder1";
+
+                // Submit the form
+                form.submit();
             }
             // Add any additional conditions for other payment methods if needed.
-
-            // Submit the form
-            form.submit();
         } else {
             // Handle the case where no payment method is selected
             alert("Vui lòng chọn hình thức thanh toán.");

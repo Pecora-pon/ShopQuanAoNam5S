@@ -521,7 +521,7 @@
                         form.action = "/themmoi";
                         form.submit();
                     } else {
-                        // Handle the case where the user canceled the order
+                       return false;
                     }
                 } else {
                     // Handle other cases for "Tiền mặt" if needed
