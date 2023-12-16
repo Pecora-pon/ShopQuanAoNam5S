@@ -184,17 +184,25 @@
                 </div>
                 <div class="col-lg-6 col-md-6">
                     <div class="contact__form">
-                        <form action="#">
+                        <form action="/shop/lien-he" method="post">
                             <div class="row">
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Name">
+                                    <input type="text" placeholder="Name" name="name">
                                 </div>
                                 <div class="col-lg-6">
-                                    <input type="text" placeholder="Email">
+                                    <input type="text" placeholder="Email"name="email">
                                 </div>
                                 <div class="col-lg-12">
-                                    <textarea placeholder="Message"></textarea>
+                                    <textarea placeholder="Message" name="content"></textarea>
                                     <button type="submit" class="site-btn">Send Message</button>
+                                </div>
+                                <div class="col-lg-12">
+                                    <% String successMessage = (String) request.getAttribute("successMessage"); %>
+                                    <% if (successMessage != null) { %>
+                                    <div class="alert alert-success">
+                                        <p><%= successMessage %></p>
+                                    </div>
+                                    <% } %>
                                 </div>
                             </div>
                         </form>
@@ -284,6 +292,66 @@
     <!-- Search End -->
 
     <!-- Js Plugins -->
+
+        <!-- ... Other head elements ... -->
+
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                var form = document.querySelector('.contact__form form');
+
+                form.addEventListener('submit', function (event) {
+                    if (!validateForm()) {
+                        event.preventDefault();
+                    }
+                });
+
+                function validateForm() {
+                    var name = form.querySelector('[name="name"]').value.trim();
+                    var email = form.querySelector('[name="email"]').value.trim();
+                    var content = form.querySelector('[name="content"]').value.trim();
+
+                    if (name === '') {
+                        alert('Vui lòng nhập họ tên');
+                        return false;
+                    }
+
+                    if (email === '' || !validateEmail(email)) {
+                        alert('Vui lòng nhập email và đúng định dạng ');
+                        return false;
+                    }
+
+                    if (content === '') {
+                        alert('Vui lòng nhập tin nhắn.');
+                        return false;
+                    }
+
+                    return true;
+                }
+
+                function validateEmail(email) {
+                    // Add your email validation logic here
+                    // Example: Use a regular expression for basic email validation
+                    var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+                    return emailRegex.test(email);
+                }
+            });
+
+        </script>
+
+    <!-- Thêm đoạn mã JavaScript để ẩn thông báo sau 5 giây -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            var successMessage = document.getElementById('successMessage');
+            if (successMessage) {
+                setTimeout(function () {
+                    successMessage.style.display = 'none';
+                }, 5000); // ẩn sau 5 giây
+            }
+        });
+    </script>
+
+
+
     <script src="../mainshop/mainshop2/js/jquery-3.3.1.min.js"></script>
     <script src="../mainshop/mainshop2/js/bootstrap.min.js"></script>
     <script src="../mainshop/mainshop2/js/jquery.nice-select.min.js"></script>
