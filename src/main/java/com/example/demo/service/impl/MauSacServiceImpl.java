@@ -23,36 +23,47 @@ public class MauSacServiceImpl implements MauSacService {
 
     @Override
     public Respon<MauSac> add(MauSac mauSac) {
-        Respon<MauSac> respon=new Respon<>();
-        String tenMauSac= mauSac.getTenMauSac().trim();
+        Respon<MauSac> respon = new Respon<>();
+        String tenMauSac = mauSac.getTenMauSac().trim();
 
-        if(tenMauSac!=null){
-
-            if (mauSac.getTenMauSac() != null && !mauSac.getTenMauSac().isEmpty()) {
-                if(mauSacRepo.existsByTenMauSac(mauSac.getTenMauSac())){
+        if (tenMauSac != null && !tenMauSac.isEmpty()) {
+            // Check if the name contains only spaces
+            if (!isOnlySpaces(tenMauSac)) {
+                if (mauSacRepo.existsByTenMauSac(tenMauSac)) {
                     respon.setError("Tên Màu Sắc đã tồn tại. Vui lòng chọn tên khác");
-                }else {
-                mauSac.setTenMauSac(tenMauSac);
-                mauSac.setTrangThai(0);
-                mauSacRepo.save(mauSac);
-                respon.setStatus("Thành công");
-            }
+                } else {
+                    mauSac.setTenMauSac(tenMauSac);
+                    mauSac.setTrangThai(0);
+                    mauSacRepo.save(mauSac);
+                    respon.setStatus("Thành công");
+                }
             } else {
                 respon.setError("Tên đang bị sai");
             }
+        } else {
+            respon.setError("Tên không được để trống");
         }
+
         return respon;
     }
 
+    private boolean isOnlySpaces(String input) {
+        // Check if the input contains only spaces
+        return input.matches("^\\s*$");
+    }
     @Override
     public Respon<MauSac> update(Integer mauSacID, MauSac mauSac) {
         Respon<MauSac>respon=new Respon<>();
         MauSac mauSac1=detail(mauSacID);
         if(mauSac1!=null){
-            mauSac1.setMauSacID(mauSac.getMauSacID());
-            mauSac1.setTenMauSac(mauSac.getTenMauSac());
-            mauSacRepo.save(mauSac);
-            respon.setStatus("Thành công");
+            if(!isOnlySpaces(mauSac.getTenMauSac())) {
+                mauSac1.setMauSacID(mauSac.getMauSacID());
+                mauSac1.setTenMauSac(mauSac.getTenMauSac());
+                mauSacRepo.save(mauSac1);
+                respon.setStatus("Thành công");
+            }else {
+                respon.setError("Không đúng định dạng");
+            }
         }else {
             respon.setError("Không thành cong");
         }

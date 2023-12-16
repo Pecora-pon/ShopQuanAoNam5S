@@ -21,38 +21,49 @@ public class SizeServiceImpl implements SizeService {
     public List<Size> getAll() {
         return sizeRepo.getAll();
     }
-
     @Override
     public Respon<Size> add(Size size) {
-        Respon<Size> respon=new Respon<>();
-        String tenSize=size.getTenSize().trim();
+        Respon<Size> respon = new Respon<>();
+        String tenSize = size.getTenSize().trim();
 
-
-            if (size.getTenSize() != null && !size.getTenSize().isEmpty()) {
-                if(sizeRepo.existsByTenSize(size.getTenSize())){
-                    respon.setError("Tên không đã tồn tại");
-                }else {
+        if (size.getTenSize() != null && !size.getTenSize().isEmpty()) {
+            if (sizeRepo.existsByTenSize(size.getTenSize())) {
+                respon.setError("Tên không đã tồn tại");
+            } else {
+                // Check if tenSize contains only alphanumeric characters
+                if (isAlphanumeric(tenSize)) {
                     size.setTenSize(tenSize);
                     size.setTrangThai(0);
                     sizeRepo.save(size);
                     respon.setStatus("Thành công");
+                } else {
+                    respon.setError("Tên chỉ được chứa chữ cái và số");
                 }
-            } else {
-                respon.setError("Tên không đúng");
             }
+        } else {
+            respon.setError("Tên không đúng");
+        }
 
         return respon;
     }
 
+    private boolean isAlphanumeric(String input) {
+        // Check if the input contains only alphanumeric characters
+        return input.matches("^[a-zA-Z0-9]+$");
+    }
     @Override
     public Respon<Size> update(Integer sizeID, Size size) {
         Respon<Size>respon=new Respon<>();
         Size size1=detail(sizeID);
         if(size1 != null){
-            size1.setSizeID(size.getSizeID());
-            size1.setTenSize(size.getTenSize());
-            sizeRepo.save(size);
-            respon.setStatus("thành công");
+            if(isAlphanumeric(size.getTenSize())) {
+                size1.setSizeID(size.getSizeID());
+                size1.setTenSize(size.getTenSize());
+                sizeRepo.save(size);
+                respon.setStatus("thành công");
+            }else {
+                respon.setError("Không đúng định dạng");
+            }
         }else {
             respon.setError("Không thành công");
         }

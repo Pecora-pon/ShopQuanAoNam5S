@@ -21,7 +21,7 @@ public class ThongTinVanChuyenServiceImpl implements ThongTinVanChuyenService {
 
     @Override
     public List<ThongTinVanChuyen> getAll() {
-        return thongTinVanChuyenRepo.findAll();
+        return thongTinVanChuyenRepo.getAll();
     }
 
     @Override
@@ -62,7 +62,7 @@ public class ThongTinVanChuyenServiceImpl implements ThongTinVanChuyenService {
 
     @Override
     public void delete(Integer thongTinVanChuyenID) {
-            thongTinVanChuyenRepo.deleteById(thongTinVanChuyenID);
+            thongTinVanChuyenRepo.deleteByI(thongTinVanChuyenID);
     }
 
     @Override

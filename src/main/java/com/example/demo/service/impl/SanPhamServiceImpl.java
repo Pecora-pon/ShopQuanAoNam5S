@@ -33,8 +33,8 @@ public class SanPhamServiceImpl implements SanPhamService {
                 isNumeric1(String.valueOf(sanPham.getGiaSanPham())) &&
 
                 // Kiểm tra tất cả các trường bắt buộc không được để trống
-                sanPham.getTenSanPham() != null && !sanPham.getTenSanPham().isEmpty() &&
-                sanPham.getMoTa() != null && !sanPham.getMoTa().isEmpty() &&
+                sanPham.getTenSanPham() != null && !sanPham.getTenSanPham().trim().isEmpty() &&
+                sanPham.getMoTa() != null && !sanPham.getMoTa().trim().isEmpty() &&
                 sanPham.getSize() != null &&
                 sanPham.getChatLieu() != null &&
                 sanPham.getMauSac() != null &&
@@ -42,13 +42,19 @@ public class SanPhamServiceImpl implements SanPhamService {
                 sanPham.getHinhAnhURL() != null &&
                 // Kiểm tra số lượng tồn phải khác null và là số
                 sanPham.getSoLuongTon() != null && isNumeric(String.valueOf(sanPham.getSoLuongTon()))) {
-           if(sanPhamRepo.existsByTenSanPham(sanPham.getTenSanPham())){
-               respon.setError("Tên sản phẩm đã tồn tại. Vui lòng chọn tên khác.");
-           }else {
-               sanPham.setNgayTao(LocalDate.now());
-               sanPhamRepo.save(sanPham);
-               respon.setStatus("Thành công");
-           }
+
+            // Check if any field contains only spaces
+            if (containsOnlySpaces(sanPham)) {
+                respon.setError("Không được nhập nguyên dấu cách ở mỗi trường");
+            } else {
+                if (sanPhamRepo.existsByTenSanPham(sanPham.getTenSanPham())) {
+                    respon.setError("Tên sản phẩm đã tồn tại. Vui lòng chọn tên khác.");
+                } else {
+                    sanPham.setNgayTao(LocalDate.now());
+                    sanPhamRepo.save(sanPham);
+                    respon.setStatus("Thành công");
+                }
+            }
         } else {
             respon.setError("Không được để trống các trường bắt buộc, và giá sản phẩm phải là số");
         }
@@ -56,6 +62,12 @@ public class SanPhamServiceImpl implements SanPhamService {
         return respon;
     }
 
+    private boolean containsOnlySpaces(SanPham sanPham) {
+        // Check if any field contains only spaces
+        return sanPham.getTenSanPham().trim().matches("^\\s*$") ||
+                sanPham.getMoTa().trim().matches("^\\s*$");
+
+    }
     // Phương thức kiểm tra xem một chuỗi có phải là số không
     private boolean isNumeric1(String str) {
         try {
@@ -79,25 +91,45 @@ public class SanPhamServiceImpl implements SanPhamService {
     public Respon<SanPham> update(UUID sanPhamID, SanPham sanPham) {
         Respon<SanPham> respon = new Respon<>();
         SanPham sanPham1 = detail(sanPhamID);
+
         if (sanPham1 != null) {
-            sanPham1.setGiaSanPham(sanPham.getGiaSanPham());
-            sanPham1.setSanPhamID(sanPham.getSanPhamID());
-            sanPham1.setMauSac(sanPham.getMauSac());
-            sanPham1.setTenSanPham(sanPham.getTenSanPham());
-            sanPham1.setChatLieu(sanPham.getChatLieu());
-            sanPham1.setSize(sanPham.getSize());
-            sanPham1.setMoTa(sanPham.getMoTa());
-            sanPham1.setThuongHieu(sanPham.getThuongHieu());
-            sanPham1.setNgayTao(sanPham.getNgayTao());
-            sanPham1.setSoLuongTon(sanPham.getSoLuongTon());
-            sanPham1.setTinhTrang(sanPham.getTinhTrang());
-            sanPham1.setHinhAnhURL(sanPham.getHinhAnhURL());
-            sanPhamRepo.save(sanPham1);
-            respon.setStatus("Thành công");
+            // Check for empty or whitespace-only values
+            if (isValidSanPham(sanPham)) {
+                // Update logic here
+                updateSanPhamFields(sanPham1, sanPham);
+                sanPhamRepo.save(sanPham1);
+                respon.setStatus("Thành công");
+            } else {
+                respon.setError("Không được để trống các trường bắt buộc");
+            }
         } else {
             respon.setError("Không thành công");
         }
+
         return respon;
+    }
+
+    private boolean isValidSanPham(SanPham sanPham) {
+        // Check if any required field is empty or contains only spaces
+        return !sanPham.getTenSanPham().trim().isEmpty() &&
+                !sanPham.getMoTa().trim().isEmpty() &&
+                !sanPham.getHinhAnhURL().trim().isEmpty();
+    }
+
+    private void updateSanPhamFields(SanPham sanPham1, SanPham sanPham) {
+        // Update non-null fields
+        sanPham1.setGiaSanPham(sanPham.getGiaSanPham());
+        sanPham1.setSanPhamID(sanPham.getSanPhamID());
+        sanPham1.setMauSac(sanPham.getMauSac());
+        sanPham1.setTenSanPham(sanPham.getTenSanPham());
+        sanPham1.setChatLieu(sanPham.getChatLieu());
+        sanPham1.setSize(sanPham.getSize());
+        sanPham1.setMoTa(sanPham.getMoTa());
+        sanPham1.setThuongHieu(sanPham.getThuongHieu());
+        sanPham1.setNgayTao(sanPham.getNgayTao());
+        sanPham1.setSoLuongTon(sanPham.getSoLuongTon());
+        sanPham1.setTinhTrang(sanPham.getTinhTrang());
+        sanPham1.setHinhAnhURL(sanPham.getHinhAnhURL());
     }
 
     @Override

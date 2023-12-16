@@ -26,23 +26,33 @@ public class ChatLieuServiceImpl implements ChatLieuService {
 
     @Override
     public Respon<ChatLieu> add(ChatLieu chatLieu) {
-        Respon<ChatLieu>repon=new Respon<>();
-        String tenChatLieu=chatLieu.getTenChatLieu().trim();
+        Respon<ChatLieu> repon = new Respon<>();
+        String tenChatLieu = chatLieu.getTenChatLieu().trim();
 
-            if (chatLieu.getTenChatLieu() != null && !chatLieu.getTenChatLieu().isEmpty()) {
-                if(chatLieuRepository.existsByTenChatLieu(chatLieu.getTenChatLieu())){
-                    repon.setError("tên đã tồn tại");
-                }else {
+        if (tenChatLieu != null && !tenChatLieu.isEmpty()) {
+            // Check if the name contains only numeric characters
+            if (!isNumeric(tenChatLieu)) {
+                if (chatLieuRepository.existsByTenChatLieu(tenChatLieu)) {
+                    repon.setError("Tên đã tồn tại");
+                } else {
                     chatLieu.setTrangThai(0);
                     chatLieu.setTenChatLieu(tenChatLieu);
                     chatLieuRepository.save(chatLieu);
                     repon.setStatus("Thành công");
                 }
             } else {
-                repon.setError("Tên không được để trông");
+                repon.setError("Tên không được chỉ chứa nguyên cách");
             }
+        } else {
+            repon.setError("Tên không được để trống");
+        }
 
         return repon;
+    }
+
+    private boolean isNumeric(String input) {
+        // Check if the input contains only numeric characters
+        return input.matches("^\\s*$");
     }
 
     @Override
@@ -50,10 +60,14 @@ public class ChatLieuServiceImpl implements ChatLieuService {
         Respon<ChatLieu> respon=new Respon<>();
         ChatLieu chatLieu1=detail(chatLieuID);
         if(chatLieu1 !=null){
-            chatLieu1.setChatLieuID(chatLieu.getChatLieuID());
-            chatLieu1.setTenChatLieu(chatLieu.getTenChatLieu());
-            chatLieuRepository.save(chatLieu);
-            respon.setStatus("Thành công");
+            if(!isNumeric(chatLieu.getTenChatLieu())) {
+                chatLieu1.setChatLieuID(chatLieu.getChatLieuID());
+                chatLieu1.setTenChatLieu(chatLieu.getTenChatLieu());
+                chatLieuRepository.save(chatLieu);
+                respon.setStatus("Thành công");
+            }else {
+                respon.setError("Tên không đúng định dạng");
+            }
         }else {
             respon.setError("Update không thành công");
         }

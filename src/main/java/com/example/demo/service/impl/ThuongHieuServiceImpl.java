@@ -24,34 +24,47 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
 
     @Override
     public Respon<ThuongHieu> add(ThuongHieu thuongHieu) {
-        Respon<ThuongHieu> respon=new Respon<>();
-        String tenThuongHieu=thuongHieu.getTenThuongHieu().trim();
+        Respon<ThuongHieu> respon = new Respon<>();
+        String tenThuongHieu = thuongHieu.getTenThuongHieu().trim();
 
-            if (thuongHieu.getTenThuongHieu() != null && !thuongHieu.getTenThuongHieu().isEmpty()) {
-                if(thuongHieuRepo.existsByTenThuongHieu(thuongHieu.getTenThuongHieu())){
+        if (tenThuongHieu != null && !tenThuongHieu.isEmpty()) {
+            // Check if the name contains only spaces
+            if (!isOnlySpaces(tenThuongHieu)) {
+                if (thuongHieuRepo.existsByTenThuongHieu(tenThuongHieu)) {
                     respon.setError("Tên đã tồn tại");
-                }else {
+                } else {
                     thuongHieu.setTenThuongHieu(tenThuongHieu);
                     thuongHieu.setTrangThai(0);
                     thuongHieuRepo.save(thuongHieu);
                     respon.setStatus("Thành công");
                 }
             } else {
-                respon.setError("Tên đang bị sai");
+                respon.setError("Tên không được chỉ chứa nguyên cách");
             }
+        } else {
+            respon.setError("Tên không được để trống");
+        }
 
         return respon;
     }
 
+    private boolean isOnlySpaces(String input) {
+        // Check if the input contains only spaces
+        return input.matches("^\\s*$");
+    }
     @Override
     public Respon<ThuongHieu> update(Integer thuongHieuID, ThuongHieu thuongHieu) {
         Respon<ThuongHieu>respon=new Respon<>();
         ThuongHieu thuongHieu1=detail(thuongHieuID);
         if(thuongHieu1 !=null){
-            thuongHieu1.setThuongHieuID(thuongHieu.getThuongHieuID());
-            thuongHieu1.setTenThuongHieu(thuongHieu.getTenThuongHieu());
-            thuongHieuRepo.save(thuongHieu);
-            respon.setStatus("Thành công");
+            if(!isOnlySpaces(thuongHieu.getTenThuongHieu())) {
+                thuongHieu1.setThuongHieuID(thuongHieu.getThuongHieuID());
+                thuongHieu1.setTenThuongHieu(thuongHieu.getTenThuongHieu());
+                thuongHieuRepo.save(thuongHieu);
+                respon.setStatus("Thành công");
+            }else {
+                respon.setError("Không đúng đinh dạng");
+            }
         }else {
             respon.setError("Không thành công");
         }
