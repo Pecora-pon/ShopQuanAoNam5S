@@ -9,11 +9,14 @@ import com.example.demo.service.KhachHangService;
 import com.example.demo.service.SanPhamService;
 import com.example.demo.servicesecuritykh.KhService;
 import jakarta.mail.MessagingException;
+import jakarta.mail.internet.MimeMessage;
 import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.repository.query.Param;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
+import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -138,7 +141,22 @@ public class AdminController {
     }
     @RequestMapping("/shop/lien-he")
     public String contact(){
+
         return "shop/lien-he";
+    }
+    @PostMapping("/shop/lien-he")
+    public String contactt(@RequestParam("name")String name,
+                           @RequestParam("email")String email,
+                           @RequestParam("content")String content, Model model, HttpSession session,RedirectAttributes redirectAttributes)throws MessagingException{
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,true);
+        helper.setTo("hieutcph27664@fpt.edu.vn");
+        helper.setSubject("THÔNG TIN LIÊN HỆ");
+        helper.setText("Xin chào "+name+","+"tôi muốn liên hệ với bạn qua email :"+email +"với nội dung : "+ content);
+        mailSender.send(message);
+        redirectAttributes.addFlashAttribute("successMessage", "Gửi tin nhắn thành công!");
+
+        return "redirect:/shop/lien-he";
     }
 
 
