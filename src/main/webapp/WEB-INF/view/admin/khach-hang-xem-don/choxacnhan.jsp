@@ -3,6 +3,14 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
+<%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
+<%@ page import="java.security.Principal" %>
+<%@ page import="java.util.Set" %>
+<%@ page import="java.util.HashSet" %>
+<%@ page import="java.util.Arrays" %>
+<%@ page import="java.util.Collections" %>
+<%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+
 
 <head>
     <meta charset="UTF-8">
@@ -88,23 +96,37 @@
             <div class="row">
                 <div class="col-lg-6 col-md-7">
                     <div class="header__top__left">
-                        <p>Free shipping, 30-day return or refund guarantee.</p>
+                        <p>Miễn phí vận chuyển, 30-ngày trả lại hoặc hoàn tiền.</p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
                     <div class="header__top__right">
                         <div class="header__top__links">
-                            <a href="/logout">Sign in</a>
-                            <a href="#">FAQs</a>
+                            <sec:authorize access="hasRole('ROLE_USER')">
+                                <!-- Nếu đã đăng nhập, hiển thị tên người dùng và nút đăng xuất -->
+                                <div style="display: flex; align-items: center;">
+                                    <span style="color: white;">Xin chào, <%= request.getUserPrincipal().getName() %>!</span>
+                                    <form action="/logout" method="post" style="margin-left: 10px;">
+                                        <input type="submit" value="Đăng xuất">
+                                    </form>
+                                </div>
+                            </sec:authorize>
+
+                            <sec:authorize access="!hasRole('ROLE_USER')">
+                                <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
+                                <div>
+                                    <a href="/login" style="color: white;">Đăng nhập</a>
+                                </div>
+                            </sec:authorize>
                         </div>
-                        <div class="header__top__hover">
-                            <span>Usd <i class="arrow_carrot-down"></i></span>
-                            <ul>
-                                <li>USD</li>
-                                <li>EUR</li>
-                                <li>USD</li>
-                            </ul>
-                        </div>
+                        <%--                            <div class="header__top__hover">--%>
+                        <%--                                <span>Usd <i class="arrow_carrot-down"></i></span>--%>
+                        <%--                                <ul>--%>
+                        <%--                                    <li>USD</li>--%>
+                        <%--                                    <li>EUR</li>--%>
+                        <%--                                    <li>USD</li>--%>
+                        <%--                                </ul>--%>
+                        <%--                            </div>--%>
                     </div>
                 </div>
             </div>
@@ -114,7 +136,7 @@
         <div class="row">
             <div class="col-lg-3 col-md-3">
                 <div class="header__logo">
-                    <a href="../mainshop/mainshop2/index.html"><img src="../../../../../../../malefashion-master/malefashion-master/img/logo.png" alt=""></a>
+                    <a href="/shop/main-shop"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
@@ -125,22 +147,22 @@
                         <li><a href="#">Tìm hiểu thêm</a>
                             <ul class="dropdown">
                                 <li><a href="/shop/about">Về chúng tôi</a></li>
-                                <li><a href="gio-hang.jsp">Giỏ hàng</a></li>
-                                <li><a href="./blog-details.html">Blog</a></li>
+                                <li><a href="/gio-hang">Giỏ hàng</a></li>
+                                <li><a href="/shop/blog">Blog</a></li>
                             </ul>
                         </li>
-                        <li><a href="./blog.html">Blog</a></li>
+                        <li><a href="/shop/blog">Blog</a></li>
                         <li><a href="/shop/lien-he">Liên hệ</a></li>
                     </ul>
                 </nav>
+
             </div>
             <div class="col-lg-3 col-md-3">
-                <%--                <div class="header__nav__option">--%>
-                <%--                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
-                <%--                    <a href="#"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>--%>
-                <%--                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>--%>
-                <%--                    <div class="price">$0.00</div>--%>
-                <%--                </div>--%>
+                <div class="header__nav__option">
+                    <%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                    <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                </div>
             </div>
         </div>
         <div class="canvas__open"><i class="fa fa-bars"></i></div>
