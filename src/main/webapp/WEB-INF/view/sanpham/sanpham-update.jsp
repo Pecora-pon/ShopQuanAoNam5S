@@ -496,13 +496,15 @@
                                 <td>${sanpham.moTa}</td>
                                 <td>${sanpham.giaSanPham}</td>
                                 <td>${sanpham.soLuongTon}</td>
+                                        <td>
                                 <c:if test="${sanpham.tinhTrang == 0}"> Còn Hàng </c:if>
                                 <c:if test="${sanpham.tinhTrang == 1}"> Hết</c:if>
-                                <td>${sanpham.mauSac.tenMauSac}</td>
+                                        </td>
+                                        <td>${sanpham.mauSac.tenMauSac}</td>
                                 <td>${sanpham.size.tenSize}</td>
                                 <td>${sanpham.chatLieu.tenChatLieu}</td>
                                 <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                        <td>  <img src="getimage/${sanpham.hinhAnhURL}" style="max-width: 20px; max-height: 20px;">
+                                        <td>  <img src="/getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;">
                                         </td>
                                     <%--                                    <td>${sanpham.ngayTao}</td>--%>
 <%--                                <td>${sanpham.hinhAnhURL}</td>--%>
