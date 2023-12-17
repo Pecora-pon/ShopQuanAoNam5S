@@ -527,7 +527,7 @@
                         // Submit the form
                         form.method = "post";
                         form.action = "/themmoiny";
-                        form.submit();
+
                     } else {
                         return false;
                     }
@@ -540,13 +540,13 @@
                 form.action = "/submitOrder1";
 
                 // Submit the form
-                form.submit();
+
             }
             // Add any additional conditions for other payment methods if needed.
         } else {
             // Handle the case where no payment method is selected
             alert("Vui lòng chọn hình thức thanh toán.");
-        }
+        }form.submit();
     }
 </script>
 <script>
