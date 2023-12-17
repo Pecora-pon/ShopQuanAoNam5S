@@ -635,6 +635,11 @@
              alert("Số Điện Thoại phải là số và có đúng 10 chữ số");
              return false;
         }
+        var emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!email.match(emailPattern)) {
+            alert("Email không hợp lệ. Vui lòng nhập đúng định dạng email.");
+            return false;
+        }
         // Additional validation logic if needed
 
         return true;
