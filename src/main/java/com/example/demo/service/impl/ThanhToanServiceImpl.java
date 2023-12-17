@@ -165,11 +165,11 @@ public class ThanhToanServiceImpl implements ThanhToanService {
 //        GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
 
         // Thêm đối tượng DonHangChiTiet từ session vào danh sách
-        if (donHangChiTiet != null) {
-            donHangChiTiet.setDonHang(donHang1);
-            donHangChiTiets.add(donHangChiTiet);
-
-        }
+//        if (donHangChiTiet != null) {
+//            donHangChiTiet.setDonHang(donHang1);
+//            donHangChiTiets.add(donHangChiTiet);
+//
+//        }
             // Lưu đối tượng DonHangChiTiet vào cơ sở dữ liệu
             donHangChiTietRepo.saveAll(donHangChiTiets);
 
