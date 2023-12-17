@@ -12,6 +12,7 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface GioHangRepo extends JpaRepository<GioHang,Integer> {
@@ -23,6 +24,8 @@ List<GioHang>findByKhachHang_Username(String username);
     @Query(value = "select * from GioHang p WHERE p.trangThai =0 order by p.gioHangID desc",nativeQuery = true)
     List<GioHang> getAll();
     List<GioHang> findByKhachHang(KhachHang khachHang);
+    Optional<GioHang> findBySanPham_TenSanPhamAndTrangThai(String tenSanPham, int trangThai);
+
 
 }
 
