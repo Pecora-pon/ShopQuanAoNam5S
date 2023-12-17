@@ -23,6 +23,11 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
         rel="stylesheet">
+    <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="../mainshop/mainshop2/css/bootstrap.min.css" type="text/css">
@@ -199,9 +204,15 @@
                                 <div class="col-lg-12">
                                     <% String successMessage = (String) request.getAttribute("successMessage"); %>
                                     <% if (successMessage != null) { %>
-                                    <div class="alert alert-success">
-                                        <p><%= successMessage %></p>
-                                    </div>
+                                        <script>
+                                            // Display SweetAlert2 success popup
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Send success',
+                                                text: '<%= successMessage %>',
+                                                confirmButtonText: 'OK'
+                                            });
+                                        </script>
                                     <% } %>
                                 </div>
                             </div>
@@ -310,20 +321,17 @@
                     var email = form.querySelector('[name="email"]').value.trim();
                     var content = form.querySelector('[name="content"]').value.trim();
 
-                    if (name === '') {
-                        alert('Vui lòng nhập họ tên');
+                    if (name === ''||email === '' || !validateEmail(email)||content === '') {
+                        Swal.fire({
+                            icon: 'error',
+                            title: 'Gửi không thành công',
+                            text: 'Vui lòng nhập đầy đủ dữ liệu và đúng định dạng',
+                            confirmButtonText: 'OK'
+                        });
                         return false;
                     }
 
-                    if (email === '' || !validateEmail(email)) {
-                        alert('Vui lòng nhập email và đúng định dạng ');
-                        return false;
-                    }
 
-                    if (content === '') {
-                        alert('Vui lòng nhập tin nhắn.');
-                        return false;
-                    }
 
                     return true;
                 }
@@ -339,16 +347,7 @@
         </script>
 
     <!-- Thêm đoạn mã JavaScript để ẩn thông báo sau 5 giây -->
-    <script>
-        document.addEventListener('DOMContentLoaded', function () {
-            var successMessage = document.getElementById('successMessage');
-            if (successMessage) {
-                setTimeout(function () {
-                    successMessage.style.display = 'none';
-                }, 5000); // ẩn sau 5 giây
-            }
-        });
-    </script>
+
 
 
 
