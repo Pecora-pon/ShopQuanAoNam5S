@@ -15,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 import java.util.UUID;
 @Service
 public class GioHangImpl implements CartService {
@@ -61,26 +62,48 @@ public class GioHangImpl implements CartService {
     }
 
     @Override
-    public GioHang insert(GioHang gioHang,UUID sanPhamID) {
-        SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
-        System.out.println(sanPham);
-        int slton=sanPham.getSoLuongTon();
-        int sl=gioHang.getSoLuongDat();
-        if(slton<sl){
-            System.out.println("Số lượng tồn của sản phẩm không đủ");
+    public GioHang insert(GioHang gioHang, UUID sanPhamID) {
+        SanPham sanPham = sanPhamRepo.findById(sanPhamID).orElse(null);
+
+        if (sanPham == null) {
+            System.out.println("Không tìm thấy sản phẩm");
             return null;
-        }else {
-            int mausac = sanPham.getMauSac().getMauSacID();
-            gioHang.setTrangThai(0);
-            sanPham.getMauSac().setMauSacID(mausac);
-            gioHang.setSanPham(sanPham);
-            float gia = sanPham.getGiaSanPham();
-            if (gioHang.getTongTien() == null) {
-                gioHang.setTongTien(gia * sl);
-            }
         }
 
-      return gioHangRepo.save(gioHang);
+        int slton = sanPham.getSoLuongTon();
+        int sl = gioHang.getSoLuongDat();
+        String tenSanPham = sanPham.getTenSanPham();
+
+        Optional<GioHang> existingItemOptional = gioHangRepo.findBySanPham_TenSanPhamAndTrangThai(tenSanPham, gioHang.getTrangThai());
+
+        if (existingItemOptional.isPresent()) {
+            GioHang existingItem = existingItemOptional.get();
+            int existingQuantity = existingItem.getSoLuongDat() + sl;
+            if (slton < existingQuantity) {
+                System.out.println("Số lượng tồn của sản phẩm không đủ");
+                return null;
+            }
+            existingItem.setSoLuongDat(existingQuantity);
+            float gia = sanPham.getGiaSanPham();
+            float tongTien = existingItem.getTongTien() + (gia * sl);
+            existingItem.setTongTien(tongTien);
+
+            return gioHangRepo.save(existingItem);
+        } else {
+            if (slton < sl) {
+                System.out.println("Số lượng tồn của sản phẩm không đủ");
+                return null;
+            } else {
+                int mausac = sanPham.getMauSac().getMauSacID();
+                gioHang.setTrangThai(0);
+                sanPham.getMauSac().setMauSacID(mausac);
+                gioHang.setSanPham(sanPham);
+                float gia = sanPham.getGiaSanPham();
+                gioHang.setTongTien(gia * sl);
+            }
+
+            return gioHangRepo.save(gioHang);
+        }
     }
 
     @Override
