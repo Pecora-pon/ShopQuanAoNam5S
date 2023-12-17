@@ -52,18 +52,21 @@ public class PaymentController {
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
+
 //        List<GioHang> gioHangList = gioHangRepo.findByKhachHang(khachHang);
         List<GioHang> gioHangList = new ArrayList<>();
         for (Integer gh : giohangID) {
             GioHang gioHangItem = gioHangRepo.getById(gh);
             gioHangItem.getSanPham().getSanPhamID();
+            donHangChiTiet.setTrangThai(trang);
             donHangChiTiet.setSanPham(gioHangItem.getSanPham());
             gioHangList.add(gioHangItem);
         }
-        session.setAttribute("trangSession",trang);
+
         session.setAttribute("donHangSession", donHang);
         session.setAttribute("donHangChiTietSession", donHangChiTiet);
         session.setAttribute("gioHangListSession", gioHangList);
+        session.setAttribute("trangSession",trang);
         return "redirect:" + vnpayUrl;
     }
     @PostMapping("/submitOrder1")

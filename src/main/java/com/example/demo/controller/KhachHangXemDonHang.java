@@ -129,7 +129,7 @@ public class KhachHangXemDonHang {
     public String detail5(@PathVariable("donHang")UUID donHang,Model model){
         List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
         model.addAttribute("list",list);
-        return "admin/review-nguoi-dung/chitiet";
+        return "admin/review-nguoi-dung/index";
     }
     @GetMapping("/timkiemten")
     public String detail1(@RequestParam("ten")String ten, Model model){
