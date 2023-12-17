@@ -34,6 +34,12 @@
 
     <!-- Favicon -->
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico" />
+    <!-- Include SweetAlert2 CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
+
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -172,12 +178,36 @@
                 </div>
                 <div class="mb-3">
                   <% String error = (String) request.getAttribute("error"); %>
-                  <% if (error != null) { %>
-                  <div class="alert alert-danger">
-                    <p><%= error %></p>
-                  </div>
-                  <% } %>
+                  <% String successMessage = (String) request.getAttribute("successMessage"); %>
+
+                  <script>
+                    // Hiển thị cửa sổ SweetAlert2 với thông báo lỗi nếu có lỗi
+                    <% if (error != null) { %>
+                    Swal.fire({
+                      icon: 'error',
+                      title: 'Lỗi Đăng Nhập',
+                      text: '<%= error %>',
+                      confirmButtonText: 'OK'
+                    });
+                    <% } %>
+
+                    // Hiển thị cửa sổ SweetAlert2 với thông báo thành công nếu có
+<%--                    <% if (successMessage != null) { %>--%>
+<%--                    Swal.fire({--%>
+<%--                      icon: 'success',--%>
+<%--                      title: 'Đăng Nhập Thành Công',--%>
+<%--                      text: '<%= successMessage %>',--%>
+<%--                      confirmButtonText: 'OK'--%>
+<%--                    }).then(function(result) {--%>
+<%--                      if (result.isConfirmed) {--%>
+<%--                        // Chuyển hướng đến trang khác sau khi cửa sổ SweetAlert2 đóng lại--%>
+<%--                        window.location.href = '/shop/main-shop';--%>
+<%--                      }--%>
+<%--                    });--%>
+<%--                    <% } %>--%>
+                  </script>
                 </div>
+
 
 
                 <div class="mb-3">
@@ -223,14 +253,13 @@
         var username = document.getElementById("username").value;
         var password = document.getElementById("password").value;
 
-        if (username.trim() === "") {
-          alert("Vui lòng nhập tên đăng nhập.");
-          return false;
-        }
-
-        if (password.trim() === "") {
-          alert("Vui lòng nhập mật khẩu.");
-          return false;
+        if (username.trim() === ""||password.trim() === "") {
+          Swal.fire({
+            icon: 'error',
+            title: 'Login Error',
+            text: 'Vui lòng nhập tên đăng nhập và mật khẩu',
+            confirmButtonText: 'OK'
+          });          return false;
         }
 
         return true;
