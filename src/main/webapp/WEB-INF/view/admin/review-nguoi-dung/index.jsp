@@ -209,6 +209,11 @@
                                     <span class="item-label">Ngày nhận:</span>
                                     <span class="item-value">${dh.ngayNhan}</span>
                                 </div>
+                                <div class="mb-3 col-md-6">
+                                    <label class="form-label">Hình Ảnh URL</label>
+                                    <input type="file" id="hinhAnhURL" name="hinhAnhURL" class="form-control-file"
+                                           accept="image/*"/>
+                                </div>
 
 
 <%--                                <div class="item-info">--%>
