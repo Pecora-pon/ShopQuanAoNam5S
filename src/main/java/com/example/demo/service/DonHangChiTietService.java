@@ -47,6 +47,7 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet> findNgayDat(LocalDate ngaydat);
     List<DonHangChiTiet> findTenSP(String ten);
     List<DonHangChiTiet> finDonHang(UUID id);
+    List<DonHangChiTiet> finSanPham(int id);
     List<DonHangChiTiet> findTongTien(Float tong);
 
 }
