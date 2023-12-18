@@ -189,6 +189,28 @@
                                     <input type="hidden" name="sanPham" value="${dh.sanPham.sanPhamID}">
 
                                 </div>
+                                <div class="item-info">
+                                    <span class="item-label">Size:</span>
+                                    <span class="item-value">${dh.sanPham.size.tenSize}</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">Màu sắc:</span>
+                                    <span class="item-value">${dh.sanPham.mauSac.tenMauSac}</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">Số lượng:</span>
+                                    <span class="item-value">${dh.soLuong}</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">Tổng tiền:</span>
+                                    <span class="item-value">${dh.tongTien}</span>
+                                </div>
+                                <div class="item-info">
+                                    <span class="item-label">Ngày nhận:</span>
+                                    <span class="item-value">${dh.ngayNhan}</span>
+                                </div>
+
+
 <%--                                <div class="item-info">--%>
 <%--                                    <span class="item-label">Số Lượng:</span>--%>
 <%--                                    <span class="item-value">${dh.soLuong}</span>--%>
