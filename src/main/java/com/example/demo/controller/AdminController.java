@@ -45,7 +45,10 @@ public class AdminController {
     public String fail2(Model model){
        return "error/404";
     }
-
+    @GetMapping("/invoice")
+    public String invoce(){
+        return "shop/invoice";
+    }
 
 
     @GetMapping("/that-bai")
