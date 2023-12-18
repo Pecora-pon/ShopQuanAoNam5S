@@ -6,6 +6,7 @@ import com.example.demo.entity.responobject.Respon;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface SizeService {
     List<Size> getAll();
@@ -21,5 +22,5 @@ public interface SizeService {
     List<Size> findSize(String keyword);
     Page<Size> getPage(int pageNumber,int pageSize);
 
-
+    void capnhat(int id, int soluong);
 }

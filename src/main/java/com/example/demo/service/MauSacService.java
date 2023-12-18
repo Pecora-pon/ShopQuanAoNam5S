@@ -5,6 +5,7 @@ import com.example.demo.entity.responobject.Respon;
 import org.springframework.data.domain.Page;
 
 import java.util.List;
+import java.util.UUID;
 
 public interface MauSacService {
     List<MauSac> getAll();
@@ -19,4 +20,6 @@ public interface MauSacService {
 
     List<MauSac> findTen(String keyword);
     Page<MauSac> getPage(int pageNumber,int pageSize);
+
+    void capnhat(int id, int soluong);
 }
