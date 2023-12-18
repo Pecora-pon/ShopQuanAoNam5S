@@ -30,4 +30,7 @@ public class Size {
 
     @Column(name="trangThai")
     private int trangThai;
+
+    @Column(name="SoLuong")
+    private int soLuong;
 }
