@@ -125,9 +125,9 @@ public class KhachHangXemDonHang {
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/chitiet";
     }
-    @GetMapping("/detail5/{donHang}")
-    public String detail5(@PathVariable("donHang")UUID donHang,Model model){
-        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+    @GetMapping("/detail5/{donHangCT}")
+    public String detail5(@PathVariable("donHangCT")int donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finSanPham(donHang);
         model.addAttribute("list",list);
         return "admin/review-nguoi-dung/index";
     }
