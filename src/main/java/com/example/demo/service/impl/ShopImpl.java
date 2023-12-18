@@ -63,7 +63,7 @@ public class ShopImpl implements ShopService {
 
     @Override
     public List<SanPham> getAll() {
-       return sanPhamRepo.findAll();
+       return sanPhamRepo.getAlll();
     }
 
     @Override

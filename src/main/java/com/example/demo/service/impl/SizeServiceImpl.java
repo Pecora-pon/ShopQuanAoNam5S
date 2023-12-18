@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 
+import com.example.demo.entity.SanPham;
 import com.example.demo.entity.Size;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.SizeRepo;
@@ -12,6 +13,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+
 @Service
 public class SizeServiceImpl implements SizeService {
   @Autowired
@@ -59,6 +62,7 @@ public class SizeServiceImpl implements SizeService {
             if(isAlphanumeric(size.getTenSize())) {
                 size1.setSizeID(size.getSizeID());
                 size1.setTenSize(size.getTenSize());
+                size1.setSoLuong(size.getSoLuong());
                 sizeRepo.save(size);
                 respon.setStatus("thành công");
             }else {
@@ -97,4 +101,18 @@ public class SizeServiceImpl implements SizeService {
 //        return sizeRepo.findAll(pageable);
 //    }
 
+    @Override
+    public void capnhat(int id, int soluong) {
+        Size size=sizeRepo.findById(id).orElse(null);
+
+        if (size != null) {
+            int soluongmoi = size.getSoLuong() - soluong;
+            if (soluongmoi >= 0) {
+                size.setSoLuong(soluongmoi);
+                sizeRepo.save(size);
+            } else {
+                throw new IllegalArgumentException("Số lượng trong sản phẩm không đủ");
+            }
+        }
+    }
 }

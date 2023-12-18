@@ -1,6 +1,7 @@
 package com.example.demo.service.impl;
 
 import com.example.demo.entity.MauSac;
+import com.example.demo.entity.Size;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.MauSacRepo;
 import com.example.demo.service.MauSacService;
@@ -11,6 +12,8 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.UUID;
+
 @Service
 public class MauSacServiceImpl implements MauSacService {
    @Autowired
@@ -59,6 +62,7 @@ public class MauSacServiceImpl implements MauSacService {
             if(!isOnlySpaces(mauSac.getTenMauSac())) {
                 mauSac1.setMauSacID(mauSac.getMauSacID());
                 mauSac1.setTenMauSac(mauSac.getTenMauSac());
+                mauSac1.setSoLuong(mauSac.getSoLuong());
                 mauSacRepo.save(mauSac1);
                 respon.setStatus("Thành công");
             }else {
@@ -67,6 +71,7 @@ public class MauSacServiceImpl implements MauSacService {
         }else {
             respon.setError("Không thành cong");
         }
+
         return respon;
     }
 
@@ -89,5 +94,20 @@ public class MauSacServiceImpl implements MauSacService {
     public Page<MauSac> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
         return mauSacRepo.findByTrangThai(0,pageable);
+    }
+
+    @Override
+    public void capnhat(int id, int soluong) {
+        MauSac mauSac=mauSacRepo.findById(id).orElse(null);
+
+        if (mauSac != null) {
+            int soluongmoi = mauSac.getSoLuong() - soluong;
+            if (soluongmoi >= 0) {
+                mauSac.setSoLuong(soluongmoi);
+                mauSacRepo.save(mauSac);
+            } else {
+                throw new IllegalArgumentException("Số lượng trong sản phẩm không đủ");
+            }
+        }
     }
 }

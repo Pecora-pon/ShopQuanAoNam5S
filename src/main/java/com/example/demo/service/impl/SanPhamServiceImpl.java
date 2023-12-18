@@ -3,7 +3,9 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.SanPham;
 import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.SanPhamRepo;
+import com.example.demo.service.MauSacService;
 import com.example.demo.service.SanPhamService;
+import com.example.demo.service.SizeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -18,7 +20,10 @@ import java.util.UUID;
 public class SanPhamServiceImpl implements SanPhamService {
     @Autowired
     SanPhamRepo sanPhamRepo;
-
+  @Autowired
+    SizeService sizeService;
+  @Autowired
+    MauSacService mauSacService;
     @Override
     public List<SanPham> getAll() {
         return sanPhamRepo.getAll();
@@ -51,6 +56,8 @@ public class SanPhamServiceImpl implements SanPhamService {
                     respon.setError("Tên sản phẩm đã tồn tại. Vui lòng chọn tên khác.");
                 } else {
                     sanPham.setNgayTao(LocalDate.now());
+                    sizeService.capnhat(sanPham.getSize().getSizeID(),sanPham.getSoLuongTon());
+                    mauSacService.capnhat(sanPham.getMauSac().getMauSacID(),sanPham.getSoLuongTon());
                     sanPhamRepo.save(sanPham);
                     respon.setStatus("Thành công");
                 }
@@ -97,6 +104,8 @@ public class SanPhamServiceImpl implements SanPhamService {
             if (isValidSanPham(sanPham)) {
                 // Update logic here
                 updateSanPhamFields(sanPham1, sanPham);
+                sizeService.capnhat(sanPham.getSize().getSizeID(),sanPham.getSoLuongTon());
+                mauSacService.capnhat(sanPham.getMauSac().getMauSacID(),sanPham.getSoLuongTon());
                 sanPhamRepo.save(sanPham1);
                 respon.setStatus("Thành công");
             } else {
@@ -135,6 +144,9 @@ public class SanPhamServiceImpl implements SanPhamService {
     @Override
     public void delete(UUID sanPhamID) {
         sanPhamRepo.deleteByI(sanPhamID);
+        SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
+        sizeService.capnhat(sanPham.getSize().getSizeID(),-sanPham.getSoLuongTon());
+        mauSacService.capnhat(sanPham.getMauSac().getMauSacID(),-sanPham.getSoLuongTon());
     }
 
     @Override
