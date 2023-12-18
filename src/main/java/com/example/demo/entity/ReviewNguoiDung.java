@@ -38,6 +38,9 @@ public class ReviewNguoiDung {
     @Column(name = "BinhLuan", columnDefinition = "NVARCHAR(MAX)")
     private String binhLuan;
 
+    @Column(name="HinhAnhURL")
+    private String hinhAnhURL;
+
 
 }
 
