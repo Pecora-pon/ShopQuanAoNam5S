@@ -281,6 +281,8 @@
                                 <%--                                            class="bx bx-edit-alt me-1"></i> Sửa</a>--%>
                             <a class="dropdown-item" href="/detail2/${dhct.donHang.donHangID}"><i
                                     class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
+                                    <a class="dropdown-item" href="/detail6/${dhct.donHang.donHangID}"><i
+                                            class="bx bx-edit-alt me-1"></i>Hóa Đơn</a>
                             <a class="dropdown-item" href="/detail5/${dhct.donHangChiTietID}"><i
                                     class="bx bx-edit-alt me-1"></i>Bình Luận Về Sản Phẩm</a>
 
