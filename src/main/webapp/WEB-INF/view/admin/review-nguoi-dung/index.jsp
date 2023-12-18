@@ -203,7 +203,7 @@
                                 </div>
                                 <div class="item-info">
                                     <span class="item-label">Tổng tiền:</span>
-                                    <span class="item-value">${dh.tongTien}</span>
+                                    <span class="item-value">${dh.sanPham.giaSanPham}</span>
                                 </div>
                                 <div class="item-info">
                                     <span class="item-label">Ngày nhận:</span>
