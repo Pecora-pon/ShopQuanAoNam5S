@@ -2,11 +2,15 @@ package com.example.demo.controller;
 
 import com.example.demo.entity.DonHang;
 import com.example.demo.entity.DonHangChiTiet;
+import com.example.demo.entity.KhachHang;
+import com.example.demo.repository.DonHangChiTietRepo;
+import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.service.DonHangChiTietService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -15,6 +19,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import java.security.Principal;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
@@ -23,6 +28,10 @@ import java.util.UUID;
 public class KhachHangXemDonHang {
     @Autowired
     private DonHangChiTietService donHangChiTietService;
+    @Autowired
+    KhachHangRepo khachHangRepo;
+    @Autowired
+    DonHangChiTietRepo donHangChiTietRepo;
     @GetMapping("/choxacnhan")
     public String choxacnhan(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model, Authentication authentication){
         String username=authentication.getName();
@@ -130,6 +139,18 @@ public class KhachHangXemDonHang {
         List<DonHangChiTiet>list=donHangChiTietService.finSanPham(donHang);
         model.addAttribute("list",list);
         return "admin/review-nguoi-dung/index";
+    }
+    @GetMapping("/detail6/{donHang}")
+    @PreAuthorize("hasAuthority('ROLE_USER')")
+    public String detail6(@PathVariable("donHang")UUID donHang, Model model,Principal principal){
+        String logname=principal.getName();
+        KhachHang khachHang= khachHangRepo.findByUsername(logname);
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+//        DonHangChiTiet dh = donHangChiTietRepo.findTopByDonHangID(donHang).orElse(null);
+        model.addAttribute("tt",khachHang);
+        model.addAttribute("list",list);
+//        model.addAttribute("dh",dh);
+        return "shop/invoice";
     }
     @GetMapping("/timkiemten")
     public String detail1(@RequestParam("ten")String ten, Model model){
