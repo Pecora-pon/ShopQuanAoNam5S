@@ -1,3 +1,6 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="java.security.Principal" %>
 <%@ page import="java.util.Set" %>
@@ -5,8 +8,11 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
-<html lang="zxx">
+<html
+      lang="zxx"
+      data-assets-path="../mainshop/mainshop2/">
 
 <head>
     <meta charset="UTF-8">
@@ -141,7 +147,7 @@
     <!-- Header Section End -->
 
     <!-- Breadcrumb Section Begin -->
-    <section class="breadcrumb-blog set-bg" data-setbg="img/breadcrumb-bg.jpg">
+    <section class="breadcrumb-blog set-bg" data-setbg="../mainshop/mainshop2/img/breadcrumb-bg.jpg">
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
@@ -158,7 +164,7 @@
             <div class="row">
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-1.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-1.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 16 February 2020</span>
                             <h5>What Curling Irons Are The Best Ones</h5>
@@ -168,7 +174,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-2.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-2.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 21 February 2020</span>
                             <h5>Eternity Bands Do Last Forever</h5>
@@ -178,7 +184,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-3.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-3.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 28 February 2020</span>
                             <h5>The Health Benefits Of Sunglasses</h5>
@@ -188,7 +194,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-4.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-4.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 16 February 2020</span>
                             <h5>Aiming For Higher The Mastopexy</h5>
@@ -198,7 +204,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-5.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-5.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 21 February 2020</span>
                             <h5>Wedding Rings A Gift For A Lifetime</h5>
@@ -208,7 +214,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-6.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-6.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 28 February 2020</span>
                             <h5>The Different Methods Of Hair Removal</h5>
@@ -218,7 +224,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-7.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-7.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 16 February 2020</span>
                             <h5>Hoop Earrings A Style From History</h5>
@@ -228,7 +234,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-8.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-8.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 21 February 2020</span>
                             <h5>Lasik Eye Surgery Are You Ready</h5>
@@ -238,7 +244,7 @@
                 </div>
                 <div class="col-lg-4 col-md-6 col-sm-6">
                     <div class="blog__item">
-                        <div class="blog__item__pic set-bg" data-setbg="img/blog/blog-9.jpg"></div>
+                        <div class="blog__item__pic set-bg" data-setbg="../mainshop/mainshop2/img/blog/blog-9.jpg"></div>
                         <div class="blog__item__text">
                             <span><img src="../mainshop/mainshop2/img/icon/calendar.png" alt=""> 28 February 2020</span>
                             <h5>Lasik Eye Surgery Are You Ready</h5>

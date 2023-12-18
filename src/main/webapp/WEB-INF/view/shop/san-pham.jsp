@@ -290,9 +290,11 @@
                 <div class="shop__product__option">
                     <div class="row">
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__left">
-                                <p>Showing ${itemsPerPage} of ${totalItems}</p>
-                            </div>
+<%--                            <div class="shop__product__option__left">--%>
+<%--                                <p id="pagination-info">Showing ${Math.min(itemsPerPage, totalItems)} of ${totalItems}</p>--%>
+
+
+<%--                            </div>--%>
                         </div>
 <%--                        <div class="col-lg-6 col-md-6 col-sm-6">--%>
 <%--                            <div class="shop__product__option__right">--%>
@@ -315,9 +317,6 @@
                                         <ul class="product__hover">
                                             <li><a href="/danh-sach-yt/them/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
                                             </li>
-                                            <li><a href="#"><img src="../mainshop/mainshop2/img/icon/compare.png" alt="">
-                                                <span>Compare</span></a>
-                                            </li>
                                             <li><a href="/san-pham-detail/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                                             </li>
                                         </ul>
@@ -325,27 +324,11 @@
                                     <div class="product__item__text">
                                         <h6>${sp.tenSanPham}</h6>
                                         <a  class="add-cart" href="/san-pham-detail/${sp.sanPhamID}">+ Add To Cart</a>
-                                        <div class="rating">
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                            <i class="fa fa-star-o"></i>
-                                        </div>
+
                                         <h5>
                                             <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/> VND
                                         </h5>
-                                        <div class="product__color__select">
-                                            <label for="pc-4">
-                                                <input type="radio" id="pc-4">
-                                            </label>
-                                            <label class="active black" for="pc-5">
-                                                <input type="radio" id="pc-5">
-                                            </label>
-                                            <label class="grey" for="pc-6">
-                                                <input type="radio" id="pc-6">
-                                            </label>
-                                        </div>
+
                                     </div>
                                 </div>
                             </div>
@@ -476,6 +459,25 @@
 <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Lấy tham số từ URL
+        const urlParams = new URLSearchParams(window.location.search);
+        const itemsPerPage = 9; // Số sản phẩm hiển thị trên mỗi trang
+        const totalItems = 28; // Tổng số sản phẩm
+
+        // Lấy giá trị tham số "page" từ URL, mặc định là 1 nếu không có
+        const currentPage = parseInt(urlParams.get('page')) || 1;
+
+        // Tính toán vị trí bắt đầu và kết thúc của sản phẩm trên trang hiện tại
+        const startItem = (currentPage - 1) * itemsPerPage + 1;
+        const endItem = Math.min(currentPage * itemsPerPage, totalItems);
+
+        // Hiển thị thông tin phân trang
+        const paginationInfo = document.getElementById('pagination-info');
+        paginationInfo.textContent = `Showing ${startItem} - ${endItem} of ${totalItems}`;
+    });
+</script>
 </body>
 
 </html>
