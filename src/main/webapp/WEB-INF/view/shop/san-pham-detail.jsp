@@ -322,10 +322,22 @@
                                                 <c:forEach var="item" items="${rv}">
                                                     <div class="customer-review" style="margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 15px;">
                                                         <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.khachHang.hoTen} :" /></span>
-                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.tenSanPham} :" /></span>
-                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.mauSac.tenMauSac} :" /></span>
-                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.size.tenSize} :" /></span>
-                                                        <span class="customer-comment" style="font-size: 16px; font-weight: bold; color: #555;"><c:out value="${item.binhLuan}" /></span>
+                                                        <div class="product__cart__item__pic">
+                                                            <img src="/getimage/${item.hinhAnhURL}" style="max-height: 60px; max-height: 60px;">
+                                                        </div>
+                                                        <div class="product__cart__item__text">
+                                                            <h6><c:out value="${item.sanPham.tenSanPham} " /></h6>
+                                                            <h7>Giá: <c:out value="${item.sanPham.giaSanPham} " /></h7>
+                                                            <h7>Kích thước: <c:out value="${item.sanPham.size.tenSize} " /></h7>
+                                                            <h7>Màu sắc: <c:out value="${item.sanPham.mauSac.tenMauSac} " /></h7>
+                                                            <br>
+                                                            <span class="customer-comment" style="font-size: 16px; font-weight: bold; color: #555;"><c:out value="${item.binhLuan}" /></span>
+                                                        </div>
+<%--                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.tenSanPham} :" /></span>--%>
+<%--                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.mauSac.tenMauSac} :" /></span>--%>
+<%--                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.size.tenSize} :" /></span>--%>
+<%--                                                        <img src="/getimage/${item.hinhAnhURL}" style="max-width: 105px; max-height: 105px;">--%>
+
                                                         <br>
                                                     </div>
                                                 </c:forEach>
