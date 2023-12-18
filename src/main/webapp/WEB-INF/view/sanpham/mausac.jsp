@@ -380,7 +380,12 @@
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên màu sắc</label>
                                         <form:input class="form-control" path="tenMauSac" value="${ms.tenMauSac}"/>
-                                        <form:errors path="tenMauSac"/>
+                                        <form:errors path="tenMauSac"/>  </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Số Lượng</label>
+                                        <form:input class="form-control" path="soLuong" value="${ms.soLuong}"/>
+                                        <form:errors path="tenMauSac"/>  </div>
+                                    <div class="mb-3 col-md-6">
                                         <c:if test="${!empty repon.error}">
                                             <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
                                         </c:if>
@@ -412,8 +417,9 @@
                         <table class="table">
                             <thead>
                             <tr>
-                                <th>Nhân Viên ID</th>
+                                <th>Màu Sắc ID</th>
                                 <th>Tên màu sắc</th>
+                                <th>Số Lượng</th>
 <%--                                <th>Trạng thái</th>--%>
                                 <th>Action</th>
                             </tr>

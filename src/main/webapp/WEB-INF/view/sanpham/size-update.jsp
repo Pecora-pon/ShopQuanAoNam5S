@@ -382,6 +382,10 @@
                                         <form:input class="form-control" path="tenSize" value="${si.tenSize}"/>
                                         <form:errors path="tenSize"/>
                                     </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Số Lượng</label>
+                                        <form:input class="form-control" path="soLuong" value="${si.soLuong}"/>
+                                    </div>
 
                                         <%--                                    <div class="mb-3 col-md-6">--%>
                                         <%--                                        <label class="form-label">Trạng thái</label>--%>
@@ -414,6 +418,7 @@
                             <tr>
                                 <th>Size ID</th>
                                 <th>Tên Size</th>
+                                <th>Số Lượng</th>
                                 <%--                                <th>Trạng thái</th>--%>
                                 <th>Action</th>
                             </tr>
@@ -423,6 +428,7 @@
                                 <tr>
                                     <td>${size.sizeID}</td>
                                     <td>${size.tenSize}</td>
+                                    <td>${size.soLuong}</td>
                                         <%--                                    <td>--%>
                                         <%--                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>--%>
                                         <%--                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>--%>
