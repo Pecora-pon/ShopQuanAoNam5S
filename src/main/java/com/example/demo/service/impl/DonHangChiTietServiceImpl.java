@@ -3,6 +3,7 @@ package com.example.demo.service.impl;
 import com.example.demo.entity.DonHangChiTiet;
 import com.example.demo.repository.DonHangChiTietRepo;
 import com.example.demo.service.DonHangChiTietService;
+import com.example.demo.service.MauSacService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -20,6 +21,10 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     private DonHangChiTietRepo donHangChiTietRepo;
     @Autowired
     private SanPhamServiceImpl sanPhamService;
+    @Autowired
+    SizeServiceImpl sizeService;
+    @Autowired
+    MauSacService mauSacService;
 
     @Override
     public List<DonHangChiTiet> getAll() {
@@ -58,6 +63,11 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     public Page<DonHangChiTiet> getPage3(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber,pageSize);
         return donHangChiTietRepo.findByTrangThai(3,pageable);
+    }
+
+    @Override
+    public List<DonHangChiTiet> finSanPham(int id) {
+        return donHangChiTietRepo.findByDonHangChiTietID(id);
     }
 
     @Override
