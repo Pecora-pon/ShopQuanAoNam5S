@@ -40,7 +40,7 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1%")
     List<DonHangChiTiet> findByTongTien(@Param("tongTien") Float tongTien);
     List<DonHangChiTiet> findByDonHang_DonHangID(UUID id);
-
+    List<DonHangChiTiet> findByDonHangChiTietID(int id);
 
     @Transactional
     @Modifying
