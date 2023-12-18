@@ -44,12 +44,14 @@ KhachHangRepo khachHangRepo;
     @RequestMapping(value = "/thong-tin-van-chuyen-add",method = RequestMethod.POST)
     public String addThongTinVanChuyen(@Valid @ModelAttribute("ttvc") ThongTinVanChuyen thongTinVanChuyen,
                                        BindingResult result,
-                                       Model model, Principal principal){
+                                       Model model, Principal principal,Authentication authentication){
+        String username=authentication.getName();
+        List<ThongTinVanChuyen> thongTinVanChuyenList =thongTinVanChuyenService.getAllByKhachHang(username);
         String logname = principal.getName();
         KhachHang khachHang = khachHangRepo.findByUsername(logname);
         thongTinVanChuyen.setKhachHang(khachHang);
         Respon<ThongTinVanChuyen> respon = thongTinVanChuyenService.add(thongTinVanChuyen);
-        List<ThongTinVanChuyen> thongTinVanChuyenList = thongTinVanChuyenService.getAll();
+
         model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
         model.addAttribute("ttvc",new ThongTinVanChuyen());
         model.addAttribute("repon",respon);
@@ -83,9 +85,11 @@ KhachHangRepo khachHangRepo;
     public String page(@RequestParam(defaultValue = "0") int page,
                        @RequestParam(defaultValue = "3") int size,
                        Model model,
-                       @Param("keyword") String keyword){
+                       @Param("keyword") String keyword,Authentication authentication){
+        String username=authentication.getName();
+        List<ThongTinVanChuyen> thongTinVanChuyenList =thongTinVanChuyenService.getAllByKhachHang(username);
         Page<ThongTinVanChuyen> page1 = thongTinVanChuyenService.getPage(page,size);
-        List<ThongTinVanChuyen> thongTinVanChuyenList =page1.getContent();
+//        List<ThongTinVanChuyen> thongTinVanChuyenList =page1.getContent();
         List<ThongTinVanChuyen> thongTinVanChuyenList1 = thongTinVanChuyenService.getAll();
         if(keyword !=null){
             thongTinVanChuyenList    = this.thongTinVanChuyenService.findDiaChi(keyword);

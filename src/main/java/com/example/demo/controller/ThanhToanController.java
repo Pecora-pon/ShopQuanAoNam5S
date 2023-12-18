@@ -16,6 +16,7 @@ import org.springframework.core.io.ByteArrayResource;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
 import org.springframework.security.access.prepost.PreAuthorize;
+import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -66,12 +67,14 @@ public class ThanhToanController {
 //    }
    @PostMapping("/list-gh")
    @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String detail(@RequestParam(value = "selectedItems",required = false) List<Integer> gioHangID, @RequestParam Map<String, String> params, Model model, Principal principal){
+    public String detail(@RequestParam(value = "selectedItems",required = false) List<Integer> gioHangID, Authentication authentication, @RequestParam Map<String, String> params, Model model, Principal principal){
        List<GioHang>gioHangList= thanhToanService.detail(gioHangID,params);
+       String username=authentication.getName();
        String logname= principal.getName();
        KhachHang khachHang=khachHangRepo.findByUsername(logname);
        List<GiamGia>giamGiaList=giamGiaService.getAll();
-       List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAll();
+       List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAllByKhachHang(username);
+
        model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
        model.addAttribute("tt",khachHang);
        model.addAttribute("listGiamGia",giamGiaList);

@@ -152,7 +152,7 @@ public class AdminController {
         MimeMessageHelper helper = new MimeMessageHelper(message,true);
         helper.setTo("hieutcph27664@fpt.edu.vn");
         helper.setSubject("THÔNG TIN LIÊN HỆ");
-        helper.setText("Xin chào "+name+","+"tôi muốn liên hệ với bạn qua email :"+email +"với nội dung : "+ content);
+        helper.setText("Xin chào "+name+","+"tôi muốn liên hệ với bạn qua email :"+email +" với nội dung : "+ content);
         mailSender.send(message);
         redirectAttributes.addFlashAttribute("successMessage", "Gửi tin nhắn thành công!");
 
