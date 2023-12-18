@@ -292,16 +292,16 @@
         <div class="row">
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="team__item">
-                    <img src="../mainshop/mainshop2/img/about/team-1.jpg" alt="">
-                    <h4>John Smith</h4>
-                    <span>Fashion Design</span>
+                    <img src="https://scontent.fhan20-1.fna.fbcdn.net/v/t39.30808-6/411080503_7048607755230608_4086662828048110010_n.jpg?stp=cp6_dst-jpg&_nc_cat=104&ccb=1-7&_nc_sid=efb6e6&_nc_ohc=fdxXuprpUy8AX97yqaC&_nc_ht=scontent.fhan20-1.fna&cb_e2o_trans=q&oh=00_AfCI4W6WIGpez4Mzqj4qMxhyjkhOy7lifbZiycUSeVlobA&oe=65838835"  alt="">
+                    <h4>anh Trần Công Hiếu</h4>
+                    <span>Chức vụ : CEO</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="team__item">
-                    <img src="../mainshop/mainshop2//about/team-2.jpg" alt="">
-                    <h4>Christine Wise</h4>
-                    <span>C.E.O</span>
+                    <img src="https://scontent.fhan20-1.fna.fbcdn.net/v/t1.6435-9/33900822_349748848884872_99444083633684480_n.jpg?_nc_cat=105&ccb=1-7&_nc_sid=dd63ad&_nc_ohc=2ZOAPdIK518AX_dJ7u2&_nc_ht=scontent.fhan20-1.fna&cb_e2o_trans=q&oh=00_AfD2vkeZP5N7G2R4x11Fo3f4ff4Uj3V35MJHaCl8azKQQA&oe=65A6B92B" alt="">
+                    <h4>Long</h4>
+                    <span>Cu li</span>
                 </div>
             </div>
             <div class="col-lg-3 col-md-6 col-sm-6">

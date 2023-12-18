@@ -281,7 +281,7 @@
 <%--                                    role="tab">Mô tả</a>--%>
 <%--                                </li>--%>
                                 <li class="nav-item">
-                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Mô Tả</a>
+                                    <a class="nav-link" data-toggle="tab" href="#tabs-6" role="tab">Đánh giá</a>
                                 </li>
 <%--                                <li class="nav-item">--%>
 <%--                                    <a class="nav-link" data-toggle="tab" href="#tabs-7" role="tab">Additional--%>
@@ -310,6 +310,7 @@
                                         </div>
                                     </div>
                                 </div>
+<%--                                --%>
                                 <div class="tab-content">
                                     <div class="tab-pane active" id="tabs-5" role="tabpanel">
                                         <div class="product__details__tab__content">
@@ -321,27 +322,9 @@
                                                 <c:forEach var="item" items="${rv}">
                                                     <div class="customer-review" style="margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 15px;">
                                                         <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.khachHang.hoTen} :" /></span>
-                                                        <span class="customer-comment" style="font-size: 16px; font-weight: bold; color: #555;"><c:out value="${item.binhLuan}" /></span>
-                                                        <br>
-                                                    </div>
-                                                </c:forEach>
-                                            </div>
-
-                                            <!-- ... remaining code ... -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="tab-content">
-                                    <div class="tab-pane active" id="tabs-5" role="tabpanel">
-                                        <div class="product__details__tab__content">
-                                            <!-- ... previous code ... -->
-
-                                            <h5 style="font-size: 20px; font-weight: bold;">Đánh giá sản phẩm</h5>
-
-                                            <div class="customer-reviews">
-                                                <c:forEach var="item" items="${rv}">
-                                                    <div class="customer-review" style="margin-bottom: 15px; border-bottom: 1px solid #ccc; padding-bottom: 15px;">
-                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.khachHang.hoTen} :" /></span>
+                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.tenSanPham} :" /></span>
+                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.mauSac.tenMauSac} :" /></span>
+                                                        <span class="customer-name" style="font-size: 19px; font-weight: bold; color: #333; font-style: italic;"><c:out value="${item.sanPham.size.tenSize} :" /></span>
                                                         <span class="customer-comment" style="font-size: 16px; font-weight: bold; color: #555;"><c:out value="${item.binhLuan}" /></span>
                                                         <br>
                                                     </div>
