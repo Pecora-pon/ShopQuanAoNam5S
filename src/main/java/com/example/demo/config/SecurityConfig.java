@@ -52,39 +52,6 @@ public UserDetailsService userDetailsServicekh(){
                         .requestMatchers(new AntPathRequestMatcher("/them-gio-hang/{sanPhamID}")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/detail6/{donHang}")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/thong-tin-van-chuyen")).hasAuthority("ROLE_USER")
-                )
-                .formLogin().loginPage("/login")
-                .successHandler((request, response, authentication) -> {
-                    for (GrantedAuthority authority : authentication.getAuthorities()) {
-                        if (authority.getAuthority().equals("ROLE_USER")) {
-                            response.sendRedirect("/shop/main-shop");
-                            return;
-                        } else if (authority.getAuthority().equals("ROLE_ADMIN")) {
-                            response.sendRedirect("/trang-chu");
-                            return;
-                        }
-                    }
-                    // Default redirect if no matching role is found
-                    response.sendRedirect("/");
-                })
-                .permitAll()
-                .and()
-                .logout()
-                .logoutUrl("/logout")
-                .logoutSuccessHandler(customLogoutSuccessHandler())
-                .permitAll()
-                .and()
-                .userDetailsService(userDetailsService())
-                .userDetailsService(userDetailsServicekh())
-                .build();
-
-    }
-    @Bean
-    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
-        return http.csrf().disable().sessionManagement()
-                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
-                .and()
-                .authorizeRequests(authorize -> authorize
                         .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/san-pham")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/hien-thi")).hasAuthority("ROLE_ADMIN")
