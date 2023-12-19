@@ -349,13 +349,13 @@ public String detail1(@RequestParam("ten")String ten, Model model){
 }
     @GetMapping("/timkiemngay1")
     public String timKiemTheoNgay(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat,0);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/index";
     }
     @GetMapping("/timkiemtongtien1")
     public String timKiemtongtien(@RequestParam("tongTien") Float tongTien, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien,0);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/index";
     }
@@ -367,13 +367,13 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemngaydh1")
     public String timKiemTheoNgaydh(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat4(ngaydat,4);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/dahuy";
     }
     @GetMapping("/timkiemtongtiendh1")
     public String timKiemtongtiendh(@RequestParam("tongTien") Float tongTien, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien4(tongTien,4);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/dahuy";
     }
@@ -385,13 +385,13 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemngayvc1")
     public String timKiemTheoNgayvc(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat1(ngaydat,1);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/vanchuyen";
     }
     @GetMapping("/timkiemtongtienvc1")
     public String timKiemtongtienvc(@RequestParam("tongTien") Float tongTien, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien1(tongTien,1);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/vanchuyen";
     }
@@ -403,13 +403,13 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemngayxn1")
     public String timKiemTheoNgayxn(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat2(ngaydat,2);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/choxacnhan";
     }
     @GetMapping("/timkiemtongtienxn1")
     public String timKiemtongtienxn(@RequestParam("tongTien") Float tongTien, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien2(tongTien,2);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/choxacnhan";
     }
@@ -421,13 +421,13 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemngaytc1")
     public String timKiemTheoNgaytc(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat3(ngaydat,3);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/thanhcong";
     }
     @GetMapping("/timkiemtongtientc1")
     public String timKiemtongtientc(@RequestParam("tongTien") Float tongTien, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien3(tongTien,3);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/thanhcong";
     }
@@ -439,13 +439,13 @@ public String detailxn1(@RequestParam("ten")String ten, Model model){
 }
     @GetMapping("/timkiemngayxn2")
     public String timKiemTheoNgayxn1(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat5(ngaydat,5);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/xacnhan";
     }
     @GetMapping("/timkiemtongtienxn2")
     public String timKiemtongtienxn1(@RequestParam("tongTien") Float tongTien, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien5(tongTien,5);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/xacnhan";
     }
@@ -457,13 +457,13 @@ public String detailxn1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemngayxn3")
     public String timKiemTheoNgayxn3(@RequestParam("ngaydat") LocalDate ngaydat, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat(ngaydat);
+        List<DonHangChiTiet> list = donHangChiTietService.findNgayDat6(ngaydat,6);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/choxacnhanhuy";
     }
     @GetMapping("/timkiemtongtienxn3")
     public String timKiemtongtienxn3(@RequestParam("tongTien") Float tongTien, Model model) {
-        List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
+        List<DonHangChiTiet> list = donHangChiTietService.findTongTien6(tongTien,6);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/choxacnhanhuy";
     }
