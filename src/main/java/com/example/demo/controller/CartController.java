@@ -53,7 +53,7 @@ public class CartController {
         List<GioHang> gioHangList = cartService.getAll();
         gioHang.setKhachHang(khachHang);
 
-        sanPhamService.size(sanPham,sanPhamID);
+//        sanPhamService.size(sanPham,sanPhamID);
         cartService.insert(gioHang, sanPhamID);
         List<Size>sizeList=sizeService.getAll();
         model.addAttribute("listSize",sizeList);
