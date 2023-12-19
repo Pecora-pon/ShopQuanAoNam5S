@@ -36,7 +36,7 @@ public interface DonHangChiTietService {
     void chuyensangxn(UUID id);
     void chuyensangtc(UUID id);
     void chuyensanghuy(UUID id);
-    void chuyensangchohuy(UUID id);
+    void chuyensangchohuy(UUID id,String lydo);
    List<DonHangChiTiet> findkhachHang(String username);
     List<DonHangChiTiet> findkhachHang1(String username);
     List<DonHangChiTiet> findkhachHang2(String username);
@@ -44,7 +44,7 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet> findkhachHang4(String username);
     List<DonHangChiTiet> findkhachHang5(String username);
     List<DonHangChiTiet> findkhachHang6(String username);
-    List<DonHangChiTiet> findNgayDat(LocalDate ngaydat);
+
     List<DonHangChiTiet> findTenSP(String ten,int trang);
     List<DonHangChiTiet> findTenSP1(String ten,int trang);
     List<DonHangChiTiet> findTenSP2(String ten,int trang);
@@ -52,8 +52,23 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet> findTenSP4(String ten,int trang);
     List<DonHangChiTiet> findTenSP5(String ten,int trang);
     List<DonHangChiTiet> findTenSP6(String ten,int trang);
+
     List<DonHangChiTiet> finDonHang(UUID id);
     List<DonHangChiTiet> finSanPham(int id);
-    List<DonHangChiTiet> findTongTien(Float tong);
+    List<DonHangChiTiet> findTongTien6(Float tong,int trang);
+    List<DonHangChiTiet> findTongTien2(Float tong,int trang);
+    List<DonHangChiTiet> findTongTien3(Float tong,int trang);
+    List<DonHangChiTiet> findTongTien4(Float tong,int trang);
+    List<DonHangChiTiet> findTongTien5(Float tong,int trang);
+    List<DonHangChiTiet> findTongTien1(Float tong,int trang);
+    List<DonHangChiTiet> findTongTien(Float tong,int trang);
+
+    List<DonHangChiTiet> findNgayDat(LocalDate ngaydat,int trang);
+    List<DonHangChiTiet> findNgayDat1(LocalDate ngaydat,int trang);
+    List<DonHangChiTiet> findNgayDat2(LocalDate ngaydat,int trang);
+    List<DonHangChiTiet> findNgayDat3(LocalDate ngaydat,int trang);
+    List<DonHangChiTiet> findNgayDat4(LocalDate ngaydat,int trang);
+    List<DonHangChiTiet> findNgayDat5(LocalDate ngaydat,int trang);
+    List<DonHangChiTiet> findNgayDat6(LocalDate ngaydat,int trang);
 
 }
