@@ -23,7 +23,7 @@ public Optional<KhachHang> findByName(String tenDangNhap){
 }
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-       Optional<KhachHang> userInfo=khachHangRepo.findByusername(username);
+       Optional<KhachHang> userInfo=khachHangRepo.findByUsernameAndTrangThai(username,3);
         return userInfo.map(KhInfoUserDetails::new).orElseThrow(()->new UsernameNotFoundException("User not found"+username));
     }
 }

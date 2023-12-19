@@ -22,7 +22,7 @@ public class KhInforDetaiService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<KhachHang> khachHang=khachHangRepo.findByusername(username);
+        Optional<KhachHang> khachHang=khachHangRepo.findByUsernameAndTrangThai(username,3);
         return khachHang.map(KhInfoUserDetails::new).orElseThrow(()->new UsernameNotFoundException("user not found: "+username));
     }
 }

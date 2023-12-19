@@ -33,6 +33,7 @@ public class KhService {
     private JavaMailSender mailSender;
     public Respon<KhachHang> addKH(KhachHang khachHang, HttpServletRequest request)throws MessagingException {
         khachHang.setChucVu("ROLE_USER");
+
         Respon<KhachHang> respon=new Respon<>();
         if(!khachHang.getUsername().isEmpty() || !khachHang.getEmail().isEmpty()||!khachHang.getPassword().isEmpty()||!khachHang.getHoTen().isEmpty()||!khachHang.getSoDienThoai().isEmpty()){
             if(isvalidate(request.getParameter("password"))){
@@ -57,6 +58,7 @@ public class KhService {
                                   helper.setSubject(subject);
                                   helper.setText(content,true);
                                   mailSender.send(message);
+                                  khachHang.setTrangThai(3);
                                   khachHangRepo.save(khachHang);
                                   respon.setStatus("Đăng kí thành công ");
                               }else{
