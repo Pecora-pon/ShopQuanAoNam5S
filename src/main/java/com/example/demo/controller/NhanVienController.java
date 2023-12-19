@@ -20,6 +20,7 @@ import org.springframework.data.web.PageableDefault;
 import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.mail.javamail.MimeMessageHelper;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -63,6 +64,9 @@ public class NhanVienController {
                               @RequestParam("hoTen") String hoTen,
                               BindingResult result,
                               Model model, HttpServletResponse response)throws MessagingException, IOException {
+        if(nhanVienRepo.existsBySoDienThoaiAndTrangThai(nhanVien.getSoDienThoai(),1)){
+            result.rejectValue("soDienThoai", "duplicate.phoneNumber", "Số điện thoại đã tồn tại");
+        }
 
         if(result.hasErrors()){
             return "admin/nhanvien";

@@ -120,7 +120,7 @@ public class KhachHangXemDonHang {
     public String detail2(@PathVariable("donHang")UUID donHang,Model model){
         List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
         model.addAttribute("list",list);
-        return "admin/khach-hang-xem-don/chitiet";
+        return "admin/khach-hang-xem-don/chitiet1";
     }
     @GetMapping("/detail3/{donHang}")
     public String detail3(@PathVariable("donHang")UUID donHang,Model model){
