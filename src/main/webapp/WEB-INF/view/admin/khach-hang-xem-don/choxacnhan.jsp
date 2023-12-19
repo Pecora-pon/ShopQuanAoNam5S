@@ -194,15 +194,7 @@
     <div class="container-xxl flex-grow-1 container-p-y">
         <!--Content -->
         <!--Table add -->
-        <div class="card">
-            <div class="card-body">
-                <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                        data-bs-target="#exampleModal">
-                    Tạo hóa đơn
-                </button>
 
-            </div>
-        </div>
         <div class="row">
             <div class="col-md-4 mb-3">
                 <form action="/timkiemngaycxn" method="get" class="d-flex align-items-center">
@@ -237,14 +229,16 @@
                 <thead>
                 <tr>
                     <th>STT</th>
-                    <th>Đơn Hang ID</th>
+<%--                    <th>Đơn Hang ID</th>--%>
                     <%--                                <th>ID Sản Phẩm</th>--%>
                     <th>Hình Ảnh</th>
                     <th>Tên Sản Phẩm</th>
+                    <th>Size</th>
+                    <th>Màu sắc</th>
                     <th>Số Lượng</th>
                     <th>Ngày Đặt</th>
                     <th>Trạng Thái</th>
-                    <th>Lý Do Hủy</th>
+
                     <th>Tổng Tiền</th>
                     <th>Action</th>
                 </tr>
@@ -258,7 +252,7 @@
                             <!-- Hiển thị thông tin chung của đơn hàng, chỉ hiển thị nếu đơn hàng có sản phẩm -->
                             <tr>
                                 <td scope="row">${i.index+1}</td>
-                                <td>${dhct.donHang.donHangID}</td>
+<%--                                <td>${dhct.donHang.donHangID}</td>--%>
                                 <!-- Các cột thông tin khác của đơn hàng -->
 
                                 <!-- Đặt giá trị mới cho biến theo dõi -->
@@ -266,6 +260,8 @@
                                 <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                                 </td>
                                 <td>${dhct.sanPham.tenSanPham}</td>
+                                <td>${dhct.sanPham.size.tenSize}</td>
+                                <td>${dhct.sanPham.mauSac.tenMauSac}</td>
                                 <td>${dhct.soLuong}</td>
                                 <td>${dhct.donHang.ngayDatHang}</td>
                                 <td>
@@ -276,7 +272,7 @@
                                     <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
                                     <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
                                 </td>
-                                <td>${dhct.lyDoHuy}</td>
+
                                 <td>${dhct.tongTien}</td>
                                 <td>
                                     <a class="dropdown-item" href="/huycho/${dhct.donHang.donHangID}"><i
@@ -287,10 +283,6 @@
                             </tr>
                         </c:if>
 
-                        <!-- Hiển thị thông tin của sản phẩm -->
-                        <tr>
-                            <!-- Các cột thông tin của sản phẩm -->
-                        </tr>
                     </c:forEach>
 
                 <style>
