@@ -45,7 +45,13 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet> findkhachHang5(String username);
     List<DonHangChiTiet> findkhachHang6(String username);
     List<DonHangChiTiet> findNgayDat(LocalDate ngaydat);
-    List<DonHangChiTiet> findTenSP(String ten);
+    List<DonHangChiTiet> findTenSP(String ten,int trang);
+    List<DonHangChiTiet> findTenSP1(String ten,int trang);
+    List<DonHangChiTiet> findTenSP2(String ten,int trang);
+    List<DonHangChiTiet> findTenSP3(String ten,int trang);
+    List<DonHangChiTiet> findTenSP4(String ten,int trang);
+    List<DonHangChiTiet> findTenSP5(String ten,int trang);
+    List<DonHangChiTiet> findTenSP6(String ten,int trang);
     List<DonHangChiTiet> finDonHang(UUID id);
     List<DonHangChiTiet> finSanPham(int id);
     List<DonHangChiTiet> findTongTien(Float tong);
