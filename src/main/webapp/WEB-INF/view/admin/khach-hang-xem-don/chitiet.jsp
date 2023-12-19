@@ -215,8 +215,8 @@
                                     <span class="item-label">Tổng Tiền:</span>
                                     <span class="item-value">${dh.tongTien}</span>
                                 </div>
-                                <a class="dropdown-item" href="/detail5/${dh.donHangChiTietID}"><i
-                                        class="bx bx-edit-alt me-1"></i>Đánh giá Về Sản Phẩm</a>
+<%--                                <a class="dropdown-item" href="/detail5/${dh.donHangChiTietID}"><i--%>
+<%--                                        class="bx bx-edit-alt me-1"></i>Đánh giá Về Sản Phẩm</a>--%>
                             </div>
                         </div>
                         <!-- Thêm các đơn hàng khác nếu có -->
