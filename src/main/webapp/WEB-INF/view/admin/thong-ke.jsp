@@ -482,11 +482,11 @@
 
                                         <script>
                                             var data = {
-                                                labels: ['Đã đặt hàng', 'Chờ xác nhận', 'Đã vận chuyển', 'Thành công', 'Đã hủy'],
+                                                labels: ['Đã đặt hàng', 'Vận chuyển', 'Chờ xác nhận', 'Thành Công', 'Đã hủy', 'Chờ xác nhận đơn hàng'],
                                                 datasets: [{
                                                     data: [<c:forEach var="item" items="${ordersByStatus}"><c:out value="${item[1]}" />,</c:forEach>],
-                                                    backgroundColor: ['rgba(148, 0, 211, 0.2)', 'rgba(0, 128, 0, 0.2)', 'rgba(255, 182, 193, 0.2)', 'rgba(255, 165, 0, 0.2)', 'rgba(255, 0, 0, 0.2)'],
-                                                    borderColor: ['rgba(148, 0, 211, 1)', 'rgba(0, 128, 0, 1)', 'rgba(255, 182, 193, 1)', 'rgba(255, 165, 0, 1)', 'rgba(255, 0, 0, 1)'],
+                                                    backgroundColor: ['rgba(148, 0, 211, 0.2)', 'rgba(169, 169, 169, 0.2)', 'rgba(0, 128, 0, 0.2)', 'rgba(255, 182, 193, 0.2)', 'rgba(255, 165, 0, 0.2)', 'rgba(0, 128, 0, 0.2)'],
+                                                    borderColor: ['rgba(148, 0, 211, 1)', 'rgba(169, 169, 169, 1)', 'rgba(0, 128, 0, 1)', 'rgba(255, 182, 193, 1)', 'rgba(255, 165, 0, 1)', 'rgba(0, 128, 0, 1)'],
                                                     borderWidth: 1
                                                 }]
                                             };
