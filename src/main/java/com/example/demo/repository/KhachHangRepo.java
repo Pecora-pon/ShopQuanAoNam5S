@@ -23,7 +23,7 @@ public interface KhachHangRepo extends JpaRepository<KhachHang,Integer> {
 
     KhachHang findByUsername(String username);
     Optional<KhachHang> findByEmail( String email);
-
+    Optional<KhachHang> findByUsernameAndTrangThai(String tenDangNhap,int tinhtrang);
     Optional<KhachHang> findBySoDienThoai(String soDienThoai);
     KhachHang findByemail(String email);
     KhachHang findByResetPasswordToken(String token);
