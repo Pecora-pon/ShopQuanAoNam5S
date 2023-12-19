@@ -13,6 +13,7 @@ public class UserService {
     private final PasswordEncoder passwordEncoder;
 
     public String addUser(NhanVien nhanVien){
+        nhanVien.setChucVu("ROLE_ADMIN");
         if(nhanVienRepo.findByTenDangNhapAndTrangThai(nhanVien.getTenDangNhap(),1).isPresent()){
             return "Tên đăng nhập đã tồn tại";
         }
