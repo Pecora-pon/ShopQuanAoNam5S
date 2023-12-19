@@ -19,12 +19,12 @@ public class UserInfoService implements UserDetailsService {
     }
     @Transactional
     public Optional<NhanVien> findByName(String tenDangNhap) {
-        return nhanVienRepo.findByTenDangNhap(tenDangNhap);
+        return nhanVienRepo.findByTenDangNhapAndTrangThai(tenDangNhap,1);
     }
 
     @Override
     public UserDetails loadUserByUsername(String tenDangNhap) throws UsernameNotFoundException {
-        Optional<NhanVien> userInfo = nhanVienRepo.findByTenDangNhap(tenDangNhap);
+        Optional<NhanVien> userInfo = nhanVienRepo.findByTenDangNhapAndTrangThai(tenDangNhap,1);
         return userInfo.map(UserInfoUserDetails::new)
                 .orElseThrow(() -> new UsernameNotFoundException("User not found: " + tenDangNhap));
     }
