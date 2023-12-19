@@ -399,8 +399,8 @@
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tình Trạng</label>
-                                        <form:radiobutton path="tinhTrang" value="1" checked="true"/> Còn Hàng
-                                        <form:radiobutton path="tinhTrang" value="0"/> Hết
+                                        <form:radiobutton path="tinhTrang" value="0" checked="true"/> Còn Hàng
+                                        <form:radiobutton path="tinhTrang" value="1"/> Hết
                                     </div>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Màu Săc</label>
