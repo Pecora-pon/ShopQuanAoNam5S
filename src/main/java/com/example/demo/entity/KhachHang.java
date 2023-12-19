@@ -57,5 +57,8 @@ public class KhachHang {
     @Column(name = "reset_password_token")
     private String resetPasswordToken;
 
+    @Column(name ="TrangThai")
+    private int trangThai;
+
 }
 
