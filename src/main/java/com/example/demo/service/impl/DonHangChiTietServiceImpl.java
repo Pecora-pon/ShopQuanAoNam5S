@@ -146,7 +146,10 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
     @Override
-    public void chuyensangchohuy(UUID id) {
+    public void chuyensangchohuy(UUID id,String lydo) {
+       DonHangChiTiet dh= donHangChiTietRepo.donHangChiTiet(id);
+       dh.setLyDoHuy(lydo);
+       donHangChiTietRepo.save(dh);
      donHangChiTietRepo.chuyenTrangThaiChoHuy(id);
     }
 
@@ -186,10 +189,7 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
 
-    @Override
-    public List<DonHangChiTiet> findNgayDat(LocalDate ngaydat) {
-        return donHangChiTietRepo.findByDonHang_NgayDatHang(ngaydat);
-    }
+
 
     @Override
     public List<DonHangChiTiet> findTenSP(String ten,int trang) {
@@ -233,10 +233,80 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
         return donHangChiTietRepo.findByDonHang_DonHangID(id);
     }
 
+
+
+
     @Override
-    public List<DonHangChiTiet> findTongTien(Float tong) {
-        return donHangChiTietRepo.findByTongTien(tong);
+    public List<DonHangChiTiet> findTongTien6(Float tong, int trang) {
+        return donHangChiTietRepo.findByTongTien6(tong,trang);
     }
+
+    @Override
+    public List<DonHangChiTiet> findTongTien2(Float tong, int trang) {
+        return donHangChiTietRepo.findByTongTien2(tong,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTongTien3(Float tong, int trang) {
+        return donHangChiTietRepo.findByTongTien3(tong,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTongTien4(Float tong, int trang) {
+        return donHangChiTietRepo.findByTongTien4(tong,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTongTien5(Float tong, int trang) {
+        return donHangChiTietRepo.findByTongTien5(tong,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTongTien1(Float tong, int trang) {
+        return donHangChiTietRepo.findByTongTien1(tong,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTongTien(Float tong, int trang) {
+        return donHangChiTietRepo.findByTongTien(tong,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findNgayDat(LocalDate ngaydat, int trang) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang(ngaydat,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findNgayDat1(LocalDate ngaydat, int trang) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang1(ngaydat,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findNgayDat2(LocalDate ngaydat, int trang) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang2(ngaydat,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findNgayDat3(LocalDate ngaydat, int trang) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang3(ngaydat,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findNgayDat4(LocalDate ngaydat, int trang) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang4(ngaydat,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findNgayDat5(LocalDate ngaydat, int trang) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang5(ngaydat,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findNgayDat6(LocalDate ngaydat, int trang) {
+        return donHangChiTietRepo.findByDonHang_NgayDatHang6(ngaydat,trang);
+    }
+
+
 
     @Override
     public void chuyentrangthai(UUID id) {
