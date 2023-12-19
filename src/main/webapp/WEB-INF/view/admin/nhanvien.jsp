@@ -403,12 +403,15 @@
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Số điện thoại</label>
                                                         <form:input class="form-control" path="soDienThoai" value="${nv.soDienThoai}"/>
-                                                        <form:errors path="soDienThoai"/>
+                                                        <form:errors path="soDienThoai" cssClass="error-message"/>
 
                                                     </div>
 <%--                                                    <div class="mb-3 col-md-6">--%>
 <%--                                                        <label class="form-label">Chức vụ</label>--%>
-<%--                                                        <form:input class="form-control" path="chucVu" value="${nv.chucVu}"/>--%>
+<%--                                                        <select class="form-control" name="chucVu">--%>
+<%--                                                            <option value="MANAGE" ${nv.chucVu == 'MANAGE' ? 'selected' : ''}>MANAGE</option>--%>
+<%--                                                            <option value="ROLE_ADMIN" ${nv.chucVu == 'ROLE_ADMIN' ? 'selected' : ''}>ROLE_ADMIN</option>--%>
+<%--                                                        </select>--%>
 <%--                                                    </div>--%>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Tên đăng nhập</label>
@@ -418,7 +421,7 @@
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Email</label>
                                                         <form:input class="form-control" path="email" value="${nv.email}"/>
-                                                        <form:errors path="email"/>
+                                                        <form:errors path="email" cssClass="error-message"/>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Mật khẩu</label>
