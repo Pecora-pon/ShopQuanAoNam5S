@@ -367,96 +367,7 @@
                 <div class="container-xxl flex-grow-1 container-p-y">
                     <!--Content -->
                     <!--Table add -->
-                    <div class="card">
-                        <div class="card-body">
-                            <button type="button" class="btn btn-primary" data-bs-toggle="modal"
-                                    data-bs-target="#exampleModal">
-                                Tạo hóa đơn
-                            </button>
-                            <form:form action="/don-hang-chi-tiet/add" modelAttribute="dhct" method="POST">
-                                <div class="modal fade" id="exampleModal" tabindex="-1"
-                                     aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                    <div class="modal-dialog">
-                                        <div class="modal-content">
-                                            <div class="modal-header">
-                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                                <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                                        aria-label="Close"></button>
-                                            </div>
-                                            <div class="row">
-                                                <div class="modal-body">
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Đơn Hàng Chi Tiết ID</label>
-                                                        <form:input class="form-control" path="donHangChiTietID"
-                                                                    disabled="true"
-                                                                    value="${dhct.donHangChiTietID}"/>
 
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Dơn Hàng ID</label>
-                                                        <form:select path="donHang">
-                                                            <c:forEach items="${listDH}" var="dh">
-                                                                <option value="${dh.donHangID}" ${dh.donHangID==dhct.donHang.donHangID?"selected":""}>${dh.donHangID}</option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">ID Sản Phẩm</label>
-                                                        <form:select path="sanPham">
-                                                            <c:forEach items="${listSP}" var="sp">
-                                                                <option value="${sp.sanPhamID}" ${sp.sanPhamID==dhct.sanPham.sanPhamID?"selected":""}>${sp.tenSanPham}</option>
-                                                            </c:forEach>
-                                                        </form:select>
-                                                    </div>
-
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Số Lượng</label>
-                                                        <form:input class="form-control" path="soLuong"
-                                                                    value="${dhct.soLuong}"/>
-                                                        <form:errors path="soLuong"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Trạng Thái</label>
-                                                        <select name="trangThai" class="form-select" aria-label="Default select example">
-                                                            <option value="0">Chưa thanh toán</option>
-                                                            <option value="1">Vận chuyển</option>
-                                                            <option value="2">Chờ giao hàng</option>
-                                                            <option value="3">Hoàn thành</option>
-                                                            <option value="4">Đã hủy</option>
-                                                            <option value="5">Trả hàng/ Hoàn tiền</option>
-                                                        </select>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Lý do hủy</label>
-                                                        <form:input class="form-control" path="lyDoHuy"
-                                                                    value="${dhct.lyDoHuy}"/>
-                                                        <form:errors path="lyDoHuy"/>
-                                                    </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Tổng Tiền</label>
-                                                        <form:input class="form-control" path="tongTien"
-                                                                    value="${dhct.tongTien}"/>
-                                                        <form:errors path="tongTien"/>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="mt-2">
-                                                <button type="submit" id="myButton" class="btn btn-primary me-2"> Thanh Toán</button>
-
-                                                <script>
-                                                    document.getElementById("myButton").addEventListener("click", function() {
-                                                        alert("Bạn đã thanh toán thành công");
-                                                    });
-                                                </script>
-
-                                                    <%--                                                <button type="submit" class="btn btn-primary me-2">Thanh Toán</button>--%>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </form:form>
-                        </div>
-                    </div>
                     <div class="row">
                         <div class="col-md-4 mb-3">
                             <form action="/timkiemngaydh1" method="get" class="d-flex align-items-center">
@@ -495,35 +406,45 @@
 <%--                                <th>ID Sản Phẩm</th>--%>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
+                                <th>Size</th>
+                                <th>Màu sắc</th>
                                 <th>Khách Hàng</th>
                                 <th>Số Lượng</th>
                                 <th>Ngày Đặt</th>
                                 <th>Trạng Thái</th>
-                                <th>Lý Do Hủy</th>
+
                                 <th>Tổng Tiền</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody class="table-border-bottom-0">
                             <c:forEach items="${list}" var="dhct" varStatus="i">
+                                <c:if test="${!dhct.donHang.donHangID.equals(pageContext.getAttribute('previousDonHangID'))}">
+                                <!-- Hiển thị thông tin chung của đơn hàng, chỉ hiển thị nếu đơn hàng có sản phẩm -->
                                 <tr>
                                     <td scope="row">${i.index+1}</td>
 <%--                                    <td>${dhct.donHang.donHangID}</td>--%>
-<%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
+                                    <!-- Các cột thông tin khác của đơn hàng -->
+
+                                    <!-- Đặt giá trị mới cho biến theo dõi -->
+                                    <c:set var="previousDonHangID" value="${dhct.donHang.donHangID}" />
                                     <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
                                     </td>
                                     <td>${dhct.sanPham.tenSanPham}</td>
+                                    <td>${dhct.sanPham.size.tenSize}</td>
+                                    <td>${dhct.sanPham.mauSac.tenMauSac}</td>
                                     <td>${dhct.donHang.khachHang.username}</td>
                                     <td>${dhct.soLuong}</td>
                                     <td>${dhct.donHang.ngayDatHang}</td>
                                     <td>
+                                        <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
                                         <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
                                         <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
                                         <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
                                         <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
                                         <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
                                     </td>
-                                    <td>${dhct.lyDoHuy}</td>
+
                                     <td>${dhct.tongTien}</td>
                                     <td>
                                         <div class="dropdown">
@@ -537,6 +458,8 @@
                                         </div>
                                     </td>
                                 </tr>
+                                </c:if>
+
                             </c:forEach>
                             <style>
                                 .btn-container {
