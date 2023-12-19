@@ -19,7 +19,7 @@ import java.util.Optional;
 public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
     boolean existsByHoTen(String tenSize);
     Page<NhanVien> findByTrangThai(Integer tinhTrang, Pageable pageable);
-    Optional<NhanVien> findByTenDangNhap(String tenDangNhap);
+    Optional<NhanVien> findByTenDangNhapAndTrangThai(String tenDangNhap,int tinhtrang);
     @Query("SELECT n FROM NhanVien n WHERE n.hoTen LIKE %?1%")
     List<NhanVien> searchByHoTenOrTenDangNhap(String keyword);
     @Query("SELECT n FROM NhanVien n WHERE n.tenDangNhap =:tenDangNhap")
