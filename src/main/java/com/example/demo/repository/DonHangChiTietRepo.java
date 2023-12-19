@@ -39,8 +39,13 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     List<DonHangChiTiet> findBySanPham_TenSanPham(@Param("tenSanPham") String tenSanPham);
     @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1%")
     List<DonHangChiTiet> findByTongTien(@Param("tongTien") Float tongTien);
+    @Query("select p from DonHangChiTiet p where p.donHang.donHangID =:id")
+    DonHangChiTiet donHangChiTiet(@Param("id")UUID id);
     List<DonHangChiTiet> findByDonHang_DonHangID(UUID id);
     List<DonHangChiTiet> findByDonHangChiTietID(int id);
+
+
+
 
     @Transactional
     @Modifying
@@ -91,4 +96,6 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     List<Object[]> countOrdersByStatus();
 
     List<DonHangChiTiet> findByTrangThai(int trangThai);
+
+
 }
