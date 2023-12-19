@@ -340,7 +340,7 @@
                         <div class="col-lg-12">
                             <div class="product__pagination">
                         <c:choose>
-                                    <c:when test="${param.thuonghieuid ne null or param.minPrice ne null or param.maxPrice ne null or param.tensanpham ne null}">
+                                    <c:when test="${param.thuonghieuid ne null or param.minPrice ne null or param.maxPrice ne null or param.sizeid ne null or param.tensanpham ne null}">
                                      
                                     </c:when>
                                     <c:otherwise>
