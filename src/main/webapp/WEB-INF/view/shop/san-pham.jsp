@@ -178,7 +178,7 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form href="/list-san-pham/ten-san-pham">
+                        <form href="/list-san-pham/page?tensanpham">
                             <input type="text" placeholder="Search..." name="tensanpham">
                             <button type="submit"><span class="icon_search"></span></button>
                         </form>
@@ -339,49 +339,34 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
-                      <c:if test="${not empty param.page}">
-                                    <c:if test="${currentPage > 1}">
-                                        <c:url var="prevPageUrl" value="/list-san-pham/page">
-                                            <c:param name="page" value="${currentPage - 1}" />
-                                            <c:param name="minPrice" value="${param.minPrice}" />
-                                            <c:param name="maxPrice" value="${param.maxPrice}" />
-                                            <c:param name="thuonghieuid" value="${param.thuonghieuid}" />
-                                          
-                                        </c:url>
-                                        <a href="${prevPageUrl}">&lt;</a>
-                                    </c:if>
-
-                                    <c:forEach begin="${currentPage - 1}" end="${currentPage + 1}" var="page">
-                                        <c:if test="${page > 0 and page <= totalPages}">
-                                            <c:url var="pageUrl" value="/list-san-pham/page">
-                                                <c:param name="page" value="${page}" />
-                                                <c:param name="minPrice" value="${param.minPrice}" />
-                                                <c:param name="maxPrice" value="${param.maxPrice}" />
-                                                <c:param name="thuonghieuid" value="${param.thuonghieuid}" />
-                                              
-                                            </c:url>
-                                            <c:choose>
-                                                <c:when test="${page == currentPage}">
-                                                    <a class="active">${page}</a>
-                                                </c:when>
-                                                <c:otherwise>
-                                                    <a href="${pageUrl}">${page}</a>
-                                                </c:otherwise>
-                                            </c:choose>
+                        <c:choose>
+                                    <c:when test="${param.thuonghieuid ne null or param.minPrice ne null or param.maxPrice ne null or param.tensanpham ne null}">
+                                     
+                                    </c:when>
+                                    <c:otherwise>
+                                      
+                                        <c:if test="${currentPage > 1}">
+                                            <a href="/list-san-pham/page?page=${currentPage - 1}">&lt;</a>
                                         </c:if>
-                                    </c:forEach>
 
-                                    <c:if test="${currentPage < totalPages}">
-                                        <c:url var="nextPageUrl" value="/list-san-pham/page">
-                                            <c:param name="page" value="${currentPage + 1}" />
-                                            <c:param name="minPrice" value="${param.minPrice}" />
-                                            <c:param name="maxPrice" value="${param.maxPrice}" />
-                                            <c:param name="thuonghieuid" value="${param.thuonghieuid}" />
-                                        
-                                        </c:url>
-                                        <a href="${nextPageUrl}">&gt;</a>
-                                    </c:if>
-                                </c:if>
+                                        <c:forEach begin="${currentPage - 1}" end="${currentPage + 1}" var="page">
+                                            <c:if test="${page > 0 and page <= totalPages}">
+                                                <c:choose>
+                                                    <c:when test="${page == currentPage}">
+                                                        <a class="active">${page}</a>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <a href="/list-san-pham/page?page=${page}">${page}</a>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </c:if>
+                                        </c:forEach>
+
+                                        <c:if test="${currentPage < totalPages}">
+                                            <a href="/list-san-pham/page?page=${currentPage + 1}">&gt;</a>
+                                        </c:if>
+                                    </c:otherwise>
+                                </c:choose>
                         </div>
                     </div>
                 </div>
