@@ -42,30 +42,76 @@ public UserDetailsService userDetailsServicekh(){
                 .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
                 .and()
                 .authorizeRequests(authorize -> authorize
-                        .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/gio-hang")).hasAuthority("ROLE_USER")
-                        .requestMatchers(new AntPathRequestMatcher("/san-pham")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/danh-sach-yt/hien-thi")).hasAuthority("ROLE_USER")
-                        .requestMatchers(new AntPathRequestMatcher("/hien-thi")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/dangxem")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/themngay/{sanPhamID}")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/danh-sach-yt/them/{sanPhamID}")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/themmoiny")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/thanh-toan")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/them-gio-hang/{sanPhamID}")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/detail6/{donHang}")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/thong-tin-van-chuyen")).hasAuthority("ROLE_USER")
+                )
+                .formLogin().loginPage("/login")
+                .successHandler((request, response, authentication) -> {
+                    for (GrantedAuthority authority : authentication.getAuthorities()) {
+                        if (authority.getAuthority().equals("ROLE_USER")) {
+                            response.sendRedirect("/shop/main-shop");
+                            return;
+                        } else if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                            response.sendRedirect("/trang-chu");
+                            return;
+                        }
+                    }
+                    // Default redirect if no matching role is found
+                    response.sendRedirect("/");
+                })
+                .permitAll()
+                .and()
+                .logout()
+                .logoutUrl("/logout")
+                .logoutSuccessHandler(customLogoutSuccessHandler())
+                .permitAll()
+                .and()
+                .userDetailsService(userDetailsService())
+                .userDetailsService(userDetailsServicekh())
+                .build();
+
+    }
+    @Bean
+    public SecurityFilterChain securityFilterChain2(HttpSecurity http) throws Exception {
+        return http.csrf().disable().sessionManagement()
+                .sessionCreationPolicy(SessionCreationPolicy.ALWAYS)
+                .and()
+                .authorizeRequests(authorize -> authorize
+                        .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/san-pham")).hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/hien-thi")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/chat-lieu")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/mau-sac")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/nhap-kho")).hasAuthority("ROLE_ADMIN")
-                        .requestMatchers(new AntPathRequestMatcher("/detail6/{donHang}")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/size")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/thuong-hieu")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/giam-gia")).hasAuthority("ROLE_ADMIN")
-                        .requestMatchers(new AntPathRequestMatcher("/thong-tin-van-chuyen")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/nha-cung-cap")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/giam-gia-chi-tiet")).hasAuthority("ROLE_ADMIN")
                 )
                 .formLogin().loginPage("/login")
-                .successHandler(customAuthenticationSuccessHandler())
+                .successHandler((request, response, authentication) -> {
+                    for (GrantedAuthority authority : authentication.getAuthorities()) {
+                        if (authority.getAuthority().equals("ROLE_USER")) {
+                            response.sendRedirect("/shop/main-shop");
+                            return;
+                        } else if (authority.getAuthority().equals("ROLE_ADMIN")) {
+                            response.sendRedirect("/trang-chu");
+                            return;
+                        }
+                    }
+                    // Default redirect if no matching role is found
+                    response.sendRedirect("/");
+                })
+                .permitAll()
                 .and()
                 .logout()
                 .logoutUrl("/logout")
