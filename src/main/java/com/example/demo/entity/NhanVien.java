@@ -8,9 +8,7 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
 import jakarta.persistence.Table;
-import jakarta.validation.constraints.Email;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
+import jakarta.validation.constraints.*;
 import jakarta.validation.constraints.Size;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -35,7 +33,8 @@ public class NhanVien {
     @Column(name = "TenDangNhap")
     private String tenDangNhap;
 
-    @NotNull(message = "không được để trống")
+    @NotNull(message = "Email không được để trống")
+    @Email(message = "Email không đúng định dạng")
     @Column(name = "Email")
     private String email;
 
@@ -51,7 +50,8 @@ public class NhanVien {
     @Column(name = "DiaChi")
     private String diaChi;
 
-    @NotNull(message = "không được để trống")
+    @NotNull(message = "Số điện thoại không được để trống")
+    @Pattern(regexp = "\\b\\d{10}\\b", message = "Số điện thoại phải có 10 chữ số")
     @Column(name = "SoDienThoai")
     private String soDienThoai;
 
