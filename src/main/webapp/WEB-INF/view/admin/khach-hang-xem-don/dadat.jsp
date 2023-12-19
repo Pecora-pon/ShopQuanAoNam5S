@@ -269,14 +269,33 @@
                         </td>
                         <td>${dhct.tongTien}</td>
                         <td>
-                            <a class="dropdown-item" href="/huydacho/${dhct.donHang.donHangID}"><i
-                                    class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
-                            <a class="dropdown-item" href="/detail/${dhct.donHang.donHangID}"><i
-                                    class="bx bx-trash me-1"></i>Chi Tiết</a>
+                            <a class="dropdown-item" href="javascript:void(0);" onclick="showCancelForm(${i.index})">
+                                <i class="bx bx-trash me-1"></i>Hủy Đơn Hàng
+                            </a>
+                            <a class="dropdown-item" href="/detail/${dhct.donHang.donHangID}">
+                                <i class="bx bx-trash me-1"></i>Chi Tiết
+                            </a>
                         </td>
+                    </tr>
+                        <!-- Hidden form for entering the reason -->
+                        <tr id="cancelForm${i.index}" style="display: none;">
+                            <td colspan="9">
+                                <form action="/huydacho/${dhct.donHang.donHangID}">
+                                    <!-- Include form fields for entering the reason -->
+                                    <input type="text" name="lyDoHuy" placeholder="Lý do hủy đơn hàng" required>
+                                    <button type="submit">Xác nhận hủy đơn hàng</button>
+                                </form>
+                            </td>
+                        </tr>
                     </tr>
                     </c:if>
                 </c:forEach>
+                <script>
+                    function showCancelForm(index) {
+                        var form = document.getElementById('cancelForm' + index);
+                        form.style.display = (form.style.display === 'none' || form.style.display === '') ? 'table-row' : 'none';
+                    }
+                </script>
                 <script>
                     function confirmCancelOrder(donHangID) {
                         var confirmCancel = confirm("Bạn có chắc chắn muốn hủy đơn hàng?");
