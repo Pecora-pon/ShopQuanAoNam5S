@@ -369,7 +369,7 @@
 
                     <div class="row">
                         <div class="col-md-4 mb-3">
-                            <form action="/timkiemtenxn3" method="get" class="d-flex align-items-center">
+                            <form action="/timkiemtenxn3/timkiemngayxn3" method="get" class="d-flex align-items-center">
                                 <label class="me-2">Ngày Đặt:</label>
                                 <input type="date" name="ngaydat" class="form-control" required>
                                 <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -377,7 +377,7 @@
                         </div>
 
                         <div class="col-md-4 mb-3">
-                            <form action="/timkiemngayxn3" method="get" class="d-flex align-items-center">
+                            <form action="/timkiemtenxn3" method="get" class="d-flex align-items-center">
                                 <label class="me-2">Tên Sản Phẩm:</label>
                                 <input type="text" name="ten" class="form-control" required>
                                 <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
@@ -436,6 +436,7 @@
                                     <td>${dhct.soLuong}</td>
                                     <td>${dhct.donHang.ngayDatHang}</td>
                                     <td>
+                                        <c:if test="${dhct.trangThai == 6}"> Đơn hàng chờ hủy </c:if>
                                         <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
                                         <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
                                         <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
@@ -457,7 +458,8 @@
                                                 <a class="dropdown-item" href="/huycho1/${dhct.donHang.donHangID}"><i
                                                         class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
                                                     <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-
+                                                <a class="dropdown-item" href="/detaildh1/${dhct.donHang.donHangID}"><i
+                                                        class="bx bx-trash me-1"></i>Chi Tiết</a>
                                             </div>
                                         </div>
                                     </td>

@@ -162,7 +162,6 @@
                 <!-- Layouts -->
 
 
-
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý sản phẩm</span></li>
 
                 <!-- User interface -->
@@ -401,7 +400,7 @@
                             <thead>
                             <tr>
                                 <th>STT</th>
-<%--                                <th>Đơn Hang ID</th>--%>
+                                <%--                                <th>Đơn Hang ID</th>--%>
                                 <%--                                <th>ID Sản Phẩm</th>--%>
                                 <th>Hình Ảnh</th>
                                 <th>Tên Sản Phẩm</th>
@@ -418,52 +417,56 @@
                             <tbody class="table-border-bottom-0">
                             <c:forEach items="${list}" var="dhct" varStatus="i">
                                 <c:if test="${!dhct.donHang.donHangID.equals(pageContext.getAttribute('previousDonHangID'))}">
-                                <!-- Hiển thị thông tin chung của đơn hàng, chỉ hiển thị nếu đơn hàng có sản phẩm -->
-                                <tr>
-                                    <td scope="row">${i.index+1}</td>
-<%--                                    <td>${dhct.donHang.donHangID}</td>--%>
-                                    <!-- Các cột thông tin khác của đơn hàng -->
+                                    <!-- Hiển thị thông tin chung của đơn hàng, chỉ hiển thị nếu đơn hàng có sản phẩm -->
+                                    <tr>
+                                        <td scope="row">${i.index+1}</td>
+                                            <%--                                    <td>${dhct.donHang.donHangID}</td>--%>
+                                        <!-- Các cột thông tin khác của đơn hàng -->
 
-                                    <!-- Đặt giá trị mới cho biến theo dõi -->
-                                    <c:set var="previousDonHangID" value="${dhct.donHang.donHangID}" />
-                                    <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
-                                    </td>
-                                    <td>${dhct.sanPham.tenSanPham}</td>
-                                    <td>${dhct.sanPham.size.tenSize}</td>
-                                    <td>${dhct.sanPham.mauSac.tenMauSac}</td>
-                                    <td>${dhct.donHang.khachHang.username}</td>
-                                    <td>${dhct.soLuong}</td>
-                                    <td>${dhct.donHang.ngayDatHang}</td>
-                                    <td>
-                                        <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
-                                        <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
-                                        <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
-                                        <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
-                                        <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
-                                        <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
-                                    </td>
+                                        <!-- Đặt giá trị mới cho biến theo dõi -->
+                                        <c:set var="previousDonHangID" value="${dhct.donHang.donHangID}"/>
+                                        <td><img src="/getimage/${dhct.sanPham.hinhAnhURL}"
+                                                 style="max-width: 35px; max-height: 35px;">
+                                        </td>
+                                        <td>${dhct.sanPham.tenSanPham}</td>
+                                        <td>${dhct.sanPham.size.tenSize}</td>
+                                        <td>${dhct.sanPham.mauSac.tenMauSac}</td>
+                                        <td>${dhct.donHang.khachHang.username}</td>
+                                        <td>${dhct.soLuong}</td>
+                                        <td>${dhct.donHang.ngayDatHang}</td>
+                                        <td>
+                                            <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
+                                            <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
+                                            <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
+                                            <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
+                                            <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
+                                            <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
+                                        </td>
 
-                                    <td>${dhct.tongTien}</td>
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-<%--                                                <a class="dropdown-item" href="/don-hang-chi-tiet/${dhct.donHangChiTietID}"><i--%>
-<%--                                                        class="bx bx-edit-alt me-1"></i> Sửa</a>--%>
-<%--                                                <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i--%>
-<%--                                                        class="bx bx-trash me-1"></i> Xóa</a>--%>
-                                                <a class="dropdown-item" href="/chuyenttt/${dhct.donHang.donHangID}"><i
-                                                        class="bx bx-edit-alt me-1"></i></i> Xác nhận đơn hàng</a>
-                                                    <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
-                                                <a class="dropdown-item" href="/huyddd/${dhct.donHang.donHangID}"><i
-                                                        class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
+                                        <td>${dhct.tongTien}</td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                        data-bs-toggle="dropdown">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                        <%--                                                <a class="dropdown-item" href="/don-hang-chi-tiet/${dhct.donHangChiTietID}"><i--%>
+                                                        <%--                                                        class="bx bx-edit-alt me-1"></i> Sửa</a>--%>
+                                                        <%--                                                <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i--%>
+                                                        <%--                                                        class="bx bx-trash me-1"></i> Xóa</a>--%>
+                                                    <a class="dropdown-item"
+                                                       href="/chuyenttt/${dhct.donHang.donHangID}"><i
+                                                            class="bx bx-edit-alt me-1"></i></i> Xác nhận đơn hàng</a>
+                                                    <a class="dropdown-item" href="/detaildh6/${dhct.donHang.donHangID}"><i
+                                                            class="bx bx-trash me-1"></i>Chi Tiết</a>
+                                                        <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
+                                                    <a class="dropdown-item" href="/huyddd/${dhct.donHang.donHangID}"><i
+                                                            class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
+                                        </td>
+                                    </tr>
                                 </c:if>
 
                             </c:forEach>
@@ -485,12 +488,12 @@
 
                             <div class="btn-container">
                                 <a href="/don-hang" class="primary-btn">Chờ Xác Nhận</a>
-                                <a href="/hien-thi1" class="primary-btn" >Xem Đơn</a>
-                                <a href="/long" class="primary-btn" >Vận chuyển</a>
-                                <a href="/longg" class="primary-btn" >Đơn Hàng Cần Xác nhận</a>
-                                <a href="/longgg" class="primary-btn" >Thành Công</a>
-                                <a href="/hien-thi2" class="primary-btn" >Đơn hàng chờ hủy</a>
-                                <a href="/xemhuy" class="primary-btn" >Đơn hàng đã hủy</a>
+                                <a href="/hien-thi1" class="primary-btn">Xem Đơn</a>
+                                <a href="/long" class="primary-btn">Vận chuyển</a>
+                                <a href="/longg" class="primary-btn">Đơn Hàng Cần Xác nhận</a>
+                                <a href="/longgg" class="primary-btn">Thành Công</a>
+                                <a href="/hien-thi2" class="primary-btn">Đơn hàng chờ hủy</a>
+                                <a href="/xemhuy" class="primary-btn">Đơn hàng đã hủy</a>
                             </div>
                         </table>
                         <nav aria-label="Page navigation example">
@@ -501,7 +504,9 @@
                                             <li class="page-item active"><span class="page-link">${page}</span></li>
                                         </c:when>
                                         <c:otherwise>
-                                            <li class="page-item"><a class="page-link" href="/don-hang-chi-tiet/page5?page=${page}">${page}</a></li>
+                                            <li class="page-item"><a class="page-link"
+                                                                     href="/don-hang-chi-tiet/page5?page=${page}">${page}</a>
+                                            </li>
                                         </c:otherwise>
                                     </c:choose>
                                 </c:forEach>
@@ -515,7 +520,7 @@
 
                             var link = event.currentTarget;
                             var donHangID = link.getAttribute('data-donhangid');
-                            var confirmations=confirm("Bạn có chắc chắn");
+                            var confirmations = confirm("Bạn có chắc chắn");
                             var confirmation = confirm("Bạn Có chắc chắn?");
                             if (confirmation) {
                                 // If the user clicks "OK", navigate to the cancellation page
@@ -524,9 +529,9 @@
                                 // If the user clicks "Cancel", do nothing
                                 return false;
                             }
-                            if(confirmations){
-                                window.location.href="/huyddd/"+donHangID;
-                            }else {
+                            if (confirmations) {
+                                window.location.href = "/huyddd/" + donHangID;
+                            } else {
                                 return false;
                             }
                         }
@@ -612,19 +617,19 @@
                 window.location.href = '/khach-hang';
             } else if (searchTerm === 'hien thi' || searchTerm === 'hiển thị') {
                 window.location.href = '/hien-thi';
-            } else if (searchTerm === 'chat lieu'|| searchTerm === 'chất liệu') {
+            } else if (searchTerm === 'chat lieu' || searchTerm === 'chất liệu') {
                 window.location.href = '/chat-lieu';
-            } else if (searchTerm === 'mau sac'|| searchTerm === 'thương hiệu') {
+            } else if (searchTerm === 'mau sac' || searchTerm === 'thương hiệu') {
                 window.location.href = '/mau-sac';
-            } else if (searchTerm === 'nhap kho'|| searchTerm === 'nhập kho') {
+            } else if (searchTerm === 'nhap kho' || searchTerm === 'nhập kho') {
                 window.location.href = '/nhap-kho';
             } else if (searchTerm === 'size') {
                 window.location.href = '/size';
-            } else if (searchTerm === 'thuong hieu'|| searchTerm === 'thương hiệu') {
+            } else if (searchTerm === 'thuong hieu' || searchTerm === 'thương hiệu') {
                 window.location.href = '/thuong-hieu';
-            } else if (searchTerm === 'giam gia'|| searchTerm === 'giảm giá') {
+            } else if (searchTerm === 'giam gia' || searchTerm === 'giảm giá') {
                 window.location.href = '/giam-gia';
-            } else if (searchTerm === 'giam gia chi tiet'|| searchTerm === 'giảm giá chi tiết') {
+            } else if (searchTerm === 'giam gia chi tiet' || searchTerm === 'giảm giá chi tiết') {
                 window.location.href = '/giam-gia-chi-tiet';
             } else {
                 // Xử lý chuyển hướng mặc định hoặc thông báo lỗi nếu cần
