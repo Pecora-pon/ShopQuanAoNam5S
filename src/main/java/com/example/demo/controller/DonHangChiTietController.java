@@ -52,7 +52,7 @@ public class DonHangChiTietController {
         return "admin/don-hang-chi-tiet/xacnhan";
     }
     @GetMapping("/hien-thi2")
-    public String hienthi2(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model){
+    public String hienthi2(@ModelAttribute("dhctt") DonHangChiTiet donHangChiTiet, Model model){
         List<DonHangChiTiet> list = donHangChiTietService.getAlllll();
         List<DonHang> listDH = donHangService.getAll();
         List<SanPham> listSP = sanPhamService.getAll();
@@ -343,7 +343,7 @@ public class DonHangChiTietController {
 //   }
 @GetMapping("/timkiemten1")
 public String detail1(@RequestParam("ten")String ten, Model model){
-    List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+    List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten,0);
     model.addAttribute("list",list);
     return "admin/don-hang-chi-tiet/index";
 }
@@ -361,7 +361,7 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemtendh1")
     public String detaildh(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP4(ten,4);
         model.addAttribute("list",list);
         return "admin/don-hang-chi-tiet/dahuy";
     }
@@ -379,7 +379,7 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemtenvc1")
     public String detailvc(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP1(ten,1);
         model.addAttribute("list",list);
         return "admin/don-hang-chi-tiet/vanchuyen";
     }
@@ -397,7 +397,7 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemtenxn1")
     public String detailxn(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP2(ten,2);
         model.addAttribute("list",list);
         return "admin/don-hang-chi-tiet/choxacnhan";
     }
@@ -415,7 +415,7 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemtentc1")
     public String detailtc(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP3(ten,3);
         model.addAttribute("list",list);
         return "admin/don-hang-chi-tiet/thanhcong";
     }
@@ -433,7 +433,7 @@ public String detail1(@RequestParam("ten")String ten, Model model){
     }
    @GetMapping("/timkiemtenxn2")
 public String detailxn1(@RequestParam("ten")String ten, Model model){
-    List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+    List<DonHangChiTiet> list=donHangChiTietService.findTenSP5(ten,5);
     model.addAttribute("list",list);
     return "admin/don-hang-chi-tiet/xacnhan";
 }
@@ -451,7 +451,7 @@ public String detailxn1(@RequestParam("ten")String ten, Model model){
     }
     @GetMapping("/timkiemtenxn3")
     public String detailxn3(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP6(ten,6);
         model.addAttribute("list",list);
         return "admin/don-hang-chi-tiet/choxacnhanhuy";
     }
@@ -466,5 +466,47 @@ public String detailxn1(@RequestParam("ten")String ten, Model model){
         List<DonHangChiTiet> list = donHangChiTietService.findTongTien(tongTien);
         model.addAttribute("list", list);
         return "admin/don-hang-chi-tiet/choxacnhanhuy";
+    }
+    @GetMapping("/detaildh/{donHang}")
+    public String detail(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/chitiet";
+    }
+    @GetMapping("/detaildh1/{donHang}")
+    public String detail1(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/chitiet";
+    }
+    @GetMapping("/detaildh2/{donHang}")
+    public String detail2(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/chitiet";
+    }
+    @GetMapping("/detaildh3/{donHang}")
+    public String detail3(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/chitiet";
+    }
+    @GetMapping("/detaildh4/{donHang}")
+    public String detail4(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/chitiet";
+    }
+    @GetMapping("/detaildh5/{donHang}")
+    public String detail5(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/chitiet";
+    }
+    @GetMapping("/detaildh6/{donHang}")
+    public String detail6(@PathVariable("donHang")UUID donHang,Model model){
+        List<DonHangChiTiet>list=donHangChiTietService.finDonHang(donHang);
+        model.addAttribute("list",list);
+        return "admin/don-hang-chi-tiet/chitiet";
     }
 }

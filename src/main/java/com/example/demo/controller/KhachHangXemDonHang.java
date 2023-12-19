@@ -154,7 +154,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/timkiemten")
     public String detail1(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten,0);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/dadat";
     }
@@ -172,7 +172,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/timkiemtendh")
     public String detaildh(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP4(ten,4);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/dahuy";
     }
@@ -190,7 +190,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/timkiemtenvc")
     public String detailvc(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP1(ten,1);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/vanchuyen";
     }
@@ -208,7 +208,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/timkiemtenxn")
     public String detailxn(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP2(ten,2);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/xacnhan";
     }
@@ -226,7 +226,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/timkiemtentc")
     public String detailtc(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP3(ten,3);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/thanhcong";
     }
@@ -244,7 +244,7 @@ public class KhachHangXemDonHang {
     }
     @GetMapping("/timkiemtencxn")
     public String detailcxn(@RequestParam("ten")String ten, Model model){
-        List<DonHangChiTiet> list=donHangChiTietService.findTenSP(ten);
+        List<DonHangChiTiet> list=donHangChiTietService.findTenSP5(ten,5);
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/choxacnhan";
     }
