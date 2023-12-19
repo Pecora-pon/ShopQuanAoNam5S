@@ -516,7 +516,7 @@
                     <th>Ảnh</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Số Lượng</th>
-                    <th>Tổng Tiền</th>
+                    <th>Giá tiền</th>
                 </tr>
                 <c:forEach items="${list}" var="dhct" varStatus="i">
                     <tr>
