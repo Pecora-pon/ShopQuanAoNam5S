@@ -62,7 +62,7 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     @Modifying
     @Query(value = "Update SanPham set tinhTrang = 1 where sanPhamID =:sanPhamID",nativeQuery = true)
     void deleteByI(@Param("sanPhamID") UUID sanPhamID);
-    @Query(value = "select * from SanPham p WHERE  p.tinhTrang in(0,2) order by p.sanPhamID desc",nativeQuery = true)
+    @Query(value = "select * from SanPham p WHERE  p.tinhTrang=0 order by p.sanPhamID desc",nativeQuery = true)
     List<SanPham> getAll();
     @Query(value = "select * from SanPham p WHERE  p.tinhTrang=0 order by p.sanPhamID desc",nativeQuery = true)
     List<SanPham> getAlll();
