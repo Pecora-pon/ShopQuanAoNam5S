@@ -32,8 +32,11 @@ public class MauSacServiceImpl implements MauSacService {
         if (tenMauSac != null && !tenMauSac.isEmpty()) {
             // Check if the name contains only spaces
             if (!isOnlySpaces(tenMauSac)) {
-                if (mauSacRepo.existsByTenMauSac(tenMauSac)) {
-                    respon.setError("Tên Màu Sắc đã tồn tại. Vui lòng chọn tên khác");
+                MauSac tenms=mauSacRepo.searchBytenms(tenMauSac);
+                if (tenms!=null) {
+                    tenms.setSoLuong(tenms.getSoLuong()+mauSac.getSoLuong());
+                    mauSacRepo.save(tenms);
+                    respon.setStatus("Cập nhật số lượng thành công");
                 } else {
                     mauSac.setTenMauSac(tenMauSac);
                     mauSac.setTrangThai(0);

@@ -30,8 +30,11 @@ public class SizeServiceImpl implements SizeService {
         String tenSize = size.getTenSize().trim();
 
         if (size.getTenSize() != null && !size.getTenSize().isEmpty()) {
-            if (sizeRepo.existsByTenSize(size.getTenSize())) {
-                respon.setError("Tên không đã tồn tại");
+            Size tensi=sizeRepo.searchByten(tenSize);
+            if (tensi !=null) {
+                tensi.setSoLuong(tensi.getSoLuong() + size.getSoLuong());
+                sizeRepo.save(tensi);
+                respon.setStatus("Cập nhật số lượng thành công");
             } else {
                 // Check if tenSize contains only alphanumeric characters
                 if (isAlphanumeric(tenSize)) {

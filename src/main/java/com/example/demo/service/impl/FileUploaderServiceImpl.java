@@ -77,6 +77,7 @@ private MauSacRepo mauSacRepo;
                     if (ms == null) {
                         ms = new MauSac();
                         ms.setTenMauSac(tenMauSac);
+                        ms.setSoLuong(soLuongTon);
                         mauSacRepo.save(ms);
                     }
                     sanPham.setMauSac(ms);
@@ -87,6 +88,7 @@ private MauSacRepo mauSacRepo;
                     if (size == null) {
                         size = new Size();
                         size.setTenSize(tenSize);
+                        size.setSoLuong(soLuongTon);
                         sizeRepo.save(size);
                     }
 //

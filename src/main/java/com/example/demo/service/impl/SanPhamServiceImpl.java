@@ -56,6 +56,7 @@ public class SanPhamServiceImpl implements SanPhamService {
                     respon.setError("Tên sản phẩm đã tồn tại. Vui lòng chọn tên khác.");
                 } else {
                     sanPham.setNgayTao(LocalDate.now());
+                    sanPham.setTinhTrang(0);
                     sizeService.capnhat(sanPham.getSize().getSizeID(),sanPham.getSoLuongTon());
                     mauSacService.capnhat(sanPham.getMauSac().getMauSacID(),sanPham.getSoLuongTon());
                     sanPhamRepo.save(sanPham);
