@@ -192,10 +192,40 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
     @Override
-    public List<DonHangChiTiet> findTenSP(String ten) {
+    public List<DonHangChiTiet> findTenSP(String ten,int trang) {
 
 
-        return  donHangChiTietRepo.findBySanPham_TenSanPham(ten);
+        return  donHangChiTietRepo.findBySanPham_TenSanPham(ten,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTenSP1(String ten, int trang) {
+        return donHangChiTietRepo.findBySanPham_TenSanPham1(ten,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTenSP2(String ten, int trang) {
+        return donHangChiTietRepo.findBySanPham_TenSanPham2(ten,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTenSP3(String ten, int trang) {
+        return donHangChiTietRepo.findBySanPham_TenSanPham3(ten,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTenSP4(String ten, int trang) {
+        return donHangChiTietRepo.findBySanPham_TenSanPham4(ten,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTenSP5(String ten, int trang) {
+        return donHangChiTietRepo.findBySanPham_TenSanPham5(ten,trang);
+    }
+
+    @Override
+    public List<DonHangChiTiet> findTenSP6(String ten, int trang) {
+        return donHangChiTietRepo.findBySanPham_TenSanPham6(ten,trang);
     }
 
     @Override
