@@ -402,18 +402,18 @@
                         <div class="card-body">
                             <div class="table-responsive">
                                 <table class="table table-bordered">
-                                    <tbody>
-                                    <c:forEach items="${list}" var="dh">
-                                        <tr>
-                                            <td colspan="2" class="text-center">
-                                                <h2 class="mb-4">Thông Tin Đơn Hàng</h2>
-                                            </td>
-                                        </tr>
+                                    <tbody><tr>
+                                        <td colspan="2" class="text-center">
+                                            <h2 class="mb-4">Thông Tin Đơn Hàng</h2>
+                                        </td>
+                                    </tr>
+                                    <c:forEach items="${list}" var="dh" varStatus="i">
+
                                         <tr>
                                             <td class="item-info">
-                                                <strong>Tên Sản Phẩm:</strong>
+                                                <strong>Thông Tin Sản Phẩm: ${i.index+1}</strong>
                                             </td>
-                                            <td class="item-value">${dh.sanPham.tenSanPham}</td>
+                                            <td class="item-value">${dh.sanPham.tenSanPham}-${dh.sanPham.size.tenSize}-${dh.sanPham.mauSac.tenMauSac}</td>
                                         </tr>
                                         <tr>
                                             <td class="item-info">
@@ -431,11 +431,18 @@
                                             <td class="item-info">
                                                 <strong>Tổng Tiền:</strong>
                                             </td>
-                                            <td class="item-value">${dh.tongTien}</td>
+                                            <td class="item-value">${dh.sanPham.giaSanPham}</td>
                                         </tr>
                                     </c:forEach>
+
                                     </tbody>
                                 </table>
+
+                                <c:set var="dh" value="${list}" />
+                                <div class="item-info">
+                                    <span class="item-label" style="font-size: 20px">Tổng tiền:</span>
+                                    <span class="item-value" style="font-size: 20px"><c:out value="${dh[0].tongTien}" /></span>
+                                </div>
                             </div>
                         </div>
                     </div>
