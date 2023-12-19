@@ -1,11 +1,10 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.GioHang;
-import com.example.demo.entity.KhachHang;
-import com.example.demo.entity.SanPham;
-import com.example.demo.entity.Size;
+import com.example.demo.entity.*;
 import com.example.demo.repository.GioHangRepo;
+import com.example.demo.repository.MauSacRepo;
 import com.example.demo.repository.SanPhamRepo;
+import com.example.demo.repository.SizeRepo;
 import com.example.demo.service.CartService;
 import com.example.demo.service.SanPhamService;
 import com.example.demo.service.SizeService;
@@ -27,7 +26,9 @@ public class GioHangImpl implements CartService {
     @Autowired
     private SanPhamService sanPhamService;
     @Autowired
-    private SizeService sizeService;
+    private SizeRepo sizeRepo;
+    @Autowired
+    private MauSacRepo mauSacRepo;
 
 
     @Override
@@ -94,9 +95,9 @@ public class GioHangImpl implements CartService {
                 System.out.println("Số lượng tồn của sản phẩm không đủ");
                 return null;
             } else {
-                int mausac = sanPham.getMauSac().getMauSacID();
+//                int mausac = sanPham.getMauSac().getMauSacID();
                 gioHang.setTrangThai(0);
-                sanPham.getMauSac().setMauSacID(mausac);
+//                sanPham.getMauSac().setMauSacID(mausac);
                 gioHang.setSanPham(sanPham);
                 float gia = sanPham.getGiaSanPham();
                 gioHang.setTongTien(gia * sl);
@@ -105,7 +106,6 @@ public class GioHangImpl implements CartService {
             return gioHangRepo.save(gioHang);
         }
     }
-
     @Override
     public GioHang update(int gioHangID, GioHang gioHang) {
          GioHang gh=gioHangRepo.findById(gioHangID).orElse(null);
