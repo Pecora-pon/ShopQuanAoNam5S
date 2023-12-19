@@ -33,8 +33,28 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     List<DonHangChiTiet>findByDonHang_KhachHang_Username5(String username);
     @Query("select p from DonHangChiTiet p WHERE p.donHang.khachHang.username =:username and p.trangThai =6 order by p.donHangChiTietID desc")
     List<DonHangChiTiet>findByDonHang_KhachHang_Username6(String username);
-    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1%")
-    List<DonHangChiTiet> findByDonHang_NgayDatHang(@Param("ngayDatHang") LocalDate ngaydathang);
+
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1% and p.trangThai=0")
+    List<DonHangChiTiet> findByDonHang_NgayDatHang(@Param("ngayDatHang") LocalDate ngaydathang,int trang);
+
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1% and p.trangThai=1")
+    List<DonHangChiTiet> findByDonHang_NgayDatHang1(@Param("ngayDatHang") LocalDate ngaydathang,int trang );
+
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1% and p.trangThai=2")
+    List<DonHangChiTiet> findByDonHang_NgayDatHang2(@Param("ngayDatHang") LocalDate ngaydathang,int trang);
+
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1% and p.trangThai=3")
+    List<DonHangChiTiet> findByDonHang_NgayDatHang3(@Param("ngayDatHang") LocalDate ngaydathang,int trang);
+
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1% and p.trangThai=4")
+    List<DonHangChiTiet> findByDonHang_NgayDatHang4(@Param("ngayDatHang") LocalDate ngaydathang,int trang);
+
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1% and p.trangThai=5")
+    List<DonHangChiTiet> findByDonHang_NgayDatHang5(@Param("ngayDatHang") LocalDate ngaydathang,int trang);
+
+    @Query("select p from DonHangChiTiet  p where p.donHang.ngayDatHang LIKE %?1% and p.trangThai=6")
+    List<DonHangChiTiet> findByDonHang_NgayDatHang6(@Param("ngayDatHang") LocalDate ngaydathang,int trang);
+
     @Query("Select p from DonHangChiTiet p where p.sanPham.tenSanPham LIKE %?1% and p.trangThai=0")
     List<DonHangChiTiet> findBySanPham_TenSanPham(@Param("tenSanPham") String tenSanPham,int trang);
     @Query("Select p from DonHangChiTiet p where p.sanPham.tenSanPham LIKE %?1% and p.trangThai=1")
@@ -53,8 +73,29 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
 
     @Query("Select p from DonHangChiTiet p where p.sanPham.tenSanPham LIKE %?1% and p.trangThai=6")
     List<DonHangChiTiet> findBySanPham_TenSanPham6(@Param("tenSanPham") String tenSanPham,int trang);
-    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1%")
-    List<DonHangChiTiet> findByTongTien(@Param("tongTien") Float tongTien);
+
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=0")
+    List<DonHangChiTiet> findByTongTien(@Param("tongTien") Float tongTien,int trang);
+
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=1")
+    List<DonHangChiTiet> findByTongTien1(@Param("tongTien") Float tongTien,int trang);
+
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=2")
+    List<DonHangChiTiet> findByTongTien2(@Param("tongTien") Float tongTien,int trang);
+
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=3")
+    List<DonHangChiTiet> findByTongTien3(@Param("tongTien") Float tongTien,int trang);
+
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=4")
+    List<DonHangChiTiet> findByTongTien4(@Param("tongTien") Float tongTien,int trang);
+
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=5")
+    List<DonHangChiTiet> findByTongTien5(@Param("tongTien") Float tongTien,int trang);
+
+    @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=6")
+    List<DonHangChiTiet> findByTongTien6(@Param("tongTien") Float tongTien,int trang);
+
+
     @Query("select p from DonHangChiTiet p where p.donHang.donHangID =:id")
     DonHangChiTiet donHangChiTiet(@Param("id")UUID id);
     List<DonHangChiTiet> findByDonHang_DonHangID(UUID id);
