@@ -218,17 +218,14 @@
                             <div class="product__details__option">
                                 <div class="product__details__option__size">
                                     Size:
-                                        <form:select path="size.sizeID" class="form-control">
-                                        <form:option value="" label="Chọn Size"/>
-                                        <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
-                                    </form:select>
+                                    <input type="text" name="size.sizeID" class="form-control" value="${sp.size.tenSize}" readonly/>
                                 </div>
                                 <div class="product__details__option__color">
                                     <span value="${sp.mauSac}" >Color:
-                                     <form:select path="mauSac.mauSacID" class="form-control">
-                                         <form:option value="" label="Chọn Màu Sắc"/>
-                                         <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac"/>
-                                     </form:select></span>
+
+                                         <input type="text" name="mauSac.mauSacID" class="form-control" value="${sp.mauSac.tenMauSac}" readonly/>
+
+                                     </span>
                                 </div>
                             </div>
 

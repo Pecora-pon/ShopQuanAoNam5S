@@ -319,6 +319,7 @@
                                             </li>
                                             <li><a href="/san-pham-detail/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                                             </li>
+                                            <li class="highlight-background">${sp.size.tenSize}</li>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
@@ -328,7 +329,14 @@
                                         <h5>
                                             <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/> VND
                                         </h5>
-
+                                        <style>
+                                        .highlight-background {
+                                        background-color: #000; /* Màu nền đậm (đen) */
+                                        color: #fff; /* Màu chữ trắng */
+                                        padding: 5px 10px; /* Kích thước padding */
+                                        border-radius: 5px; /* Bo tròn góc */
+                                        display: inline-block; /* Đảm bảo nền chỉ chiếm chiều rộng của văn bản */
+                                        }</style>
                                     </div>
                                 </div>
                             </div>
