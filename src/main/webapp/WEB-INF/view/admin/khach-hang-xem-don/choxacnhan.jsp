@@ -249,35 +249,50 @@
                     <th>Action</th>
                 </tr>
                 </thead>
+
+
+
                 <tbody class="table-border-bottom-0">
-                <c:forEach items="${list}" var="dhct" varStatus="i">
-                    <tr>
-                        <td scope="row">${i.index+1}</td>
-                        <td>${dhct.donHang.donHangID}</td>
-                            <%--                                    <td>${dhct.sanPham.sanPhamID}</td>--%>
-                        <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
-                        </td>
-                        <td>${dhct.sanPham.tenSanPham}</td>
-                        <td>${dhct.soLuong}</td>
-                        <td>${dhct.donHang.ngayDatHang}</td>
-                        <td>
-                            <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
-                            <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
-                            <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
-                            <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
-                            <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
-                            <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
-                        </td>
-                        <td>${dhct.lyDoHuy}</td>
-                        <td>${dhct.tongTien}</td>
-                        <td>
-                            <a class="dropdown-item" href="/huycho/${dhct.donHang.donHangID}"><i
-                                    class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
-                            <a class="dropdown-item" href="/detail/${dhct.donHang.donHangID}"><i
-                                    class="bx bx-trash me-1"></i>Chi Tiết</a>
-                        </td>
-                    </tr>
-                </c:forEach>
+                    <c:forEach items="${list}" var="dhct" varStatus="i">
+                        <c:if test="${!dhct.donHang.donHangID.equals(pageContext.getAttribute('previousDonHangID'))}">
+                            <!-- Hiển thị thông tin chung của đơn hàng, chỉ hiển thị nếu đơn hàng có sản phẩm -->
+                            <tr>
+                                <td scope="row">${i.index+1}</td>
+                                <td>${dhct.donHang.donHangID}</td>
+                                <!-- Các cột thông tin khác của đơn hàng -->
+
+                                <!-- Đặt giá trị mới cho biến theo dõi -->
+                                <c:set var="previousDonHangID" value="${dhct.donHang.donHangID}" />
+                                <td>  <img src="/getimage/${dhct.sanPham.hinhAnhURL}" style="max-width: 35px; max-height: 35px;">
+                                </td>
+                                <td>${dhct.sanPham.tenSanPham}</td>
+                                <td>${dhct.soLuong}</td>
+                                <td>${dhct.donHang.ngayDatHang}</td>
+                                <td>
+                                    <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
+                                    <c:if test="${dhct.trangThai == 0}"> Đã đặt hàng </c:if>
+                                    <c:if test="${dhct.trangThai == 1}"> Vận chuyển</c:if>
+                                    <c:if test="${dhct.trangThai== 2}"> Chờ xác nhận</c:if>
+                                    <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
+                                    <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
+                                </td>
+                                <td>${dhct.lyDoHuy}</td>
+                                <td>${dhct.tongTien}</td>
+                                <td>
+                                    <a class="dropdown-item" href="/huycho/${dhct.donHang.donHangID}"><i
+                                            class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
+                                    <a class="dropdown-item" href="/detail/${dhct.donHang.donHangID}"><i
+                                            class="bx bx-trash me-1"></i>Chi Tiết</a>
+                                </td>
+                            </tr>
+                        </c:if>
+
+                        <!-- Hiển thị thông tin của sản phẩm -->
+                        <tr>
+                            <!-- Các cột thông tin của sản phẩm -->
+                        </tr>
+                    </c:forEach>
+
                 <style>
                     .btn-container {
                         display: flex;
