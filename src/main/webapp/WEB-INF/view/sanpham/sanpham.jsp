@@ -9,6 +9,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -592,7 +593,7 @@
 
                                     <td>${sanpham.tenSanPham}</td>
                                     <td>${sanpham.moTa}</td>
-                                    <td>${sanpham.giaSanPham}</td>
+                                    <td><fmt:formatNumber value="${sanpham.giaSanPham}" pattern="#,##0"/> VND</td>
                                     <td>${sanpham.soLuongTon}</td>
                                     <td> <c:if test="${sanpham.tinhTrang == 0}"> Còn Hàng </c:if>
                                         <c:if test="${sanpham.tinhTrang == 1}"> Hết</c:if></td>
