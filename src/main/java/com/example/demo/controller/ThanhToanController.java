@@ -117,13 +117,14 @@ public class ThanhToanController {
    }
    @GetMapping("/themngay/{sanPhamID}")
    @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String detail1(@PathVariable("sanPhamID")UUID id,@RequestParam(value = "soLuongDat",defaultValue = "1")int sl, Model model,Principal principal){
+    public String detail1(@PathVariable("sanPhamID")UUID id,@RequestParam(value = "soLuongDat",defaultValue = "1")int sl, Model model,Principal principal,Authentication authentication){
         SanPham sanPham=thanhToanService.deltail1(id,sl);
         List<SanPham>sanPhamList=sanPhamService.getAll();
+       String username=authentication.getName();
         String logname= principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         List<GiamGia>giamGiaList=giamGiaService.getAll();
-       List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAll();
+       List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAllByKhachHang(username);
        model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
        model.addAttribute("listGiamGia",giamGiaList);
        model.addAttribute("tt",khachHang);

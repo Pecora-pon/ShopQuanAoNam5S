@@ -20,7 +20,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import java.util.List;
 
 @Controller
-@RequestMapping("/khach-hang")
+
 public class KhachHangController {
 
     @Autowired
@@ -30,7 +30,7 @@ public class KhachHangController {
 //    @Autowired
 //    private ChucVuService chucVuService;
 
-    @GetMapping("")
+    @GetMapping("/khach-hang")
     public String hienthi(@ModelAttribute("kh")KhachHang khachHang,Model model){
         List<KhachHang> list = khachHangService.getAll();
 //        List<ChucVu> listCV = chucVuService.getAll();
@@ -39,14 +39,14 @@ public class KhachHangController {
         return "admin/khach-hang/index";
     }
 
-    @GetMapping("/delete/{khachHangId}")
+    @GetMapping("/khach-hang-delete/{khachHangId}")
     public String delete(@PathVariable("khachHangId") Integer khachHangId){
 //        List<ChucVu> listCV = chucVuService.getAll();
         khachHangService.delete(khachHangId);
         return "redirect:/khach-hang";
     }
 
-    @PostMapping("/add")
+    @PostMapping("/khach-hang-add")
     public String add(@ModelAttribute("kh")KhachHang khachHang, HttpServletRequest request)throws MessagingException {
 //        List<ChucVu> listCV = chucVuService.getAll();
 //        khachHangService.add(khachHang);
@@ -54,7 +54,7 @@ public class KhachHangController {
         return "redirect:/khach-hang";
     }
 
-    @GetMapping("/{khachHangId}")
+    @GetMapping("/khach-hang-view-update/{khachHangId}")
     public String viewupdate(@PathVariable("khachHangId") Integer khachHangId,Model model){
         KhachHang kh = khachHangService.detail(khachHangId);
         List<KhachHang> list = khachHangService.getAll();
@@ -90,7 +90,7 @@ public class KhachHangController {
 
     }
 
-    @PostMapping("/update/{khachHangId}")
+    @PostMapping("/khach-hang-update/{khachHangId}")
     public String update(@ModelAttribute("kh")KhachHang khachHang){
 //        List<ChucVu> listCV = chucVuService.getAll();
         khachHangService.add(khachHang);
