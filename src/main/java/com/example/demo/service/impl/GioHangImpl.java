@@ -75,7 +75,7 @@ public class GioHangImpl implements CartService {
         int sl = gioHang.getSoLuongDat();
         String tenSanPham = sanPham.getTenSanPham();
 
-        Optional<GioHang> existingItemOptional = gioHangRepo.findBySanPham_TenSanPhamAndTrangThai(tenSanPham, gioHang.getTrangThai());
+        Optional<GioHang> existingItemOptional = gioHangRepo.findBySanPham_TenSanPhamAndTrangThaiAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(tenSanPham, gioHang.getTrangThai(),sanPham.getSize().getSizeID(),sanPham.getMauSac().getMauSacID());
 
         if (existingItemOptional.isPresent()) {
             GioHang existingItem = existingItemOptional.get();
