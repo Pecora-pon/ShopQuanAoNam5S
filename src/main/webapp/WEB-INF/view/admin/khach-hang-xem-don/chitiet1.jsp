@@ -10,6 +10,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
     <meta charset="UTF-8">
@@ -214,7 +215,7 @@
                                 </div>
                                 <div class="item-info">
                                     <span class="item-label">Giá Tiền:</span>
-                                    <span class="item-value">${dh.sanPham.giaSanPham*dh.soLuong}</span>
+                                    <span class="item-value"><fmt:formatNumber value="${dh.sanPham.giaSanPham * dh.soLuong}" pattern="#,##0"/> VND</span>
                                 </div>
                                 <a class="dropdown-item" href="/detail5/${dh.donHangChiTietID}"><i
                                         class="bx bx-edit-alt me-1"></i>Đánh giá Về Sản Phẩm</a>
@@ -223,7 +224,7 @@
                         </c:forEach> <c:set var="dh" value="${list}" />
                         <div class="item-info">
                             <span class="item-label" style="font-size: 20px">Tổng tiền:</span>
-                            <span class="item-value" style="font-size: 20px"><c:out value="${dh[0].tongTien}" /></span>
+                            <span class="item-value" style="font-size: 20px"><fmt:formatNumber value="${dh[0].tongTien}" pattern="#,##0"/> VND</span>
                         </div>
                         <!-- Thêm các đơn hàng khác nếu có -->
                     </div>
