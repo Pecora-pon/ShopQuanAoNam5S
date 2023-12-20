@@ -396,8 +396,8 @@
                     <!--Table add -->
 
                     <div class="card">
-                        <div class="card-header bg-primary text-white">
-                            <h5 class="mb-0">Xác Nhận</h5>
+                        <div class="btn-container">
+                            <a href="/don-hang" class="primary-btn">Back</a>
                         </div>
                         <div class="card-body">
                             <div class="table-responsive">
