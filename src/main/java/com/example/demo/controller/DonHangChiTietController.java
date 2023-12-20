@@ -296,7 +296,11 @@ public class DonHangChiTietController {
         List<DonHangChiTiet> list=donHangChiTietService.getTC();
         model.addAttribute("list",list);
         return "admin/don-hang-chi-tiet/choxacnhan";
-   }
+   } @GetMapping("/nvxacnhan/{donHangID}")
+    public String xn(@PathVariable("donHangID")UUID id){
+        donHangChiTietService.chuyensangtc(id);
+        return "redirect:/longg";
+    }
     @GetMapping("/longgg")
     public String vtttt(@ModelAttribute("dhct")DonHangChiTiet donHangChiTiet,Model model){
         List<DonHangChiTiet> list=donHangChiTietService.gethuy();
