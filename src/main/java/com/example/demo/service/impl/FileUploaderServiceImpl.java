@@ -41,18 +41,20 @@ private MauSacRepo mauSacRepo;
 @Autowired
     SanPhamService sanPhamService;
     @Override
-    public void uploadFile(MultipartFile fileLoaction) throws IOException {
-        try (InputStream inputStream = fileLoaction.getInputStream()) {
+    public void uploadFile(MultipartFile fileLocation) throws IOException {
+        try (InputStream inputStream = fileLocation.getInputStream()) {
             // Create a Workbook instance using the provided InputStream
             Workbook workbook = new XSSFWorkbook(inputStream);
 
             // Get the first sheet from the workbook
             Sheet sheet = workbook.getSheetAt(0);
+
             for (Row row : sheet) {
                 if (row.getCell(0) == null || row.getCell(0).getStringCellValue().trim().isEmpty()) {
                     // Skip empty row
                     continue;
                 }
+
                 String ten = row.getCell(0).getStringCellValue();
                 String tenMauSac = row.getCell(4).getStringCellValue();
                 String tenSize = row.getCell(5).getStringCellValue();
@@ -60,30 +62,23 @@ private MauSacRepo mauSacRepo;
                 String tenThuongHieu = row.getCell(7).getStringCellValue();
 
                 SanPham existingSanPham = sanPhamRepo.findByTenAndAttributes1(ten, tenMauSac, tenSize, tenChatLieu, tenThuongHieu);
-                if(existingSanPham!=null){
+
+                if (existingSanPham != null) {
+                    // Update existing product quantity
                     int soLuongTonMoi = (int) row.getCell(3).getNumericCellValue();
                     existingSanPham.setSoLuongTon(existingSanPham.getSoLuongTon() + soLuongTonMoi);
                     sanPhamRepo.save(existingSanPham);
-                }
-//                String ten = row.getCell(0).getStringCellValue();
-
-                if (ten == null) {
+                } else {
+                    // Product does not exist, create a new product
                     SanPham sanPham = new SanPham();
                     sanPham.setTenSanPham(ten);
                     sanPham.setMoTa(row.getCell(1).getStringCellValue());
-//                float giaSanPham = (float) row.getCell(2).getNumericCellValue();
-//                sanPham.setGiaSanPham(giaSanPham);
-//                int soLuongTon = (int) row.getCell(3).getNumericCellValue();
-//                sanPham.setSoLuongTon(soLuongTon);
-//                int tinhTrang = (int) row.getCell(4).getNumericCellValue();
-//                sanPham.setTinhTrang(tinhTrang);
                     sanPham.setGiaSanPham((float) row.getCell(2).getNumericCellValue());
                     int soLuongTon = (int) row.getCell(3).getNumericCellValue();
                     sanPham.setSoLuongTon(soLuongTon);
                     sanPham.setTinhTrang(0);
-                    //Mau Sac
-//                    String tenMauSac = row.getCell(4).getStringCellValue();  // Assuming the foreign key is in the second column
-//
+
+                    // Mau Sac
                     MauSac ms = mauSacRepo.searchBytenms(tenMauSac);
                     if (ms == null) {
                         ms = new MauSac();
@@ -92,9 +87,8 @@ private MauSacRepo mauSacRepo;
                         mauSacRepo.save(ms);
                     }
                     sanPham.setMauSac(ms);
-                    //Size
-//                    String tenSize = row.getCell(5).getStringCellValue();  // Assuming the foreign key is in the second column
-//
+
+                    // Size
                     Size size = sizeRepo.searchByten(tenSize);
                     if (size == null) {
                         size = new Size();
@@ -102,10 +96,9 @@ private MauSacRepo mauSacRepo;
                         size.setSoLuong(soLuongTon);
                         sizeRepo.save(size);
                     }
-//
                     sanPham.setSize(size);
-                    //ChatLieu
-//                    String tenChatLieu = row.getCell(6).getStringCellValue();  // Assuming the foreign key is in the second column
+
+                    // ChatLieu
                     ChatLieu chatLieu = chatLieuRepo.searchtencl(tenChatLieu);
                     if (chatLieu == null) {
                         chatLieu = new ChatLieu();
@@ -113,8 +106,8 @@ private MauSacRepo mauSacRepo;
                         chatLieuRepo.save(chatLieu);
                     }
                     sanPham.setChatLieu(chatLieu);
-                    //Thuong Hieu
-//                    String tenThuongHieu = row.getCell(7).getStringCellValue();  // Assuming the foreign key is in the second column
+
+                    // Thuong Hieu
                     ThuongHieu thuongHieu = thuongHieuRepo.searchByten(tenThuongHieu);
                     if (thuongHieu == null) {
                         thuongHieu = new ThuongHieu();
@@ -122,13 +115,14 @@ private MauSacRepo mauSacRepo;
                         thuongHieuRepo.save(thuongHieu);
                     }
                     sanPham.setThuongHieu(thuongHieu);
+
                     sanPham.setNgayTao(LocalDate.now());
                     sanPham.setHinhAnhURL(row.getCell(8).getStringCellValue());
                     sanPhamRepo.save(sanPham);
                 }
             }
+
             workbook.close();
-//            file.close();
         }
     }
 
