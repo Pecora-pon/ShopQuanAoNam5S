@@ -9,19 +9,19 @@ import java.util.UUID;
 public interface ShopService {
     Page<SanPham> getPage(int pageNumber, int pageSize);
 
-    List<SanPham> findByThuongHieu(String thuonghieuid);
+   Page<SanPham> getPages(int page, int size, String thuonghieuID,String sizeID,String tenSanPham);
 
-    List<SanPham> findByMauSacID(String mauSacID);
+    Page<SanPham>  findByMauSacID(int page, int size,String mauSacID);
 
-    List<SanPham> findByChatLieuID(String chatLieuID);
+    Page<SanPham> findByChatLieuID(int page, int size,String chatLieuID);
 
-    List<SanPham> findBySizeID(String sizeID);
+    Page<SanPham> findBySizeID(int page, int size,String sizeID);
 
-    List<SanPham> findByTenSanPham(String tenSanPham);
+    Page<SanPham> findByTenSanPham(int page, int size,String tenSanPham);
 
     List<SanPham> findByHinhAnhURL(String hinhAnhURL);
 
-    List<SanPham> findByProductInPriceRange(Double minPrice,Double maxPrice);
+    Page<SanPham> findByProductInPriceRange(int page, int size,Double minPrice,Double maxPrice);
 
     List<SanPham> getAll();
 
