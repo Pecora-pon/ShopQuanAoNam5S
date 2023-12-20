@@ -459,10 +459,10 @@
 <!-- Print Button -->
 <div style="display: flex;">
 
-    <a href="" class="print-button">Continue Shopping</a>
+    <a href="/list-san-pham/page" class="print-button">Continue Shopping</a>
 
 
-    <a href="" class="print-button">Back to my history</a>
+    <a href="/thanhcong" class="print-button">Back to my history</a>
 
     <a href="javascript:window.print()" class="print-button">Print this invoice</a>
 </div>
