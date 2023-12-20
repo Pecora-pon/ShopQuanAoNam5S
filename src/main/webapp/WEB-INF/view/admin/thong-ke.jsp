@@ -164,7 +164,6 @@
                 <!-- Layouts -->
 
 
-
                 <li class="menu-header small text-uppercase"><span class="menu-header-text">Quản lý sản phẩm</span></li>
 
                 <!-- User interface -->
@@ -376,7 +375,8 @@
                                         <div class="card-body">
                                             <h5 class="card-title text-primary">Thống kê doanh số 🎉</h5>
                                             <p class="mb-4">
-                                                Thống kê doanh số của cửa hàng <span class="fw-bold">trong năm 2023</span>
+                                                Thống kê doanh số của cửa hàng <span
+                                                    class="fw-bold">trong năm 2023</span>
                                             </p>
 
 
@@ -384,7 +384,10 @@
                                     </div>
                                     <div class="col-sm-5 text-center text-sm-left">
                                         <div class="card-body pb-0 px-0 px-md-4">
-                                            <img src="../admin/assets/img/illustrations/man-with-laptop-light.png" height="140" alt="View Badge User" data-app-dark-img="illustrations/man-with-laptop-dark.png" data-app-light-img="illustrations/man-with-laptop-light.png">
+                                            <img src="../admin/assets/img/illustrations/man-with-laptop-light.png"
+                                                 height="140" alt="View Badge User"
+                                                 data-app-dark-img="illustrations/man-with-laptop-dark.png"
+                                                 data-app-light-img="illustrations/man-with-laptop-light.png">
                                         </div>
                                     </div>
                                 </div>
@@ -397,14 +400,19 @@
                                         <div class="card-body">
                                             <div class="card-title d-flex align-items-start justify-content-between">
                                                 <div class="avatar flex-shrink-0">
-                                                    <img src="../admin/assets/img/icons/unicons/chart-success.png" alt="chart success" class="rounded">
+                                                    <img src="../admin/assets/img/icons/unicons/chart-success.png"
+                                                         alt="chart success" class="rounded">
                                                 </div>
                                                 <div class="dropdown">
-                                                    <button class="btn p-0" type="button" id="cardOpt3" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn p-0" type="button" id="cardOpt3"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
-                                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt3">
-                                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                    <div class="dropdown-menu dropdown-menu-end"
+                                                         aria-labelledby="cardOpt3">
+                                                        <a class="dropdown-item" href="javascript:void(0);">View
+                                                            More</a>
                                                         <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                                     </div>
                                                 </div>
@@ -420,14 +428,19 @@
                                         <div class="card-body">
                                             <div class="card-title d-flex align-items-start justify-content-between">
                                                 <div class="avatar flex-shrink-0">
-                                                    <img src="../admin/assets/img/icons/unicons/wallet-info.png" alt="Credit Card" class="rounded">
+                                                    <img src="../admin/assets/img/icons/unicons/wallet-info.png"
+                                                         alt="Credit Card" class="rounded">
                                                 </div>
                                                 <div class="dropdown">
-                                                    <button class="btn p-0" type="button" id="cardOpt6" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn p-0" type="button" id="cardOpt6"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
-                                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt6">
-                                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                    <div class="dropdown-menu dropdown-menu-end"
+                                                         aria-labelledby="cardOpt6">
+                                                        <a class="dropdown-item" href="javascript:void(0);">View
+                                                            More</a>
                                                         <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                                     </div>
                                                 </div>
@@ -444,19 +457,20 @@
                         <div class="col-12 col-lg-8 order-2 order-md-3 order-lg-2 mb-4">
                             <div class="card">
                                 <div class="row row-bordered g-0">
-                                    <div class="col-md-8">
-                                        <h5 class="card-header m-0 me-2 pb-3 text-primary">Số lượng sản phẩm bán ra theo tháng</h5>
+                                    <div class="col-md-10">
+                                        <h5 class="card-header m-0 me-2 pb-3 text-primary">Số lượng sản phẩm bán ra theo
+                                            tháng</h5>
                                         <canvas id="myColumnChart" width="400" height="200"></canvas>
 
                                         <script>
                                             var data = {
-                                                labels: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[0]}" />,</c:forEach>],
+                                                labels: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[0]}" />, </c:forEach>],
                                                 datasets: [{
                                                     label: "Số lượng sản phẩm bán ra",
                                                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                                                     borderColor: 'rgba(75, 192, 192, 1)',
                                                     borderWidth: 1,
-                                                    data: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[1]}" />,</c:forEach>],
+                                                    data: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[1]}" />, </c:forEach>],
                                                 }]
                                             };
 
@@ -476,30 +490,51 @@
                                             });
                                         </script>
                                     </div>
-                                    <div class="col-md-4">
-                                        <h5 class="card-header m-0 me-2 pb-3 text-primary">Biểu đồ đơn hàng</h5>
-                                        <canvas id="myPieChart" width="400" height="200"></canvas>
+                                    <%--                                    <div class="col-md-4">--%>
+                                    <%--                                    --%>
+                                    <%--                                    </div>--%>
 
-                                        <script>
-                                            var data = {
-                                                labels: ['Đã đặt hàng', 'Vận chuyển', 'Chờ xác nhận', 'Thành Công', 'Đã hủy', 'Chờ xác nhận đơn hàng'],
-                                                datasets: [{
-                                                    data: [<c:forEach var="item" items="${ordersByStatus}"><c:out value="${item[1]}" />,</c:forEach>],
-                                                    backgroundColor: ['rgba(148, 0, 211, 0.2)', 'rgba(169, 169, 169, 0.2)', 'rgba(0, 128, 0, 0.2)', 'rgba(255, 182, 193, 0.2)', 'rgba(255, 165, 0, 0.2)', 'rgba(0, 128, 0, 0.2)'],
-                                                    borderColor: ['rgba(148, 0, 211, 1)', 'rgba(169, 169, 169, 1)', 'rgba(0, 128, 0, 1)', 'rgba(255, 182, 193, 1)', 'rgba(255, 165, 0, 1)', 'rgba(0, 128, 0, 1)'],
-                                                    borderWidth: 1
-                                                }]
-                                            };
+                                </div>
+                            </div>
+                            <div class="card">
+                                <div class="card-body">
+                                    <div class="card-title d-flex align-items-start justify-content-between">
+                                        <div class="dropdown">
+                                            <button class="btn p-0" type="button" id="" data-bs-toggle="dropdown"
+                                                    aria-haspopup="true" aria-expanded="false">
+                                                <i class="bx bx-dots-vertical-rounded"></i>
+                                            </button>
+                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
+                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
+                                            </div>
+                                        </div>
+                                    </div>
 
-                                            var options = {};
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                            <h3 class="card-title text-nowrap mb-2">Đã đặt hàng</h3>
+                                            <h4 class="text-danger fw-semibold">${ordersByStatus}</h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3 class="card-title text-nowrap mb-2">Vận chuyển</h3>
+                                            <h4 class="text-danger fw-semibold">${ordersByStatus1}</h4>
+                                        </div>
+                                    </div>
 
-                                            var ctx = document.getElementById('myPieChart').getContext('2d');
-                                            var myPieChart = new Chart(ctx, {
-                                                type: 'pie',
-                                                data: data,
-                                                options: options
-                                            });
-                                        </script>
+                                    <div class="row mt-3">
+                                        <div class="col-md-4">
+                                            <h3 class="card-title text-nowrap mb-2">Chờ xác nhận</h3>
+                                            <h4 class="text-danger fw-semibold">${ordersByStatus2}</h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3 class="card-title text-nowrap mb-2">Thành công</h3>
+                                            <h4 class="text-danger fw-semibold">${ordersByStatus3}</h4>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h3 class="card-title text-nowrap mb-2">Đã hủy</h3>
+                                            <h4 class="text-danger fw-semibold">${ordersByStatus4}</h4>
+                                        </div>
                                     </div>
 
                                 </div>
@@ -513,14 +548,19 @@
                                         <div class="card-body">
                                             <div class="card-title d-flex align-items-start justify-content-between">
                                                 <div class="avatar flex-shrink-0">
-                                                    <img src="../admin/assets/img/icons/unicons/paypal.png" alt="Credit Card" class="rounded">
+                                                    <img src="../admin/assets/img/icons/unicons/paypal.png"
+                                                         alt="Credit Card" class="rounded">
                                                 </div>
                                                 <div class="dropdown">
-                                                    <button class="btn p-0" type="button" id="cardOpt4" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn p-0" type="button" id="cardOpt4"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
-                                                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                    <div class="dropdown-menu dropdown-menu-end"
+                                                         aria-labelledby="cardOpt4">
+                                                        <a class="dropdown-item" href="javascript:void(0);">View
+                                                            More</a>
                                                         <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                                     </div>
                                                 </div>
@@ -537,14 +577,18 @@
                                         <div class="card-body">
                                             <div class="card-title d-flex align-items-start justify-content-between">
                                                 <div class="avatar flex-shrink-0">
-                                                    <img src="../admin/assets/img/icons/unicons/cc-primary.png" alt="Credit Card" class="rounded">
+                                                    <img src="../admin/assets/img/icons/unicons/cc-primary.png"
+                                                         alt="Credit Card" class="rounded">
                                                 </div>
                                                 <div class="dropdown">
-                                                    <button class="btn p-0" type="button" id="cardOpt1" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                    <button class="btn p-0" type="button" id="cardOpt1"
+                                                            data-bs-toggle="dropdown" aria-haspopup="true"
+                                                            aria-expanded="false">
                                                         <i class="bx bx-dots-vertical-rounded"></i>
                                                     </button>
                                                     <div class="dropdown-menu" aria-labelledby="cardOpt1">
-                                                        <a class="dropdown-item" href="javascript:void(0);">View More</a>
+                                                        <a class="dropdown-item" href="javascript:void(0);">View
+                                                            More</a>
                                                         <a class="dropdown-item" href="javascript:void(0);">Delete</a>
                                                     </div>
                                                 </div>
@@ -564,13 +608,13 @@
 
                                             <script>
                                                 var data = {
-                                                    labels: [<c:forEach var="item" items="${totalRevenueByMonth}"><c:out value="${item[0]}" />,</c:forEach>],
+                                                    labels: [<c:forEach var="item" items="${totalRevenueByMonth}"><c:out value="${item[0]}" />, </c:forEach>],
                                                     datasets: [{
                                                         label: "Số tiền nhận vào",
                                                         borderColor: 'rgba(75, 192, 192, 1)',
                                                         borderWidth: 2,
                                                         fill: false,
-                                                        data: [<c:forEach var="item" items="${totalRevenueByMonth}"><c:out value="${item[1]}" />,</c:forEach>],
+                                                        data: [<c:forEach var="item" items="${totalRevenueByMonth}"><c:out value="${item[1]}" />, </c:forEach>],
                                                     }]
                                                 };
 
@@ -676,19 +720,19 @@
                 window.location.href = '/khach-hang';
             } else if (searchTerm === 'hien thi' || searchTerm === 'hiển thị') {
                 window.location.href = '/hien-thi';
-            } else if (searchTerm === 'chat lieu'|| searchTerm === 'chất liệu') {
+            } else if (searchTerm === 'chat lieu' || searchTerm === 'chất liệu') {
                 window.location.href = '/chat-lieu';
-            } else if (searchTerm === 'mau sac'|| searchTerm === 'thương hiệu') {
+            } else if (searchTerm === 'mau sac' || searchTerm === 'thương hiệu') {
                 window.location.href = '/mau-sac';
-            } else if (searchTerm === 'nhap kho'|| searchTerm === 'nhập kho') {
+            } else if (searchTerm === 'nhap kho' || searchTerm === 'nhập kho') {
                 window.location.href = '/nhap-kho';
             } else if (searchTerm === 'size') {
                 window.location.href = '/size';
-            } else if (searchTerm === 'thuong hieu'|| searchTerm === 'thương hiệu') {
+            } else if (searchTerm === 'thuong hieu' || searchTerm === 'thương hiệu') {
                 window.location.href = '/thuong-hieu';
-            } else if (searchTerm === 'giam gia'|| searchTerm === 'giảm giá') {
+            } else if (searchTerm === 'giam gia' || searchTerm === 'giảm giá') {
                 window.location.href = '/giam-gia';
-            } else if (searchTerm === 'giam gia chi tiet'|| searchTerm === 'giảm giá chi tiết') {
+            } else if (searchTerm === 'giam gia chi tiet' || searchTerm === 'giảm giá chi tiết') {
                 window.location.href = '/giam-gia-chi-tiet';
             } else {
                 // Xử lý chuyển hướng mặc định hoặc thông báo lỗi nếu cần
