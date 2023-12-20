@@ -410,8 +410,9 @@
                                 <th>Khách Hàng</th>
                                 <th>Số Lượng</th>
                                 <th>Ngày Đặt</th>
+                                <th>Lý do</th>
                                 <th>Trạng Thái</th>
-
+                                <th>Hình Thức</th>
                                 <th>Tổng Tiền</th>
                                 <th>Action</th>
                             </tr>
@@ -435,6 +436,7 @@
                                     <td>${dhct.donHang.khachHang.username}</td>
                                     <td>${dhct.soLuong}</td>
                                     <td>${dhct.donHang.ngayDatHang}</td>
+                                    <td>${dhct.lyDoHuy}</td>
                                     <td>
                                         <c:if test="${dhct.trangThai == 6}"> Đơn hàng chờ hủy </c:if>
                                         <c:if test="${dhct.trangThai == 5}"> Chờ xác nhận đơn hàng </c:if>
@@ -444,7 +446,8 @@
                                         <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
                                         <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
                                     </td>
-
+                                    <td><c:if test="${dhct.donHang.hinhThucThanhToan == 1}">Tiền Mặt</c:if>
+                                        <c:if test="${dhct.donHang.hinhThucThanhToan == 2}">Chuyển Khoản</c:if></td>
                                     <td>${dhct.tongTien}</td>
                                     <td>
                                         <div class="dropdown">

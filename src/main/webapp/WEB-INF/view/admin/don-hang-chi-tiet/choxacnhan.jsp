@@ -412,7 +412,7 @@
                                 <th>Số Lượng</th>
                                 <th>Ngày Đặt</th>
                                 <th>Trạng Thái</th>
-
+                                <th>Hình Thức</th>
                                 <th>Tổng Tiền</th>
                                 <th>Action</th>
                             </tr>
@@ -444,6 +444,8 @@
                                         <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
                                         <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
                                     </td>
+                                    <td><c:if test="${dhct.donHang.hinhThucThanhToan == 1}">Tiền Mặt</c:if>
+                                        <c:if test="${dhct.donHang.hinhThucThanhToan == 2}">Chuyển Khoản</c:if></td>
 
                                     <td>${dhct.tongTien}</td>
                                     <td>
@@ -462,6 +464,8 @@
                                                     <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
                                                         <a class="dropdown-item" href="/detaildh/${dhct.donHang.donHangID}"><i
                                                                 class="bx bx-trash me-1"></i>Chi Tiết</a>
+                                                        <a class="dropdown-item" href="/nvxacnhan/${dhct.donHang.donHangID}"><i
+                                                                class="bx bx-edit-alt me-1"></i> Xác Nhận</a>
                                             </div>
                                         </div>
                                     </td>

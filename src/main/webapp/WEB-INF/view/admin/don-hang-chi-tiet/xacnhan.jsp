@@ -410,6 +410,7 @@
                                 <th>Số Lượng</th>
                                 <th>Ngày Đặt</th>
                                 <th>Trạng Thái</th>
+                                <th>Hình Thức</th>
                                 <th>Tổng Tiền</th>
                                 <th>Action</th>
                             </tr>
@@ -442,7 +443,8 @@
                                             <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
                                             <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
                                         </td>
-
+                                        <td><c:if test="${dhct.donHang.hinhThucThanhToan == 1}">Tiền Mặt</c:if>
+                                            <c:if test="${dhct.donHang.hinhThucThanhToan == 2}">Chuyển Khoản</c:if></td>
                                         <td>${dhct.tongTien}</td>
                                         <td>
                                             <div class="dropdown">
@@ -459,7 +461,7 @@
                                                        href="/chuyenttt/${dhct.donHang.donHangID}"><i
                                                             class="bx bx-edit-alt me-1"></i></i> Xác nhận đơn hàng</a>
                                                     <a class="dropdown-item" href="/detaildh6/${dhct.donHang.donHangID}"><i
-                                                            class="bx bx-trash me-1"></i>Chi Tiết</a>
+                                                            class="bx bx-edit-alt me-1"></i></i>Chi Tiết</a>
                                                         <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
                                                     <a class="dropdown-item" href="/huyddd/${dhct.donHang.donHangID}"><i
                                                             class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
