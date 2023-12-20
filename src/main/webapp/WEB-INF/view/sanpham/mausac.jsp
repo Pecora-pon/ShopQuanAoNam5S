@@ -384,7 +384,7 @@
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Số Lượng</label>
                                         <form:input class="form-control" path="soLuong" value="${ms.soLuong}"/>
-                                        <form:errors path="tenMauSac"/>  </div>
+                                    </div>
                                     <div class="mb-3 col-md-6">
                                         <c:if test="${!empty repon.error}">
                                             <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
@@ -429,6 +429,7 @@
                                 <tr>
                                     <td>${mausac.mauSacID}</td>
                                     <td>${mausac.tenMauSac}</td>
+                                    <td>${mausac.soLuong}</td>
 <%--                                    <td>--%>
 <%--                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>--%>
 <%--                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>--%>

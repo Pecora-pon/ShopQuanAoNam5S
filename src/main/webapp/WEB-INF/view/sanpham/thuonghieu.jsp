@@ -384,7 +384,9 @@
                                         <c:if test="${!empty repon.error}">
                                             <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
                                         </c:if>
-
+                                        <c:if test="${not empty repon.status}">
+                                            <div class="alert alert-success">${repon.status}</div>
+                                        </c:if>
                                     </div>
                                 </div>
                                 <div class="mt-2">
