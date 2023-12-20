@@ -1,6 +1,7 @@
 package com.example.demo.repository;
 
 
+import com.example.demo.entity.KhachHang;
 import com.example.demo.entity.NhanVien;
 import com.example.demo.entity.Size;
 import jakarta.transaction.Transactional;
@@ -31,5 +32,9 @@ public interface NhanVienRepo extends JpaRepository<NhanVien,Integer> {
     void deleteByI(@Param("nhanVienID") int chatLieuID);
     @Query(value = "select * from NhanVien p WHERE p.trangThai =1 order by p.nhanVienID desc",nativeQuery = true)
     List<NhanVien> getAll();
+
+    Optional<NhanVien> findByTenDangNhap(String tenDangNhap);
+    Optional<NhanVien> findByEmail( String email);
+    Optional<NhanVien> findBySoDienThoai(String soDienThoai);
 
 }
