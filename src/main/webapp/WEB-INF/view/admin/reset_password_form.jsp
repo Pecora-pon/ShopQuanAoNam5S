@@ -53,9 +53,33 @@
     <link rel="stylesheet" href="../admin/assets/vendor/css/core.css" class="template-customizer-core-css" />
     <link rel="stylesheet" href="../admin/assets/vendor/css/theme-default.css" class="template-customizer-theme-css" />
     <link rel="stylesheet" href="../admin/assets/css/demo.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
 
+    <!-- Include SweetAlert2 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <!-- Vendors CSS -->
     <link rel="stylesheet" href="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <script>
+        function validatePassword() {
+            // Kiểm tra mật khẩu
+            var password = $("#password").val();
+            if (password.includes(" ") || password.length < 8 || !/[A-Z]/.test(password)) {
+                // Hiển thị thông báo bằng SweetAlert2
+                Swal.fire({
+                    icon: 'error',
+                    title: 'Invalid Password',
+                    text: 'Mật khẩu không hợp lệ. Mật khẩu phải có ít nhất 8 ký tự và bao gồm ít nhất 1 chữ cái viết hoa. Không được chứa dấu cách.',
+                });
+
+                // Ngăn chặn form được submit
+                return false;
+            } else {
+                // Nếu mật khẩu hợp lệ, cho phép submit form
+                return true;
+            }
+        }
+    </script>
+
 
     <!-- Page CSS -->
     <!-- Page -->
@@ -141,7 +165,7 @@
                     <!-- /Logo -->
                     <h4 class="mb-2">Reset Password</h4>
 
-                    <form:form id="formAuthentication" class="mb-3" action="/reset_password/${token}"  modelAttribute="kh" method="POST">
+                    <form:form id="formAuthentication" class="mb-3" action="/reset_password/${token}" onsubmit="return validatePassword()"  modelAttribute="kh" method="POST">
 
 
 
@@ -157,7 +181,7 @@
                                                required oninput="checkPasswordMatch(this);" />
                                     </p>
                                     <p class="text-center">
-                                        <input type="submit" value="Change Password" class="btn btn-primary" />
+                                        <input type="submit" value="Change Password" class="btn btn-primary" onclick="validateForm()"/>
                                     </p>
                                 </div>
                             </div>

@@ -428,13 +428,14 @@
                                                         <form:input class="form-control" path="matKhau" value="${nv.matKhau}"/>
                                                         <form:errors path="matKhau"/>
                                                     </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Trạng thái</label>
-                                                        <form:radiobutton path="trangThai" value="1" checked="true"/> Hoạt động
-                                                        <form:radiobutton path="trangThai" value="0"/> Nghỉ
-                                                    </div>
+<%--                                                    <div class="mb-3 col-md-6">--%>
+<%--                                                        <label class="form-label">Trạng thái</label>--%>
+<%--                                                        <form:radiobutton path="trangThai" value="1" checked="true"/> Hoạt động--%>
+<%--                                                        <form:radiobutton path="trangThai" value="0"/> Nghỉ--%>
+<%--                                                    </div>--%>
                                                 </div>
                                             </div>
+
                                             <div class="modal-footer">
                                                 <button type="submit" class="btn btn-primary">Thêm</button>
                                                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
@@ -443,6 +444,12 @@
                                     </div>
                                 </div>
                             </form:form>
+                            <c:if test="${!empty repon.error}">
+                                <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
+                            </c:if>
+                            <c:if test="${not empty repon.status}">
+                                <div class="alert alert-success">${repon.status}</div>
+                            </c:if>
                         </div>
                     </div>
 
@@ -470,7 +477,7 @@
                                 <th>Tên đăng nhập</th>
                                 <th>Email</th>
 <%--                                <th>Mật khẩu</th>--%>
-                                <th>Trạng thái</th>
+<%--                                <th>Trạng thái</th>--%>
                                 <th>Action</th>
                             </tr>
                             </thead>
@@ -485,10 +492,10 @@
                                     <td>${nhanvien.tenDangNhap}</td>
                                     <td>${nhanvien.email}</td>
 <%--                                    <td>${nhanvien.matKhau}</td>--%>
-                                    <td>
-                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>
-                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>
-                                    </td>
+<%--                                    <td>--%>
+<%--                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>--%>
+<%--                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>--%>
+<%--                                    </td>--%>
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
