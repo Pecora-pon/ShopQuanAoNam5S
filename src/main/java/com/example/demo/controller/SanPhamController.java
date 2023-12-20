@@ -16,6 +16,7 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.File;
 import java.io.IOException;
@@ -62,7 +63,7 @@ public class SanPhamController {
     @RequestMapping(value = "/san-pham-add", method = RequestMethod.POST)
     public String addSanPham(@RequestParam("hinhAnhURL") MultipartFile file,
                              @Valid @ModelAttribute("sp") SanPham sanPham,
-                             BindingResult result, Model model) {
+                             BindingResult result, Model model,RedirectAttributes redirectAttributes) {
         
         if (!file.isEmpty()) {
             try {
@@ -89,9 +90,9 @@ public class SanPhamController {
         model.addAttribute("listSize", sizeList);
 
         model.addAttribute("sp", new SanPham());
-        model.addAttribute("repon", respon);
+        redirectAttributes.addFlashAttribute("repon", respon);
         model.addAttribute("listSanPham", sanPhamList);
-        return "sanpham/sanpham";
+        return "redirect:/san-pham/page";
     }
     @RequestMapping("/san-pham/delete/{sanPhamID}")
     public String delete(@PathVariable("sanPhamID")UUID sanPhamID){
@@ -115,14 +116,14 @@ public class SanPhamController {
         return "sanpham/sanpham-update";
     }
     @RequestMapping(value = "/san-pham/update/{sanPhamID}", method = RequestMethod.POST)
-    public String update(@PathVariable("sanPhamID") UUID sanPhamID, SanPham sanPham,Model model) {
+    public String update(@PathVariable("sanPhamID") UUID sanPhamID, SanPham sanPham, Model model, RedirectAttributes redirectAttributes) {
        Respon<SanPham>respon= sanPhamService.update(sanPhamID, sanPham);
-       model.addAttribute("repon",respon);
+       redirectAttributes.addFlashAttribute("repon",respon);
         return "redirect:/san-pham/page";
     }
     @RequestMapping(value = "/san-pham/page", method = RequestMethod.GET)
     public String page(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "3") int size,
+                       @RequestParam(defaultValue = "6") int size,
                        Model model,
                        @Param("keyword") String keyword,
                        @Param("getimage/hinhAnhURL")String hinhAnhURL) {

@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 @Controller
@@ -29,13 +30,13 @@ public class SizeController {
         return "sanpham/size";
     }
     @RequestMapping(value = "/size-add",method = RequestMethod.POST)
-    public String addMauSac(@Valid @ModelAttribute("si") Size size, BindingResult result,Model model){
+    public String addMauSac(@Valid @ModelAttribute("si") Size size, BindingResult result,Model model,RedirectAttributes redirectAttributes){
         Respon<Size>respon=sizeService.add(size);
         List<Size> sizeList=sizeService.getAll();
         model.addAttribute("listSize",sizeList);
         model.addAttribute("si",new Size());
-        model.addAttribute("repon",respon);
-        return "sanpham/size";
+        redirectAttributes.addFlashAttribute("repon",respon);
+        return "redirect:/size/page";
     }
     @RequestMapping("/size/delete/{sizeID}")
     public String deletesd(@PathVariable("sizeID") Integer sizeID){
@@ -51,9 +52,9 @@ public class SizeController {
         return "sanpham/size-update";
     }
     @RequestMapping(value = "/size/update/{sizeID}",method = RequestMethod.POST)
-    public String update(@PathVariable("sizeID") Integer sizeID, Size size,Model model){
+    public String update(@PathVariable("sizeID") Integer sizeID, Size size, Model model, RedirectAttributes redirectAttributes){
        Respon<Size>respon= sizeService.update(sizeID,size);
-       model.addAttribute("repon",respon);
+       redirectAttributes.addFlashAttribute("repon",respon);
         return "redirect:/size/page";
     }
     @RequestMapping("/size/search")

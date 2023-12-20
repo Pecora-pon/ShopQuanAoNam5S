@@ -13,6 +13,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 @Controller
@@ -29,12 +30,12 @@ public class ChatLieuController {
         return "sanpham/chatlieu";
     }
     @RequestMapping(value = "/chat-lieu-add",method = RequestMethod.POST)
-    public String addChatLieu(@Valid @ModelAttribute("cl") ChatLieu chatLieu, BindingResult result, Model model){
+    public String addChatLieu(@Valid @ModelAttribute("cl") ChatLieu chatLieu, BindingResult result, Model model,RedirectAttributes redirectAttributes){
         Respon<ChatLieu> respon=chatLieuService.add(chatLieu);
         List<ChatLieu> chatLieuList = chatLieuService.getAll();
         model.addAttribute("listChatLieu",chatLieuList);
-        model.addAttribute("repon",respon);
-        return "sanpham/chatlieu";
+        redirectAttributes.addFlashAttribute("repon",respon);
+        return "redirect:/chat-lieu/page";
     }
     @RequestMapping("/chat-lieu/delete/{chatLieuID}")
     public String delete(@PathVariable("chatLieuID") Integer chatLieuID,Model model){
@@ -52,12 +53,12 @@ public class ChatLieuController {
         return "sanpham/chatlieu-update";
     }
     @RequestMapping(value = "/chat-lieu/update/{chatLieuID}",method = RequestMethod.POST)
-    public String update(@PathVariable("chatLieuID") Integer chatLieuID,ChatLieu chatLieu,Model model){
+    public String update(@PathVariable("chatLieuID") Integer chatLieuID, ChatLieu chatLieu, Model model, RedirectAttributes redirectAttributes){
         Respon<ChatLieu> respon= chatLieuService.update(chatLieuID,chatLieu);
         List<ChatLieu> chatLieuList = chatLieuService.getAll();
         model.addAttribute("listChatLieu",chatLieuList);
-        model.addAttribute("repon",respon);
-        return "redirect:/chat-lieu";
+        redirectAttributes.addFlashAttribute("repon",respon);
+        return "redirect:/chat-lieu/page";
     }
     @RequestMapping("/chat-lieu/search")
     public String search(Model model,

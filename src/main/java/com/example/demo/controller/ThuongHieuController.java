@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 @Controller
@@ -29,12 +30,12 @@ public class ThuongHieuController {
         return "sanpham/thuonghieu";
     }
     @RequestMapping(value = "/thuong-hieu-add",method = RequestMethod.POST)
-    public String addthuonghieu(@Valid @ModelAttribute("th") ThuongHieu thuongHieu, BindingResult result, Model model){
+    public String addthuonghieu(@Valid @ModelAttribute("th") ThuongHieu thuongHieu, BindingResult result, Model model, RedirectAttributes redirectAttributes){
         List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
         model.addAttribute("listThuongHieu",thuongHieuList);
        Respon<ThuongHieu>respon= thuongHieuService.add(thuongHieu);
-       model.addAttribute("repon",respon);
-        return "sanpham/thuonghieu";
+      redirectAttributes.addFlashAttribute("repon",respon);
+        return "redirect:/thuong-hieu/page";
     }
     @RequestMapping("/thuong-hieu/delete/{thuongHieuID}")
     public String delete(@PathVariable("thuongHieuID") Integer thuongHieuID){
@@ -50,9 +51,9 @@ public class ThuongHieuController {
         return "sanpham/thuonghieu-update";
     }
     @RequestMapping(value = "/thuong-hieu/update/{thuongHieuID}",method = RequestMethod.POST)
-    public String update(@PathVariable("thuongHieuID") Integer thuongHieuID,ThuongHieu thuongHieu,Model model){
+    public String update(@PathVariable("thuongHieuID") Integer thuongHieuID,ThuongHieu thuongHieu,Model model, RedirectAttributes redirectAttributes){
        Respon<ThuongHieu>respon= thuongHieuService.update(thuongHieuID,thuongHieu);
-       model.addAttribute("repon",respon);
+       redirectAttributes.addFlashAttribute("repon",respon);
         return "redirect:/thuong-hieu/page";
     }
     @RequestMapping("/thuong-hieu/search")

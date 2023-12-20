@@ -14,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
 
@@ -30,13 +31,13 @@ public class MauSacController {
         return "sanpham/mausac";
     }
     @RequestMapping(value = "/mau-sac-add",method = RequestMethod.POST)
-    public String addMauSac(@Valid @ModelAttribute("ms") MauSac mauSac, BindingResult result,Model model){
+    public String addMauSac(@Valid @ModelAttribute("ms") MauSac mauSac, BindingResult result, Model model, RedirectAttributes redirectAttributes){
         Respon<MauSac> respon=mauSacService.add(mauSac);
         List<MauSac>mauSacList=mauSacService.getAll();
         model.addAttribute("listMauSac",mauSacList);
         model.addAttribute("ms",new MauSac());
-        model.addAttribute("repon",respon);
-        return "sanpham/mausac";
+        redirectAttributes.addFlashAttribute("repon",respon);
+        return "redirect:/mau-sac/page";
     }
     @RequestMapping("/mau-sac/delete/{mauSacID}")
     public String delete(@PathVariable("mauSacID") Integer mauSacID,Model model){
@@ -54,11 +55,11 @@ public class MauSacController {
         return "sanpham/mausac-update";
     }
     @RequestMapping(value = "/mau-sac/update/{mauSacID}",method = RequestMethod.POST)
-    public String update(@PathVariable("mauSacID") Integer mauSacID, MauSac mauSac,Model model){
+    public String update(@PathVariable("mauSacID") Integer mauSacID, MauSac mauSac,Model model,RedirectAttributes redirectAttributes){
        Respon<MauSac>respon= mauSacService.update(mauSacID,mauSac);
         List<MauSac>mauSacList=mauSacService.getAll();
         model.addAttribute("listMauSac",mauSacList);
-       model.addAttribute("repon",respon);
+       redirectAttributes.addFlashAttribute("repon",respon);
         return "redirect:/mau-sac/page";
     }
     @RequestMapping("/mau-sac/search")
