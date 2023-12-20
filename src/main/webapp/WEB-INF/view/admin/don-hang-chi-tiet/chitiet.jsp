@@ -367,31 +367,7 @@
                     <!--Content -->
                     <!--Table add -->
 
-                    <div class="row">
-                        <div class="col-md-4 mb-3">
-                            <form action="/timkiemngayxn2" method="get" class="d-flex align-items-center">
-                                <label class="me-2">Ngày Đặt:</label>
-                                <input type="date" name="ngaydat" class="form-control" required>
-                                <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
-                            </form>
-                        </div>
 
-                        <div class="col-md-4 mb-3">
-                            <form action="/timkiemtenxn2" method="get" class="d-flex align-items-center">
-                                <label class="me-2">Tên Sản Phẩm:</label>
-                                <input type="text" name="ten" class="form-control" required>
-                                <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
-                            </form>
-                        </div>
-
-                        <div class="col-md-4 mb-3">
-                            <form action="/timkiemtongtienxn2" method="get" class="d-flex align-items-center">
-                                <label class="me-2">Tổng Tiền:</label>
-                                <input type="text" name="tongTien" class="form-control" required>
-                                <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
-                            </form>
-                        </div>
-                    </div>
                     <hr class="my-3">
                     <!--Table add -->
 
@@ -429,9 +405,9 @@
                                         </tr>
                                         <tr>
                                             <td class="item-info">
-                                                <strong>Tổng Tiền:</strong>
+                                                <strong>Giá Tiền:</strong>
                                             </td>
-                                            <td class="item-value">${dh.sanPham.giaSanPham}</td>
+                                            <td class="item-value">${dh.sanPham.giaSanPham*dh.soLuong}</td>
                                         </tr>
                                     </c:forEach>
 
