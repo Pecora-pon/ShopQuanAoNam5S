@@ -190,18 +190,19 @@
 <a href="/dangxem" class="primary-btn" >Xem Đơn Hang</a>
 <!-- Shopping Cart Section Begin -->
 <div>
-    <c:forEach items="${list}" var="dh">
+
         <div class="container">
             <div class="row">
                 <div class="col-lg-12">
                     <div class="order-details">
                         <h2>Thông Tin Đơn Hàng</h2>
+                        <c:forEach items="${list}" var="dh">
                         <div class="order-item">
 
                             <div class="order-content">
                                 <div class="item-info">
                                     <span class="item-label">Tên Sản Phẩm:</span>
-                                    <span class="item-value">${dh.sanPham.tenSanPham}</span>
+                                    <span class="item-value">${dh.sanPham.tenSanPham} - ${dh.sanPham.size.tenSize} - ${dh.sanPham.mauSac.tenMauSac}</span>
                                 </div>
                                 <div class="item-info">
                                     <span class="item-label">Số Lượng:</span>
@@ -212,19 +213,24 @@
                                     <span class="item-value">${dh.donHang.ngayDatHang}</span>
                                 </div>
                                 <div class="item-info">
-                                    <span class="item-label">Tổng Tiền:</span>
-                                    <span class="item-value">${dh.tongTien}</span>
+                                    <span class="item-label">Giá Tiền:</span>
+                                    <span class="item-value">${dh.sanPham.giaSanPham * dh.soLuong}</span>
                                 </div>
 <%--                                <a class="dropdown-item" href="/detail5/${dh.donHangChiTietID}"><i--%>
 <%--                                        class="bx bx-edit-alt me-1"></i>Đánh giá Về Sản Phẩm</a>--%>
                             </div>
+                        </div> </c:forEach> <c:set var="dh" value="${list}" />
+                        <div class="item-info">
+                            <span class="item-label" style="font-size: 20px">Tổng tiền:</span>
+                            <span class="item-value" style="font-size: 20px"><c:out value="${dh[0].tongTien}" /></span>
                         </div>
                         <!-- Thêm các đơn hàng khác nếu có -->
                     </div>
                 </div>
             </div>
         </div>
-    </c:forEach>
+
+
 </div>
 <!-- Shopping Cart Section End -->
 
