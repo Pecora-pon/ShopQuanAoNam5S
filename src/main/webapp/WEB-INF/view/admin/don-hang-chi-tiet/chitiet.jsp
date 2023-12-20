@@ -8,6 +8,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -407,7 +408,7 @@
                                             <td class="item-info">
                                                 <strong>Giá Tiền:</strong>
                                             </td>
-                                            <td class="item-value">${dh.sanPham.giaSanPham*dh.soLuong}</td>
+                                            <td class="item-value"><fmt:formatNumber value="${dh.sanPham.giaSanPham*dh.soLuong}" pattern="#,##0"/> VND</td>
                                         </tr>
                                     </c:forEach>
 
@@ -417,7 +418,7 @@
                                 <c:set var="dh" value="${list}" />
                                 <div class="item-info">
                                     <span class="item-label" style="font-size: 20px">Tổng tiền:</span>
-                                    <span class="item-value" style="font-size: 20px"><c:out value="${dh[0].tongTien}" /></span>
+                                    <span class="item-value" style="font-size: 20px"><fmt:formatNumber value="${dh[0].tongTien}" pattern="#,##0"/> VND</span>
                                 </div>
                             </div>
                         </div>
