@@ -1,8 +1,8 @@
 package com.example.demo.service.impl;
 
-import com.example.demo.entity.SanPham;
+import com.example.demo.entity.*;
 import com.example.demo.entity.responobject.Respon;
-import com.example.demo.repository.SanPhamRepo;
+import com.example.demo.repository.*;
 import com.example.demo.service.MauSacService;
 import com.example.demo.service.SanPhamService;
 import com.example.demo.service.SizeService;
@@ -20,10 +20,19 @@ import java.util.UUID;
 public class SanPhamServiceImpl implements SanPhamService {
     @Autowired
     SanPhamRepo sanPhamRepo;
-  @Autowired
+    @Autowired
     SizeService sizeService;
-  @Autowired
+    @Autowired
     MauSacService mauSacService;
+    @Autowired
+    MauSacRepo mauSacRepo;
+    @Autowired
+    SizeRepo sizeRepo;
+    @Autowired
+    ChatLieuRepository chatLieuRepository;
+    @Autowired
+    ThuongHieuRepo thuongHieuRepo;
+
     @Override
     public List<SanPham> getAll() {
         return sanPhamRepo.getAll();
@@ -52,15 +61,30 @@ public class SanPhamServiceImpl implements SanPhamService {
             if (containsOnlySpaces(sanPham)) {
                 respon.setError("Không được nhập nguyên dấu cách ở mỗi trường");
             } else {
-                if (sanPhamRepo.existsByTenSanPham(sanPham.getTenSanPham())) {
-                    respon.setError("Tên sản phẩm đã tồn tại. Vui lòng chọn tên khác.");
+                String tensp = sanPham.getTenSanPham();
+                int tenms = sanPham.getMauSac().getMauSacID();
+                int tensi = sanPham.getSize().getSizeID();
+                int tentt = sanPham.getThuongHieu().getThuongHieuID();
+                int tencl = sanPham.getChatLieu().getChatLieuID();
+                SanPham sp = sanPhamRepo.findByTenAndAttributes(tensp, tenms, tensi, tencl, tentt);
+
+                if (sp != null) {
+                    sp.setSoLuongTon(sp.getSoLuongTon() + sanPham.getSoLuongTon());
+                    sanPhamRepo.save(sp);
+                    respon.setStatus("Cập nhật số lượng thành công.");
+
+
                 } else {
                     sanPham.setNgayTao(LocalDate.now());
                     sanPham.setTinhTrang(0);
-                    sizeService.capnhat(sanPham.getSize().getSizeID(),sanPham.getSoLuongTon());
-                    mauSacService.capnhat(sanPham.getMauSac().getMauSacID(),sanPham.getSoLuongTon());
-                    sanPhamRepo.save(sanPham);
-                    respon.setStatus("Thành công");
+                    try {
+                        sizeService.capnhat(sanPham.getSize().getSizeID(), sanPham.getSoLuongTon());
+                        mauSacService.capnhat(sanPham.getMauSac().getMauSacID(), sanPham.getSoLuongTon());
+                        sanPhamRepo.save(sanPham);
+                        respon.setStatus("Thành công");
+                    } catch (IllegalArgumentException e) {
+                        respon.setError("Không đủ số lượng trong size hoặc mauSac.");
+                    }
                 }
             }
         } else {
@@ -76,6 +100,7 @@ public class SanPhamServiceImpl implements SanPhamService {
                 sanPham.getMoTa().trim().matches("^\\s*$");
 
     }
+
     // Phương thức kiểm tra xem một chuỗi có phải là số không
     private boolean isNumeric1(String str) {
         try {
@@ -95,6 +120,7 @@ public class SanPhamServiceImpl implements SanPhamService {
             return false;
         }
     }
+
     @Override
     public Respon<SanPham> update(UUID sanPhamID, SanPham sanPham) {
         Respon<SanPham> respon = new Respon<>();
@@ -102,16 +128,28 @@ public class SanPhamServiceImpl implements SanPhamService {
 
         if (sanPham1 != null) {
             // Check for empty or whitespace-only values
-            if (isValidSanPham(sanPham)) {
-                // Update logic here
-                updateSanPhamFields(sanPham1, sanPham);
-                sizeService.capnhat(sanPham.getSize().getSizeID(),sanPham.getSoLuongTon());
-                mauSacService.capnhat(sanPham.getMauSac().getMauSacID(),sanPham.getSoLuongTon());
+
+            sanPham1.setGiaSanPham(sanPham.getGiaSanPham());
+            sanPham1.setSanPhamID(sanPham.getSanPhamID());
+            sanPham1.setMauSac(sanPham.getMauSac());
+            sanPham1.setTenSanPham(sanPham.getTenSanPham());
+            sanPham1.setChatLieu(sanPham.getChatLieu());
+            sanPham1.setSize(sanPham.getSize());
+            sanPham1.setMoTa(sanPham.getMoTa());
+            sanPham1.setThuongHieu(sanPham.getThuongHieu());
+            sanPham1.setNgayTao(sanPham.getNgayTao());
+            sanPham1.setSoLuongTon(sanPham.getSoLuongTon());
+            sanPham1.setTinhTrang(sanPham.getTinhTrang());
+            sanPham1.setHinhAnhURL(sanPham.getHinhAnhURL());
+            try {
+                sizeService.capnhat(sanPham.getSize().getSizeID(), sanPham.getSoLuongTon());
+                mauSacService.capnhat(sanPham.getMauSac().getMauSacID(), sanPham.getSoLuongTon());
                 sanPhamRepo.save(sanPham1);
                 respon.setStatus("Thành công");
-            } else {
-                respon.setError("Không được để trống các trường bắt buộc");
+            } catch (IllegalArgumentException e) {
+                respon.setError("Không đủ số lượng trong size hoặc mauSac.");
             }
+
         } else {
             respon.setError("Không thành công");
         }
@@ -145,9 +183,9 @@ public class SanPhamServiceImpl implements SanPhamService {
     @Override
     public void delete(UUID sanPhamID) {
         sanPhamRepo.deleteByI(sanPhamID);
-        SanPham sanPham=sanPhamRepo.findById(sanPhamID).orElse(null);
-        sizeService.capnhat(sanPham.getSize().getSizeID(),-sanPham.getSoLuongTon());
-        mauSacService.capnhat(sanPham.getMauSac().getMauSacID(),-sanPham.getSoLuongTon());
+        SanPham sanPham = sanPhamRepo.findById(sanPhamID).orElse(null);
+        sizeService.capnhat(sanPham.getSize().getSizeID(), -sanPham.getSoLuongTon());
+        mauSacService.capnhat(sanPham.getMauSac().getMauSacID(), -sanPham.getSoLuongTon());
     }
 
     @Override
@@ -158,7 +196,7 @@ public class SanPhamServiceImpl implements SanPhamService {
     @Override
     public Page<SanPham> getPage(int pageNumber, int pageSize) {
         Pageable pageable = PageRequest.of(pageNumber, pageSize);
-        return sanPhamRepo.findByTinhTrang(0,pageable);
+        return sanPhamRepo.findByTinhTrang(0, pageable);
     }
 
     @Override

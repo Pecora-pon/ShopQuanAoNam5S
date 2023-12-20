@@ -53,10 +53,21 @@ private MauSacRepo mauSacRepo;
                     // Skip empty row
                     continue;
                 }
-
                 String ten = row.getCell(0).getStringCellValue();
-                SanPham tenSanPham = sanPhamRepo.findByTen(ten);
-                if (tenSanPham == null) {
+                String tenMauSac = row.getCell(4).getStringCellValue();
+                String tenSize = row.getCell(5).getStringCellValue();
+                String tenChatLieu = row.getCell(6).getStringCellValue();
+                String tenThuongHieu = row.getCell(7).getStringCellValue();
+
+                SanPham existingSanPham = sanPhamRepo.findByTenAndAttributes1(ten, tenMauSac, tenSize, tenChatLieu, tenThuongHieu);
+                if(existingSanPham!=null){
+                    int soLuongTonMoi = (int) row.getCell(3).getNumericCellValue();
+                    existingSanPham.setSoLuongTon(existingSanPham.getSoLuongTon() + soLuongTonMoi);
+                    sanPhamRepo.save(existingSanPham);
+                }
+//                String ten = row.getCell(0).getStringCellValue();
+
+                if (ten == null) {
                     SanPham sanPham = new SanPham();
                     sanPham.setTenSanPham(ten);
                     sanPham.setMoTa(row.getCell(1).getStringCellValue());
@@ -71,7 +82,7 @@ private MauSacRepo mauSacRepo;
                     sanPham.setSoLuongTon(soLuongTon);
                     sanPham.setTinhTrang(0);
                     //Mau Sac
-                    String tenMauSac = row.getCell(4).getStringCellValue();  // Assuming the foreign key is in the second column
+//                    String tenMauSac = row.getCell(4).getStringCellValue();  // Assuming the foreign key is in the second column
 //
                     MauSac ms = mauSacRepo.searchBytenms(tenMauSac);
                     if (ms == null) {
@@ -82,7 +93,7 @@ private MauSacRepo mauSacRepo;
                     }
                     sanPham.setMauSac(ms);
                     //Size
-                    String tenSize = row.getCell(5).getStringCellValue();  // Assuming the foreign key is in the second column
+//                    String tenSize = row.getCell(5).getStringCellValue();  // Assuming the foreign key is in the second column
 //
                     Size size = sizeRepo.searchByten(tenSize);
                     if (size == null) {
@@ -94,7 +105,7 @@ private MauSacRepo mauSacRepo;
 //
                     sanPham.setSize(size);
                     //ChatLieu
-                    String tenChatLieu = row.getCell(6).getStringCellValue();  // Assuming the foreign key is in the second column
+//                    String tenChatLieu = row.getCell(6).getStringCellValue();  // Assuming the foreign key is in the second column
                     ChatLieu chatLieu = chatLieuRepo.searchtencl(tenChatLieu);
                     if (chatLieu == null) {
                         chatLieu = new ChatLieu();
@@ -103,7 +114,7 @@ private MauSacRepo mauSacRepo;
                     }
                     sanPham.setChatLieu(chatLieu);
                     //Thuong Hieu
-                    String tenThuongHieu = row.getCell(7).getStringCellValue();  // Assuming the foreign key is in the second column
+//                    String tenThuongHieu = row.getCell(7).getStringCellValue();  // Assuming the foreign key is in the second column
                     ThuongHieu thuongHieu = thuongHieuRepo.searchByten(tenThuongHieu);
                     if (thuongHieu == null) {
                         thuongHieu = new ThuongHieu();

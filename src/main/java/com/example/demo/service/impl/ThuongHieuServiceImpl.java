@@ -33,10 +33,14 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
                 if (thuongHieuRepo.existsByTenThuongHieu(tenThuongHieu)) {
                     respon.setError("Tên đã tồn tại");
                 } else {
-                    thuongHieu.setTenThuongHieu(tenThuongHieu);
-                    thuongHieu.setTrangThai(0);
-                    thuongHieuRepo.save(thuongHieu);
-                    respon.setStatus("Thành công");
+                    if (!isNumeric(thuongHieu.getTenThuongHieu())) {
+                        thuongHieu.setTenThuongHieu(tenThuongHieu);
+                        thuongHieu.setTrangThai(0);
+                        thuongHieuRepo.save(thuongHieu);
+                        respon.setStatus("Thành công");
+                    }else {
+                        respon.setError("Tên không được chưa số");
+                    }
                 }
             } else {
                 respon.setError("Tên không được chỉ chứa nguyên cách");
@@ -52,16 +56,24 @@ public class ThuongHieuServiceImpl implements ThuongHieuService {
         // Check if the input contains only spaces
         return input.matches("^\\s*$");
     }
+    private boolean isNumeric(String input) {
+        // Check if the input contains only numeric characters
+        return input.matches("^[0-9]+$");
+    }
     @Override
     public Respon<ThuongHieu> update(Integer thuongHieuID, ThuongHieu thuongHieu) {
         Respon<ThuongHieu>respon=new Respon<>();
         ThuongHieu thuongHieu1=detail(thuongHieuID);
         if(thuongHieu1 !=null){
             if(!isOnlySpaces(thuongHieu.getTenThuongHieu())) {
-                thuongHieu1.setThuongHieuID(thuongHieu.getThuongHieuID());
-                thuongHieu1.setTenThuongHieu(thuongHieu.getTenThuongHieu());
-                thuongHieuRepo.save(thuongHieu);
-                respon.setStatus("Thành công");
+                if (!isNumeric(thuongHieu.getTenThuongHieu())) {
+                    thuongHieu1.setThuongHieuID(thuongHieu.getThuongHieuID());
+                    thuongHieu1.setTenThuongHieu(thuongHieu.getTenThuongHieu());
+                    thuongHieuRepo.save(thuongHieu);
+                    respon.setStatus("Thành công");
+                }else {
+                    respon.setError("Tên ko được nhập số");
+                }
             }else {
                 respon.setError("Không đúng đinh dạng");
             }

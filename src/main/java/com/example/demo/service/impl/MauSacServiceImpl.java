@@ -31,20 +31,24 @@ public class MauSacServiceImpl implements MauSacService {
 
         if (tenMauSac != null && !tenMauSac.isEmpty()) {
             // Check if the name contains only spaces
-            if (!isOnlySpaces(tenMauSac)) {
-                MauSac tenms=mauSacRepo.searchBytenms(tenMauSac);
-                if (tenms!=null) {
-                    tenms.setSoLuong(tenms.getSoLuong()+mauSac.getSoLuong());
-                    mauSacRepo.save(tenms);
-                    respon.setStatus("Cập nhật số lượng thành công");
+            if(mauSac.getSoLuong()>0) {
+                if (!isOnlySpaces(tenMauSac)) {
+                    MauSac tenms = mauSacRepo.searchBytenms(tenMauSac);
+                    if (tenms != null) {
+                        tenms.setSoLuong(tenms.getSoLuong() + mauSac.getSoLuong());
+                        mauSacRepo.save(tenms);
+                        respon.setStatus("Cập nhật số lượng thành công");
+                    } else {
+                        mauSac.setTenMauSac(tenMauSac);
+                        mauSac.setTrangThai(0);
+                        mauSacRepo.save(mauSac);
+                        respon.setStatus("Thành công");
+                    }
                 } else {
-                    mauSac.setTenMauSac(tenMauSac);
-                    mauSac.setTrangThai(0);
-                    mauSacRepo.save(mauSac);
-                    respon.setStatus("Thành công");
+                    respon.setError("Tên đang bị sai");
                 }
-            } else {
-                respon.setError("Tên đang bị sai");
+            }else {
+                respon.setError("Số Lượng không hợp lệ");
             }
         } else {
             respon.setError("Tên không được để trống");
@@ -63,11 +67,15 @@ public class MauSacServiceImpl implements MauSacService {
         MauSac mauSac1=detail(mauSacID);
         if(mauSac1!=null){
             if(!isOnlySpaces(mauSac.getTenMauSac())) {
-                mauSac1.setMauSacID(mauSac.getMauSacID());
-                mauSac1.setTenMauSac(mauSac.getTenMauSac());
-                mauSac1.setSoLuong(mauSac.getSoLuong());
-                mauSacRepo.save(mauSac1);
-                respon.setStatus("Thành công");
+                if(mauSac.getSoLuong()>0) {
+                    mauSac1.setMauSacID(mauSac.getMauSacID());
+                    mauSac1.setTenMauSac(mauSac.getTenMauSac());
+                    mauSac1.setSoLuong(mauSac.getSoLuong());
+                    mauSacRepo.save(mauSac1);
+                    respon.setStatus("Thành công");
+                }else {
+                    respon.setError("Số lượng không đúng");
+                }
             }else {
                 respon.setError("Không đúng định dạng");
             }

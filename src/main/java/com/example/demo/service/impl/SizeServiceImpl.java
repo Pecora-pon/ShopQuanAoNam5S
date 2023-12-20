@@ -30,21 +30,26 @@ public class SizeServiceImpl implements SizeService {
         String tenSize = size.getTenSize().trim();
 
         if (size.getTenSize() != null && !size.getTenSize().isEmpty()) {
-            Size tensi=sizeRepo.searchByten(tenSize);
-            if (tensi !=null) {
-                tensi.setSoLuong(tensi.getSoLuong() + size.getSoLuong());
-                sizeRepo.save(tensi);
-                respon.setStatus("Cập nhật số lượng thành công");
-            } else {
-                // Check if tenSize contains only alphanumeric characters
-                if (isAlphanumeric(tenSize)) {
-                    size.setTenSize(tenSize);
-                    size.setTrangThai(0);
-                    sizeRepo.save(size);
-                    respon.setStatus("Thành công");
+            // Check if soLuong is greater than or equal to 0
+            if (size.getSoLuong() > 0) {
+                Size tensi = sizeRepo.searchByten(tenSize);
+                if (tensi != null) {
+                    tensi.setSoLuong(tensi.getSoLuong() + size.getSoLuong());
+                    sizeRepo.save(tensi);
+                    respon.setStatus("Cập nhật số lượng thành công");
                 } else {
-                    respon.setError("Tên chỉ được chứa chữ cái và số");
+                    // Check if tenSize contains only alphanumeric characters
+                    if (isAlphanumeric(tenSize)) {
+                        size.setTenSize(tenSize);
+                        size.setTrangThai(0);
+                        sizeRepo.save(size);
+                        respon.setStatus("Thành công");
+                    } else {
+                        respon.setError("Tên chỉ được chứa chữ cái và số");
+                    }
                 }
+            } else {
+                respon.setError("Số lượng không hợp lệ");
             }
         } else {
             respon.setError("Tên không đúng");
@@ -63,12 +68,16 @@ public class SizeServiceImpl implements SizeService {
         Size size1=detail(sizeID);
         if(size1 != null){
             if(isAlphanumeric(size.getTenSize())) {
-                size1.setSizeID(size.getSizeID());
-                size1.setTenSize(size.getTenSize());
-                size1.setSoLuong(size.getSoLuong());
-                sizeRepo.save(size);
-                respon.setStatus("thành công");
-            }else {
+                if (size.getSoLuong() > 0) {
+                    size1.setSizeID(size.getSizeID());
+                    size1.setTenSize(size.getTenSize());
+                    size1.setSoLuong(size.getSoLuong());
+                    sizeRepo.save(size);
+                    respon.setStatus("thành công");
+                }else {
+                    respon.setError("Số lượng không đúng");
+                }
+                } else {
                 respon.setError("Không đúng định dạng");
             }
         }else {
