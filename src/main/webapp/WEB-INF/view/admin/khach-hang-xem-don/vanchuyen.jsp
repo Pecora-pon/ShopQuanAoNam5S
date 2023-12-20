@@ -10,6 +10,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 
 <head>
     <meta charset="UTF-8">
@@ -267,7 +268,7 @@
                             <c:if test="${dhct.trangThai == 3}"> Thành Công</c:if>
                             <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
                         </td>
-                        <td>${dhct.tongTien}</td>
+                        <td><fmt:formatNumber value="${dhct.tongTien}" pattern="#,##0"/> VND</td>
                         <td>
 <%--                            <a class="dropdown-item" href="/huyt/${dhct.donHang.donHangID}"><i--%>
 <%--                                    class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>--%>
