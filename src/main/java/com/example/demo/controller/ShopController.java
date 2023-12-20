@@ -3,6 +3,7 @@ package com.example.demo.controller;
 import com.example.demo.entity.*;
 import com.example.demo.service.*;
 
+import com.microsoft.sqlserver.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
@@ -59,41 +60,24 @@ public class ShopController {
                        @Param("thuonghieuid") String thuonghieuid,
                        @Param("sizeid") String sizeid,
                        @Param("tensanpham") String tensanpham,
-                       @Param("mausacid") String mausacid,
-                       @Param("chatlieuid") String chatlieuid,
                        @Param("minPrice") Double minPrice,
-                       @Param("getimage/hinhAnhURL") String hinhAnhURL,
                        @Param("maxPrice") Double maxPrice) {
-        // Tính toán danh sách sản phẩm theo các tham số tìm kiếm
-        List<SanPham> sanPhams = shopService.getAll(); // Default to all products
 
+        // Phân trang và tìm kiếm dữ liệu trong service
+        Page<SanPham> pageResult;
 
-
-        // Phân trang
-        Page<SanPham> pageResult = shopService.getPage(page - 1, size);
+        if (thuonghieuid !=null && sizeid !=null && tensanpham !=null) {
+            pageResult = shopService.getPages(page - 1, size, thuonghieuid, sizeid, tensanpham);
+        }else if(minPrice != null && maxPrice != null){
+            pageResult = shopService.findByProductInPriceRange(page -1 ,size,minPrice,maxPrice);
+        }
+        else {
+            pageResult = shopService.getPage(page - 1, size);
+        }
         List<SanPham> sanPhamsOnPage = pageResult.getContent();
-        if (thuonghieuid != null) {
-            sanPhamsOnPage = this.shopService.findByThuongHieu(thuonghieuid);
-        }
-        if (sizeid != null) {
-            sanPhamsOnPage = this.shopService.findBySizeID(sizeid);
-        }
-        if (tensanpham != null) {
-            sanPhamsOnPage = this.shopService.findByTenSanPham(tensanpham);
-        }
-        if (mausacid != null) {
-            sanPhamsOnPage = this.shopService.findByMauSacID(mausacid);
-        }
-        if (chatlieuid != null) {
-            sanPhamsOnPage = this.shopService.findByChatLieuID(chatlieuid);
-        }
-        if (minPrice != null && maxPrice != null) {
-            sanPhamsOnPage = this.shopService.findByProductInPriceRange(minPrice, maxPrice);
-        }
-
-        int totalItems = sanPhams.size(); // Tổng số sản phẩm sau tất cả các bộ lọc
+        int totalItems = (int) pageResult.getTotalElements();
         int itemsPerPage = size;
-        int totalPages = (int) Math.ceil((double) totalItems / itemsPerPage);
+        int totalPages = pageResult.getTotalPages();
         int currentPage = page;
 
         // Truyền các giá trị đến model
@@ -102,62 +86,16 @@ public class ShopController {
         model.addAttribute("itemsPerPage", itemsPerPage);
         model.addAttribute("totalItems", totalItems);
         model.addAttribute("listSanPham", sanPhamsOnPage);
+        model.addAttribute("thuonghieuid", thuonghieuid);
+        model.addAttribute("sizeid", sizeid);
+        model.addAttribute("tensanpham", tensanpham);
+        model.addAttribute("minPrice", minPrice);
+        model.addAttribute("maxPrice", maxPrice);
         model.addAttribute("sp", new SanPham());
 
         return "shop/san-pham";
     }
-    @RequestMapping(value = "/list-san-pham/thuong-hieu")
-    public String searchThuongHieu(Model model,
-                                   @Param("thuonghieuid") String thuongHieuID) {
-        List<SanPham> list = shopService.getAll();
-        if(thuongHieuID !=null){
-            list = this.shopService.findByThuongHieu(thuongHieuID);
-        }
-        model.addAttribute("listSanPham", list);
-        model.addAttribute("sp",new SanPham());
-        return "shop/san-pham";
-    }
 
-    @RequestMapping(value = "/list-san-pham/size/{sizeid}")
-    public String searchSize(Model model,
-                             @RequestParam("sizeid") String sizeid) {
-        List<SanPham> list = shopService.findBySizeID(sizeid);
-        model.addAttribute("listSanPham", list);
-        return "shop/san-pham";
-    }
-
-    @RequestMapping(value = "/list-san-pham/ten-san-pham/{tensanpham}")
-    public String searchTenSanPham(Model model,
-                                   @RequestParam("tensanpham") String tensanpham) {
-        List<SanPham> list = shopService.findByTenSanPham(tensanpham);
-        model.addAttribute("listSanPham", list);
-        return "shop/san-pham";
-    }
-
-    @RequestMapping(value = "/list-san-pham/mau-sac/{mausacid}")
-    public String searchMauSac(Model model,
-                               @RequestParam("mausacid") String mausacid) {
-        List<SanPham> list = shopService.findByMauSacID(mausacid);
-        model.addAttribute("listSanPham", list);
-        return "shop/san-pham";
-    }
-
-    @RequestMapping(value = "/list-san-pham/chat-lieu/{chatlieuid}")
-    public String searchChatLieu(Model model,
-                                 @RequestParam("chatlieuid") String chatlieuid) {
-        List<SanPham> list = shopService.findByChatLieuID(chatlieuid);
-        model.addAttribute("listSanPham", list);
-        return "shop/san-pham";
-    }
-
-    @RequestMapping(value = "/list-san-pham/gia-san-pham")
-    public String searchBetween(Model model,
-                                 @RequestParam("minPrice") Double minPrice,
-                                @RequestParam("maxPrice") Double maxPrice) {
-        List<SanPham> list = shopService.findByProductInPriceRange(minPrice,maxPrice);
-        model.addAttribute("listSanPham", list);
-        return "shop/san-pham";
-    }
    @GetMapping("/san-pham-detail/{sanPhamID}")
     public String san(@PathVariable("sanPhamID")UUID id,Model model){
         SanPham sanPham=shopService.themgio(id);
