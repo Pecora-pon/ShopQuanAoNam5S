@@ -26,39 +26,45 @@ public class ShopImpl implements ShopService {
         return new PageImpl<>(content, PageRequest.of(pageNumber, pageSize), sanPhams.size());    }
 
     @Override
-    public List<SanPham> findByThuongHieu(String thuonghieuid) {
-        return sanPhamRepo.findByThuongHieuID(thuonghieuid);
+    public Page<SanPham> getPages(int page, int size, String thuonghieuID,String sizeID,String tenSanPham) {
+        Pageable pageable = PageRequest.of(page, size);
+        return sanPhamRepo.getPages(sizeID,thuonghieuID,tenSanPham,pageable);
     }
 
 
     @Override
-    public List<SanPham> findByMauSacID(String mauSacID) {
-        return sanPhamRepo.findByMauSacID(mauSacID);
+    public Page<SanPham> findByMauSacID(int page, int size,String mauSacID) {
+        Pageable pageable = PageRequest.of(page, size);
+        return sanPhamRepo.findByMauSacID(mauSacID,pageable);
     }
 
     @Override
-    public List<SanPham> findByChatLieuID(String chatLieuID) {
-        return sanPhamRepo.findByChatLieuID(chatLieuID);
+    public Page<SanPham> findByChatLieuID(int page, int size,String chatLieuID) {
+        Pageable pageable = PageRequest.of(page, size);
+        return sanPhamRepo.findByChatLieuID(chatLieuID,pageable);
     }
 
     @Override
-    public List<SanPham> findBySizeID(String sizeID) {
-        return sanPhamRepo.findBySizeID(sizeID);
+    public Page<SanPham> findBySizeID(int page, int size,String sizeID) {
+        Pageable pageable = PageRequest.of(page, size);
+        return sanPhamRepo.findBySizeID(sizeID,pageable);
     }
 
     @Override
-    public List<SanPham> findByTenSanPham(String tenSanPham) {
-        return sanPhamRepo.findByTenSanPham(tenSanPham);
+    public Page<SanPham>findByTenSanPham(int page, int size,String tensanpham) {
+        Pageable pageable = PageRequest.of(page, size);
+        return sanPhamRepo.findByTenSanPham(tensanpham,pageable);
     }
 
     @Override
-    public List<SanPham> findByHinhAnhURL(String hinhAnhURL) {
+    public List<SanPham>findByHinhAnhURL(String hinhAnhURL) {
         return sanPhamRepo.findByHinhAnhURL(hinhAnhURL);
     }
 
     @Override
-    public List<SanPham> findByProductInPriceRange(Double minPrice, Double maxPrice) {
-        return sanPhamRepo.findProductsInPriceRange(minPrice,maxPrice);
+    public Page<SanPham> findByProductInPriceRange(int page, int size,Double minPrice, Double maxPrice) {
+        Pageable pageable = PageRequest.of(page, size);
+        return sanPhamRepo.findProductsInPriceRange(minPrice,maxPrice,pageable);
     }
 
     @Override
