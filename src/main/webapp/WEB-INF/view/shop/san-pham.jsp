@@ -10,6 +10,7 @@
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
+
 <!DOCTYPE html>
 <html lang="zxx">
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -178,9 +179,9 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                       <form id="seachForm">
-                            <input type="text" placeholder="Search..." name="tensanpham">
-                            <button type="button" onclick="submitForm()"><span class="icon_search"></span></button>
+                        <form id="searchForm" onsubmit="submitForm(); return false;">
+                            <input type="text" placeholder="Search..." name="tensanpham" id="tensanpham">
+                            <button type="submit"><span class="icon_search"></span></button>
                         </form>
                     </div>
                     <div class="shop__sidebar__accordion">
@@ -509,6 +510,12 @@
             alert("Please enter a search term.");
         }
     }
+    function handleKeyPress(event) {
+        if (event.keyCode === 13) {
+            submitForm();
+        }
+    }
+    document.getElementsByName("tensanpham")[0].addEventListener("keypress", handleKeyPress);
 </script>
 </body>
 
