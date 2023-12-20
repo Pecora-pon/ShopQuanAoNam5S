@@ -149,18 +149,8 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 and dhc.trangThai=3 GROUP BY MONTH(dhc.ngayNhan)")
     List<Object[]> getTotalRevenueByMonthInYear2023();
 
-   @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 0")
-    long countDistinctDonHangByTrangThai0();
-    @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 1")
-    long countDistinctDonHangByTrangThai1();
-    @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 2")
-    long countDistinctDonHangByTrangThai2();
-    @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 3")
-    long countDistinctDonHangByTrangThai3();
-    @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 4")
-    long countDistinctDonHangByTrangThai4();
-    @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 5")
-    long countDistinctDonHangByTrangThai5();  
+    @Query("SELECT dhc.trangThai, COUNT(dhc) FROM DonHangChiTiet dhc GROUP BY dhc.trangThai")
+    List<Object[]> countOrdersByStatus();
 
     List<DonHangChiTiet> findByTrangThai(int trangThai);
 
