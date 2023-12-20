@@ -357,10 +357,11 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
-                     <c:if test="${totalItems > itemsPerPage}">
+                        <c:if test="${totalItems > itemsPerPage}">
                                     <c:if test="${currentPage > 1}">
-                                        <a href="/list-san-pham/page?page=${currentPage - 1}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=&maxPrice=">&lt;</a>
+                                        <a href="/list-san-pham/page?page=${currentPage - 1}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=${minPrice}&maxPrice=${maxPrice}">&lt;</a>
                                     </c:if>
+
                                     <c:forEach begin="${currentPage - 1}" end="${currentPage + 1}" var="pageNumber">
                                         <c:if test="${pageNumber > 0 and pageNumber <= totalPages}">
                                             <c:choose>
@@ -368,15 +369,14 @@
                                                     <a class="active">${pageNumber}</a>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <a href="/list-san-pham/page?page=${pageNumber}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=&maxPrice=">${pageNumber}</a>
+                                                    <a href="/list-san-pham/page?page=${pageNumber}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=${minPrice}&maxPrice=${maxPrice}">${pageNumber}</a>
                                                 </c:otherwise>
                                             </c:choose>
                                         </c:if>
                                     </c:forEach>
 
                                     <c:if test="${currentPage < totalPages}">
-                                        <a href="/list-san-pham/page?page=${currentPage + 1}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=&maxPrice=">&gt;</a>
-
+                                        <a href="/list-san-pham/page?page=${currentPage + 1}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=${minPrice}&maxPrice=${maxPrice}">&gt;</a>
                                     </c:if>
                                 </c:if>
                         </div>
@@ -481,19 +481,15 @@
 <script src="../mainshop/mainshop2/js/main.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', function() {
-        // Lấy tham số từ URL
         const urlParams = new URLSearchParams(window.location.search);
-        const itemsPerPage = 9; // Số sản phẩm hiển thị trên mỗi trang
-        const totalItems = 28; // Tổng số sản phẩm
+        const itemsPerPage = 9; 
+        const totalItems = 28;
 
-        // Lấy giá trị tham số "page" từ URL, mặc định là 1 nếu không có
         const currentPage = parseInt(urlParams.get('page')) || 1;
 
-        // Tính toán vị trí bắt đầu và kết thúc của sản phẩm trên trang hiện tại
         const startItem = (currentPage - 1) * itemsPerPage + 1;
         const endItem = Math.min(currentPage * itemsPerPage, totalItems);
 
-        // Hiển thị thông tin phân trang
         const paginationInfo = document.getElementById('pagination-info');
         paginationInfo.textContent = `Showing ${startItem} - ${endItem} of ${totalItems}`;
     });
@@ -501,13 +497,17 @@
 <script>
     function submitForm() {
         var tensanpham = document.getElementsByName("tensanpham")[0].value;
-        var url = "/list-san-pham/page?page=1" +
-            "&thuonghieuid=" +
-            "&sizeid=" +
-            "&tensanpham=" + encodeURIComponent(tensanpham) +
-            "&minPrice=" +
-            "&maxPrice=";
-        window.location.href = url;
+        if (tensanpham.trim() !== "") {
+            var url = "/list-san-pham/page?page=1" +
+                "&thuonghieuid=" +
+                "&sizeid=" +
+                "&tensanpham=" + encodeURIComponent(tensanpham) +
+                "&minPrice=" +
+                "&maxPrice=";
+            window.location.href = url;
+        } else {
+            alert("Please enter a search term.");
+        }
     }
 </script>
 </body>
