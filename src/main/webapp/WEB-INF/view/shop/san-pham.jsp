@@ -324,7 +324,12 @@
                                             </li>
                                             <li><a href="/san-pham-detail/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
                                             </li>
-                                            <li class="highlight-background">${sp.size.tenSize}</li>
+                                            <div class="size">
+                                                <span class="highlight-background">${sp.size.tenSize}</span>
+                                            </div>
+                                            <div class="color">
+                                                <span class="highlight-background">${sp.mauSac.tenMauSac}</span>
+                                            </div>
                                         </ul>
                                     </div>
                                     <div class="product__item__text">
