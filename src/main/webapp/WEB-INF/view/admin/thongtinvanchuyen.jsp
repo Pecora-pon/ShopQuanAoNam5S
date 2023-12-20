@@ -173,7 +173,7 @@
                             <div class="breadcrumb__text">
                                 <h4>Thông tin vận chuyển</h4>
                                 <div class="breadcrumb__links">
-                                    <a href="./index.html">Home</a>
+                                    <a href="/shop/main-shop">Home</a>
                                     <span>Thông tin vận chuyển</span>
                                 </div>
                             </div>
