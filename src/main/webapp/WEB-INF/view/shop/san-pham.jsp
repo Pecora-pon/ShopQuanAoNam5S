@@ -178,9 +178,9 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form href="/list-san-pham/page?tensanpham">
+                       <form id="seachForm">
                             <input type="text" placeholder="Search..." name="tensanpham">
-                            <button type="submit"><span class="icon_search"></span></button>
+                            <button type="button" onclick="submitForm()"><span class="icon_search"></span></button>
                         </form>
                     </div>
                     <div class="shop__sidebar__accordion">
@@ -193,11 +193,11 @@
                                 <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__brand">
-                                            <ul>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=1">Louis Vuitton</a></li>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=2">Chanel</a></li>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=3">Hermes</a></li>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=4">Gucci</a></li>
+                                           <ul>
+                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=1&sizeid=&tensanpham=&minPrice=&maxPrice=">Louis Vuitton</a></li>
+                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=2&sizeid=&tensanpham=&minPrice=&maxPrice=">Chanel</a></li>
+                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=3&sizeid=&tensanpham=&minPrice=&maxPrice=">Hermes</a></li>
+                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=4&sizeid=&tensanpham=&minPrice=&maxPrice=">Gucci</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -210,14 +210,19 @@
                                 <div id="collapseThree" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__price">
-                                            <ul>
-                                                <li><a href="/list-san-pham/page?minPrice=0&maxPrice=50000">0Đ -
+                                         <ul>
+                                                <li><a href="/list-san-pham/page?page=1&minPrice=0&maxPrice=50000">0Đ -
                                                     50,000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=50000&maxPrice=100000">50,000Đ - 100,000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=100000&maxPrice=150000">100,000Đ - 150,000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=150000&maxPrice=200000">150,000Đ - 200,000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=200000&maxPrice=250000">200,000Đ - 250,000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=250000&maxPrice=10000000">250,000+</a></li>
+                                                <li>
+                                                    <a href="/list-san-pham/page?page=1&minPrice=50000&maxPrice=100000">
+                                                        50,000Đ - 100,000Đ
+                                                    </a>
+                                                </li>
+
+                                                <li><a href="/list-san-pham/page?page=1&minPrice=100000&maxPrice=150000">100,000Đ - 150,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?page=1&minPrice=150000&maxPrice=200000">150,000Đ - 200,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?page=1&minPrice=200000&maxPrice=250000">200,000Đ - 250,000Đ</a></li>
+                                                <li><a href="/list-san-pham/page?page=1&minPrice=250000&maxPrice=10000000">250,000+</a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -229,49 +234,49 @@
                                 </div>
                                 <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
-                                        <div class="shop__sidebar__size">
+                                       <div class="shop__sidebar__size">
                                             <label for="xs">xs
-                                                <a href="/list-san-pham/page?sizeid=1">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=1&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="xs">
                                                 </a>
                                             </label>
                                             <label for="sm">sm
-                                                <a href="/list-san-pham/page?sizeid=2">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=2&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="sm">
                                                 </a>
 
                                             </label>
                                             <label for="md">m
-                                                <a href="/list-san-pham/page?sizeid=3">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=3&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="md">
                                                 </a>
                                             </label>
                                             <label for="xl">xl
-                                                <a href="/list-san-pham/page?sizeid=4">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=4&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="xl">
                                                 </a>
 
                                             </label>
                                             <label for="2xl">2xl
-                                                <a href="/list-san-pham/page?sizeid=5">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=5&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="2xl">
                                                 </a>
 
                                             </label>
                                             <label for="xxl">xxl
-                                                <a href="/list-san-pham/page?sizeid=6">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=6&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="xxl">
                                                 </a>
 
                                             </label>
                                             <label for="3xl">3xl
-                                                <a href="/list-san-pham/page?sizeid=7">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=7&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="3xl">
                                                 </a>
 
                                             </label>
                                             <label for="4xl">4xl
-                                                <a href="/list-san-pham/page?sizeid=8">
+                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=8&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="4xl">
                                                 </a>
 
@@ -347,34 +352,28 @@
                     <div class="row">
                         <div class="col-lg-12">
                             <div class="product__pagination">
-                        <c:choose>
-                                    <c:when test="${param.thuonghieuid ne null or param.minPrice ne null or param.maxPrice ne null or param.sizeid ne null or param.tensanpham ne null}">
-                                     
-                                    </c:when>
-                                    <c:otherwise>
-                                      
-                                        <c:if test="${currentPage > 1}">
-                                            <a href="/list-san-pham/page?page=${currentPage - 1}">&lt;</a>
+                     <c:if test="${totalItems > itemsPerPage}">
+                                    <c:if test="${currentPage > 1}">
+                                        <a href="/list-san-pham/page?page=${currentPage - 1}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=&maxPrice=">&lt;</a>
+                                    </c:if>
+                                    <c:forEach begin="${currentPage - 1}" end="${currentPage + 1}" var="pageNumber">
+                                        <c:if test="${pageNumber > 0 and pageNumber <= totalPages}">
+                                            <c:choose>
+                                                <c:when test="${pageNumber == currentPage}">
+                                                    <a class="active">${pageNumber}</a>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <a href="/list-san-pham/page?page=${pageNumber}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=&maxPrice=">${pageNumber}</a>
+                                                </c:otherwise>
+                                            </c:choose>
                                         </c:if>
+                                    </c:forEach>
 
-                                        <c:forEach begin="${currentPage - 1}" end="${currentPage + 1}" var="page">
-                                            <c:if test="${page > 0 and page <= totalPages}">
-                                                <c:choose>
-                                                    <c:when test="${page == currentPage}">
-                                                        <a class="active">${page}</a>
-                                                    </c:when>
-                                                    <c:otherwise>
-                                                        <a href="/list-san-pham/page?page=${page}">${page}</a>
-                                                    </c:otherwise>
-                                                </c:choose>
-                                            </c:if>
-                                        </c:forEach>
+                                    <c:if test="${currentPage < totalPages}">
+                                        <a href="/list-san-pham/page?page=${currentPage + 1}&thuonghieuid=${thuonghieuid}&sizeid=${sizeid}&tensanpham=${tensanpham}&minPrice=&maxPrice=">&gt;</a>
 
-                                        <c:if test="${currentPage < totalPages}">
-                                            <a href="/list-san-pham/page?page=${currentPage + 1}">&gt;</a>
-                                        </c:if>
-                                    </c:otherwise>
-                                </c:choose>
+                                    </c:if>
+                                </c:if>
                         </div>
                     </div>
                 </div>
@@ -493,6 +492,18 @@
         const paginationInfo = document.getElementById('pagination-info');
         paginationInfo.textContent = `Showing ${startItem} - ${endItem} of ${totalItems}`;
     });
+</script>
+<script>
+    function submitForm() {
+        var tensanpham = document.getElementsByName("tensanpham")[0].value;
+        var url = "/list-san-pham/page?page=1" +
+            "&thuonghieuid=" +
+            "&sizeid=" +
+            "&tensanpham=" + encodeURIComponent(tensanpham) +
+            "&minPrice=" +
+            "&maxPrice=";
+        window.location.href = url;
+    }
 </script>
 </body>
 
