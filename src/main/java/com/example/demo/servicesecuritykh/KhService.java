@@ -151,6 +151,7 @@ public class KhService {
         return khachHangRepo.findByResetPasswordToken(token);
     }
 
+
     public Respon<KhachHang> updatePassword(KhachHang khachHang, String newPassword,String token) {
         Respon<KhachHang> respon = new Respon<>();
         String encodedPassword = passwordEncoder.encode(newPassword);
@@ -160,5 +161,19 @@ public class KhService {
         respon.setStatus("Đặt lại mật khẩu thành công");
         return respon;
     }
+    public boolean isResetPasswordTokenUsed(String token) {
+        KhachHang khachHang = khachHangRepo.findByResetPasswordToken(token);
+        return khachHang == null || khachHang.isResetPasswordTokenUsed();
+    }
+
+    // Đánh dấu token đã được sử dụng
+    public void markResetPasswordTokenAsUsed(String token) {
+        KhachHang khachHang = khachHangRepo.findByResetPasswordToken(token);
+        if (khachHang != null) {
+            khachHang.setResetPasswordTokenUsed(true);
+            khachHangRepo.save(khachHang);
+        }
+    }
+
 
 }
