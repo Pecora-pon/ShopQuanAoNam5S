@@ -20,26 +20,31 @@ import java.util.UUID;
 public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     boolean existsByTenSanPham(String tenSanPham);
     Page<SanPham> findByTinhTrang(Integer tinhTrang, Pageable pageable);
+      @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 AND sp.size LIKE %?1% AND sp.thuongHieu LIKE %?2% AND" +
+            " sp.tenSanPham LIKE %?3%")
+    Page<SanPham> getPages(String sizeID,
+                           String thuonghieuID,
+                            String tenSanPham,
+                            Pageable pageable);
     @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang =0 and sp.thuongHieu LIKE %?1%")
     List<SanPham> findByThuongHieuID(String thuongHieuID);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.mauSac LIKE %?1%")
+    Page<SanPham> findByMauSacID(String mauSacID,Pageable pageable);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang =0 and sp.mauSac LIKE %?1%")
-    List<SanPham> findByMauSacID(String mauSacID);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.chatLieu LIKE %?1%")
+    Page<SanPham>  findByChatLieuID(String chatLieuID,Pageable pageable);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang =0 and sp.chatLieu LIKE %?1%")
-    List<SanPham> findByChatLieuID(String chatLieuID);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.size LIKE %?1%")
+    Page<SanPham>  findBySizeID(String sizeID,Pageable pageable);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang =0 and sp.size LIKE %?1%")
-    List<SanPham> findBySizeID(String sizeID);
-
-    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang =0 and sp.tenSanPham LIKE %?1%")
-    List<SanPham> findByTenSanPham(String tenSanPham);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.tenSanPham LIKE %?1%")
+    Page<SanPham>  findByTenSanPham(String tenSanPham,Pageable pageable);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.hinhAnhURL LIKE %?1%")
     List<SanPham> findByHinhAnhURL(String hinhAnhURL);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.giaSanPham BETWEEN ?1 AND ?2")
-    List<SanPham> findProductsInPriceRange(Double minPrice, Double maxPrice);
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and    sp.giaSanPham BETWEEN ?1 AND ?2")
+    Page<SanPham>  findProductsInPriceRange(Double minPrice, Double maxPrice,Pageable pageable);
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
     SanPham findByTen(@Param("tenSanPham") String tenSanPham);
 
