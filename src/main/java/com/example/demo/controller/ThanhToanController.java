@@ -97,14 +97,14 @@ public class ThanhToanController {
         model.addAttribute("t",donHang1);
 //        DonHangPDF donHangPDF = new DonHangPDF();
 //       byte[] pdfDonHang = donHangPDF.exportpdf(donHang);
-       String donhanggg="http://localhost:8080/detail/"+donHang.getDonHangID();
+       String donhanggg="http://localhost:8080/detail6/"+donHang.getDonHangID();
        MimeMessage message = mailSender.createMimeMessage();
        MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
        helper.setTo(email);
        String subject = "Bạn đã đặt hàng thành công";
 
        String content = "<p>Xin chào "+hoTen+",</p>" + "<p>Bạn đã đặt hàng thành công</p>"
-               + "<p>Nhấp vào liên kết bên dưới để xem thông tin đơn hàng của bạn:</p>" + "<p><a href=\"" + donhanggg
+               + "<p>Nhấp vào liên kết bên dưới để xem hóa đơn của bạn:</p>" + "<p><a href=\"" + donhanggg
                + "\">Xem đơn hàng</a></p>" + "<br>"
                + "<p>Cảm ơn bạn đã mua sản phẩm bên 5SFashion</p> ";
 
@@ -134,12 +134,28 @@ public class ThanhToanController {
    }
     @PostMapping("/themmoiny")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String themmoinay(@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,@RequestParam("soLuongDat")int sl,@RequestParam("amount")float tt,@RequestParam("trangThai")int trang, Model model,Principal principal){
+    public String themmoinay(@RequestParam("email")String email, @RequestParam("hoTen")String hoTen,@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,@RequestParam("soLuongDat")int sl,@RequestParam("amount")float tt,@RequestParam("trangThai")int trang, Model model,Principal principal)throws MessagingException{
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
         DonHang donHang1= thanhToanService.themmoingay(donHang,id,sl,tt,trang);
         model.addAttribute("t",donHang1);
+        String donhanggg="http://localhost:8080/detail6/"+donHang.getDonHangID();
+        MimeMessage message = mailSender.createMimeMessage();
+        MimeMessageHelper helper = new MimeMessageHelper(message,true,"UTF-8");
+        helper.setTo(email);
+        String subject = "Bạn đã đặt hàng thành công";
+
+        String content = "<p>Xin chào "+hoTen+",</p>" + "<p>Bạn đã đặt hàng thành công</p>"
+                + "<p>Nhấp vào liên kết bên dưới để xem hóa đơn của bạn:</p>" + "<p><a href=\"" + donhanggg
+                + "\">Xem đơn hàng</a></p>" + "<br>"
+                + "<p>Cảm ơn bạn đã mua sản phẩm bên 5SFashion</p> ";
+
+        helper.setSubject(subject);
+        helper.setText(content,true);
+//       helper.addAttachment("donhang_" + currentDateTime + ".pdf",new ByteArrayResource(pdfDonHang));
+
+        mailSender.send(message);
         return "shop/thong-bao";
     }
 

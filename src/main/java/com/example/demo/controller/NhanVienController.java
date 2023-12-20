@@ -4,11 +4,13 @@ package com.example.demo.controller;
 //import com.example.demo.config.NhanVienExelExporter;
 import com.example.demo.entity.GiamGia;
 import com.example.demo.entity.NhanVien;
+import com.example.demo.entity.responobject.Respon;
 import com.example.demo.repository.NhanVienRepo;
 import com.example.demo.service.NhanVienService;
 import com.example.demo.servicesecurity.UserService;
 import jakarta.mail.MessagingException;
 import jakarta.mail.internet.MimeMessage;
+import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +32,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.io.IOException;
 import java.text.DateFormat;
@@ -54,7 +57,7 @@ public class NhanVienController {
         List<NhanVien> nhanVienList = nhanVienService.getAll();
         model.addAttribute("listNhanVien",nhanVienList);
         model.addAttribute("nv",new NhanVien());
-        return "admin/nhanvien";
+        return "redirect:/nhan-vien/page";
     }
     @RequestMapping(value = "/nhan-vien-add",method = RequestMethod.POST)
     public String addNhanVien(@Valid @ModelAttribute("nv") NhanVien nhanVien,
@@ -63,14 +66,12 @@ public class NhanVienController {
                               @RequestParam("matKhau") String matKhau,
                               @RequestParam("hoTen") String hoTen,
                               BindingResult result,
-                              Model model, HttpServletResponse response)throws MessagingException, IOException {
+                              Model model, HttpServletResponse response, HttpServletRequest request, RedirectAttributes redirectAttributes)throws MessagingException, IOException {
         if(nhanVienRepo.existsBySoDienThoaiAndTrangThai(nhanVien.getSoDienThoai(),1)){
             result.rejectValue("soDienThoai", "duplicate.phoneNumber", "Số điện thoại đã tồn tại");
         }
 
-        if(result.hasErrors()){
-            return "admin/nhanvien";
-        }
+
 //        response.setContentType("application/octet-stream");
 //        DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
 //        String currentDateTime = dateFormatter.format(new Date());
@@ -81,19 +82,14 @@ public class NhanVienController {
 
         List<NhanVien> listNhanVien = nhanVienService.getAll();
         model.addAttribute("listNhanVien",listNhanVien);
+        Respon<NhanVien> respon = userService.addUser(nhanVien,request);
 //        NhanVienExelExporter nhanVienExelExporter = new NhanVienExelExporter(listNhanVien);
-
+        redirectAttributes.addFlashAttribute("repon",respon);
 //        nhanVienExelExporter.export(response);
 //        byte[] exelNhanVien = nhanVienExelExporter.exportt();
 //        byte[] pdfNhanVien = nhanVienExelExporter.exportpdf();
-        MimeMessage message = mailSender.createMimeMessage();
-        MimeMessageHelper helper = new MimeMessageHelper(message,true);
-        helper.setTo(to);
-        helper.setSubject("THÔNG TIN TÀI KHOẢN NHÂN VIÊN MỚI");
-        helper.setText("Xin chào "+hoTen+","+"đây là tài khoản và mật khẩu của bạn."+"\n Tài khoản: "+taiKhoan+"\n Mật khẩu: "+matKhau);
-//        helper.addAttachment("users_" + currentDateTime + ".xlsx",new ByteArrayResource(exelNhanVien));
-        mailSender.send(message);
-        userService.addUser(nhanVien);
+
+
         return "redirect:/nhan-vien/page";
 
 

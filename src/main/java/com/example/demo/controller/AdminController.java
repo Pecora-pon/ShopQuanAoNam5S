@@ -41,6 +41,7 @@ public class AdminController {
         }
         return "admin/login";
 }
+
     @GetMapping("/non-find")
     public String fail2(Model model){
        return "error/404";
@@ -113,17 +114,29 @@ public class AdminController {
     }
 
     @RequestMapping("/reset_password/{token}")
-    public String showResetPasswordForm(@ModelAttribute("kh")KhachHang khachHang,@PathVariable("token")String token, Model model) {
+    public String showResetPasswordForm(@ModelAttribute("kh") KhachHang khachHang, @PathVariable("token") String token, Model model) {
+        // Kiểm tra xem token đã được sử dụng hay chưa
+        if (khService.isResetPasswordTokenUsed(token)) {
+            // Nếu đã sử dụng, chuyển hướng hoặc thông báo lỗi
+            return "error/rspw"; // Điều hướng đến trang thông báo token đã hết hạn hoặc không hợp lệ
+        }
+
+        // Nếu chưa sử dụng, hiển thị form đặt lại mật khẩu
         return "admin/reset_password_form";
     }
 
-    @RequestMapping(value = "/reset_password/{token}",method = RequestMethod.POST)
-    public String processResetPassword(@ModelAttribute("kh")KhachHang khachHang,@PathVariable("token")String token,
-                                        @RequestParam("password") String password, Model model) {
-         KhachHang khachHang1 = khService.getByResetPasswordToken(token);
-        Respon<KhachHang> respon = khService.updatePassword(khachHang1,password,token);
-        model.addAttribute("repon",respon);
-        return "admin/reset_password_form";
+
+    @RequestMapping(value = "/reset_password/{token}", method = RequestMethod.POST)
+    public String processResetPassword(@ModelAttribute("kh") KhachHang khachHang, @PathVariable("token") String token,
+                                       @RequestParam("password") String password, Model model) {
+        KhachHang khachHang1 = khService.getByResetPasswordToken(token);
+        Respon<KhachHang> respon = khService.updatePassword(khachHang1, password, token);
+
+        // Đánh dấu token đã được sử dụng sau khi đặt lại mật khẩu thành công
+        khService.markResetPasswordTokenAsUsed(token);
+
+        model.addAttribute("repon", respon);
+        return "error/thanhcong";
     }
 //    @RequestMapping("/gio-hang")
 //    public String giohang() {
