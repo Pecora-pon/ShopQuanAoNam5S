@@ -20,6 +20,7 @@ public class ThongKeController {
     @GetMapping("/thongke")
     public String ThongKe(Model model) {
         int trangThai = 3;
+
         List<NhanVien> nhanViens = thongKeService.getAllNhanVien();
         long totalNhanVien = thongKeService.countNhanVien();
 
@@ -45,8 +46,18 @@ public class ThongKeController {
         List<Object[]> totalQuantityByMonth = thongKeService.getTotalQuantityByMonthInYear2023();
         model.addAttribute("totalQuantityByMonth", totalQuantityByMonth);
 
-        List<Object[]> ordersByStatus = thongKeService.countOrdersByStatus();
-        model.addAttribute("ordersByStatus", ordersByStatus);
+        long countOrdersByStatus = thongKeService.countOrdersByStatus();
+        model.addAttribute("ordersByStatus", countOrdersByStatus);
+        long countOrdersByStatus1 = thongKeService.countOrdersByStatus1();
+        model.addAttribute("ordersByStatus1", countOrdersByStatus1);
+        long countOrdersByStatus2 = thongKeService.countOrdersByStatus2();
+        model.addAttribute("ordersByStatus2", countOrdersByStatus2);
+        long countOrdersByStatus3 = thongKeService.countOrdersByStatus3();
+        model.addAttribute("ordersByStatus3", countOrdersByStatus3);
+        long countOrdersByStatus4 = thongKeService.countOrdersByStatus4();
+        model.addAttribute("ordersByStatus4", countOrdersByStatus4);
+        long countOrdersByStatus5 = thongKeService.countOrdersByStatus5();
+        model.addAttribute("ordersByStatus5", countOrdersByStatus5);
 
         List<Object[]> totalRevenueByMonth = thongKeService.getTotalRevenueByMonthInYear2023();
         model.addAttribute("totalRevenueByMonth", totalRevenueByMonth);
