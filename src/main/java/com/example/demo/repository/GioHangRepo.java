@@ -1,9 +1,7 @@
 
 package com.example.demo.repository;
 
-import com.example.demo.entity.ChatLieu;
-import com.example.demo.entity.GioHang;
-import com.example.demo.entity.KhachHang;
+import com.example.demo.entity.*;
 import jakarta.transaction.Transactional;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
@@ -24,8 +22,9 @@ List<GioHang>findByKhachHang_Username(String username);
     @Query(value = "select * from GioHang p WHERE p.trangThai =0 order by p.gioHangID desc",nativeQuery = true)
     List<GioHang> getAll();
     List<GioHang> findByKhachHang(KhachHang khachHang);
-    Optional<GioHang> findBySanPham_TenSanPhamAndTrangThai(String tenSanPham, int trangThai);
-
+    Optional<GioHang> findBySanPham_TenSanPhamAndTrangThaiAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(String tenSanPham, int trangThai,int size,int mausac);
+    Optional<GioHang> findBySanPham_SizeAndSanPham_MauSac(  Size size, MauSac mausac);
+    Optional<GioHang> findBySanPham_TenSanPhamAndTrangThaiAndSanPham_SizeAndSanPham_MauSac(String ten, int trangThai, Size size, MauSac mausac);
 
 }
 
