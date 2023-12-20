@@ -425,7 +425,7 @@
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Mật khẩu</label>
-                                                        <form:input class="form-control" path="matKhau" value="${nv.matKhau}"/>
+                                                        <form:input class="form-control"  type="password" path="matKhau" value="${nv.matKhau}"/>
                                                         <form:errors path="matKhau"/>
                                                     </div>
 <%--                                                    <div class="mb-3 col-md-6">--%>
