@@ -37,6 +37,7 @@ public class ThongKeService {
     public long countSanPham() {
         return sanPhamRepo.count();
     }
+
     public List<KhachHang> getAllKhachHang() {
         return khachHangRepo.findAll();
     }
@@ -44,6 +45,7 @@ public class ThongKeService {
     public long countKhachHang() {
         return khachHangRepo.count();
     }
+
     public List<DonHangChiTiet> getAllDonHangChiTiet() {
         return donHangChiTietRepo.findAll();
     }
@@ -58,13 +60,37 @@ public class ThongKeService {
 
         return totalTongTien;
     }
+
     public List<Object[]> getTotalQuantityByMonthInYear2023() {
         return donHangChiTietRepo.getTotalQuantityByMonthInYear2023();
     }
+
     public List<Object[]> getTotalRevenueByMonthInYear2023() {
         return donHangChiTietRepo.getTotalRevenueByMonthInYear2023();
     }
-    public List<Object[]> countOrdersByStatus() {
-        return donHangChiTietRepo.countOrdersByStatus();
+
+    public long countOrdersByStatus() {
+        return donHangChiTietRepo.countDistinctDonHangByTrangThai0();
     }
+
+    public long countOrdersByStatus1() {
+        return donHangChiTietRepo.countDistinctDonHangByTrangThai1();
+    }
+
+    public long countOrdersByStatus2() {
+        return donHangChiTietRepo.countDistinctDonHangByTrangThai2();
+    }
+
+    public long countOrdersByStatus3() {
+        return donHangChiTietRepo.countDistinctDonHangByTrangThai3();
+    }
+
+    public long countOrdersByStatus4() {
+        return donHangChiTietRepo.countDistinctDonHangByTrangThai4();
+    }
+
+    public long countOrdersByStatus5() {
+        return donHangChiTietRepo.countDistinctDonHangByTrangThai5();
+    }
+
 }
