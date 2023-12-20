@@ -371,7 +371,7 @@
                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">
                                 Thêm khách hàng
                             </button>
-                            <form:form action="/khach-hang/add" modelAttribute="kh" method="POST" onsubmit="return validateForm()">
+                            <form:form action="/khach-hang-add" modelAttribute="kh" method="POST" onsubmit="return validateForm()">
                                 <div class="modal fade" id="exampleModal" tabindex="-1"
                                      aria-labelledby="exampleModalLabel" aria-hidden="true">
                                     <div class="modal-dialog">
@@ -477,9 +477,9 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                   href="/khach-hang/view-update/${kh.khachHangId}"><i
+                                                   href="/khach-hang-view-update/${kh.khachHangId}"><i
                                                         class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/khach-hang/delete/${kh.khachHangId}"><i
+                                                <a class="dropdown-item" href="/khach-hang-delete/${kh.khachHangId}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
                                             </div>
                                         </div>

@@ -373,7 +373,7 @@
                                     data-bs-target="#exampleModal">
                                 Thêm khách hàng
                             </button>
-                            <form:form action="/khach-hang/update/${khachHangId}" modelAttribute="kh" method="POST">
+                            <form:form action="/khach-hang-update/${khachHangId}" modelAttribute="kh" method="POST">
                                 <div class="row">
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">ID Khách Hàng</label>
@@ -465,9 +465,9 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item"
-                                                   href="/khach-hang/${kh.khachHangId}"><i
+                                                   href="/khach-hang-view-update/${kh.khachHangId}"><i
                                                         class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/khach-hang/delete/${kh.khachHangId}"><i
+                                                <a class="dropdown-item" href="/khach-hang-delete/${kh.khachHangId}"><i
                                                         class="bx bx-trash me-1"></i> Xóa</a>
                                             </div>
                                         </div>
