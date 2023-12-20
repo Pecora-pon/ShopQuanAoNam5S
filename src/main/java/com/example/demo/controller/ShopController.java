@@ -53,7 +53,7 @@ public class ShopController {
 //        return "shop/san-pham-detail";
 //    }
 
-    @RequestMapping(value = "/list-san-pham/page", method = RequestMethod.GET)
+ @RequestMapping(value = "/list-san-pham/page", method = RequestMethod.GET)
     public String page(@RequestParam(defaultValue = "1") int page,
                        @RequestParam(defaultValue = "9") int size,
                        Model model,
@@ -62,25 +62,23 @@ public class ShopController {
                        @Param("tensanpham") String tensanpham,
                        @Param("minPrice") Double minPrice,
                        @Param("maxPrice") Double maxPrice) {
-
-        // Phân trang và tìm kiếm dữ liệu trong service
+        
         Page<SanPham> pageResult;
 
-        if (thuonghieuid !=null && sizeid !=null && tensanpham !=null) {
+        if (minPrice != null && maxPrice != null) {
+            pageResult = shopService.findByProductInPriceRange(page - 1, size, minPrice, maxPrice);
+        } else if (thuonghieuid != null && sizeid != null && tensanpham != null) {
             pageResult = shopService.getPages(page - 1, size, thuonghieuid, sizeid, tensanpham);
-        }else if(minPrice != null && maxPrice != null){
-            pageResult = shopService.findByProductInPriceRange(page -1 ,size,minPrice,maxPrice);
-        }
-        else {
+        } else {
             pageResult = shopService.getPage(page - 1, size);
         }
+
         List<SanPham> sanPhamsOnPage = pageResult.getContent();
         int totalItems = (int) pageResult.getTotalElements();
         int itemsPerPage = size;
         int totalPages = pageResult.getTotalPages();
         int currentPage = page;
 
-        // Truyền các giá trị đến model
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
         model.addAttribute("itemsPerPage", itemsPerPage);
@@ -95,6 +93,7 @@ public class ShopController {
 
         return "shop/san-pham";
     }
+
 
    @GetMapping("/san-pham-detail/{sanPhamID}")
     public String san(@PathVariable("sanPhamID")UUID id,Model model){
