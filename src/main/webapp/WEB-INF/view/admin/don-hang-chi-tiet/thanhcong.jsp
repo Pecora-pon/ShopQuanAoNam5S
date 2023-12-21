@@ -336,10 +336,12 @@
                                             </div>
                                         </sec:authorize>
 
-                                        <sec:authorize access="!hasRole('ROLE_ADMIN')">
-                                            <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
+                                         <sec:authorize access="!hasRole('ROLE_ADMIN')">
                                             <div>
-                                                <a href="/login" style="color: white;">Đăng nhập</a>
+                                                <a class="dropdown-item" href="/login">
+                                                    <i class="bx bx-power-off me-2"></i>
+                                                    <span class="align-middle">Log in</span>
+                                                </a>
                                             </div>
                                         </sec:authorize>
                                     </div>
