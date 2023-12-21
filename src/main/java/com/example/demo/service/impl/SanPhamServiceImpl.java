@@ -127,36 +127,84 @@ public class SanPhamServiceImpl implements SanPhamService {
         SanPham sanPham1 = detail(sanPhamID);
 
         if (sanPham1 != null) {
-            // Check for empty or whitespace-only values
-
-            sanPham1.setGiaSanPham(sanPham.getGiaSanPham());
-            sanPham1.setSanPhamID(sanPham.getSanPhamID());
-            sanPham1.setMauSac(sanPham.getMauSac());
-            sanPham1.setTenSanPham(sanPham.getTenSanPham());
-            sanPham1.setChatLieu(sanPham.getChatLieu());
-            sanPham1.setSize(sanPham.getSize());
-            sanPham1.setMoTa(sanPham.getMoTa());
-            sanPham1.setThuongHieu(sanPham.getThuongHieu());
-            sanPham1.setNgayTao(sanPham.getNgayTao());
-            sanPham1.setSoLuongTon(sanPham.getSoLuongTon());
+            // Kiểm tra và cập nhật giá trị nếu khác null
+            if (sanPham.getGiaSanPham() != null) {
+                sanPham1.setGiaSanPham(sanPham.getGiaSanPham());
+            }else {
+                respon.setError("Không thành công: Giá không thể là null.");
+                return respon;
+            }
+            if (sanPham.getSanPhamID() != null) {
+                sanPham1.setSanPhamID(sanPham.getSanPhamID());
+            }
+            if (sanPham.getMauSac() != null) {
+                sanPham1.setMauSac(sanPham.getMauSac());
+            }else {
+                respon.setError("Không thành công: Màu Sắc không thể là null.");
+                return respon;
+            }
+            if (sanPham.getTenSanPham() != null) {
+                sanPham1.setTenSanPham(sanPham.getTenSanPham());
+            }else {
+                respon.setError("Không thành công: Tên không thể là null.");
+                return respon;
+            }
+            if (sanPham.getChatLieu() != null) {
+                sanPham1.setChatLieu(sanPham.getChatLieu());
+            }else {
+                respon.setError("Không thành công: Chất liệu không thể là null.");
+                return respon;
+            }
+            if (sanPham.getSize() != null) {
+                sanPham1.setSize(sanPham.getSize());
+            }else {
+                respon.setError("Không thành công: Size không thể là null.");
+                return respon;
+            }
+            if (sanPham.getMoTa() != null) {
+                sanPham1.setMoTa(sanPham.getMoTa());
+            }else {
+                respon.setError("Không thành công: MoTa không thể là null.");
+                return respon;
+            }
+            if (sanPham.getThuongHieu() != null) {
+                sanPham1.setThuongHieu(sanPham.getThuongHieu());
+            }else {
+                respon.setError("Không thành công: Thương Hiêu không thể là null.");
+                return respon;
+            }
+            if (sanPham.getNgayTao() != null) {
+                sanPham1.setNgayTao(sanPham.getNgayTao());
+            }else {
+                respon.setError("Không thành công: Ngày tạo không thể là null.");
+                return respon;
+            }
+            if (sanPham.getSoLuongTon() != null) {
+                if (sanPham.getSoLuongTon() instanceof Integer) {
+                    sanPham1.setSoLuongTon((Integer) sanPham.getSoLuongTon());
+                } else {
+                    respon.setError("Không thành công: soLuongTon phải là một số nguyên.");
+                    return respon;
+                }
+            } else {
+                respon.setError("Không thành công: soLuongTon không thể là null.");
+                return respon;
+            }
+            if (sanPham.getHinhAnhURL() != null) {
+                sanPham1.setHinhAnhURL(sanPham.getHinhAnhURL());
+            }else {
+                respon.setError("Không thành công: soLuongTon không thể là null.");
+                return respon;
+            }
             sanPham1.setTinhTrang(sanPham.getTinhTrang());
-            sanPham1.setHinhAnhURL(sanPham.getHinhAnhURL());
-            try {
-                sizeService.capnhat(sanPham.getSize().getSizeID(), sanPham.getSoLuongTon());
-                mauSacService.capnhat(sanPham.getMauSac().getMauSacID(), sanPham.getSoLuongTon());
                 sanPhamRepo.save(sanPham1);
                 respon.setStatus("Thành công");
-            } catch (IllegalArgumentException e) {
-                respon.setError("Không đủ số lượng trong size hoặc mauSac.");
-            }
-
         } else {
             respon.setError("Không thành công");
         }
 
         return respon;
     }
-
     private boolean isValidSanPham(SanPham sanPham) {
         // Check if any required field is empty or contains only spaces
         return !sanPham.getTenSanPham().trim().isEmpty() &&
