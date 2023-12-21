@@ -282,6 +282,7 @@
                         <tr id="cancelForm${i.index}" style="display: none;">
                             <td colspan="9">
                                 <form action="/huydacho/${dhct.donHang.donHangID}">
+                                    <label class="dark-style">Nếu bạn đã thanh toán chúng tôi sẽ sớm liên hệ với bạn qua sdt và email bạn cung cấp để gửi lại tiền</label><br>
                                     <!-- Include form fields for entering the reason -->
                                     <input type="text" name="lyDoHuy" placeholder="Lý do hủy đơn hàng" required>
                                     <button type="submit">Xác nhận hủy đơn hàng</button>
