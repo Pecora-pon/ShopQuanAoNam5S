@@ -337,7 +337,7 @@
                                             </div>
                                         </sec:authorize>
 
-                                         <sec:authorize access="!hasRole('ROLE_ADMIN')">
+                                        <sec:authorize access="!hasRole('ROLE_ADMIN')">
                                             <div>
                                                 <a class="dropdown-item" href="/login">
                                                     <i class="bx bx-power-off me-2"></i>
