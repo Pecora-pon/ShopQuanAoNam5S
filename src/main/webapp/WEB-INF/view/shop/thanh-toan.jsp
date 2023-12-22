@@ -10,6 +10,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
     <meta charset="UTF-8">
@@ -217,8 +218,30 @@
                             <div>
                                 <ul>
 
-                                    <li>${gh.sanPham.tenSanPham} - ${gh.sanPham.giaSanPham} - ${gh.soLuongDat}
-                                        - ${gh.sanPham.giaSanPham*gh.soLuongDat}</li>
+                                    <li>
+                                            ${gh.sanPham.tenSanPham} -
+                                        <c:choose>
+                                            <c:when test="${gh.sanPham.giaSanPham >= 1000000}">
+                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1000000}"
+                                                                  pattern="#,##0"/> triệu
+                                            </c:when>
+                                            <c:otherwise>
+                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham}" pattern="#,##0"/>
+                                            </c:otherwise>
+                                        </c:choose> -
+                                            ${gh.soLuongDat} -
+                                        <c:choose>
+                                            <c:when test="${gh.sanPham.giaSanPham * gh.soLuongDat >= 1000000}">
+                                                <fmt:formatNumber
+                                                        value="${(gh.sanPham.giaSanPham * gh.soLuongDat) / 1000000}"
+                                                        pattern="#,##0"/> triệu
+                                            </c:when>
+                                            <c:otherwise>
+                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham * gh.soLuongDat}"
+                                                                  pattern="#,##0"/>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </li>
                                     <input type="hidden" name="gioHangID[]" value="${gh.gioHangID}">
                                 </ul>
                             </div>
@@ -234,7 +257,18 @@
 
                     <li class="list-group-item d-flex justify-content-between">
 
-                        Tạm tính : <input type="text" name="totalprice" value="${totalPriceLong}" readonly>
+                        Tạm tính : <input type="text" name="totalprice" value="<c:choose>
+    <c:when test='${totalPriceLong >= 1000000}'>
+        <fmt:formatNumber value='${totalPriceLong / 1000000}' pattern='#,##0.###'/> triệu
+    </c:when>
+    <c:when test='${totalPriceLong >= 1000}'>
+        <fmt:formatNumber value='${totalPriceLong / 1000}' pattern='#,##0.###'/> nghìn
+    </c:when>
+    <c:otherwise>
+        <fmt:formatNumber value='${totalPriceLong}' pattern='#,##0'/>
+    </c:otherwise>
+</c:choose>" readonly>
+
                     </li>
 
 
@@ -269,8 +303,19 @@
                         <!-- Nếu totalPriceLong lớn hơn 500000 -->
                         <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}"/>
                         <p>Phí ship : 0đ</p>
-                        <li class="list-group-item d-flex justify-content-between">
-                            Tổng tiền : <input type="text" name="amount" value="${updatedTotalPriceLong1}" readonly>
+                        <li class="list-group-item d-flex justify-content-between">Tổng tiền : <input type="text" name="amount" value="<c:choose>
+    <c:when test="${updatedTotalPriceLong1 >= 1000000}">
+        <fmt:formatNumber value='${updatedTotalPriceLong1 / 1000000}' pattern='#,##0.###'/> triệu
+    </c:when>
+    <c:when test="${updatedTotalPriceLong1 >= 1000}">
+        <fmt:formatNumber value='${updatedTotalPriceLong1 / 1000}' pattern='#,##0.###'/> nghìn
+    </c:when>
+    <c:otherwise>
+        <fmt:formatNumber value='${updatedTotalPriceLong1}' pattern='#,##0'/>
+    </c:otherwise>
+</c:choose>" readonly>
+
+
                         </li>
                     </c:when>
                     <c:otherwise>
@@ -281,7 +326,19 @@
                         <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}"/>
                         <li class="list-group-item d-flex justify-content-between">
 
-                            Tổng tiền : <input type="text" name="amount" value="${updatedTotalPriceLong }" readonly>
+                            Tổng tiền : <input type="text" name="amount" value="<c:choose>
+    <c:when test="${updatedTotalPriceLong >= 1000000}">
+        <fmt:formatNumber value='${updatedTotalPriceLong / 1000000}' pattern='#,##0.###'/> triệu
+    </c:when>
+    <c:when test="${updatedTotalPriceLong >= 1000}">
+        <fmt:formatNumber value='${updatedTotalPriceLong / 1000}' pattern='#,##0.###'/> nghìn
+    </c:when>
+    <c:otherwise>
+        <fmt:formatNumber value='${updatedTotalPriceLong}' pattern='#,##0'/>
+    </c:otherwise>
+</c:choose>" readonly>
+
+
                         </li>
                     </c:otherwise>
                 </c:choose>
@@ -395,7 +452,7 @@
                                readonly="">
                     </div>
                 </div>
-                <input type="hidden" id="trangThaiInput" name="trangThai" >
+                <input type="hidden" id="trangThaiInput" name="trangThai">
                 <h4 class="mb-3">Hình thức thanh toán</h4>
                 <div class="d-block my-3">
                     <div class="custom-control custom-radio">
@@ -549,7 +606,8 @@
         } else {
             // Handle the case where no payment method is selected
             alert("Vui lòng chọn hình thức thanh toán.");
-        }form.submit();
+        }
+        form.submit();
     }
 </script>
 <script>

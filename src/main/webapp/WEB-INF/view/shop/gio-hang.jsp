@@ -38,7 +38,7 @@
     <link rel="stylesheet" href="../admin/assets/vendor/libs/apex-charts/apex-charts.css"/>
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
-    rel="stylesheet">
+          rel="stylesheet">
     <script src="../admin/assets/vendor/js/helpers.js"></script>
     <!-- Css Styles -->
     <link rel="stylesheet" href="../mainshop/mainshop2/css/bootstrap.min.css" type="text/css">
@@ -52,112 +52,116 @@
 </head>
 
 <body>
-    <!-- Page Preloder -->
-    <div id="preloder">
-        <div class="loader"></div>
-    </div>
+<!-- Page Preloder -->
+<div id="preloder">
+    <div class="loader"></div>
+</div>
 
-    <!-- Offcanvas Menu Begin -->
-    <div class="offcanvas-menu-overlay"></div>
-    <div class="offcanvas-menu-wrapper">
-        <div class="offcanvas__option">
-            <div class="offcanvas__links">
-                <a href="#">Sign in</a>
-                <a href="#">FAQs</a>
-            </div>
-            <div class="offcanvas__top__hover">
-                <span>Usd <i class="arrow_carrot-down"></i></span>
-                <ul>
-                    <li>USD</li>
-                    <li>EUR</li>
-                    <li>USD</li>
-                </ul>
-            </div>
+<!-- Offcanvas Menu Begin -->
+<div class="offcanvas-menu-overlay"></div>
+<div class="offcanvas-menu-wrapper">
+    <div class="offcanvas__option">
+        <div class="offcanvas__links">
+            <a href="#">Sign in</a>
+            <a href="#">FAQs</a>
         </div>
-        <div class="offcanvas__nav__option">
-            <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
-            <a href="#"><img src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/heart.png" alt=""></a>
-            <a href="#"><img src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/cart.png" alt=""> <span>0</span></a>
-            <div class="price">$0.00</div>
-        </div>
-        <div id="mobile-menu-wrap"></div>
-        <div class="offcanvas__text">
-            <p>Free shipping, 30-day return or refund guarantee.</p>
+        <div class="offcanvas__top__hover">
+            <span>Usd <i class="arrow_carrot-down"></i></span>
+            <ul>
+                <li>USD</li>
+                <li>EUR</li>
+                <li>USD</li>
+            </ul>
         </div>
     </div>
-    <!-- Offcanvas Menu End -->
+    <div class="offcanvas__nav__option">
+        <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+        <a href="#"><img
+                src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/heart.png"
+                alt=""></a>
+        <a href="#"><img
+                src="../../../../../../../mainshop/mainshop2/malefashion-master/malefashion-master/img/icon/cart.png"
+                alt=""> <span>0</span></a>
+        <div class="price">$0.00</div>
+    </div>
+    <div id="mobile-menu-wrap"></div>
+    <div class="offcanvas__text">
+        <p>Free shipping, 30-day return or refund guarantee.</p>
+    </div>
+</div>
+<!-- Offcanvas Menu End -->
 
-    <!-- Header Section Begin -->
-    <header class="header">
-        <div class="header__top">
-            <div class="container">
-                <div class="row">
-                    <div class="col-lg-6 col-md-7">
-                        <div class="header__top__left">
-                            <p>Miễn phí vận chuyển, 30-ngày trả lại hoặc hoàn tiền.</p>
-                        </div>
-                    </div>
-                    <div class="col-lg-6 col-md-5">
-                        <div class="header__top__right">
-                            <div class="header__top__links">
-                                <sec:authorize access="hasRole('ROLE_USER')">
-                                    <!-- Nếu đã đăng nhập, hiển thị tên người dùng và nút đăng xuất -->
-                                    <div style="display: flex; align-items: center;">
-                                        <span style="color: white;">Xin chào, <%= request.getUserPrincipal().getName() %>!</span>
-                                        <form action="/logout" method="post" style="margin-left: 10px;">
-                                            <input type="submit" value="Đăng xuất">
-                                        </form>
-                                    </div>
-                                </sec:authorize>
-
-                                <sec:authorize access="!hasRole('ROLE_USER')">
-                                    <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
-                                    <div>
-                                        <a href="/login" style="color: white;">Đăng nhập</a>
-                                    </div>
-                                </sec:authorize>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+<!-- Header Section Begin -->
+<header class="header">
+    <div class="header__top">
         <div class="container">
             <div class="row">
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__logo">
-                        <a href="/shop/main-shop"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
+                <div class="col-lg-6 col-md-7">
+                    <div class="header__top__left">
+                        <p>Miễn phí vận chuyển, 30-ngày trả lại hoặc hoàn tiền.</p>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-6">
-                    <nav class="header__menu mobile-menu">
-                        <ul>
-                            <li class="active"><a href="/shop/main-shop">Trang chủ</a></li>
-                            <li><a href="/list-san-pham/page">Shop</a></li>
-                            <li><a href="#">Tìm hiểu thêm</a>
-                                <ul class="dropdown">
-                                    <li><a href="/shop/about">Về chúng tôi</a></li>
-                                    <li><a href="/gio-hang">Giỏ hàng</a></li>
-                                    <li><a href="/shop/blog">Blog</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="/shop/blog">Blog</a></li>
-                            <li><a href="/shop/lien-he">Liên hệ</a></li>
-                        </ul>
-                    </nav>
+                <div class="col-lg-6 col-md-5">
+                    <div class="header__top__right">
+                        <div class="header__top__links">
+                            <sec:authorize access="hasRole('ROLE_USER')">
+                                <!-- Nếu đã đăng nhập, hiển thị tên người dùng và nút đăng xuất -->
+                                <div style="display: flex; align-items: center;">
+                                    <span style="color: white;">Xin chào, <%= request.getUserPrincipal().getName() %>!</span>
+                                    <form action="/logout" method="post" style="margin-left: 10px;">
+                                        <input type="submit" value="Đăng xuất">
+                                    </form>
+                                </div>
+                            </sec:authorize>
 
-                </div>
-                <div class="col-lg-3 col-md-3">
-                    <div class="header__nav__option">
-                        <%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
-                        <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                        <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                            <sec:authorize access="!hasRole('ROLE_USER')">
+                                <!-- Nếu chưa đăng nhập, hiển thị liên kết Đăng nhập -->
+                                <div>
+                                    <a href="/login" style="color: white;">Đăng nhập</a>
+                                </div>
+                            </sec:authorize>
+                        </div>
+
                     </div>
                 </div>
             </div>
-            <div class="canvas__open"><i class="fa fa-bars"></i></div>
         </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-3 col-md-3">
+                <div class="header__logo">
+                    <a href="/shop/main-shop"><img src="../mainshop/mainshop2/img/logo.png" alt=""></a>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6">
+                <nav class="header__menu mobile-menu">
+                    <ul>
+                        <li class="active"><a href="/shop/main-shop">Trang chủ</a></li>
+                        <li><a href="/list-san-pham/page">Shop</a></li>
+                        <li><a href="#">Tìm hiểu thêm</a>
+                            <ul class="dropdown">
+                                <li><a href="/shop/about">Về chúng tôi</a></li>
+                                <li><a href="/gio-hang">Giỏ hàng</a></li>
+                                <li><a href="/shop/blog">Blog</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/shop/blog">Blog</a></li>
+                        <li><a href="/shop/lien-he">Liên hệ</a></li>
+                    </ul>
+                </nav>
+
+            </div>
+            <div class="col-lg-3 col-md-3">
+                <div class="header__nav__option">
+                    <%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                    <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                </div>
+            </div>
+        </div>
+        <div class="canvas__open"><i class="fa fa-bars"></i></div>
+    </div>
     <!-- Header Section End -->
 
     <!-- Breadcrumb Section Begin -->
@@ -178,7 +182,7 @@
         </div>
     </section>
     <!-- Breadcrumb Section End -->
-    <a href="/dangxem" class="primary-btn" >Xem Đơn Hang</a>
+    <a href="/dangxem" class="primary-btn">Xem Đơn Hang</a>
     <!-- Shopping Cart Section Begin -->
     <section class="shopping-cart spad">
         <div class="container">
@@ -188,13 +192,13 @@
 
                         <table>
                             <thead>
-                                <tr>
-                                    <th>Product</th>
-                                    <th>Quantity</th>
-                                    <th>Total</th>
+                            <tr>
+                                <th>Product</th>
+                                <th>Quantity</th>
+                                <th>Total</th>
 
-                                    <th></th>
-                                </tr>
+                                <th></th>
+                            </tr>
                             </thead>
                             <form method="post" action="/list-gh" onsubmit="return validateQuantity()">
                                 <c:forEach items="${listGioHang}" var="gh">
@@ -202,11 +206,25 @@
                                     <tr>
                                         <td class="product__cart__item">
                                             <div class="product__cart__item__pic">
-                                                <img src="/getimage/${gh.sanPham.hinhAnhURL}" style="max-height: 60px; max-height: 60px;">
+                                                <img src="/getimage/${gh.sanPham.hinhAnhURL}"
+                                                     style="max-height: 60px; max-height: 60px;">
                                             </div>
                                             <div class="product__cart__item__text">
                                                 <h6>${gh.sanPham.tenSanPham}</h6>
-                                                <p>Giá: ${gh.sanPham.giaSanPham}</p>
+                                                <p>Giá:
+                                                    <c:choose>
+                                                        <c:when test="${gh.sanPham.giaSanPham >= 1000000}">
+                                                            <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1000000}" pattern="#,##0.### triệu đ"/>
+                                                        </c:when>
+                                                        <c:when test="${gh.sanPham.giaSanPham >= 1000}">
+                                                            <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1000}" pattern="#,##0.### nghìn đ"/>
+                                                        </c:when>
+                                                        <c:otherwise>
+                                                            <fmt:formatNumber value="${gh.sanPham.giaSanPham}" pattern="#,##0 đ"/>
+                                                        </c:otherwise>
+                                                    </c:choose>
+                                                </p>
+
                                                 <div class="color-size-info">
                                                     <p>Kích thước: ${gh.sanPham.size.tenSize}</p>
                                                     <p>Màu sắc: ${gh.sanPham.mauSac.tenMauSac}</p>
@@ -216,13 +234,30 @@
                                         <td class="quantity__item">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="text" id="soLuongDat_${gh.gioHangID}" name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}" oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham})">
+                                                    <input type="text" id="soLuongDat_${gh.gioHangID}"
+                                                           name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}"
+                                                           oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham})">
                                                 </div>
                                             </div>
                                         </td>
 
                                         <td class="cart__price" id="tongTien_${gh.gioHangID}">
-                                            <fmt:formatNumber value="${gh.tongTien}" pattern="#,##0"/> đ</td>
+                                            <fmt:formatNumber value="${gh.tongTien}" pattern="#,##0"/> <đ></đ>
+                                            <script>
+                                                // Hàm cập nhật tổng tiền trong thẻ <td>
+                                                function updateTotalPrice(gioHangID, giaSanPham, soLuongDat) {
+                                                    var tongTien = giaSanPham * soLuongDat;
+                                                    var formattedTongTien = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tongTien);
+                                                    document.getElementById('tongTien_' + gioHangID).textContent = formattedTongTien;
+                                                }
+
+                                                // Gọi hàm cập nhật tổng tiền với giá trị mẫu
+                                                var gioHangID = "${gh.gioHangID}";
+                                                var giaSanPham = ${gh.sanPham.giaSanPham};
+                                                var soLuongDat = ${gh.soLuongDat};
+                                                updateTotalPrice(gioHangID, giaSanPham, soLuongDat);
+                                            </script>
+                                        </td>
 
 
                                         <td>
@@ -231,12 +266,14 @@
                                             </div>
                                             <span id="quantityError_${gh.gioHangID}" style="color: #ff0000;"></span>
                                             <div class="mt-2">
-                                                <a class="dropdown-item" href="/deletedh/${gh.gioHangID}"><i class="bx bx-trash me-1"></i></a>
+                                                <a class="dropdown-item" href="/deletedh/${gh.gioHangID}"><i
+                                                        class="bx bx-trash me-1"></i></a>
                                             </div>
                                         </td>
                                     </tr>
                                     </tbody>
-                                    <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}" />
+                                    <c:set var="totalPrice"
+                                           value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}"/>
                                 </c:forEach>
 
                                 <button type="submit">Apply</button>
@@ -247,18 +284,10 @@
                         function updateTotal(gioHangID, giaSanPham) {
                             var quantityInput = document.getElementById("soLuongDat_" + gioHangID);
                             var totalAmountElement = document.getElementById("tongTien_" + gioHangID);
-
-                            // Lấy số lượng từ trường input và đảm bảo nó là số nguyên dương
                             var currentQuantity = parseInt(quantityInput.value) || 0;
-                            currentQuantity = Math.max(0, currentQuantity); // Đảm bảo rằng số lượng không dưới 1
-
-                            // Cập nhật giá trị trường input với số lượng đã xử lý
+                            currentQuantity = Math.max(0, currentQuantity);
                             quantityInput.value = currentQuantity;
-
-                            // Tính tổng tiền dựa trên số lượng và giá sản phẩm
                             var totalPrice = currentQuantity * giaSanPham;
-
-                            // Cập nhật giá trị tổng tiền hiển thị
                             totalAmountElement.innerHTML = totalPrice;
                         }
                     </script>
@@ -295,7 +324,7 @@
                             var orderedQuantity = parseInt(quantityInput.value);
 
                             if (orderedQuantity > availableStock) {
-                                quantityError.innerHTML = "Số lượng đặt vượt quá số lượng tồn kho.Chỉ còn "+availableStock +" sản phẩm";
+                                quantityError.innerHTML = "Số lượng đặt vượt quá số lượng tồn kho.Chỉ còn " + availableStock + " sản phẩm";
                                 isValid = false;
                             } else if (orderedQuantity <= 0) {
                                 quantityError.innerHTML = "Số lượng đặt phải từ 1 trở lên.";
@@ -323,19 +352,32 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
-<%--                    <div class="cart__discount">--%>
-<%--                        <h6>Discount codes</h6>--%>
-<%--                        <form action="#">--%>
-<%--                            <input type="text" placeholder="Coupon code">--%>
-<%--                            <button type="submit">Apply</button>--%>
-<%--                        </form>--%>
-<%--                    </div>--%>
+                    <%--                    <div class="cart__discount">--%>
+                    <%--                        <h6>Discount codes</h6>--%>
+                    <%--                        <form action="#">--%>
+                    <%--                            <input type="text" placeholder="Coupon code">--%>
+                    <%--                            <button type="submit">Apply</button>--%>
+                    <%--                        </form>--%>
+                    <%--                    </div>--%>
                     <div class="cart__total">
                         <h6>Tổng tiền trong giỏ hàng</h6>
                         <ul>
-                            <li>Tổng tiền <span> <fmt:formatNumber value="${totalPrice}" pattern="#,##0"/> VNĐ</span></li>
+                            <li>Tổng tiền <span>
+    <c:choose>
+        <c:when test="${totalPrice >= 1000000}">
+            <fmt:formatNumber value="${totalPrice / 1000000}" pattern="#,##0.###"/> triệu VNĐ
+        </c:when>
+        <c:when test="${totalPrice >= 1000}">
+            <fmt:formatNumber value="${totalPrice / 1000}" pattern="#,##0.###"/> nghìn VNĐ
+        </c:when>
+        <c:otherwise>
+            <fmt:formatNumber value="${totalPrice}" pattern="#,##0"/> VNĐ
+        </c:otherwise>
+    </c:choose>
+</span></li>
+
                         </ul>
-<%--                        <a href="#" class="primary-btn">Proceed to checkout</a>--%>
+                        <%--                        <a href="#" class="primary-btn">Proceed to checkout</a>--%>
                     </div>
                 </div>
             </div>
@@ -398,9 +440,11 @@
                         <p>Copyright ©
                             <script>
                                 document.write(new Date().getFullYear());
-                            </script>2020
+                            </script>
+                            2020
                             All rights reserved | This template is made with <i class="fa fa-heart-o"
-                            aria-hidden="true"></i> by <a href="https://colorlib.com" target="_blank">Colorlib</a>
+                                                                                aria-hidden="true"></i> by <a
+                                    href="https://colorlib.com" target="_blank">Colorlib</a>
                         </p>
                         <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
                     </div>
