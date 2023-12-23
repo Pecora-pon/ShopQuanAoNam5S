@@ -11,6 +11,8 @@
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
+
+
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
 ==============================================================
@@ -608,20 +610,28 @@
 
                                             <script>
                                                 var data = {
-                                                    labels: [<c:forEach var="item" items="${totalRevenueByMonth}"><c:out value="${item[0]}" />, </c:forEach>],
+                                                    labels: [
+                                                        <c:forEach var="item" items="${totalRevenueByMonth}">
+                                                        '<c:out value="${item[0]}" />',
+                                                        </c:forEach>
+                                                    ],
                                                     datasets: [{
-                                                        label: "Số tiền nhận vào",
+                                                        label: "Số tiền nhận vào theo tháng",
                                                         borderColor: 'rgba(75, 192, 192, 1)',
                                                         borderWidth: 2,
                                                         fill: false,
-                                                        data: [<c:forEach var="item" items="${totalRevenueByMonth}"><c:out value="${item[1]}" />, </c:forEach>],
+                                                        data: [
+                                                            <c:forEach var="item" items="${totalRevenueByMonth}">
+                                                            <c:out value="${item[1]}" />,
+                                                            </c:forEach>
+                                                        ],
                                                     }]
                                                 };
 
                                                 var options = {
                                                     scales: {
                                                         x: {
-                                                            type: 'linear',
+                                                            type: 'category',
                                                             position: 'bottom'
                                                         },
                                                         y: {
@@ -638,6 +648,7 @@
                                                 });
                                             </script>
                                         </div>
+
                                     </div>
                                 </div>
                             </div>
