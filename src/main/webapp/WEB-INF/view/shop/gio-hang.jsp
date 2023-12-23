@@ -236,7 +236,7 @@
                                                 <div class="pro-qty">
                                                     <input type="text" id="soLuongDat_${gh.gioHangID}"
                                                            name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}"
-                                                           oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham})">
+                                                           oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham}, this.value)">
                                                 </div>
                                             </div>
                                         </td>
@@ -244,18 +244,19 @@
                                         <td class="cart__price" id="tongTien_${gh.gioHangID}">
                                             <fmt:formatNumber value="${gh.tongTien}" pattern="#,##0"/> <đ></đ>
                                             <script>
-                                                // Hàm cập nhật tổng tiền trong thẻ <td>
-                                                function updateTotalPrice(gioHangID, giaSanPham, soLuongDat) {
+                                                function updateTotal(gioHangID, giaSanPham, soLuongDat) {
                                                     var tongTien = giaSanPham * soLuongDat;
                                                     var formattedTongTien = new Intl.NumberFormat('vi-VN', { style: 'currency', currency: 'VND' }).format(tongTien);
                                                     document.getElementById('tongTien_' + gioHangID).textContent = formattedTongTien;
                                                 }
+                                                function updateTotalOnPageLoad(gioHangID, giaSanPham, soLuongDat) {
+                                                    updateTotal(gioHangID, giaSanPham, soLuongDat);
+                                                }
 
-                                                // Gọi hàm cập nhật tổng tiền với giá trị mẫu
                                                 var gioHangID = "${gh.gioHangID}";
                                                 var giaSanPham = ${gh.sanPham.giaSanPham};
                                                 var soLuongDat = ${gh.soLuongDat};
-                                                updateTotalPrice(gioHangID, giaSanPham, soLuongDat);
+                                                updateTotalOnPageLoad(gioHangID, giaSanPham, soLuongDat);
                                             </script>
                                         </td>
 
@@ -288,7 +289,9 @@
                             currentQuantity = Math.max(0, currentQuantity);
                             quantityInput.value = currentQuantity;
                             var totalPrice = currentQuantity * giaSanPham;
-                            totalAmountElement.innerHTML = totalPrice;
+                            var formattedTotalPrice = new Intl.NumberFormat('vi-VN', { style: 'decimal', minimumFractionDigits: 0, maximumFractionDigits: 0 }).format(totalPrice);
+                            formattedTotalPrice += ' đ</đ>';
+                            totalAmountElement.innerHTML = formattedTotalPrice;
                         }
                     </script>
 
@@ -298,28 +301,24 @@
                             var checkboxes = document.getElementsByName("selectedItems");
                             var isChecked = false;
 
-                            // Loop through each checkbox
                             for (var i = 0; i < checkboxes.length; i++) {
                                 if (checkboxes[i].checked) {
                                     isChecked = true;
-                                    break; // Nếu đã tìm thấy một checkbox được chọn, thoát khỏi vòng lặp
+                                    break;
                                 }
                             }
 
-                            // Kiểm tra nếu không có checkbox nào được chọn
                             if (!isChecked) {
                                 alert("Vui lòng chọn ít nhất một sản phẩm.");
-                                return false; // Chặn sự kiện submit nếu không có checkbox nào được chọn
+                                return false;
                             }
 
-                            // Tiếp tục submit nếu có ít nhất một checkbox được chọn
 
-                            // Loop through each quantity input
+
                             <c:forEach items="${listGioHang}" var="gh">
                             var quantityInput = document.getElementById("soLuongDat_${gh.gioHangID}");
                             var quantityError = document.getElementById("quantityError_${gh.gioHangID}");
 
-                            // Check if quantity is greater than available stock
                             var availableStock = ${gh.sanPham.soLuongTon};
                             var orderedQuantity = parseInt(quantityInput.value);
 

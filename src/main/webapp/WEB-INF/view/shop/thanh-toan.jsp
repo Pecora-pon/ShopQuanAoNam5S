@@ -303,17 +303,8 @@
                         <!-- Nếu totalPriceLong lớn hơn 500000 -->
                         <c:set var="updatedTotalPriceLong1" value="${totalPriceLong + 0}"/>
                         <p>Phí ship : 0đ</p>
-                        <li class="list-group-item d-flex justify-content-between">Tổng tiền : <input type="text" name="amount" value="<c:choose>
-    <c:when test="${updatedTotalPriceLong1 >= 1000000}">
-        <fmt:formatNumber value='${updatedTotalPriceLong1 / 1000000}' pattern='#,##0.###'/> triệu
-    </c:when>
-    <c:when test="${updatedTotalPriceLong1 >= 1000}">
-        <fmt:formatNumber value='${updatedTotalPriceLong1 / 1000}' pattern='#,##0.###'/> nghìn
-    </c:when>
-    <c:otherwise>
-        <fmt:formatNumber value='${updatedTotalPriceLong1}' pattern='#,##0'/>
-    </c:otherwise>
-</c:choose>" readonly>
+                        <li class="list-group-item d-flex justify-content-between">Tổng tiền : <input type="text" name="amount" value="
+${updatedTotalPriceLong1}" readonly>
 
 
                         </li>
@@ -326,17 +317,8 @@
                         <c:set var="updatedTotalPriceLong" value="${totalPriceLong + 32000}"/>
                         <li class="list-group-item d-flex justify-content-between">
 
-                            Tổng tiền : <input type="text" name="amount" value="<c:choose>
-    <c:when test="${updatedTotalPriceLong >= 1000000}">
-        <fmt:formatNumber value='${updatedTotalPriceLong / 1000000}' pattern='#,##0.###'/> triệu
-    </c:when>
-    <c:when test="${updatedTotalPriceLong >= 1000}">
-        <fmt:formatNumber value='${updatedTotalPriceLong / 1000}' pattern='#,##0.###'/> nghìn
-    </c:when>
-    <c:otherwise>
-        <fmt:formatNumber value='${updatedTotalPriceLong}' pattern='#,##0'/>
-    </c:otherwise>
-</c:choose>" readonly>
+                            Tổng tiền : <input type="text" name="amount" value="${updatedTotalPriceLong}" readonly>
+
 
 
                         </li>
