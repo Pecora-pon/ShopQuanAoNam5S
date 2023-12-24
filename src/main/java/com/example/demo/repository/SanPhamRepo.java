@@ -96,5 +96,12 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     List<SanPham> getAlll();
     @Query(value = "SELECT TOP 4 * FROM SanPham ORDER BY GiaSanPham ASC", nativeQuery = true)
     List<SanPham> findTop4ByOrderByGiaSanPhamAsc();
+    @Query(value = "SELECT TOP 5 p.tenSanPham, SUM(dhct.SoLuong) AS tongSoLuong "
+            + "FROM DonHangChiTiet dhct "
+            + "JOIN SanPham p ON dhct.SanPhamID = p.SanPhamID "
+            + "WHERE dhct.TrangThai = 3 "
+            + "GROUP BY p.tenSanPham "
+            + "ORDER BY tongSoLuong DESC", nativeQuery = true)
+    List<Object[]> findTopProducts();
 
 }
