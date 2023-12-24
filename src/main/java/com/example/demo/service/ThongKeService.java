@@ -92,5 +92,8 @@ public class ThongKeService {
     public long countOrdersByStatus5() {
         return donHangChiTietRepo.countDistinctDonHangByTrangThai5();
     }
+    public List<Object[]> getTopProducts() {
+        return sanPhamRepo.findTopProducts();
+    }
 
 }
