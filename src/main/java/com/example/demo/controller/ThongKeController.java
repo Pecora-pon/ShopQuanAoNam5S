@@ -46,6 +46,7 @@ public class ThongKeController {
         List<Object[]> totalQuantityByMonth = thongKeService.getTotalQuantityByMonthInYear2023();
         model.addAttribute("totalQuantityByMonth", totalQuantityByMonth);
 
+
         long countOrdersByStatus = thongKeService.countOrdersByStatus();
         model.addAttribute("ordersByStatus", countOrdersByStatus);
         long countOrdersByStatus1 = thongKeService.countOrdersByStatus1();
@@ -61,7 +62,10 @@ public class ThongKeController {
 
         List<Object[]> totalRevenueByMonth = thongKeService.getTotalRevenueByMonthInYear2023();
         model.addAttribute("totalRevenueByMonth", totalRevenueByMonth);
-        return "admin/thong-ke";
+
+            List<Object[]> topProducts = thongKeService.getTopProducts();
+            model.addAttribute("topProducts",topProducts);
+            return "admin/thong-ke";
 
     }
 }
