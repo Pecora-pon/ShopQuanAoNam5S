@@ -9,6 +9,7 @@
 <%@ page import="java.util.HashSet" %>
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
+<%@ page import="java.util.List" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 
@@ -499,18 +500,10 @@
                                 </div>
                             </div>
                             <div class="card">
+                                <h5 class="card-header m-0 me-2 pb-3 text-primary">Trạng thái đơn hàng</h5>
                                 <div class="card-body">
                                     <div class="card-title d-flex align-items-start justify-content-between">
-                                        <div class="dropdown">
-                                            <button class="btn p-0" type="button" id="" data-bs-toggle="dropdown"
-                                                    aria-haspopup="true" aria-expanded="false">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="cardOpt4">
-                                                <a class="dropdown-item" href="javascript:void(0);">View More</a>
-                                                <a class="dropdown-item" href="javascript:void(0);">Delete</a>
-                                            </div>
-                                        </div>
+
                                     </div>
 
                                     <div class="row">
@@ -540,6 +533,92 @@
                                     </div>
 
                                 </div>
+                            </div>
+                            <div class="card">
+                                <h5 class="card-header m-0 me-2 pb-3 text-primary">Top 5 sản phẩm được mua nhiều nhất </h5>
+                                <div class="card-body">
+                                    <div style="width: 80%; margin: auto;">
+                                        <canvas id="myBarChart" width="400" height="200"></canvas>
+                                    </div>
+
+                                    <%
+                                        List<Object[]> topProducts = (List<Object[]>) request.getAttribute("topProducts");
+
+                                        if (topProducts != null && !topProducts.isEmpty()) {
+                                            StringBuilder labels = new StringBuilder("[");
+                                            StringBuilder data = new StringBuilder("[");
+                                            for (Object[] product : topProducts) {
+                                                labels.append("\"").append(product[0]).append("\",");
+                                                data.append(product[1]).append(",");
+                                            }
+                                            labels.setLength(labels.length() - 1);
+                                            data.setLength(data.length() - 1);
+                                            labels.append("]");
+                                            data.append("]");
+                                    %>
+
+                                    <script>
+                                        var data = {
+                                            labels: <%= labels %>,
+                                            datasets: [{
+                                                label: 'Sản phẩm được mua nhiều nhất',
+                                                data: <%= data %>,
+                                                backgroundColor: [
+                                                    'rgba(255, 99, 132, 0.2)',
+                                                    'rgba(54, 162, 235, 0.2)',
+                                                    'rgba(255, 206, 86, 0.2)',
+                                                    'rgba(75, 192, 192, 0.2)',
+                                                    'rgba(153, 102, 255, 0.2)'
+                                                ],
+                                                borderColor: [
+                                                    'rgba(255, 99, 132, 1)',
+                                                    'rgba(54, 162, 235, 1)',
+                                                    'rgba(255, 206, 86, 1)',
+                                                    'rgba(75, 192, 192, 1)',
+                                                    'rgba(153, 102, 255, 1)'
+                                                ],
+                                                borderWidth: 1
+                                            }]
+                                        };
+
+                                        var options = {
+                                            scales: {
+                                                y: {
+                                                    display: false,
+                                                }
+                                            },
+                                            plugins: {
+                                                datalabels: {
+                                                    anchor: 'end',
+                                                    align: 'end',
+                                                    formatter: function(value, context) {
+                                                        return value; // Hiển thị giá trị trên đỉnh của mỗi cột
+                                                    }
+                                                }
+                                            }
+                                        };
+
+                                        var ctx = document.getElementById('myBarChart').getContext('2d');
+                                        var myBarChart = new Chart(ctx, {
+                                            type: 'bar',
+                                            data: data,
+                                            options: options
+                                        });
+                                    </script>
+
+
+
+
+
+
+                                    <%
+                                        } else {
+                                            // Hiển thị thông báo hoặc xử lý trường hợp không có dữ liệu
+                                            out.println("Không có dữ liệu để hiển thị.");
+                                        }
+                                    %>
+                                </div>
+
                             </div>
                         </div>
                         <!--/ Total Revenue -->
