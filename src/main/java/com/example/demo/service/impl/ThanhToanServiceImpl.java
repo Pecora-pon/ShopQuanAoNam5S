@@ -95,7 +95,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
                 donHangChiTiet.setTongTien(tt);
                 donHangChiTiet.setSanPham(gioHang.getSanPham());
                 donHangChiTiets.add(donHangChiTiet);
-                sanPhamService.capnhat(sp, sl);
+//                sanPhamService.capnhat(sp, sl);
             }
 
 

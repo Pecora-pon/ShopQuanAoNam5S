@@ -132,6 +132,12 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     @Override
     public void chuyentrangthaicho(UUID id) {
      donHangChiTietRepo.chuyenTrangThaiCho(id);
+     List<DonHangChiTiet> list=donHangChiTietRepo.findById(id);
+     for(DonHangChiTiet dhct:list){
+         int sl=dhct.getSoLuong();
+         UUID sp=dhct.getSanPham().getSanPhamID();
+         sanPhamService.capnhat(sp,sl);
+     }
     }
 
     @Override
