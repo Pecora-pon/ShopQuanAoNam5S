@@ -130,6 +130,11 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
     @Override
+    public List<DonHangChiTiet> vi(String name) {
+        return donHangChiTietRepo.vi(name);
+    }
+
+    @Override
     public void chuyentrangthaicho(UUID id) {
      donHangChiTietRepo.chuyenTrangThaiCho(id);
      List<DonHangChiTiet> list=donHangChiTietRepo.findById(id);
