@@ -35,6 +35,17 @@
     <link rel="stylesheet" href="../mainshop/mainshop2/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2/css/style.css" type="text/css">
+    <style>
+        .row {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .product__item {
+            flex: 0 0 calc(33.333% - 20px); /* Điều chỉnh chiều rộng theo ý muốn */
+            margin: 10px;
+        }
+    </style>
 </head>
 
 <body>
@@ -141,12 +152,11 @@
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
-                                <div class="header__nav__option">
-                                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
-                                    <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
-                                    <div class="price">$0.00</div>
-                                </div>
+                <div class="header__nav__option">
+                    <%--                    <a href="/list-san-pham/ten-san-pham/" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>--%>
+                    <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+                    <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
+                </div>
             </div>
         </div>
         <div class="canvas__open"><i class="fa fa-bars"></i></div>
@@ -162,7 +172,7 @@
                 <div class="breadcrumb__text">
                     <h4>Shop</h4>
                     <div class="breadcrumb__links">
-                        <a href="./index.html">Home</a>
+                        <a href="/shop/main-shop">Home</a>
                         <span>Yêu Thích</span>
                     </div>
                 </div>
@@ -179,31 +189,31 @@
             <div class="col-lg-3">
                 <div class="shop__sidebar">
                     <div class="shop__sidebar__search">
-                        <form href="/list-san-pham/ten-san-pham">
-                            <input type="text" placeholder="Search..." name="tensanpham">
-                            <button type="submit"><span class="icon_search"></span></button>
+                        <form action="" id="productSearchForm">
+                            <input type="text" id="searchInput" placeholder="Tìm kiếm...">
+                            <button type="button" onclick="searchProducts()"><span class="icon_search"></span></button>
                         </form>
                     </div>
-                    <div class="shop__sidebar__accordion">
-                        <div class="accordion" id="accordionExample">
+<%--                    <div class="shop__sidebar__accordion">--%>
+<%--                        <div class="accordion" id="accordionExample">--%>
 
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>
-                                </div>
-                                <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__brand">
-                                            <ul>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=1">Louis Vuitton</a></li>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=2">Chanel</a></li>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=3">Hermes</a></li>
-                                                <li><a href="/list-san-pham/page?thuonghieuid=4">Gucci</a></li>
-                                            </ul>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
+<%--                            <div class="card">--%>
+<%--                                <div class="card-heading">--%>
+<%--                                    <a data-toggle="collapse" data-target="#collapseTwo">Branding</a>--%>
+<%--                                </div>--%>
+<%--                                <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">--%>
+<%--                                    <div class="card-body">--%>
+<%--                                        <div class="shop__sidebar__brand">--%>
+<%--                                            <ul>--%>
+<%--                                                <li><a href="/list-san-pham/page?thuonghieuid=1">Louis Vuitton</a></li>--%>
+<%--                                                <li><a href="/list-san-pham/page?thuonghieuid=2">Chanel</a></li>--%>
+<%--                                                <li><a href="/list-san-pham/page?thuonghieuid=3">Hermes</a></li>--%>
+<%--                                                <li><a href="/list-san-pham/page?thuonghieuid=4">Gucci</a></li>--%>
+<%--                                            </ul>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
                             <div class="card">
                                 <div class="card-heading">
                                     <a data-toggle="collapse" data-target="#collapseThree">Filter Price</a>
@@ -212,133 +222,133 @@
                                     <div class="card-body">
                                         <div class="shop__sidebar__price">
                                             <ul>
-                                                <li><a href="/list-san-pham/page?minPrice=0&maxPrice=50000">0Đ -
+                                                <li><a href="javascript:void(0);" onclick="filterProductsByPrice(0, 50000)">0Đ -
                                                     50000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=50000&maxPrice=100000">50000Đ - 100000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=100000&maxPrice=150000">100000Đ - 150000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=150000&maxPrice=200000">150000Đ - 200000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=200000&maxPrice=250000">200000Đ - 250000Đ</a></li>
-                                                <li><a href="/list-san-pham/page?minPrice=0&maxPrice=99999999999999">250000+</a></li>
+                                                <li><a href="javascript:void(0);" onclick="filterProductsByPrice(50000, 100000)">50000Đ - 100000Đ</a></li>
+                                                <li><a href="javascript:void(0);" onclick="filterProductsByPrice(100000, 150000)">100000Đ - 150000Đ</a></li>
+                                                <li><a href="javascript:void(0);" onclick="filterProductsByPrice(150000, 200000)">150000Đ - 200000Đ</a></li>
+                                                <li><a href="javascript:void(0);" onclick="filterProductsByPrice(200000, 250000)">200000Đ - 250000Đ</a></li>
+                                                <li><a href="javascript:void(0);" onclick="filterProductsByPrice(250000, 10000000)">250000+</a></li>
                                             </ul>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseFour">Size</a>
-                                </div>
-                                <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__size">
-                                            <label for="xs">xs
-                                                <a href="/list-san-pham/page?sizeid=0">
-                                                    <input id="xs">
-                                                </a>
-                                            </label>
-                                            <label for="sm">s
-                                                <a href="/list-san-pham/page?sizeid=1">
-                                                    <input id="sm">
-                                                </a>
+<%--                            <div class="card">--%>
+<%--                                <div class="card-heading">--%>
+<%--                                    <a data-toggle="collapse" data-target="#collapseFour">Size</a>--%>
+<%--                                </div>--%>
+<%--                                <div id="collapseFour" class="collapse show" data-parent="#accordionExample">--%>
+<%--                                    <div class="card-body">--%>
+<%--                                        <div class="shop__sidebar__size">--%>
+<%--                                            <label for="xs">xs--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=0">--%>
+<%--                                                    <input id="xs">--%>
+<%--                                                </a>--%>
+<%--                                            </label>--%>
+<%--                                            <label for="sm">s--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=1">--%>
+<%--                                                    <input id="sm">--%>
+<%--                                                </a>--%>
 
-                                            </label>
-                                            <label for="md">m
-                                                <a href="/list-san-pham/page?sizeid=2">
-                                                    <input id="md">
-                                                </a>
-                                            </label>
-                                            <label for="xl">xl
-                                                <a href="/list-san-pham/page?sizeid=3">
-                                                    <input id="xl">
-                                                </a>
+<%--                                            </label>--%>
+<%--                                            <label for="md">m--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=2">--%>
+<%--                                                    <input id="md">--%>
+<%--                                                </a>--%>
+<%--                                            </label>--%>
+<%--                                            <label for="xl">xl--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=3">--%>
+<%--                                                    <input id="xl">--%>
+<%--                                                </a>--%>
 
-                                            </label>
-                                            <label for="2xl">2xl
-                                                <a href="/list-san-pham/page?sizeid=4">
-                                                    <input id="2xl">
-                                                </a>
+<%--                                            </label>--%>
+<%--                                            <label for="2xl">2xl--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=4">--%>
+<%--                                                    <input id="2xl">--%>
+<%--                                                </a>--%>
 
-                                            </label>
-                                            <label for="xxl">xxl
-                                                <a href="/list-san-pham/page?sizeid=5">
-                                                    <input id="xxl">
-                                                </a>
+<%--                                            </label>--%>
+<%--                                            <label for="xxl">xxl--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=5">--%>
+<%--                                                    <input id="xxl">--%>
+<%--                                                </a>--%>
 
-                                            </label>
-                                            <label for="3xl">3xl
-                                                <a href="/list-san-pham/page?sizeid=6">
-                                                    <input id="3xl">
-                                                </a>
+<%--                                            </label>--%>
+<%--                                            <label for="3xl">3xl--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=6">--%>
+<%--                                                    <input id="3xl">--%>
+<%--                                                </a>--%>
 
-                                            </label>
-                                            <label for="4xl">4xl
-                                                <a href="/list-san-pham/page?sizeid=7">
-                                                    <input id="4xl">
-                                                </a>
+<%--                                            </label>--%>
+<%--                                            <label for="4xl">4xl--%>
+<%--                                                <a href="/list-san-pham/page?sizeid=7">--%>
+<%--                                                    <input id="4xl">--%>
+<%--                                                </a>--%>
 
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseFive">Colors</a>
-                                </div>
-                                <div id="collapseFive" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__color">
-                                            <label class="c-1" for="sp-1">
-                                                <input type="radio" id="sp-1">
-                                            </label>
-                                            <label class="c-2" for="sp-2">
-                                                <input type="radio" id="sp-2">
-                                            </label>
-                                            <label class="c-3" for="sp-3">
-                                                <input type="radio" id="sp-3">
-                                            </label>
-                                            <label class="c-4" for="sp-4">
-                                                <input type="radio" id="sp-4">
-                                            </label>
-                                            <label class="c-5" for="sp-5">
-                                                <input type="radio" id="sp-5">
-                                            </label>
-                                            <label class="c-6" for="sp-6">
-                                                <input type="radio" id="sp-6">
-                                            </label>
-                                            <label class="c-7" for="sp-7">
-                                                <input type="radio" id="sp-7">
-                                            </label>
-                                            <label class="c-8" for="sp-8">
-                                                <input type="radio" id="sp-8">
-                                            </label>
-                                            <label class="c-9" for="sp-9">
-                                                <input type="radio" id="sp-9">
-                                            </label>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="card">
-                                <div class="card-heading">
-                                    <a data-toggle="collapse" data-target="#collapseSix">Tags</a>
-                                </div>
-                                <div id="collapseSix" class="collapse show" data-parent="#accordionExample">
-                                    <div class="card-body">
-                                        <div class="shop__sidebar__tags">
-                                            <a href="#">Product</a>
-                                            <a href="#">Bags</a>
-                                            <a href="#">Shoes</a>
-                                            <a href="#">Fashio</a>
-                                            <a href="#">Clothing</a>
-                                            <a href="#">Hats</a>
-                                            <a href="#">Accessories</a>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
+<%--                                            </label>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="card">--%>
+<%--                                <div class="card-heading">--%>
+<%--                                    <a data-toggle="collapse" data-target="#collapseFive">Colors</a>--%>
+<%--                                </div>--%>
+<%--                                <div id="collapseFive" class="collapse show" data-parent="#accordionExample">--%>
+<%--                                    <div class="card-body">--%>
+<%--                                        <div class="shop__sidebar__color">--%>
+<%--                                            <label class="c-1" for="sp-1">--%>
+<%--                                                <input type="radio" id="sp-1">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-2" for="sp-2">--%>
+<%--                                                <input type="radio" id="sp-2">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-3" for="sp-3">--%>
+<%--                                                <input type="radio" id="sp-3">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-4" for="sp-4">--%>
+<%--                                                <input type="radio" id="sp-4">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-5" for="sp-5">--%>
+<%--                                                <input type="radio" id="sp-5">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-6" for="sp-6">--%>
+<%--                                                <input type="radio" id="sp-6">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-7" for="sp-7">--%>
+<%--                                                <input type="radio" id="sp-7">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-8" for="sp-8">--%>
+<%--                                                <input type="radio" id="sp-8">--%>
+<%--                                            </label>--%>
+<%--                                            <label class="c-9" for="sp-9">--%>
+<%--                                                <input type="radio" id="sp-9">--%>
+<%--                                            </label>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                            <div class="card">--%>
+<%--                                <div class="card-heading">--%>
+<%--                                    <a data-toggle="collapse" data-target="#collapseSix">Tags</a>--%>
+<%--                                </div>--%>
+<%--                                <div id="collapseSix" class="collapse show" data-parent="#accordionExample">--%>
+<%--                                    <div class="card-body">--%>
+<%--                                        <div class="shop__sidebar__tags">--%>
+<%--                                            <a href="#">Product</a>--%>
+<%--                                            <a href="#">Bags</a>--%>
+<%--                                            <a href="#">Shoes</a>--%>
+<%--                                            <a href="#">Fashio</a>--%>
+<%--                                            <a href="#">Clothing</a>--%>
+<%--                                            <a href="#">Hats</a>--%>
+<%--                                            <a href="#">Accessories</a>--%>
+<%--                                        </div>--%>
+<%--                                    </div>--%>
+<%--                                </div>--%>
+<%--                            </div>--%>
+<%--                        </div>--%>
+<%--                    </div>--%>
                 </div>
             </div>
             <div class="col-lg-9">
@@ -350,61 +360,63 @@
                             </div>
                         </div>
                         <div class="col-lg-6 col-md-6 col-sm-6">
-                            <div class="shop__product__option__right">
-                                <p>Sort by Price:</p>
-                                <select>
-                                    <option value="">Low To High</option>
-                                    <option value="">$0 - $55</option>
-                                    <option value="">$55 - $100</option>
-                                </select>
-                            </div>
+<%--                            <div class="shop__product__option__right">--%>
+<%--                                <p>Sort by Price:</p>--%>
+<%--                                <select>--%>
+<%--                                    <option value="">Low To High</option>--%>
+<%--                                    <option value="">$0 - $55</option>--%>
+<%--                                    <option value="">$55 - $100</option>--%>
+<%--                                </select>--%>
+<%--                            </div>--%>
                         </div>
                     </div>
                 </div>
                 <!-- Sản Phẩm -->
-                <div class="row">
-                    <c:forEach items="${listSanPham}" var="sp">
-                        <div class="col-lg-4 col-md-6 col-sm-6">
-                            <div class="product__item">
-                                <div class="product__item__pic set-bg" data-setbg="/getimage/${sp.sanPham.hinhAnhURL}">
-                                    <ul class="product__hover">
-                                        <li><a href="/danh-sach-yt/delete/${sp.danhSachSanPhamYeuThichID}"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
-                                        </li>
-                                        <li><a href="#"><img src="../mainshop/mainshop2/img/icon/compare.png" alt="">
-                                            <span>Compare</span></a>
-                                        </li>
-                                        <li><a href="#"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
-                                        </li>
-                                    </ul>
-                                </div>
-                                <div class="product__item__text">
-                                    <h6>${sp.sanPham.tenSanPham}</h6>
-                                    <a  class="add-cart" href="/san-pham-detail/${sp.sanPham.sanPhamID}">+ Add To Cart</a>
-                                    <div class="rating">
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                        <i class="fa fa-star-o"></i>
-                                    </div>
-                                    <h5>
-                                        <fmt:formatNumber value="${sp.sanPham.giaSanPham}" pattern="0"/> VND
-                                    </h5>
-                                    <div class="product__color__select">
-                                        <label for="pc-4">
-                                            <input type="radio" id="pc-4">
-                                        </label>
-                                        <label class="active black" for="pc-5">
-                                            <input type="radio" id="pc-5">
-                                        </label>
-                                        <label class="grey" for="pc-6">
-                                            <input type="radio" id="pc-6">
-                                        </label>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </c:forEach>
+                <div class="row" id="productContainer">
+
+                      <c:forEach items="${listSanPham}" var="sp">
+                          <div class="col-lg-4 col-md-6 col-sm-6">
+                              <div class="product__item">
+                                  <div class="product__item__pic set-bg" data-setbg="/getimage/${sp.sanPham.hinhAnhURL}">
+                                      <ul class="product__hover">
+                                          <li><a href="/danh-sach-yt/delete/${sp.danhSachSanPhamYeuThichID}"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
+                                          </li>
+                                          <li><a href="#"><img src="../mainshop/mainshop2/img/icon/compare.png" alt="">
+                                              <span>Compare</span></a>
+                                          </li>
+                                          <li><a href="#"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+                                          </li>
+                                      </ul>
+                                  </div>
+                                  <div class="product__item__text">
+                                      <h6>${sp.sanPham.tenSanPham}</h6>
+                                      <a  class="add-cart" href="/san-pham-detail/${sp.sanPham.sanPhamID}">+ Add To Cart</a>
+                                      <div class="rating">
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                          <i class="fa fa-star-o"></i>
+                                      </div>
+                                      <h5>
+                                          <fmt:formatNumber value="${sp.sanPham.giaSanPham}" pattern="0"/> VND
+                                      </h5>
+                                      <div class="product__color__select">
+                                          <label for="pc-4">
+                                              <input type="radio" id="pc-4">
+                                          </label>
+                                          <label class="active black" for="pc-5">
+                                              <input type="radio" id="pc-5">
+                                          </label>
+                                          <label class="grey" for="pc-6">
+                                              <input type="radio" id="pc-6">
+                                          </label>
+                                      </div>
+                                  </div>
+                              </div>
+                          </div>
+                      </c:forEach>
+
 
                 </div>
                 <!-- Sản phẩm -->
@@ -520,6 +532,82 @@
 <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
+<script>
+    function searchProducts() {
+        // Lấy giá trị từ ô input
+        var searchTerm = document.getElementById('searchInput').value.toLowerCase();
+
+        // Lặp qua từng sản phẩm trong danh sách
+        var productContainer = document.getElementById('productContainer');
+        var products = document.querySelectorAll('.product__item');
+        var foundProduct = null;
+
+        products.forEach(function(product) {
+            var productName = product.querySelector('h6').innerText.toLowerCase();
+
+            // Tìm sản phẩm thỏa mãn điều kiện
+            if (productName.includes(searchTerm)) {
+                foundProduct = product;
+            }
+        });
+
+        // Ẩn các sản phẩm không phù hợp và đưa sản phẩm tìm thấy lên đầu danh sách
+        products.forEach(function(product) {
+            if (product === foundProduct) {
+                productContainer.insertBefore(product, productContainer.firstChild);
+                product.style.display = 'block'; // Hiển thị sản phẩm tìm thấy
+            } else {
+                product.style.display = 'none'; // Ẩn sản phẩm không phù hợp
+            }
+        });
+    }
+</script>
+
+<script>
+    function filterProductsByPrice(minPrice, maxPrice) {
+        // Lưu lại thứ tự ban đầu của các sản phẩm
+        var productContainer = document.getElementById('productContainer');
+        var originalOrder = Array.from(productContainer.children);
+
+        // Lặp qua từng sản phẩm trong danh sách
+        var products = document.querySelectorAll('.product__item');
+        var foundProduct = null;
+
+        // Ẩn các sản phẩm không phù hợp và tìm sản phẩm thỏa mãn điều kiện
+        products.forEach(function(product) {
+            // Lấy giá của sản phẩm
+            var productPriceStr = product.querySelector('h5').innerText;
+            var productPrice = parseFloat(productPriceStr.replace(/[^\d.]/g, '')); // Chuyển đổi chuỗi giá thành số
+
+            // Ẩn sản phẩm không phù hợp
+            if (productPrice < minPrice || productPrice > maxPrice) {
+                product.style.display = 'none';
+            } else {
+                // Nếu sản phẩm thỏa mãn điều kiện, lưu lại và đưa lên đầu danh sách
+                foundProduct = product;
+                productContainer.insertBefore(product, productContainer.firstChild);
+                product.style.display = 'block';
+            }
+        });
+
+        // Sắp xếp lại sản phẩm dựa trên kết quả tìm kiếm
+        var sortedProducts = Array.from(productContainer.children);
+        sortedProducts.sort(function(a, b) {
+            var indexA = originalOrder.indexOf(a);
+            var indexB = originalOrder.indexOf(b);
+            return indexA - indexB;
+        });
+
+        // Đặt lại thứ tự của các sản phẩm trong DOM
+        productContainer.innerHTML = '';
+        sortedProducts.forEach(function(product) {
+            productContainer.appendChild(product);
+        });
+    }
+</script>
+
+
+
 </body>
 
 </html>
