@@ -39,6 +39,13 @@ public class KhachHangXemDonHang {
         model.addAttribute("list",list);
         return "admin/khach-hang-xem-don/choxacnhan";
     }
+    @GetMapping("/vi")
+    public String vi(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet,Model model,Authentication authentication){
+        String username=authentication.getName();
+        List<DonHangChiTiet>list=donHangChiTietService.vi(username);
+        model.addAttribute("list",list);
+        return "admin/khach-hang/vithanhtoan";
+    }
     @GetMapping("/dangxem")
     public String dangxem(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model, Authentication authentication){
         String username=authentication.getName();
