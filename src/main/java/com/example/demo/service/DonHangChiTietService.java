@@ -32,6 +32,7 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet>getAlllll();
     List<DonHangChiTiet>gethuy();
     List<DonHangChiTiet>gethuyttt();
+    List<DonHangChiTiet>vi(String name);
     void chuyentrangthaicho(UUID id);
     void chuyensangxn(UUID id);
     void chuyensangtc(UUID id);
