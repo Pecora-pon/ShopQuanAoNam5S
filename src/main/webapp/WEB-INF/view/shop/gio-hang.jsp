@@ -236,11 +236,20 @@
                                                 <div class="pro-qty">
                                                     <input type="text" id="soLuongDat_${gh.gioHangID}"
                                                            name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}"
-                                                           oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham}, this.value)">
+                                                           oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham}, this.value)" class="custom-input">
                                                 </div>
                                             </div>
                                         </td>
-
+                                        <style>
+                                            .custom-input {
+                                                width: 50px;
+                                                padding: 8px;
+                                                border: 1px solid #ccc;
+                                                border-radius: 4px;
+                                                box-sizing: border-box;
+                                                font-size: 14px;
+                                            }
+                                        </style>
                                         <td class="cart__price" id="tongTien_${gh.gioHangID}">
                                             <fmt:formatNumber value="${gh.tongTien}" pattern="#,##0"/> <đ></đ>
                                             <script>
