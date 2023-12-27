@@ -286,7 +286,7 @@
                                            value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}"/>
                                 </c:forEach>
 
-                                <button type="submit">Apply</button>
+                                <button type="submit" class="btn btn-success btn-sm">Apply</button>
                             </form>
                         </table>
                     </div>
