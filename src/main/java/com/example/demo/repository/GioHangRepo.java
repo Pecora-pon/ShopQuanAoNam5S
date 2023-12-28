@@ -25,6 +25,7 @@ List<GioHang>findByKhachHang_Username(String username);
     Optional<GioHang> findBySanPham_TenSanPhamAndTrangThaiAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacIDAndKhachHang_KhachHangId(String tenSanPham, int trangThai,int size,int mausac,int khachhang);
     Optional<GioHang> findBySanPham_SizeAndSanPham_MauSac(  Size size, MauSac mausac);
     Optional<GioHang> findBySanPham_TenSanPhamAndTrangThaiAndSanPham_SizeAndSanPham_MauSac(String ten, int trangThai, Size size, MauSac mausac);
+//    Optional<GioHang> findBySanPham_TenSanPhamAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(String tenSanPam,String hinhAnhURL,int tenSize,int tenMauSac);
 
 }
 

@@ -19,37 +19,51 @@ import java.util.UUID;
 @Repository
 public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     boolean existsByTenSanPham(String tenSanPham);
+
     Page<SanPham> findByTinhTrang(Integer tinhTrang, Pageable pageable);
-      @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 AND sp.size LIKE %?1% AND sp.thuongHieu LIKE %?2% AND" +
+
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 AND sp.size LIKE %?1% AND sp.thuongHieu LIKE %?2% AND" +
             " sp.tenSanPham LIKE %?3%")
     Page<SanPham> getPages(String sizeID,
                            String thuonghieuID,
-                            String tenSanPham,
-                            Pageable pageable);
+                           String tenSanPham,
+                           Pageable pageable);
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang =0 and sp.thuongHieu LIKE %?1%")
     List<SanPham> findByThuongHieuID(String thuongHieuID);
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.mauSac LIKE %?1%")
-    Page<SanPham> findByMauSacID(String mauSacID,Pageable pageable);
+    Page<SanPham> findByMauSacID(String mauSacID, Pageable pageable);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.chatLieu LIKE %?1%")
-    Page<SanPham>  findByChatLieuID(String chatLieuID,Pageable pageable);
+    Page<SanPham> findByChatLieuID(String chatLieuID, Pageable pageable);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.size LIKE %?1%")
-    Page<SanPham>  findBySizeID(String sizeID,Pageable pageable);
+    Page<SanPham> findBySizeID(String sizeID, Pageable pageable);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and sp.tenSanPham LIKE %?1%")
-    Page<SanPham>  findByTenSanPham(String tenSanPham,Pageable pageable);
+    Page<SanPham> findByTenSanPham(String tenSanPham, Pageable pageable);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.hinhAnhURL LIKE %?1%")
     List<SanPham> findByHinhAnhURL(String hinhAnhURL);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.tinhTrang = 0 and    sp.giaSanPham BETWEEN ?1 AND ?2")
-    Page<SanPham>  findProductsInPriceRange(Double minPrice, Double maxPrice,Pageable pageable);
+    Page<SanPham> findProductsInPriceRange(Double minPrice, Double maxPrice, Pageable pageable);
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
     SanPham findByTen(@Param("tenSanPham") String tenSanPham);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
     List<SanPham> findByTenSanPham1(@Param("tenSanPham") String tenSanPham);
+
+
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham = :tenSanPham AND sp.hinhAnhURL = :hinhAnhURL AND sp.size.sizeID = :sizeID AND sp.mauSac.mauSacID = :mauSacID")
+    SanPham findByTenSanPhamAndHinhAnhURLAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(
+            @Param("tenSanPham") String tenSanPham,
+            @Param("hinhAnhURL") String hinhAnhURL,
+            @Param("sizeID") int sizeID,
+            @Param("mauSacID") int mauSacID
+    );
     @Query("SELECT s FROM SanPham s WHERE s.tenSanPham = :tenSanPham " +
             "AND s.mauSac.mauSacID = :tenMauSac " +
             "AND s.size.sizeID = :tenSize " +
@@ -60,8 +74,9 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
             @Param("tenMauSac") int tenMauSac,
             @Param("tenSize") int tenSize,
             @Param("tenChatLieu") int tenChatLieu,
-            @Param("tenThuongHieu")int tenThuongHieu
+            @Param("tenThuongHieu") int tenThuongHieu
     );
+
     @Query("SELECT s FROM SanPham s WHERE s.tenSanPham = :tenSanPham " +
             "AND s.mauSac.tenMauSac = :tenMauSac " +
             "AND s.size.tenSize = :tenSize " +
@@ -74,28 +89,40 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
             @Param("tenChatLieu") String tenChatLieu,
             @Param("tenThuongHieu") String tenThuongHieu
     );
+
     Optional<SanPham> findById(UUID sanPhamID);
-     @Query("SELECT sp FROM SanPham sp WHERE sp.mauSac.mauSacID =:mauSacID")
+
+    @Query("SELECT sp FROM SanPham sp WHERE sp.mauSac.mauSacID =:mauSacID")
     List<SanPham> findByMauSac_MauSacID(@Param("mauSacID") int tenMauSac);
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.size.sizeID =:sizeID")
     List<SanPham> findBySize_SizeID(@Param("sizeID") int tenSize);
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.chatLieu.chatLieuID =:chatLieuID")
     List<SanPham> findByChatLieu_ChatLieuID(@Param("chatLieuID") int tenChatLieu);
+
     @Query("SELECT sp FROM SanPham sp WHERE sp.thuongHieu.thuongHieuID =:thuongHieuID")
     List<SanPham> findByThuongHieu_ThuongHieuID(@Param("thuongHieuID") int tenthuongHieu);
+
     @Query("select sp from SanPham sp order by sp.ngayTao desc ")
     List<SanPham> sapxep();
-    List<SanPham>findBySanPhamID(UUID sanPhamID);
+
+    List<SanPham> findBySanPhamID(UUID sanPhamID);
+
     @Transactional
     @Modifying
-    @Query(value = "Update SanPham set tinhTrang = 1 where sanPhamID =:sanPhamID",nativeQuery = true)
+    @Query(value = "Update SanPham set tinhTrang = 1 where sanPhamID =:sanPhamID", nativeQuery = true)
     void deleteByI(@Param("sanPhamID") UUID sanPhamID);
-    @Query(value = "select * from SanPham p WHERE  p.tinhTrang=0 order by p.ngayTao desc",nativeQuery = true)
+
+    @Query(value = "select * from SanPham p WHERE  p.tinhTrang=0 order by p.ngayTao desc", nativeQuery = true)
     List<SanPham> getAll();
-    @Query(value = "select * from SanPham p WHERE  p.tinhTrang=0 order by p.ngayTao desc",nativeQuery = true)
+
+    @Query(value = "select * from SanPham p WHERE  p.tinhTrang=0 order by p.ngayTao desc", nativeQuery = true)
     List<SanPham> getAlll();
+
     @Query(value = "SELECT TOP 4 * FROM SanPham ORDER BY GiaSanPham ASC", nativeQuery = true)
     List<SanPham> findTop4ByOrderByGiaSanPhamAsc();
+
     @Query(value = "SELECT TOP 5 p.tenSanPham, SUM(dhct.SoLuong) AS tongSoLuong "
             + "FROM DonHangChiTiet dhct "
             + "JOIN SanPham p ON dhct.SanPhamID = p.SanPhamID "
