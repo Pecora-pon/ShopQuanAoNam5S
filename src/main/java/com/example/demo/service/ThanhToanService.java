@@ -8,7 +8,7 @@ import java.util.UUID;
 
 public interface ThanhToanService {
     List<GioHang> detail(List<Integer> gioHangID, Map<String, String> params);
-    SanPham deltail1(UUID sanPham,int sl);
+    SanPham deltail1(String ten,String anh,int size,int mausac,int sl);
 //    KhachHang kh(String ten);
    DonHang themmoi(DonHang donHang,List<Integer> danhSachGioHangs,float tt,int trang);
     DonHang themmoingay(DonHang donHang,UUID sanPham,int sl,float tt,int trangthai);

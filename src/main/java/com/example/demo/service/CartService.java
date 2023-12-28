@@ -14,7 +14,7 @@ public interface CartService {
     Map<GioHang, Integer> getProductInCart();
     GioHang detail(int gioHangID);
     List<GioHang> getAll();
-    GioHang insert(GioHang gioHang,UUID sanPhamID);
+    GioHang insert(GioHang gioHang,String ten,String anh,int size,int mausac);
     GioHang update(int gioHangID,GioHang gioHang);
     void delete(int gioHangID);
     List<GioHang>getAllByKhachHang(String username);
