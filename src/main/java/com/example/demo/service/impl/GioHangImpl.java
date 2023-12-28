@@ -63,20 +63,20 @@ public class GioHangImpl implements CartService {
     }
 
     @Override
-    public GioHang insert(GioHang gioHang, UUID sanPhamID) {
-        SanPham sanPham = sanPhamRepo.findById(sanPhamID).orElse(null);
+    public GioHang insert(GioHang gioHang, String ten,String anh,int size,int mausac) {
+        SanPham sanPham = sanPhamRepo.findByTenSanPhamAndHinhAnhURLAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(ten,anh,size,mausac);
 
-        if (sanPham == null) {
-            System.out.println("Không tìm thấy sản phẩm");
-            return null;
-        }
+
+//        if (sanPham == null) {
+//            System.out.println("Không tìm thấy sản phẩm");
+//            return null;
+//        }
 
         int slton = sanPham.getSoLuongTon();
         int sl = gioHang.getSoLuongDat();
         String tenSanPham = sanPham.getTenSanPham();
 
         Optional<GioHang> existingItemOptional = gioHangRepo.findBySanPham_TenSanPhamAndTrangThaiAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacIDAndKhachHang_KhachHangId(tenSanPham, gioHang.getTrangThai(),sanPham.getSize().getSizeID(),sanPham.getMauSac().getMauSacID(),gioHang.getKhachHang().getKhachHangId());
-
         if (existingItemOptional.isPresent()) {
             GioHang existingItem = existingItemOptional.get();
             int existingQuantity = existingItem.getSoLuongDat() + sl;

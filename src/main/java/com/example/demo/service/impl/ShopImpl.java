@@ -82,6 +82,10 @@ public class ShopImpl implements ShopService {
         return sanPhamRepo.getById(sanPhamID);
     }
 
+
+
+
+
 //    @Override
 //    public List<SanPham> findBySize(String tenSize) {
 //        return sanPhamRepo.findBySize(tenSize);

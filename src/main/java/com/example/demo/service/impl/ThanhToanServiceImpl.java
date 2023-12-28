@@ -65,8 +65,9 @@ public class ThanhToanServiceImpl implements ThanhToanService {
     }
 
     @Override
-    public SanPham deltail1(UUID sanPham, int sl) {
-        SanPham sanPham1 = sanPhamRepo.findById(sanPham).orElse(null);
+    public SanPham deltail1(String ten,String anh,int size,int mausac, int sl) {
+        SanPham sanPham1 = sanPhamRepo.findByTenSanPhamAndHinhAnhURLAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(ten,anh,size,mausac);
+
         return sanPham1;
     }
 
