@@ -109,5 +109,6 @@ public class ShopController {
         model.addAttribute("sp",sanPham);
         return "shop/san-pham-detail";
    }
+
 }
 

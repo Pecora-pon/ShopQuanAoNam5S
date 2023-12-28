@@ -43,9 +43,9 @@ public class CartController {
         return "shop/gio-hang";
     }
 
-    @PostMapping(value = "/them-gio-hang/{sanPhamID}")
+    @PostMapping(value = "/them-gio-hang/{tenSanPham}/{hinhAnhURL}")
     @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String them(@Valid @ModelAttribute("sanpham") GioHang gioHang, @PathVariable("sanPhamID") UUID sanPhamID,SanPham sanPham,
+    public String them(@Valid @ModelAttribute("sanpham") GioHang gioHang, @PathVariable("tenSanPham") String ten,@PathVariable("hinhAnhURL") String hinhAnhURL,@RequestParam("sizeID")int size,@RequestParam("mauSacID")int mauSac,SanPham sanPham,
                        BindingResult result,
                        Model model, Principal principal) {
         String logname = principal.getName();
@@ -54,7 +54,7 @@ public class CartController {
         gioHang.setKhachHang(khachHang);
 
 //        sanPhamService.size(sanPham,sanPhamID);
-        cartService.insert(gioHang, sanPhamID);
+        cartService.insert(gioHang, ten,hinhAnhURL,size,mauSac);
         List<Size>sizeList=sizeService.getAll();
         model.addAttribute("listSize",sizeList);
         model.addAttribute("listGioHang", gioHangList);

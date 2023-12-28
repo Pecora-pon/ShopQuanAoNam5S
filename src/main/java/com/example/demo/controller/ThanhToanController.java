@@ -115,10 +115,10 @@ public class ThanhToanController {
        mailSender.send(message);
         return "shop/thong-bao";
    }
-   @GetMapping("/themngay/{sanPhamID}")
+   @GetMapping("/themngay/{tenSanPham}/{hinhAnhURL}/{sizeID}/{mauSacID}")
    @PreAuthorize("hasAuthority('ROLE_USER')")
-    public String detail1(@PathVariable("sanPhamID")UUID id,@RequestParam(value = "soLuongDat",defaultValue = "1")int sl, Model model,Principal principal,Authentication authentication){
-        SanPham sanPham=thanhToanService.deltail1(id,sl);
+    public String detail1(@PathVariable("tenSanPham")String ten,@PathVariable("hinhAnhURL")String anh,@PathVariable("sizeID")int size,@PathVariable("mauSacID")int mausac,@RequestParam(value = "soLuongDat",defaultValue = "1")int sl, Model model,Principal principal,Authentication authentication){
+        SanPham sanPham=thanhToanService.deltail1(ten,anh,size,mausac,sl);
         List<SanPham>sanPhamList=sanPhamService.getAll();
        String username=authentication.getName();
         String logname= principal.getName();
@@ -133,6 +133,24 @@ public class ThanhToanController {
         model.addAttribute("sp",sanPham);
         return "shop/thanh-toann";
    }
+//    @GetMapping("/themngay/{sanPhamID}")
+//    @PreAuthorize("hasAuthority('ROLE_USER')")
+//    public String detail1(@PathVariable("sanPhamID")UUID ten,@RequestParam(value = "soLuongDat",defaultValue = "1")int sl, Model model,Principal principal,Authentication authentication){
+//        SanPham sanPham=thanhToanService.deltail1(ten,sl);
+//        List<SanPham>sanPhamList=sanPhamService.getAll();
+//        String username=authentication.getName();
+//        String logname= principal.getName();
+//        KhachHang khachHang=khachHangRepo.findByUsername(logname);
+//        List<GiamGia>giamGiaList=giamGiaService.getAll();
+//        List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAllByKhachHang(username);
+//        model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
+//        model.addAttribute("listGiamGia",giamGiaList);
+//        model.addAttribute("tt",khachHang);
+//        model.addAttribute("listSanPham",sanPhamList);
+//        model.addAttribute("soLuongDat",sl);
+//        model.addAttribute("sp",sanPham);
+//        return "shop/thanh-toann";
+//    }
     @PostMapping("/themmoiny")
     @PreAuthorize("hasAuthority('ROLE_USER')")
     public String themmoinay(@RequestParam("email")String email, @RequestParam("hoTen")String hoTen,@ModelAttribute("t") DonHang donHang,@RequestParam("sanPhamID") UUID id,@RequestParam("soLuongDat")int sl,@RequestParam("amount")float tt,@RequestParam("trangThai")int trang, Model model,Principal principal)throws MessagingException{
