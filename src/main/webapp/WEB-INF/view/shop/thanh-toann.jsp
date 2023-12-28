@@ -17,7 +17,8 @@
     <meta name="keywords" content="Male_Fashion, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Male-Fashion | Template</title>
+    <title>5S-Fashion | Thanh toán</title>
+    <base href="http://localhost:8080/themngay/">
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
 
     <!-- Fonts -->
@@ -159,11 +160,9 @@
                 </nav>
             </div>
             <div class="col-lg-3 col-md-3">
-                <div class="header__nav__option">
-                    <a href="#" class="search-switch"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a>
+               <div class="header__nav__option">
                     <a href="/danh-sach-yt/hien-thi"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a>
                     <a href="/gio-hang"><img src="../mainshop/mainshop2/img/icon/cart.png" alt=""> <span>0</span></a>
-                    <div class="price">$0.00</div>
                 </div>
             </div>
         </div>
