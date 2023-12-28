@@ -194,7 +194,7 @@
                             <form:form action="" modelAttribute="sp">
                                 <div class="tab-pane active" id="tabs-1" role="tabpanel">
                                     <div class="product__details__pic__item" value="${sp.hinhAnhURL}">
-                                        <img src="/getimage/${sp.hinhAnhURL}" alt="">
+                                        <img src="<c:url value='/getimage/'/>${sp.hinhAnhURL}" alt="">
                                     </div>
                                 </div>
                             </form:form>
@@ -209,26 +209,43 @@
                 <div class="row d-flex justify-content-center">
                     <div class="col-lg-8">
                         <div class="product__details__text">
-                        <form:form action="/them-gio-hang/${sp.sanPhamID}" modelAttribute="sp" method="post">
-                            <c:forEach items="l">
+                        <form:form action="/them-gio-hang/${sp.tenSanPham}/${sp.hinhAnhURL}" modelAttribute="sp" method="post">
                             <h4 value="${sp.tenSanPham}">${sp.tenSanPham}</h4>
                             <h3 value="${sp.giaSanPham}">
                                 <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/>
                             </h3>
-                            <div class="product__details__option">
-                                <div class="product__details__option__size">
-                                    Size:
-                                    <input type="text" name="size.sizeID" class="form-control" value="${sp.size.tenSize}" readonly/>
-                                </div>
-                                <div class="product__details__option__color">
-                                    <span value="${sp.mauSac}" >Color:
-
-                                         <input type="text" name="mauSac.mauSacID" class="form-control" value="${sp.mauSac.tenMauSac}" readonly/>
-
-                                     </span>
-                                </div>
+                            <label>Size</label>
+                            <div class="custom-radio">
+                                <input type="radio" id="md" name="sizeID" value="1" >
+                                <label for="md">XS</label>
                             </div>
 
+                            <div class="custom-radio">
+                                <input type="radio" id="xl" name="sizeID" value="2">
+                                <label for="xl">SM</label>
+                            </div>
+
+                            <div class="custom-radio">
+                                <input type="radio" id="2xl" name="sizeID" value="3">
+                                <label for="2xl">MD</label>
+                            </div>
+                            <label>Màu Sắc</label>
+                            <div class="custom-radio">
+                                <input type="radio" id="do" name="mauSacID" value="1" >
+                                <label for="do">Trắng</label>
+                            </div>
+
+                            <div class="custom-radio">
+                                <input type="radio" id="xanh" name="mauSacID" value="2">
+                                <label for="xanh">Đen</label>
+                            </div>
+
+                            <div class="custom-radio">
+                                <input type="radio" id="hong" name="mauSacID" value="3">
+                                <label for="hong">Xám</label>
+                            </div>
+                            <input type="hidden" name="sizeID" value="${sp.size.sizeID}" />
+                            <input type="hidden" name="mauSacID" value="${sp.mauSac.mauSacID}" />
                                 <div class="product__details__cart__option">
                                     <div class="quantity">
                                         <div class="pro-qty">
@@ -238,8 +255,35 @@
                                     <button class="primary-btn" onclick="validateAndSubmit(event)">add to cart</button>
                                     <a href="javascript:void(0);" class="primary-btn" onclick="muaNgay()">Mua Ngay</a>
                                 </div>
-                        </c:forEach>
                         </form:form>
+                            <style>
+                                .custom-radio {
+                                    display: inline-block;
+                                    margin-right: 10px;
+                                    cursor: pointer;
+                                }
+
+                                .custom-radio input {
+                                    display: none;
+                                }
+
+                                .custom-radio label {
+                                    display: block;
+                                    width: 50px; /* Đặt chiều rộng của mỗi ô radio */
+                                    height: 50px; /* Đặt chiều cao của mỗi ô radio */
+                                    border: 2px solid #ccc;
+                                    border-radius: 5px;
+                                    text-align: center;
+                                    line-height: 50px; /* Đặt độ cao dòng chữ giữa ô radio */
+                                    font-size: 16px;
+                                    background-color: #fff;
+                                    transition: background-color 0.3s ease;
+                                }
+
+                                .custom-radio input:checked + label {
+                                    background-color: #e0e0e0;
+                                }
+                            </style>
 <%--                            <script>--%>
 <%--                                function muaNgay() {--%>
 <%--                                    var soLuongDat = document.getElementById("soLuongDatInput").value;--%>
@@ -555,11 +599,14 @@
                 return false;
             }
             var soLuongDat = parseInt(document.getElementById("soLuongDatInput").value);
-            var sanPhamID = "${sp.sanPhamID}";
+            var sanPhamID = "${sp.tenSanPham}";
+            var hinhAnh= "${sp.hinhAnhURL}";
+            var size = parseInt("${sp.size.sizeID}");
+            var mausac=parseInt("${sp.mauSac.mauSacID}");
             var slton = parseInt("${sp.soLuongTon}");
 
             if (validateSoLuong(soLuongDat, slton)) {
-                window.location.href = "/themngay/" + sanPhamID + "?soLuongDat=" + soLuongDat;
+                window.location.href = "/themngay/" + sanPhamID +"/"+hinhAnh+"/"+size+"/"+mausac+"?soLuongDat=" + soLuongDat;
             }
         }
 
