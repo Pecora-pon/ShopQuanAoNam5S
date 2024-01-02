@@ -10,6 +10,8 @@ import com.example.demo.repository.SanPhamRepo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
+import java.util.Date;
 import java.util.List;
 @Service
 public class ThongKeService {
@@ -61,12 +63,18 @@ public class ThongKeService {
         return totalTongTien;
     }
 
-    public List<Object[]> getTotalQuantityByMonthInYear2023() {
-        return donHangChiTietRepo.getTotalQuantityByMonthInYear2023();
+    public List<Object[]> getTotalQuantityByMonthInYear2023(LocalDate selectedDate) {
+        return donHangChiTietRepo.getTotalQuantityByMonthInYear2023(selectedDate);
+    }
+    public Long gettotalQuantity(){
+        return donHangChiTietRepo.getTotalObject();
     }
 
     public List<Object[]> getTotalRevenueByMonthInYear2023() {
         return donHangChiTietRepo.getTotalRevenueByMonthInYear2023();
+    }
+    public List<Object[]> getTotalRevenueForCurrentMonth(){
+        return donHangChiTietRepo.getTotalRevenueForCurrentMonth();
     }
 
     public long countOrdersByStatus() {
