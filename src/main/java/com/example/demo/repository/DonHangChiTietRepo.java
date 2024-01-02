@@ -172,11 +172,23 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     @Query(value = "select * from DonHangChiTiet p WHERE p.trangThai =4 order by p.donHangChiTietID desc", nativeQuery = true)
     List<DonHangChiTiet> getHuyy();
 
-    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.soLuong) AS totalQuantity FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 and dhc.trangThai=3 GROUP BY MONTH(dhc.ngayNhan)")
-    List<Object[]> getTotalQuantityByMonthInYear2023();
+ @Query("SELECT dhc.ngayNhan,SUM(dhc.soLuong) AS totalQuantity " +
+            "FROM DonHangChiTiet dhc " +
+            "WHERE dhc.trangThai = 3 AND dhc.ngayNhan = :selectedDate " +
+            "GROUP BY dhc.ngayNhan")
+    List<Object[]> getTotalQuantityByMonthInYear2023(@Param("selectedDate")LocalDate selectedDate );
+    @Query("SELECT SUM(dhc.soLuong) AS totalQuantity " +
+            "FROM DonHangChiTiet dhc " +
+            "WHERE dhc.trangThai = 3")
+    Long getTotalObject();
 
-    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE YEAR(dhc.ngayNhan) = 2023 and dhc.trangThai=3 GROUP BY MONTH(dhc.ngayNhan)")
+    @Query("SELECT dhc.ngayNhan AS date, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE dhc.trangThai = 3 GROUP BY date,(dhc.ngayNhan)")
     List<Object[]> getTotalRevenueByMonthInYear2023();
+    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.tongTien) AS totalRevenue " +
+            "FROM DonHangChiTiet dhc " +
+            "WHERE dhc.trangThai = 3 AND MONTH(dhc.ngayNhan) = MONTH(CURRENT_DATE()) " +
+            "GROUP BY month(dhc.ngayNhan)")
+    List<Object[]> getTotalRevenueForCurrentMonth();
 
     @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 0")
     long countDistinctDonHangByTrangThai0();
