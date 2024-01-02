@@ -12,6 +12,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
@@ -51,6 +52,7 @@ public class DonHangChiTiet {
     private Float tongTien;
 
     @Column(name= "NgayNhan")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate ngayNhan;
 }
 
