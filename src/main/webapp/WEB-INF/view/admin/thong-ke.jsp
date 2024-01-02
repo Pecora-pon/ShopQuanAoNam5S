@@ -461,41 +461,84 @@
                             <div class="card">
                                 <div class="row row-bordered g-0">
                                     <div class="col-md-10">
-                                        <h5 class="card-header m-0 me-2 pb-3 text-primary">Số lượng sản phẩm bán ra theo
-                                            tháng</h5>
+                                        <h5 class="card-header m-0 me-2 pb-3 text-primary">Thống kê số lượng sản phẩm bán ra</h5>
+                                        <h6 class="card-header m-0 me-2 pb-3 text-primary">Tổng số lượng sản phẩm bán ra : ${totalQuantity}</h6>
+                                        <div class="input-group">
+                                            <input type="date" class="form-control" id="datePicker" value="${dates.format(selectedDate, 'yyyy-MM-dd')}" onchange="updateChart()">
+                                        </div>
                                         <canvas id="myColumnChart" width="400" height="200"></canvas>
 
+
                                         <script>
+                                            function getCurrentDate() {
+                                                var currentDate = new Date();
+                                                var year = currentDate.getFullYear();
+                                                var month = (currentDate.getMonth() + 1).toString().padStart(2, '0');
+                                                var day = currentDate.getDate().toString().padStart(2, '0');
+                                                return `${year}-${month}-${day}`;
+                                            }
+
+
+                                            document.getElementById('datePicker').value = getCurrentDate();
+
+                                            var ctx = document.getElementById('myColumnChart').getContext('2d');
+                                            var myColumnChart;
+
+
+                                            function updateChart() {
+                                                var selectedDate = document.getElementById('datePicker').value;
+                                                if (selectedDate === '') {
+                                                    selectedDate = getCurrentDate();
+                                                    document.getElementById('datePicker').value = selectedDate;
+                                                }
+
+                                                // Redirect to the URL with the formatted date
+                                                window.location.href = '/thongke?selectedDate=' + selectedDate;
+                                            }
+                                            function selectToday() {
+                                                var currentDate = getCurrentDate();
+                                                document.getElementById('datePicker').value = getCurrentDate();
+                                                updateChart();
+                                            }
+
+                                            // Use the specific dates from your data for the x-axis labels
+                                            var labels = [<c:forEach var="item" items="${totalQuantityByMonth}">'${item[0]}', </c:forEach>];
+
                                             var data = {
-                                                labels: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[0]}" />, </c:forEach>],
+                                                labels: labels,
                                                 datasets: [{
                                                     label: "Số lượng sản phẩm bán ra",
                                                     backgroundColor: 'rgba(75, 192, 192, 0.2)',
                                                     borderColor: 'rgba(75, 192, 192, 1)',
                                                     borderWidth: 1,
-                                                    data: [<c:forEach var="item" items="${totalQuantityByMonth}"><c:out value="${item[1]}" />, </c:forEach>],
+                                                    data: [<c:forEach var="item" items="${totalQuantityByMonth}">${item[1]}, </c:forEach>],
                                                 }]
                                             };
 
                                             var options = {
                                                 scales: {
                                                     y: {
-                                                        beginAtZero: true
+                                                        beginAtZero: true,
+                                                        stepSize: 1,  // Set the stepSize to 1 for integer values
+                                                        ticks: {
+                                                            callback: function (value) {
+                                                                if (Number.isInteger(value)) {
+                                                                    return value;
+                                                                }
+                                                            }
+                                                        }
                                                     }
                                                 }
                                             };
 
-                                            var ctx = document.getElementById('myColumnChart').getContext('2d');
-                                            var myColumnChart = new Chart(ctx, {
+                                            myColumnChart = new Chart(ctx, {
                                                 type: 'bar',
                                                 data: data,
                                                 options: options
                                             });
                                         </script>
                                     </div>
-                                    <%--                                    <div class="col-md-4">--%>
-                                    <%--                                    --%>
-                                    <%--                                    </div>--%>
+
 
                                 </div>
                             </div>
@@ -695,7 +738,7 @@
                                                         </c:forEach>
                                                     ],
                                                     datasets: [{
-                                                        label: "Số tiền nhận vào theo tháng",
+                                                        label: "Số tiền nhận vào theo ngày",
                                                         borderColor: 'rgba(75, 192, 192, 1)',
                                                         borderWidth: 2,
                                                         fill: false,
@@ -728,6 +771,45 @@
                                             </script>
                                         </div>
 
+                                    </div>
+                                </div>
+                                <div class="col-12 mb-4">
+                                    <div class="card">
+                                        <div class="card-body">
+                                            <canvas id="myColumnChart1" width="400" height="200"></canvas>
+
+                                            <script>
+                                                var data = {
+                                                    labels: [<c:forEach var="item" items="${getTotalRevenueForCurrentMonth}"><c:out value="${item[0]}" />, </c:forEach>],
+                                                    datasets: [{
+                                                        label: "Số tiền tháng này",
+                                                        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                                                        borderColor: 'rgba(75, 192, 192, 1)',
+                                                        borderWidth: 1,
+                                                        data: [<c:forEach var="item" items="${getTotalRevenueForCurrentMonth}"><c:out value="${item[1]}" />, </c:forEach>],
+                                                    }]
+                                                };
+
+                                                var options = {
+                                                    scales: {
+                                                        x: {
+                                                            type: 'category',
+                                                            labels: [<c:forEach var="item" items="${getTotalRevenueForCurrentMonth}"><c:out value="${item[0]}" />, </c:forEach>],
+                                                        },
+                                                        y: {
+                                                            beginAtZero: true
+                                                        }
+                                                    }
+                                                };
+
+                                                var ctx = document.getElementById('myColumnChart1').getContext('2d');
+                                                var myBarChart = new Chart(ctx, {
+                                                    type: 'bar',
+                                                    data: data,
+                                                    options: options
+                                                });
+                                            </script>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -831,6 +913,7 @@
         }
     });
 </script>
+
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
