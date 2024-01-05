@@ -395,8 +395,8 @@
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Tình Trạng</label>
-                                    <form:radiobutton path="tinhTrang" value="1" checked="true"/> Còn Hàng
-                                    <form:radiobutton path="tinhTrang" value="0"/> Hết
+                                    <form:radiobutton path="tinhTrang" value="0" checked="true"/> Còn Hàng
+                                    <form:radiobutton path="tinhTrang" value="1"/> Hết
                                 </div>
                                 <div class="mb-3 col-md-6">
                                     <label class="form-label">Tên Màu Săc</label>
@@ -533,19 +533,52 @@
                         </tbody>
                     </table>
                     <nav aria-label="Page navigation example">
-                        <ul class="pagination">
-                            <c:forEach begin="0" end="${totalPages}" var="page">
+                        <div class="pagination-container">
+                            <ul class="pagination">
                                 <c:choose>
-                                    <c:when test="${page == currentPage}">
-                                        <li class="page-item active"><span class="page-link">${page}</span></li>
+                                    <c:when test="${currentPage > 0}">
+                                        <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage - 1}">&lt;</a></li>
                                     </c:when>
                                     <c:otherwise>
-                                        <li class="page-item"><a class="page-link"
-                                                                 href="/san-pham/page?page=${page}">${page}</a></li>
+                                        <li class="page-item disabled"><span class="page-link">&lt;</span></li>
                                     </c:otherwise>
                                 </c:choose>
-                            </c:forEach>
-                        </ul>
+
+                                <c:forEach begin="1" end="${totalPages}" var="pageNumber">
+                                    <c:choose>
+                                        <c:when test="${pageNumber == currentPage + 1}">
+                                            <li class="page-item active"><span class="page-link">${pageNumber}</span></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <c:if test="${pageNumber <= 2 || pageNumber >= totalPages - 2 || (pageNumber >= currentPage && pageNumber <= currentPage + 2)}">
+                                                <li class="page-item"><a class="page-link" href="/san-pham/page?page=${pageNumber - 1}">${pageNumber}</a></li>
+                                            </c:if>
+                                            <c:if test="${pageNumber == 3 && currentPage > 3}">
+                                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                            </c:if>
+                                            <c:if test="${pageNumber == totalPages - 2 && currentPage < totalPages - 4}">
+                                                <li class="page-item disabled"><span class="page-link">...</span></li>
+                                            </c:if>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </c:forEach>
+
+                                <c:choose>
+                                    <c:when test="${currentPage < totalPages - 1}">
+                                        <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage + 1}">&gt;</a></li>
+                                    </c:when>
+                                    <c:otherwise>
+                                        <li class="page-item disabled"><span class="page-link">&gt;</span></li>
+                                    </c:otherwise>
+                                </c:choose>
+                            </ul>
+
+
+                            <div class="page-input">
+                                <input type="text" id="pageInput" placeholder="Nhập số trang" />
+                                <button onclick="goToPage()">Đi đến</button>
+                            </div>
+                        </div>
                     </nav>
                 </div>
                 <!--Footer -->

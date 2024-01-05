@@ -567,84 +567,117 @@
                 </script>
 
 
-                        <table class="table">
-                            <thead>
-                            <tr>
-                                <%--                                <th>Sản Phẩm ID</th>--%>
-                                <th>Tên Sản Phẩm</th>
-                                <th>Mô Tả</th>
-                                <th>Giá Sản phẩm</th>
-                                <th>Số lượng tôn</th>
-                                <td>Tình Trạng</td>
-                                <th>Tên Màu Sắc</th>
-                                <th>Tên Size</th>
-                                <th>Tên Chất liệu</th>
-                                <th>Thương Hiệu</th>
-                                <%--                                <th>Ngày Tạo</th>--%>
-                                <th>Hình Ảnh URL</th>
-
-                                <%--                                <th>Trạng thái</th>--%>
-                                <th>Action</th>
-                            </tr>
-                            </thead>
-                            <tbody class="table-border-bottom-0">
-                            <c:forEach items="${listSanPham}" var="sanpham">
+                        <div class="card">
+                            <table class="table">
+                                <thead>
                                 <tr>
+                                    <%--                                <th>Sản Phẩm ID</th>--%>
+                                    <th>Tên Sản Phẩm</th>
+                                    <th>Mô Tả</th>
+                                    <th>Giá Sản phẩm</th>
+                                    <th>Số lượng tôn</th>
+                                    <td>Tình Trạng</td>
+                                    <th>Tên Màu Sắc</th>
+                                    <th>Tên Size</th>
+                                    <th>Tên Chất liệu</th>
+                                    <th>Thương Hiệu</th>
+                                    <%--                                <th>Ngày Tạo</th>--%>
+                                    <th>Hình Ảnh URL</th>
 
+                                    <%--                                <th>Trạng thái</th>--%>
+                                    <th>Action</th>
+                                </tr>
+                                </thead>
+                                <tbody class="table-border-bottom-0">
+                                <c:forEach items="${listSanPham}" var="sanpham">
+                                    <c:if test="${sanpham.tinhTrang == 1}">
+                                        <tr style="background-color: #ff9999;">
+                                    </c:if>
+                                    <c:if test="${sanpham.tinhTrang != 1}">
+                                        <tr>
+                                    </c:if>
                                     <td>${sanpham.tenSanPham}</td>
                                     <td>${sanpham.moTa}</td>
                                     <td><fmt:formatNumber value="${sanpham.giaSanPham}" pattern="#,##0"/> VND</td>
                                     <td>${sanpham.soLuongTon}</td>
-                                    <td> <c:if test="${sanpham.tinhTrang == 0}"> Còn Hàng </c:if>
-                                        <c:if test="${sanpham.tinhTrang == 1}"> Hết</c:if></td>
-
+                                    <td>
+                                        <c:if test="${sanpham.tinhTrang == 0}">Còn Hàng</c:if>
+                                        <c:if test="${sanpham.tinhTrang == 1}">Hết</c:if>
+                                    </td>
                                     <td>${sanpham.mauSac.tenMauSac}</td>
                                     <td>${sanpham.size.tenSize}</td>
                                     <td>${sanpham.chatLieu.tenChatLieu}</td>
                                     <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                    <td>  <img src="/getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;">
-                                             </td>
-
-                                    <td>
-                                        <div class="dropdown">
-                                            <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
-                                                    data-bs-toggle="dropdown">
-                                                <i class="bx bx-dots-vertical-rounded"></i>
-                                            </button>
-                                            <div class="dropdown-menu">
-                                                <a class="dropdown-item"
-                                                   href="/san-pham-view-update/${sanpham.sanPhamID}"><i
-                                                        class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item"
-                                                   href="/san-pham/delete/${sanpham.sanPhamID}"><i
-                                                        class="bx bx-trash me-1"></i> Xóa</a>
-
-<%--                                                <a class="dropdown-item"--%>
-<%--                                                   href="/them-gio-hang/${sanpham.sanPhamID}">--%>
-<%--                                                   <i class="bx bx-edit-alt me-1"></i> Thêm vào giỏ hàng</a>--%>
+                                        <td><img src="/getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;"></td>
+                                        <td>
+                                            <div class="dropdown">
+                                                <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
+                                                        data-bs-toggle="dropdown">
+                                                    <i class="bx bx-dots-vertical-rounded"></i>
+                                                </button>
+                                                <div class="dropdown-menu">
+                                                    <a class="dropdown-item"
+                                                       href="/san-pham-view-update/${sanpham.sanPhamID}"><i
+                                                            class="bx bx-edit-alt me-1"></i> Sửa</a>
+                                                    <a class="dropdown-item"
+                                                       href="/san-pham/delete/${sanpham.sanPhamID}"><i
+                                                            class="bx bx-trash me-1"></i> Xóa</a>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </td>
-                                </tr>
-                            </c:forEach>
-                            </tbody>
-                        </table>
-
-                        <nav aria-label="Page navigation example">
-                            <ul class="pagination">
-                                <c:forEach begin="0" end="${totalPages}" var="page">
-                                    <c:choose>
-                                        <c:when test="${page == currentPage}">
-                                            <li class="page-item active"><span class="page-link">${page}</span></li>
-                                        </c:when>
-                                        <c:otherwise>
-                                            <li class="page-item"><a class="page-link"
-                                                                     href="/san-pham/page?page=${page}">${page}</a></li>
-                                        </c:otherwise>
-                                    </c:choose>
+                                        </td>
+                                    </tr>
                                 </c:forEach>
-                            </ul>
-                        </nav>
+                                </tbody>
+                            </table>
+
+                            <nav aria-label="Page navigation example">
+                                <div class="pagination-container">
+                                    <ul class="pagination">
+                                        <c:choose>
+                                            <c:when test="${currentPage > 0}">
+                                                <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage - 1}">&lt;</a></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item disabled"><span class="page-link">&lt;</span></li>
+                                            </c:otherwise>
+                                        </c:choose>
+
+                                        <c:forEach begin="1" end="${totalPages}" var="pageNumber">
+                                            <c:choose>
+                                                <c:when test="${pageNumber == currentPage + 1}">
+                                                    <li class="page-item active"><span class="page-link">${pageNumber}</span></li>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <c:if test="${pageNumber <= 2 || pageNumber >= totalPages - 2 || (pageNumber >= currentPage && pageNumber <= currentPage + 2)}">
+                                                        <li class="page-item"><a class="page-link" href="/san-pham/page?page=${pageNumber - 1}">${pageNumber}</a></li>
+                                                    </c:if>
+                                                    <c:if test="${pageNumber == 3 && currentPage > 3}">
+                                                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                                                    </c:if>
+                                                    <c:if test="${pageNumber == totalPages - 2 && currentPage < totalPages - 4}">
+                                                        <li class="page-item disabled"><span class="page-link">...</span></li>
+                                                    </c:if>
+                                                </c:otherwise>
+                                            </c:choose>
+                                        </c:forEach>
+
+                                        <c:choose>
+                                            <c:when test="${currentPage < totalPages - 1}">
+                                                <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage + 1}">&gt;</a></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <li class="page-item disabled"><span class="page-link">&gt;</span></li>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </ul>
+
+
+                                    <div class="page-input">
+                                        <input type="text" id="pageInput" placeholder="Nhập số trang" />
+                                        <button onclick="goToPage()">Đi đến</button>
+                                    </div>
+                                </div>
+                            </nav><div/>
                     </div>
 
                     <!--Footer -->
@@ -743,5 +776,14 @@
 </script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+    function goToPage() {
+        var pageNumber = document.getElementById("pageInput").value;
+        if (pageNumber > 0 && pageNumber <= ${totalPages}) {
+            window.location.href = "/san-pham/page?page=" + pageNumber;
+        }
+    }
+</script>
 </body>
 </html>
