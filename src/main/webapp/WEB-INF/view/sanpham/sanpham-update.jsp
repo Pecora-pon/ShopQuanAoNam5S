@@ -536,7 +536,7 @@
                         <div class="pagination-container">
                             <ul class="pagination">
                                 <c:choose>
-                                    <c:when test="${currentPage > 0}">
+                                    <c:when test="${currentPage > 1}">
                                         <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage - 1}">&lt;</a></li>
                                     </c:when>
                                     <c:otherwise>
@@ -546,14 +546,14 @@
 
                                 <c:forEach begin="1" end="${totalPages}" var="pageNumber">
                                     <c:choose>
-                                        <c:when test="${pageNumber == currentPage + 1}">
+                                        <c:when test="${pageNumber == currentPage}">
                                             <li class="page-item active"><span class="page-link">${pageNumber}</span></li>
                                         </c:when>
                                         <c:otherwise>
                                             <c:if test="${pageNumber <= 2 || pageNumber >= totalPages - 2 || (pageNumber >= currentPage && pageNumber <= currentPage + 2)}">
-                                                <li class="page-item"><a class="page-link" href="/san-pham/page?page=${pageNumber - 1}">${pageNumber}</a></li>
+                                                <li class="page-item"><a class="page-link" href="/san-pham/page?page=${pageNumber}">${pageNumber}</a></li>
                                             </c:if>
-                                            <c:if test="${pageNumber == 3 && currentPage > 3}">
+                                            <c:if test="${pageNumber == 3 && currentPage > 4}">
                                                 <li class="page-item disabled"><span class="page-link">...</span></li>
                                             </c:if>
                                             <c:if test="${pageNumber == totalPages - 2 && currentPage < totalPages - 4}">
@@ -564,7 +564,7 @@
                                 </c:forEach>
 
                                 <c:choose>
-                                    <c:when test="${currentPage < totalPages - 1}">
+                                    <c:when test="${currentPage < totalPages}">
                                         <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage + 1}">&gt;</a></li>
                                     </c:when>
                                     <c:otherwise>
@@ -572,6 +572,7 @@
                                     </c:otherwise>
                                 </c:choose>
                             </ul>
+
 
 
                             <div class="page-input">
