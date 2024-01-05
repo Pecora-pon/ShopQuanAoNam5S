@@ -200,7 +200,7 @@
 
                 <!-- Extended components -->
                 <li class="menu-item">
-                    <a href="http://localhost:8080/san-pham" class="menu-link">
+                    <a href="http://localhost:8080/san-pham/page" class="menu-link">
                         <i class="menu-icon tf-icons bx bx-copy"></i>
                         <div data-i18n="Extended UI">Danh sách sản phẩm</div>
                     </a>
