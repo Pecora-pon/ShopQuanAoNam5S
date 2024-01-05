@@ -29,13 +29,13 @@ public class GiamGia {
     @Column(name = "TenSuKien")
     private String tenSuKien;
 
-//    @Column(name = "NgayHetHan")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    private Date ngayHetHan;
-//
-//    @Column(name = "NgayTao")
-//    @DateTimeFormat(pattern = "yyyy-MM-dd")
-//    private Date ngayTao;
+    @Column(name = "NgayHetHan")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ngayHetHan;
+
+    @Column(name = "NgayTao")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date ngayTao;
 
     @ManyToOne
     @JoinColumn(name = "NhanVienID")
@@ -44,4 +44,6 @@ public class GiamGia {
     @Column(name="SoTienGiam")
     private float soTienGiam;
 
+    @Column(name="DonToiThieu")
+    private float donToiThieu;
 }
