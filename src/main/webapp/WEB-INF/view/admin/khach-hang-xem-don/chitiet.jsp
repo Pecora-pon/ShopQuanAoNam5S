@@ -217,8 +217,6 @@
                                     <span class="item-label">Giá Tiền:</span>
                                     <span class="item-value"><fmt:formatNumber value="${dh.sanPham.giaSanPham * dh.soLuong}" pattern="#,##0"/> VND</span>
                                 </div>
-<%--                                <a class="dropdown-item" href="/detail5/${dh.donHangChiTietID}"><i--%>
-<%--                                        class="bx bx-edit-alt me-1"></i>Đánh giá Về Sản Phẩm</a>--%>
                             </div>
                         </div> </c:forEach> <c:set var="dh" value="${list}" />
                         <div class="item-info">

@@ -20,7 +20,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>5S-Fashin | Thông Báo Thành Công</title>
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
-    <title>Thông Báo Thành Công</title>--%>
+    <title>Thông Báo Thành Công</title>
     <%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
     <%--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--%>
     <!-- Fonts -->
@@ -51,6 +51,12 @@
     <link rel="stylesheet" href="../mainshop/mainshop2/css/owl.carousel.min.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2/css/slicknav.min.css" type="text/css">
     <link rel="stylesheet" href="../mainshop/mainshop2/css/style.css" type="text/css">
+    <style>
+        .scrollable-tbody {
+            max-height: 300px; /* Set the maximum height as needed */
+            overflow-y: auto;
+        }
+    </style>
 </head>
 
 <body>
@@ -229,8 +235,6 @@
                 <thead>
                 <tr>
                     <th>STT</th>
-<%--                    <th>Đơn Hang ID</th>--%>
-                    <%--                                <th>ID Sản Phẩm</th>--%>
                     <th>Hình Ảnh</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Size</th>
@@ -238,7 +242,6 @@
                     <th>Số Lượng</th>
                     <th>Ngày Đặt</th>
                     <th>Trạng Thái</th>
-
                     <th>Tổng Tiền</th>
                     <th>Action</th>
                 </tr>
@@ -246,7 +249,7 @@
 
 
 
-                <tbody class="table-border-bottom-0">
+                <tbody class="table-border-bottom-0 scrollable-tbody">
                     <c:forEach items="${list}" var="dhct" varStatus="i">
                         <c:if test="${!dhct.donHang.donHangID.equals(pageContext.getAttribute('previousDonHangID'))}">
                             <!-- Hiển thị thông tin chung của đơn hàng, chỉ hiển thị nếu đơn hàng có sản phẩm -->

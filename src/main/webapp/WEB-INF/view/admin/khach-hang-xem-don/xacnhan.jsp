@@ -19,7 +19,7 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>5S-Fashion | Thông Báo Thành Công</title>
     <link rel="icon" type="image/x-icon" href="../admin/assets/img/favicon/favicon.ico"/>
-    <title>Thông Báo Thành Công</title>--%>
+    <title>Thông Báo Thành Công</title>
     <%--    <!-- Thêm các tệp CSS của Bootstrap -->--%>
     <%--    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet">--%>
     <!-- Fonts -->
