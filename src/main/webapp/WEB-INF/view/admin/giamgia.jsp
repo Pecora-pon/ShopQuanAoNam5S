@@ -409,22 +409,25 @@
                                                         </form:select>
                                                     </div>
 
-<%--                                                    <div class="mb-3 col-md-6">--%>
-<%--                                                        <label class="form-label">Ngày tạo</label>--%>
-<%--                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>--%>
-<%--                                                        <form:errors path="ngayTao"/>--%>
-<%--                                                    </div>--%>
-<%--                                                    <div class="mb-3 col-md-6">--%>
-<%--                                                        <label class="form-label">Ngày hết hạn</label>--%>
-<%--                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>--%>
-<%--                                                        <form:errors path="ngayHetHan"/>--%>
-<%--                                                    </div>--%>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Ngày bắt đầu</label>
+                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}" min="<%=java.time.LocalDate.now()%>" />
+                                                        <form:errors path="ngayTao"/>
+                                                    </div>
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Ngày hết hạn</label>
+                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"  />
+                                                        <form:errors path="ngayHetHan"/>
+                                                    </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Số Tiền Giảm</label>
                                                         <form:input class="form-control" path="soTienGiam" value="${gg.soTienGiam}" pattern="\d+" title="Vui lòng nhập số"/>
                                                     </div>
 
-
+                                                    <div class="mb-3 col-md-6">
+                                                        <label class="form-label">Số Tiền Tối Thiểu</label>
+                                                        <form:input class="form-control" path="donToiThieu" value="${gg.donToiThieu}" pattern="\d+" title="Vui lòng nhập số"/>
+                                                    </div>
                                                     <div class="mt-2">
                                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                                 </div>
@@ -435,7 +438,37 @@
                                         </div>
                                     </div>
 
+                                <script>
+                                    // Lấy phần tử input của ngày bắt đầu và ngày hết hạn
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        var ngayBatDauInput = document.querySelector('[name="ngayTao"]');
+                                        var ngayHetHanInput = document.querySelector('[name="ngayHetHan"]');
 
+                                        ngayBatDauInput.addEventListener('change', function () {
+                                            // Lấy giá trị ngày hết hạn
+                                            var ngayHetHanValue = ngayHetHanInput.value;
+
+                                            // Nếu ngày hết hạn không được chọn hoặc nó nhỏ hơn ngày tạo, cập nhật giá trị ngày hết hạn
+                                            if (!ngayHetHanValue || ngayHetHanValue < ngayBatDauInput.value) {
+                                                var ngayBatDau = new Date(ngayBatDauInput.value);
+                                                ngayBatDau.setDate(ngayBatDau.getDate() + 1);
+                                                ngayHetHanInput.value = ngayBatDau.toISOString().slice(0, 10);
+                                            }
+                                        });
+
+                                        ngayHetHanInput.addEventListener('change', function () {
+                                            // Lấy giá trị ngày tạo
+                                            var ngayBatDauValue = ngayBatDauInput.value;
+
+                                            // Nếu ngày hết hạn nhỏ hơn ngày tạo, cập nhật giá trị ngày hết hạn
+                                            if (ngayHetHanInput.value <= ngayBatDauValue) {
+                                                var ngayBatDau = new Date(ngayBatDauValue);
+                                                ngayBatDau.setDate(ngayBatDau.getDate() + 1);
+                                                ngayHetHanInput.value = ngayBatDau.toISOString().slice(0, 10);
+                                            }
+                                        });
+                                    });
+                                </script>
                             </form:form>
                             <c:if test="${!empty repon.error}">
                                 <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
