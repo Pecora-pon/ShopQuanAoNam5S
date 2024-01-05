@@ -110,8 +110,10 @@ CREATE TABLE GiamGia(
 	NhanVienID INT FOREIGN KEY REFERENCES NhanVien(NhanVienID),
 	NgayTao DATE,
 	NgayHetHan DATE,
-	SoTienGiam float
+	SoTienGiam float,
+	DonToiThieu float
 )
+
 Go
 
 GO
@@ -204,5 +206,21 @@ CREATE TABLE ReviewNguoiDung(
 	 BinhLuan NVARCHAR(MAX),
 	 HinhAnhURL NVARCHAR(Max),
 )
+
+CREATE TRIGGER trg_UpdateTongTien
+ON SanPham
+AFTER UPDATE
+AS
+BEGIN
+    SET NOCOUNT ON;
+
+    IF UPDATE(GiaSanPham)  -- Kiểm tra xem có sự thay đổi trong cột GiaSanPham không
+    BEGIN
+        UPDATE GioHang
+        SET TongTien = GioHang.SoLuongDat * i.GiaSanPham  -- i.GiaSanPham là giá sản phẩm mới
+        FROM GioHang
+        INNER JOIN inserted i ON GioHang.SanPhamID = i.SanPhamID;
+    END
+END;
 
 
