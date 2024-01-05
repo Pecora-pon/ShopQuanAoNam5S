@@ -122,12 +122,12 @@ public class SanPhamController {
         return "redirect:/san-pham/page";
     }
     @RequestMapping(value = "/san-pham/page", method = RequestMethod.GET)
-    public String page(@RequestParam(defaultValue = "0") int page,
+    public String page(@RequestParam(defaultValue = "1") int page,
                        @RequestParam(defaultValue = "6") int size,
                        Model model,
                        @Param("keyword") String keyword,
                        @Param("getimage/hinhAnhURL")String hinhAnhURL) {
-        Page<SanPham> page1 = sanPhamService.getPage(page, size);
+        Page<SanPham> page1 = sanPhamService.getPage(page - 1, size);
         List<SanPham> sanPhamList= page1.getContent();
         List<SanPham> nhapKhoList1 = sanPhamService.getAll();
         List<MauSac> mauSacList = mauSacService.getAll();
@@ -150,7 +150,6 @@ public class SanPhamController {
         model.addAttribute("listSanPham", sanPhamList);
         model.addAttribute("sp", new SanPham());
         return "sanpham/sanpham";
-
     }
     @GetMapping("/uploadexel")
     public String getupload(@ModelAttribute("sp") SanPham sanPham){
