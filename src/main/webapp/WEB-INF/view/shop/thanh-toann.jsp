@@ -5,10 +5,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="java.security.Principal" %>
-<%@ page import="java.util.Set" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.*" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 
 <head>
@@ -239,7 +236,13 @@
 
                 </ul>
 
-
+                <%
+                    // Lấy thời gian hiện tại
+                    Date now = new Date();
+                    // (Dùng SimpleDateformat để định dạng ngày theo định dạng y-m-d để so sánh với ngàyHetHan)
+                    java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                    String nowString = sdf.format(now);
+                %>
                 <style>
                     .sotiengiam-label {
                         font-weight: bold;
@@ -248,20 +251,132 @@
                         display: block; /* Hiển thị label dưới dạng block để nó xuống dòng */
                     }
                 </style>
-                <div class="input-group">
-                    <select name="giamGia.giamGiaID" id="giamGiaSelect" class="form-control discount-select"
-                            onchange="updateSoTienGiam(this) ">
-                        <option class="form-control" selected="true" disabled="true">Mời Bạn Chọn Mã Giảm Giá</option>
-                        <c:forEach var="giamGia" items="${listGiamGia}">
-                            <option value="${giamGia.giamGiaID}"
-                                    data-soTienGiam="${giamGia.soTienGiam}">${giamGia.maGiamGia} </option>
-                        </c:forEach>
-                    </select>
+                <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h1 class="modal-title fs-5" id="exampleModalLabel">Mã Giảm Giá</h1>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="row">
+                                <div class="modal-body">
+                                    <c:forEach var="giamGia" items="${listGiamGia}">
+                                        <div class="product-row">
+                                            <div class="product-details">
+                                                <div class="product-image">
+                                                    <img src="../mainshop/mainshop2/img/logo.png" alt="">
+                                                </div>
+                                                <div class="product-info">
+                                                    <h4>${giamGia.maGiamGia}</h4>
+                                                    <p>Số tiền giảm: ${giamGia.soTienGiam}</p>
+                                                    <p>Đơn giá tối thiểu: ${giamGia.donToiThieu}</p>
+                                                    <p>Hạn sử dụng: ${giamGia.ngayHetHan}</p>
+                                                    <div class="expired-message" style="color: red; font-weight: bold; display: none;">Đã hết hạn</div>
+                                                    <div class="totalprice-message" style="color: red; font-weight: bold; display: none;">Tổng tiền không đạt điều kiện</div>
 
-                    <br>
+                                                </div>
+                                                <c:choose>
+                                                    <c:when test="${giamGia.ngayHetHan < nowString}">
+                                                        <p>Đã hết hạn</p>
+                                                    </c:when>
+                                                    <c:otherwise>
+                                                        <input type="radio" value="${giamGia.giamGiaID}" name="giamGiaRadio" data-ngayHetHan="${giamGia.ngayHetHan}" data-donToiThieu="${giamGia.donToiThieu}" data-soTienGiam="${giamGia.soTienGiam}" onchange="updateSoTienGiam(this)" />
 
-                    <label for="giamGiaSelect" class="sotiengiam-label"></label>
+                                                    </c:otherwise>
+                                                </c:choose>
+                                            </div>
+                                        </div>
+                                    </c:forEach>
+                                    <script defer>
+                                        document.addEventListener('DOMContentLoaded', function () {
+                                            $('#exampleModal').on('shown.bs.modal', function () {
+                                                var radios = document.querySelectorAll('input[type="radio"]');
+                                                checkDateAndEnableRadios(radios);
+                                            });
+                                        });
+
+                                        function parseDateString(dateString) {
+                                            // Giả sử dateString có định dạng "yyyy-MM-dd"
+                                            var parts = dateString.split("-");
+                                            var formattedDate = parts[1] + "/" + parts[2] + "/" + parts[0];
+                                            return new Date(formattedDate);
+                                        }
+
+                                        function checkDateAndEnableRadios(radios) {
+                                            console.log("Number of radios:", radios.length);
+                                            var nowString = "<%= nowString %>";
+                                            var now = new Date();
+
+                                            radios.forEach(function (radio) {
+                                                var ngayHetHanString = radio.getAttribute('data-ngayHetHan');
+                                                console.log("Original NgayHetHanString: ", ngayHetHanString);
+
+                                                var ngayHetHan = parseDateString(ngayHetHanString);
+                                                console.log("Parsed NgayHetHan: ", ngayHetHan);
+
+                                                // So sánh ngày hiện tại và ngàyHetHan
+                                                if (isNaN(ngayHetHan.getTime())) {
+                                                    console.error("Ngày hết hạn không hợp lệ:", ngayHetHanString);
+                                                    return;
+                                                }
+
+                                                // Loại bỏ giờ, phút, giây, và mili giây
+                                                var nowWithoutTime = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                                                var ngayHetHanWithoutTime = new Date(ngayHetHan.getFullYear(), ngayHetHan.getMonth(), ngayHetHan.getDate());
+
+                                                console.log("Now without time:", nowWithoutTime);
+                                                console.log("NgayHetHan without time:", ngayHetHanWithoutTime);
+
+                                                if (ngayHetHanWithoutTime < nowWithoutTime) {
+                                                    // Đã hết hạn
+                                                    console.log("Đã hết hạn");
+                                                    radio.disabled = true;
+                                                    radio.parentElement.querySelector('.expired-message').style.display = 'block';
+                                                    return;
+                                                }else {
+                                                    radio.disabled = false;
+                                                    radio.parentElement.querySelector('.expired-message').style.display = 'none';
+                                                }
+                                                // Chưa hết hạn
+                                                var donToiThieu = parseFloat(radio.getAttribute('data-donToiThieu'));
+                                                var totalprice = parseFloat(document.getElementsByName('tongTien')[0].value.replace(/[^0-9.-]+/g, ""));
+                                                console.log("donToiThieu:", donToiThieu);
+                                                console.log("totalprice:", totalprice);
+
+                                                // Kiểm tra điều kiện đơn tối thiểu
+                                                if (isNaN(donToiThieu) || isNaN(totalprice)) {
+                                                    console.error("Giá trị không hợp lệ cho donToiThieu hoặc totalprice");
+                                                    return;
+                                                }
+
+                                                if (donToiThieu <= totalprice) {
+                                                    // Đơn tối thiểu hợp lệ
+                                                    radio.disabled = false;
+
+                                                    radio.parentElement.querySelector('.totalprice-message').style.display = 'none';
+                                                } else {
+                                                    // Đơn tối thiểu không hợp lệ
+                                                    radio.disabled = true;
+
+                                                    radio.parentElement.querySelector('.totalprice-message').style.display = 'block';
+                                                }
+                                            });
+                                        }
+                                    </script>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
+
+                <!-- Your product form goes here -->
+                <!-- Form fields go here -->
+                <div class="form-group">
+                    <label for="giamGiaSelect" class="sotiengiam-label">Giảm Gia:</label>
+                    <input type="text" name="giamGia.giamGiaID" id="giamGiaSelect" readonly class="form-control">
+                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Chọn Giảm Giá</button>
+                </div>
+
                 <c:set var="totalPriceLong" value="${Math.round(totalPrice)}"/>
                 <c:choose>
                     <c:when test="${totalPriceLong > 500000}">
@@ -284,36 +399,72 @@
                         </li>
                     </c:otherwise>
                 </c:choose>
+                <style>
+                    .product-link {
+                        display: inline-block;
+                        padding: 10px 20px;
+                        background-color: #4CAF50; /* Green background color */
+                        color: white;
+                        text-decoration: none;
+                        border-radius: 5px;
+                        transition: background-color 0.3s;
+                    }
+
+                    /* Change background color on hover */
+                    .product-link:hover {
+                        background-color: #45a049; /* Darker green on hover */
+                    }
+
+                    .product-row {
+                        display: flex;
+                        align-items: center;
+                        margin-bottom: 15px;
+                        padding: 15px;
+                        border: 1px solid #ccc;
+                        border-radius: 8px;
+                        transition: transform 0.2s ease-in-out;
+                    }
+
+                    .product-row:hover {
+                        transform: scale(1.05);
+                    }
+
+                    .product-image {
+                        max-width: 105px;
+                        max-height: 105px;
+                        margin-right: 15px;
+                        border-radius: 8px;
+                    }
+
+                    .product-details {
+                        display: flex;
+                        align-items: center;
+                        /* Hiển thị các thông tin và ảnh theo chiều ngang */
+                        flex-direction: row;
+                        flex-grow: 1;
+                    }
+
+                    .product-info {
+                        flex-grow: 1;
+                    }
+
+                    .radio-input {
+                        margin-left: auto;
+                        margin-right: 10px;
+                    }
+                </style>
                 <script>
-                    function updateSoTienGiam(selectElement) {
-                        // Get the selected option value using this.value
-                        var selectedGiamGiaID = selectElement.value;
-
-                        // Fetch all data attributes from the selected option
-                        var allDataAttributes = $(`#giamGiaSelect option:selected`).data();
-
-                        console.log('All Data Attributes:', allDataAttributes);
-
-                        // Fetch the corresponding soTienGiam value from the data attribute
-                        var soTienGiam = allDataAttributes.sotiengiam;
-
-                        console.log('Selected GiamGiaID:', selectedGiamGiaID);
-                        console.log('soTienGiam:', soTienGiam);
-
-                        // Get the label element
-                        var labelElement = $('.sotiengiam-label');
-
-                        // Update the label with the fetched soTienGiam value
-                        labelElement.text("Giảm Giá:  -" + soTienGiam);
-
-                        // Show or hide the label based on whether a discount is selected
-                        if (soTienGiam !== undefined) {
-                            labelElement.show();
-                        } else {
-                            labelElement.hide();
-                        }
+                    function updateSoTienGiam(radio) {
+                        // Get the data-soTienGiam attribute value from the selected radio button
+                        console.log('Radio button:', radio);
+                        console.log('data-soTienGiam attribute:', radio.getAttribute('data-soTienGiam'));
+                        var soTienGiam = radio.getAttribute('data-soTienGiam');
+                        console.log('Selected soTienGiam:', soTienGiam);
+                        // Update the value of the text input field
+                        document.getElementById('giamGiaSelect').value = soTienGiam;
                         updateTongTien(soTienGiam);
                     }
+
 
                     function updateTongTien(soTienGiam) {
                         // Kiểm tra nếu có giảm giá
@@ -506,10 +657,29 @@
 <script src="../mainshop/mainshop2/js/jquery.nicescroll.min.js"></script>
 <script src="../mainshop/mainshop2/js/jquery.magnific-popup.min.js"></script>
 <script src="../mainshop/mainshop2/js/jquery.countdown.min.js"></script>
-
 <script src="../mainshop/mainshop2/js/mixitup.min.js"></script>
 <script src="../mainshop/mainshop2/js/owl.carousel.min.js"></script>
 <script src="../mainshop/mainshop2/js/main.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../admin/assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+<script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../admin/assets/vendor/libs/popper/popper.js"></script>
+<script src="../admin/assets/vendor/js/bootstrap.js"></script>
+<script src="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.26.1/axios.min.js" integrity="sha512-bPh3uwgU5qEMipS/VOmRqynnMXGGSRv+72H/N260MQeXZIK4PG48401Bsby9Nq5P5fz7hy5UGNmC/W1Z51h2GQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="../admin/js/diachi.js"></script>
+
+<script src="../admin/assets/vendor/js/menu.js"></script>
+<!-- endbuild -->
+
+<!-- Vendors JS -->
+<script src="../admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+
+<!-- Main JS -->
+<script src="../admin/assets/js/main.js"></script>
 <script>
     function submitForm() {
         var form = document.getElementById("paymentForm");
