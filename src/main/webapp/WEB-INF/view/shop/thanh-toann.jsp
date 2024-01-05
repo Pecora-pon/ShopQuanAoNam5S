@@ -7,6 +7,7 @@
 <%@ page import="java.security.Principal" %>
 <%@ page import="java.util.*" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <head>
     <meta charset="UTF-8">
@@ -214,8 +215,26 @@
                         <div>
                             <ul>
 
-                                <li>${sp.tenSanPham} - ${sp.giaSanPham} - ${soLuongDat}
-                                    - ${sp.giaSanPham*soLuongDat}</li>
+                                <li>${sp.tenSanPham} -
+                                    <c:choose>
+                                        <c:when test="${sp.giaSanPham >= 1000000}">
+                                            <fmt:formatNumber value="${sp.giaSanPham / 1000000}" pattern="#,##0.###"/> triệu
+                                        </c:when>
+                                        <c:otherwise>
+                                            <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/>
+                                        </c:otherwise>
+                                    </c:choose> -
+                                    ${soLuongDat} -
+                                    <c:choose>
+                                        <c:when test="${sp.giaSanPham * soLuongDat >= 1000000}">
+                                            <fmt:formatNumber value="${(sp.giaSanPham * soLuongDat) / 1000000}" pattern="#,##0.###"/> triệu
+                                        </c:when>
+                                        <c:otherwise>
+                                            <fmt:formatNumber value="${sp.giaSanPham * soLuongDat}" pattern="#,##0"/>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </li>
+
                                 <input type="hidden" name="sanPhamID" value="${sp.sanPhamID}">
                             </ul>
                         </div>
