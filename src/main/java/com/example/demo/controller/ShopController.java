@@ -7,6 +7,7 @@ import com.microsoft.sqlserver.jdbc.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,9 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.UUID;
+import java.util.*;
 
 @Controller
 public class ShopController {
@@ -110,5 +109,23 @@ public class ShopController {
         return "shop/san-pham-detail";
    }
 
+    @GetMapping("/san-pham-tim/{tenSanPham}/{hinhAnhURL}/{sizeID}/{mauSacID}")
+    public ResponseEntity<?> tim(
+            @PathVariable("tenSanPham") String ten,
+            @PathVariable("hinhAnhURL") String anh,
+            @PathVariable("sizeID") int size,
+            @PathVariable("mauSacID") int mausac,
+            Model model
+    ) {
+        SanPham sanPham = sanPhamService.tim(ten, anh, size, mausac);
+
+        if (sanPham != null) {
+            Map<String, Object> result = new HashMap<>();
+            result.put("sp", sanPham);
+            return ResponseEntity.ok(result);
+        } else {
+            return ResponseEntity.notFound().build();
+        }
+    }
 }
 
