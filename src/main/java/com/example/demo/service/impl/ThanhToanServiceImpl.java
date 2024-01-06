@@ -123,7 +123,7 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         donHangChiTiet.setTrangThai(trangthai);
         donHangChiTiet.setDonHang(donHang1);
         donHangChiTietRepo.save(donHangChiTiet);
-        sanPhamService.capnhat(sanPham, sl);
+//        sanPhamService.capnhat(sanPham, sl);
 //
 
 //        if (donHangChiTiet != null) {
