@@ -673,12 +673,12 @@
         var soLuongDat = parseInt(document.getElementById("soLuongDatInput").value);
         var sanPhamID = "${sp.tenSanPham}";
         var hinhAnh = "${sp.hinhAnhURL}";
-        var size = parseInt("${sp.size.sizeID}");
-        var mausac = parseInt("${sp.mauSac.mauSacID}");
+        var sizeId = document.querySelector('input[name="sizeID"]:checked').value;
+        var mauSacId = document.querySelector('input[name="mauSacID"]:checked').value;
         var slton = parseInt("${sp.soLuongTon}");
 
         if (validateSoLuong(soLuongDat, slton)) {
-            window.location.href = "/themngay/" + sanPhamID + "/" + hinhAnh + "/" + size + "/" + mausac + "?soLuongDat=" + soLuongDat;
+            window.location.href = "/themngay/" + sanPhamID + "/" + hinhAnh + "/" + sizeId + "/" + mauSacId + "?soLuongDat=" + soLuongDat;
         }
     }
 
