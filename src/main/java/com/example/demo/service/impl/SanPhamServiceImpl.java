@@ -300,4 +300,9 @@ public class SanPhamServiceImpl implements SanPhamService {
     public List<SanPham> getTop4SanPhamByGiaThapNhat() {
         return sanPhamRepo.findTop4ByOrderByGiaSanPhamAsc();
     }
+
+    @Override
+    public SanPham tim(String ten, String anh, int size, int mausac) {
+        return sanPhamRepo.findByTenSanPhamAndHinhAnhURLAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(ten,anh,size,mausac);
+    }
 }
