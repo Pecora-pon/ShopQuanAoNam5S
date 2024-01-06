@@ -39,4 +39,6 @@ public interface SanPhamService {
     List<SanPham> findByThuongHieuID(int thuongHieuID);
 
     List<SanPham> getTop4SanPhamByGiaThapNhat();
+
+    SanPham tim(String ten,String anh,int size,int mausac);
 }
