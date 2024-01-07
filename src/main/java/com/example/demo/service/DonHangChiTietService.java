@@ -15,6 +15,8 @@ public interface DonHangChiTietService {
 
     void add(DonHangChiTiet donHangChiTiet);
 
+    double delete1(int id);
+
     Page<DonHangChiTiet> getPage(int pageNumber, int pageSize);
     Page<DonHangChiTiet> getPage1(int pageNumber, int pageSize);
     Page<DonHangChiTiet> getPage2(int pageNumber, int pageSize);
