@@ -8,10 +8,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.acls.model.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -39,6 +41,22 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     @Override
     public void add(DonHangChiTiet donHangChiTiet) {
         donHangChiTietRepo.save(donHangChiTiet);
+    }
+
+    @Override
+    public double delete1(int id) {
+        Optional<DonHangChiTiet> optionalDonHangChiTiet = donHangChiTietRepo.findById(id);
+
+        if (optionalDonHangChiTiet.isPresent()) {
+            DonHangChiTiet donHangChiTiet = optionalDonHangChiTiet.get();
+            double deletedProductPrice = donHangChiTiet.getSanPham().getGiaSanPham() * donHangChiTiet.getSoLuong();
+
+            donHangChiTietRepo.deleteById(id);
+
+            return deletedProductPrice;
+        }
+
+        throw new NotFoundException("Không tìm thấy DonHangChiTiet với ID: " + id);
     }
 
     @Override
