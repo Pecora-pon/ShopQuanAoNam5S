@@ -461,7 +461,7 @@
                                                         <%--                                                <a class="dropdown-item" href="/don-hang-chi-tiet/delete/${dhct.donHangChiTietID}"><i--%>
                                                         <%--                                                        class="bx bx-trash me-1"></i> Xóa</a>--%>
                                                     <a class="dropdown-item"
-                                                       href="/chuyenttt/${dhct.donHang.donHangID}"><i
+                                                       href="/chuyenttt/${dhct.donHang.donHangID}" onclick="return confirmConfirmation(${dhct.soLuong}, ${dhct.sanPham.soLuongTon},'${dhct.sanPham.tenSanPham}');"><i
                                                             class="bx bx-edit-alt me-1"></i></i> Xác nhận đơn hàng</a>
                                                     <a class="dropdown-item" href="/detaildh6/${dhct.donHang.donHangID}"><i
                                                             class="bx bx-edit-alt me-1"></i></i>Chi Tiết</a>
@@ -476,6 +476,16 @@
 
                             </c:forEach>
                             </tbody>
+                            <script>
+                                function confirmConfirmation(selectedQuantity, availableQuantity, productName) {
+                                    if (selectedQuantity > availableQuantity) {
+                                        alert('Số lượng đặt hàng sản phẩm'+productName+' lớn hơn số lượng tồn. Vui lòng kiểm tra lại.');
+                                        return false; // Do not proceed with the link if confirmation fails
+                                    } else {
+                                        return confirm('Bạn có chắc chắn muốn xác nhận đơn hàng không?');
+                                    }
+                                }
+                            </script>
                             <style>
                                 .btn-container {
                                     display: flex;
