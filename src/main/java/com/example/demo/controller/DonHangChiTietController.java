@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.repository.query.Param;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -38,7 +39,26 @@ public class DonHangChiTietController {
 
     @Autowired
     private GiamGiaService giamGiaService;
-
+//
+//    @GetMapping("/don-hangct/delete/{donHang}")
+//    public ResponseEntity<Double> delete1(@PathVariable("donHang") int sanpham){
+//       double dh= donHangChiTietService.delete1(sanpham);
+//        return ResponseEntity.ok(dh);
+//    }
+//   @GetMapping("/get-price/{sanPhamID}")
+//   public ResponseEntity<Double> get(@PathVariable UUID id){
+//        try{
+//            SanPham sanPham=sanPhamService.detail(id);
+//            if(sanPham !=null){
+//                double price=sanPham.getGiaSanPham();
+//                return ResponseEntity.ok(price);
+//            }else {
+//                return ResponseEntity.notFound().build();
+//            }
+//        }catch (Exception e){
+//            return ResponseEntity.badRequest().build();
+//        }
+//   }
     @GetMapping("/don-hang")
     public String hienthi(@ModelAttribute("dhct") DonHangChiTiet donHangChiTiet, Model model){
         List<DonHangChiTiet> list = donHangChiTietService.getAllll();
