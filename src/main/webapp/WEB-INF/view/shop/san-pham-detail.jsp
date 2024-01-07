@@ -649,7 +649,7 @@
             event.preventDefault();
         }
         var soLuongDat = parseInt(document.getElementById('soLuongDatInput').value);
-        var slton = parseInt("${sp.soLuongTon}");
+        var slton = parseInt(document.getElementById("availableQuantityLabel").innerText.split(': ')[1].trim());
 
         if (!validateSoLuong(soLuongDat, slton)) {
             // Chặn sự kiện mặc định nếu số lượng không hợp lệ
@@ -675,7 +675,7 @@
         var hinhAnh = "${sp.hinhAnhURL}";
         var sizeId = document.querySelector('input[name="sizeID"]:checked').value;
         var mauSacId = document.querySelector('input[name="mauSacID"]:checked').value;
-        var slton = parseInt("${sp.soLuongTon}");
+        var slton = parseInt(document.getElementById("availableQuantityLabel").innerText.split(': ')[1].trim());
 
         if (validateSoLuong(soLuongDat, slton)) {
             window.location.href = "/themngay/" + sanPhamID + "/" + hinhAnh + "/" + sizeId + "/" + mauSacId + "?soLuongDat=" + soLuongDat;

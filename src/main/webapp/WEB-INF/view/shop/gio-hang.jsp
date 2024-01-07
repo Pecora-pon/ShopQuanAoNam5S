@@ -234,9 +234,9 @@
                                         <td class="quantity__item">
                                             <div class="quantity">
                                                 <div class="pro-qty">
-                                                    <input type="text" id="soLuongDat_${gh.gioHangID}"
-                                                           name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}"
-                                                           oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham}, this.value)" class="custom-input">
+                                                    <input type="text" id="soLuongDat_${gh.gioHangID}" name="soLuongDat_${gh.gioHangID}" value="${gh.soLuongDat}"
+                                                           data-available-stock="${gh.sanPham.soLuongTon}" oninput="updateTotal(${gh.gioHangID}, ${gh.sanPham.giaSanPham}, this.value)"
+                                                           class="custom-input">
                                                 </div>
                                             </div>
                                         </td>
@@ -313,7 +313,25 @@
                             for (var i = 0; i < checkboxes.length; i++) {
                                 if (checkboxes[i].checked) {
                                     isChecked = true;
-                                    break;
+
+                                    // Accessing the corresponding quantity input and error span
+                                    var quantityInput = document.getElementById("soLuongDat_" + checkboxes[i].value);
+                                    var quantityError = document.getElementById("quantityError_" + checkboxes[i].value);
+
+                                    // Extracting the available stock and ordered quantity
+                                    var availableStock = parseInt(quantityInput.getAttribute("data-available-stock"));
+                                    var orderedQuantity = parseInt(quantityInput.value);
+
+                                    // Validating the quantity
+                                    if (orderedQuantity > availableStock) {
+                                        quantityError.innerHTML = "Số lượng đặt vượt quá số lượng tồn kho. Chỉ còn " + availableStock + " sản phẩm";
+                                        isValid = false;
+                                    } else if (orderedQuantity <= 0) {
+                                        quantityError.innerHTML = "Số lượng đặt phải từ 1 trở lên.";
+                                        isValid = false;
+                                    } else {
+                                        quantityError.innerHTML = "";
+                                    }
                                 }
                             }
 
@@ -321,26 +339,6 @@
                                 alert("Vui lòng chọn ít nhất một sản phẩm.");
                                 return false;
                             }
-
-
-
-                            <c:forEach items="${listGioHang}" var="gh">
-                            var quantityInput = document.getElementById("soLuongDat_${gh.gioHangID}");
-                            var quantityError = document.getElementById("quantityError_${gh.gioHangID}");
-
-                            var availableStock = ${gh.sanPham.soLuongTon};
-                            var orderedQuantity = parseInt(quantityInput.value);
-
-                            if (orderedQuantity > availableStock) {
-                                quantityError.innerHTML = "Số lượng đặt vượt quá số lượng tồn kho.Chỉ còn " + availableStock + " sản phẩm";
-                                isValid = false;
-                            } else if (orderedQuantity <= 0) {
-                                quantityError.innerHTML = "Số lượng đặt phải từ 1 trở lên.";
-                                isValid = false;
-                            } else {
-                                quantityError.innerHTML = "";
-                            }
-                            </c:forEach>
 
                             return isValid;
                         }
