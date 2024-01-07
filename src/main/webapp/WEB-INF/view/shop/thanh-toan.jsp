@@ -252,14 +252,14 @@
                         <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}"/>
                         <c:set var="totalPriceLong" value="${Math.round(totalPrice)}"/>
 
-                                                <input type="hidden" name="tongTien" value="${totalPrice}">
+
                     </c:forEach>
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
 
                     <li class="list-group-item d-flex justify-content-between">
-
+                        <input type="hidden" name="totalprice1" value="${totalPriceLong}" readonly>
                         Tạm tính : <input type="text" name="totalprice" value="<c:choose>
     <c:when test='${totalPriceLong >= 1000000}'>
         <fmt:formatNumber value='${totalPriceLong / 1000000}' pattern='#,##0.###'/> triệu
@@ -381,7 +381,7 @@
                                                 }
                                                     // Chưa hết hạn
                                                     var donToiThieu = parseFloat(radio.getAttribute('data-donToiThieu'));
-                                                    var totalprice = parseFloat(document.getElementsByName('tongTien')[0].value.replace(/[^0-9.-]+/g, ""));
+                                                    var totalprice = parseFloat(document.getElementsByName('totalprice1')[0].value.replace(/[^0-9.-]+/g, ""));
                                                     console.log("donToiThieu:", donToiThieu);
                                                     console.log("totalprice:", totalprice);
 
