@@ -1,5 +1,6 @@
 package com.example.demo.repository;
 
+import com.example.demo.entity.DonHang;
 import com.example.demo.entity.DonHangChiTiet;
 import com.example.demo.entity.GioHang;
 import com.example.demo.entity.SanPham;
@@ -105,6 +106,8 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     @Query("select p from DonHangChiTiet p where p.tongTien LIKE %?1% and p.trangThai=6")
     List<DonHangChiTiet> findByTongTien6(@Param("tongTien") Float tongTien, int trang);
 
+    @Query("select p from DonHangChiTiet p where p.sanPham.sanPhamID =:sanPhamID")
+    DonHangChiTiet findbySanPham(@Param("sanPhamID")UUID id);
 
     @Query("select p from DonHangChiTiet p where p.donHang.donHangID =:id")
     DonHangChiTiet donHangChiTiet(@Param("id") UUID id);
@@ -113,11 +116,15 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
 
     List<DonHangChiTiet> findByDonHangChiTietID(int id);
 
+    @Query("select p from DonHangChiTiet p where p.donHang.donHangID =:donHangID and p.trangThai =8")
+    List<DonHangChiTiet> banHang(@Param("donHangID")UUID id);
 
+    DonHangChiTiet findBySanPhamAndDonHang(SanPham sanPham, DonHang donHang);
 
     @Query("select p from DonHangChiTiet p where p.donHang.khachHang.username =:username and p.trangThai =3 or p.trangThai =4 order by p.donHangChiTietID desc ")
     List<DonHangChiTiet> vi(String username);
 
+    List<DonHangChiTiet>findAllByDonHangChiTietIDInAndTrangThai(List<Integer> donhang,int page);
     @Transactional
     @Modifying
     @Query(value = "Update DonHangChiTiet set trangThai = 6 where donHangID =:donHangID", nativeQuery = true)

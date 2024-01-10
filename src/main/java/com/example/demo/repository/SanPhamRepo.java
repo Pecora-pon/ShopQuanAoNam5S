@@ -56,6 +56,8 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
     List<SanPham> findByTenSanPham1(@Param("tenSanPham") String tenSanPham);
 
+    @Query("SELECT sp from SanPham  sp where sp.tenSanPham LIKE :ten or sp.size.tenSize like :ten or sp.mauSac.tenMauSac like :ten")
+    List<SanPham> findByTenSanPhamOrSize_TenSizeOrMauSac_TenMauSac(@Param("ten") String ten);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham = :tenSanPham AND sp.hinhAnhURL = :hinhAnhURL AND sp.size.sizeID = :sizeID AND sp.mauSac.mauSacID = :mauSacID")
     SanPham findByTenSanPhamAndHinhAnhURLAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(
