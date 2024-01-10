@@ -156,6 +156,13 @@
                     </a>
                 </li>
 
+                <li class="menu-item active">
+                    <a href="/ban-hang/getAll" class="menu-link">
+                        <i class="menu-icon tf-icons bx bx-home-circle"></i>
+                        <div data-i18n="Analytics">Bán hàng</div>
+                    </a>
+                </li>
+
                 <!-- Layouts -->
 
 
