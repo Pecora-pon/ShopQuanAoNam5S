@@ -108,7 +108,6 @@ public class ShopController {
         model.addAttribute("sp",sanPham);
         return "shop/san-pham-detail";
    }
-
     @GetMapping("/san-pham-tim/{tenSanPham}/{hinhAnhURL}/{sizeID}/{mauSacID}")
     public ResponseEntity<?> tim(
             @PathVariable("tenSanPham") String ten,
