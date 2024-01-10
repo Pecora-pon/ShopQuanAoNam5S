@@ -58,6 +58,7 @@ public UserDetailsService userDetailsServicekh(){
                         .requestMatchers(new AntPathRequestMatcher("/hien-thi")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/chat-lieu")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/mau-sac")).hasAuthority("ROLE_ADMIN")
+                        .requestMatchers(new AntPathRequestMatcher("/ban-hang/getAll")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/nhap-kho")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/size")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/thuong-hieu")).hasAuthority("ROLE_ADMIN")
