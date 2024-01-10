@@ -534,6 +534,7 @@
                                 }
                             }
                         </script>
+                        <script>
                             function validateAmountPaid() {
                                 // Get the input element
                                 var inputElement = document.getElementById("amountPaid");
