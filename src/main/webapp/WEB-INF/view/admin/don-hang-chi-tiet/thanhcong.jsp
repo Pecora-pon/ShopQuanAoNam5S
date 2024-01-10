@@ -447,7 +447,9 @@
                                             <c:if test="${dhct.trangThai == 4}"> Đã hủy</c:if>
                                         </td>
                                         <td><c:if test="${dhct.donHang.hinhThucThanhToan == 1}">Tiền Mặt</c:if>
-                                            <c:if test="${dhct.donHang.hinhThucThanhToan == 2}">Chuyển Khoản</c:if></td>
+                                            <c:if test="${dhct.donHang.hinhThucThanhToan == 2}">Chuyển Khoản</c:if>
+                                            <c:if test="${dhct.donHang.hinhThucThanhToan == 3}">Tại Quầy</c:if>
+                                        </td>
                                         <td><fmt:formatNumber value="${dhct.tongTien}" pattern="#,##0"/> VND</td>
                                         <td>
                                             <div class="dropdown">

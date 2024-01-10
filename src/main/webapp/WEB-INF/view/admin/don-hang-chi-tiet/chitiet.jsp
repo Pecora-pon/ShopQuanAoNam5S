@@ -387,44 +387,120 @@
                                         </td>
                                     </tr>
                                     <c:forEach items="${list}" var="dh" varStatus="i">
+                                    <tr class="order-row">
+                                        <td class="item-info">
+                                            <strong>Thông Tin Sản Phẩm: ${i.index+1}</strong>
+                                        </td>
+                                        <td class="item-value">${dh.sanPham.tenSanPham}-${dh.sanPham.size.tenSize}-${dh.sanPham.mauSac.tenMauSac}</td>
+                                    </tr>
 
-                                        <tr>
-                                            <td class="item-info">
-                                                <strong>Thông Tin Sản Phẩm: ${i.index+1}</strong>
-                                            </td>
-                                            <td class="item-value">${dh.sanPham.tenSanPham}-${dh.sanPham.size.tenSize}-${dh.sanPham.mauSac.tenMauSac}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="item-info">
-                                                <strong>Số Lượng:</strong>
-                                            </td>
-                                            <td class="item-value">${dh.soLuong}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="item-info">
-                                                <strong>Ngày Đặt Hàng:</strong>
-                                            </td>
-                                            <td class="item-value">${dh.donHang.ngayDatHang}</td>
-                                        </tr>
-                                        <tr>
-                                            <td class="item-info">
-                                                <strong>Giá Tiền:</strong>
-                                            </td>
-                                            <td class="item-value"><fmt:formatNumber value="${dh.sanPham.giaSanPham*dh.soLuong}" pattern="#,##0"/> VND</td>
-                                        </tr>
+                                    <tr>
+                                        <td class="item-info">
+                                            <strong>Số Lượng:</strong>
+                                        </td>
+                                        <td class="item-value">${dh.soLuong}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="item-info">
+                                            <strong>Ngày Đặt Hàng:</strong>
+                                        </td>
+                                        <td class="item-value">${dh.donHang.ngayDatHang}</td>
+                                    </tr>
+                                    <tr>
+                                        <td class="item-info">
+                                            <strong>Giá Tiền:</strong>
+                                        </td>
+                                        <td class="item-value"><fmt:formatNumber value="${dh.sanPham.giaSanPham*dh.soLuong}" pattern="#,##0"/> VND</td>
+                                    </tr>
+<%--                                    <tr>--%>
+<%--                                        <td class="item-info">--%>
+<%--                                            <strong>Xóa:</strong>--%>
+<%--                                        </td>--%>
+<%--                                        <td class="item-value"><a href="/don-hangct/delete/${dh.donHangChiTietID}">Xóa</a></td>--%>
+<%--                                    </tr>--%>
                                     </c:forEach>
 
                                     </tbody>
                                 </table>
 
-                                <c:set var="dh" value="${list}" />
-                                <div class="item-info">
+
+                                <div class="item-info total-info">
                                     <span class="item-label" style="font-size: 20px">Tổng tiền:</span>
-                                    <span class="item-value" style="font-size: 20px"><fmt:formatNumber value="${dh[0].tongTien}" pattern="#,##0"/> VND</span>
+                                    <span class="item-value" style="font-size: 20px"><fmt:formatNumber value="${list[0].tongTien}" pattern="#,##0"/> VND</span>
                                 </div>
                             </div>
                         </div>
                     </div>
+                    <script>
+                        $(document).ready(function () {
+                            var deleteUrl;  // Đặt deleteUrl là biến toàn cục
+
+                            $(".order-row a").on("click", function (event) {
+                                event.preventDefault();
+
+                                // Lấy đường dẫn xóa từ nút xóa
+                                deleteUrl = $(this).attr("href");
+
+                                // Gửi yêu cầu xóa đến server
+                                $.ajax({
+                                    url: deleteUrl,
+                                    type: 'GET',
+                                    success: function () {
+                                        // Xóa hàng (row) liên quan khi xóa thành công
+                                        var deletedRow = $(event.target).closest(".order-row");
+                                        deletedRow.remove();
+
+                                        // Cập nhật tổng tiền
+                                        updateTotal(deleteUrl);  // Truyền deleteUrl vào hàm updateTotal
+                                    },
+                                    error: function () {
+                                        alert("Xóa không thành công. Vui lòng thử lại!");
+                                    }
+                                });
+                            });
+
+                            function updateTotal(deleteUrl) {
+                                // Tính lại tổng tiền
+                                var total = 0;
+                                $(".order-row").each(function () {
+                                    var price = parseFloat($(this).find(".item-value:eq(3)").text().replace(/[^\d.]/g, ''));
+                                    total += price;
+                                });
+
+                                // Hiển thị tổng tiền mới
+                                $(".total-info .item-value").text(new Intl.NumberFormat('vi-VN', {
+                                    style: 'currency',
+                                    currency: 'VND'
+                                }).format(total));
+
+                                // Gửi yêu cầu lấy giá sản phẩm đã xóa để trừ tổng tiền
+                                var deletedProductUrl = deleteUrl.replace("/don-hangct/delete/", "/get-price/");
+
+                                $.ajax({
+                                    url: deletedProductUrl,
+                                    type: 'GET',
+                                    success: function (deletedProductPrice) {console.log("Deleted Product Price: ", deletedProductPrice);
+                                        // Kiểm tra giá trị deletedProductPrice trước khi sử dụng
+                                        if (!isNaN(deletedProductPrice)) {
+                                            // Trừ giá sản phẩm đã xóa khỏi tổng tiền
+                                            total -= parseFloat(deletedProductPrice);
+
+                                            // Hiển thị tổng tiền mới sau khi trừ giá sản phẩm đã xóa
+                                            $(".total-info .item-value").text(new Intl.NumberFormat('vi-VN', {
+                                                style: 'currency',
+                                                currency: 'VND'
+                                            }).format(total));
+                                        } else {
+                                            alert("Giá sản phẩm đã xóa không hợp lệ. Vui lòng kiểm tra lại!");
+                                        }
+                                    },
+                                    error: function () {
+                                        alert("Lấy giá sản phẩm đã xóa không thành công. Vui lòng thử lại!");
+                                    }
+                                });
+                            }
+                        });
+                    </script>
                     <script>
                         // Updated function to handle confirmation and redirection
                         function confirmCancellation(event) {
