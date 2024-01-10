@@ -557,7 +557,7 @@
                                 amountPaidDisplay.textContent = amountPaid.toFixed(2); // Hiển thị số tiền đã trả với hai chữ số thập phân
 
                                 // Tính số tiền phải trả
-                                var amountToPay = totalCost - amountPaid;
+                                var amountToPay =  amountPaid - totalCost ;
                                 amountToPayDisplay.textContent = amountToPay.toFixed(2);
                             }
                         </script>
