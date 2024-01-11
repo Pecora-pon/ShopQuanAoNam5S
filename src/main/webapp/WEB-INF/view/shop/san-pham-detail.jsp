@@ -231,41 +231,24 @@
                                 <!-- Size options -->
                                 <div class="size-options">
                                     <label>Size</label>
-                                    <div class="custom-radio">
-                                        <input type="radio" id="md" name="sizeID" value="1" ${sp.size.sizeID == 1 ? 'checked' : ''}>
-                                        <label for="md">XS</label>
-                                    </div>
+                                    <c:forEach items="${listSize}" var="si">
+                                        <div class="custom-radio">
+                                            <input type="radio" id="size_${si.sizeID}" name="sizeID" value="${si.sizeID}" ${si.sizeID == 1 ? 'checked' : ''}>
+                                            <label for="size_${si.sizeID}">${si.tenSize}</label>
+                                        </div>
+                                    </c:forEach>
 
-                                    <div class="custom-radio">
-                                        <input type="radio" id="xl" name="sizeID" value="2" ${sp.size.sizeID == 2 ? 'checked' : ''}>
-                                        <label for="xl">SM</label>
-                                    </div>
-
-                                    <div class="custom-radio">
-                                        <input type="radio" id="2xl" name="sizeID" value="3" ${sp.size.sizeID == 3 ? 'checked' : ''}>
-                                        <label for="2xl">MD</label>
-                                    </div>
                                 </div>
-
-                                <!-- Color options -->
-                                <div class="color-options">
+                                <div class="size-options">
                                     <label>Màu Sắc</label>
-                                    <div class="custom-radio">
-                                        <input type="radio" id="do" name="mauSacID" value="1" ${sp.mauSac.mauSacID == 1 ? 'checked' : ''}>
-                                        <label for="do">Trắng</label>
-                                    </div>
+                                    <c:forEach items="${listMauSac}" var="ms">
+                                        <div class="custom-radio">
+                                            <input type="radio" id="mauSac_${ms.mauSacID}" name="mauSacID" value="${ms.mauSacID}" ${ms.mauSacID == 1 ? 'checked' : ''}>
+                                            <label for="mauSac_${ms.mauSacID}">${ms.tenMauSac}</label>
+                                        </div>
+                                    </c:forEach>
 
-                                    <div class="custom-radio">
-                                        <input type="radio" id="xanh" name="mauSacID" value="2" ${sp.mauSac.mauSacID == 2 ? 'checked' : ''}>
-                                        <label for="xanh">Đen</label>
-                                    </div>
-
-                                    <div class="custom-radio">
-                                        <input type="radio" id="hong" name="mauSacID" value="3" ${sp.mauSac.mauSacID == 3 ? 'checked' : ''}>
-                                        <label for="hong">Xám</label>
-                                    </div>
                                 </div>
-
                                 <!-- Quantity and Add to Cart section -->
                                 <div class="product__details__cart__option">
                                     <div class="quantity">
@@ -274,6 +257,7 @@
                                             <input type="text" id="soLuongDatInput" value="1" name="soLuongDat">
                                         </div>
                                         <span id="availableQuantityLabel" style="font-size: 18px; color: red;">Số lượng còn lại: ${sp.soLuongTon}</span>
+                                        <div id="notFoundMessage" style="color: red; display: none;">Không tìm thấy sản phẩm.</div>
                                     </div>
 
                                     <div class="buttons">
@@ -295,12 +279,21 @@
                                     url: "/san-pham-tim/" + tenSanPham + "/" + hinhAnhURL + "/" + sizeId + "/" + mauSacId,
                                     type: "GET",
                                     success: function(response) {
-                                        // Update available quantity label
-                                        console.log("Success! Retrieved data:", response);
-                                        document.getElementById("availableQuantityLabel").innerText = "Số lượng còn lại: " + response.sp.soLuongTon;
+
+                                            // Update available quantity label
+                                            console.log("Success! Retrieved data:", response);
+                                            document.getElementById("availableQuantityLabel").innerText = "Số lượng còn lại: " + response.sp.soLuongTon;
+                                            document.getElementById("notFoundMessage").style.display = "none";
+                                            document.getElementById("availableQuantityLabel").style.display = "block";
+
                                     },
-                                    error: function(error) {
-                                        console.log("Error fetching product information");
+                                    error: function (response) {
+                                        var availableQuantityLabel = document.getElementById("availableQuantityLabel");
+                                        availableQuantityLabel.innerText = "Không Có Sản Phẩm: 0";
+                                        document.getElementById("availableQuantityLabel").innerText = "Số lượng còn lại: null"+ response.sp.soLuongTon;
+                                        document.getElementById("notFoundMessage").style.display = "block";
+                                        document.getElementById("availableQuantityLabel").style.display = "none";
+                                        console.log("Error fetching product information",response);
                                     }
                                 });
                             }
@@ -747,11 +740,13 @@
         var slton = parseInt(document.getElementById("availableQuantityLabel").innerText.split(': ')[1].trim());
 
         if (validateSoLuong(soLuongDat, slton)) {
+            console.log(slton);
             window.location.href = "/themngay/" + sanPhamID + "/" + hinhAnh + "/" + sizeId + "/" + mauSacId + "?soLuongDat=" + soLuongDat;
         }
     }
 
     function validateSoLuong(soLuongDat, slton) {
+        console.log(slton);
         if (soLuongDat < 1) {
             alert('Số lượng đặt phải lớn hơn hoặc bằng 1.');
             return false;
@@ -759,6 +754,10 @@
 
         if (soLuongDat > slton) {
             alert('Số lượng tồn không đủ. Chỉ còn ' + slton + ' sản phẩm.');
+            return false;
+        }
+        if(slton === "null"){
+            alert('Không tìm thấy sản phẩm.');
             return false;
         }
 
