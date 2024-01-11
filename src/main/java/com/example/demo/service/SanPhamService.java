@@ -41,4 +41,9 @@ public interface SanPhamService {
     List<SanPham> getTop4SanPhamByGiaThapNhat();
 
     SanPham tim(String ten,String anh,int size,int mausac);
+
+    //cái này thống kê
+    List<Object[]> danhSachHangSapHet(Integer soLuongTon);
+
+    SanPham saveExcel(SanPham sanPham);
 }
