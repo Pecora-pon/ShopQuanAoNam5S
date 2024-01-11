@@ -121,11 +121,13 @@ public class ThanhToanController {
     public String detail1(@PathVariable("tenSanPham")String ten,@PathVariable("hinhAnhURL")String anh,@PathVariable("sizeID")int size,@PathVariable("mauSacID")int mausac,@RequestParam(value = "soLuongDat",defaultValue = "1")int sl, Model model,Principal principal,Authentication authentication){
         SanPham sanPham=thanhToanService.deltail1(ten,anh,size,mausac,sl);
         List<SanPham>sanPhamList=sanPhamService.getAll();
+        List<SanPham>sanPhamList1=sanPhamService.getTop4SanPhamByGiaThapNhat();
        String username=authentication.getName();
         String logname= principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         List<GiamGia>giamGiaList=giamGiaService.getAll();
        List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAllByKhachHang(username);
+       model.addAttribute("listSanPham1",sanPhamList1);
        model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
        model.addAttribute("listGiamGia",giamGiaList);
        model.addAttribute("tt",khachHang);
