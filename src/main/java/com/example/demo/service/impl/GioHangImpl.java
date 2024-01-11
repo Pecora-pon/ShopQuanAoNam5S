@@ -9,6 +9,9 @@ import com.example.demo.service.CartService;
 import com.example.demo.service.SanPhamService;
 import com.example.demo.service.SizeService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.util.HashMap;
@@ -125,5 +128,16 @@ public class GioHangImpl implements CartService {
     @Override
     public List<GioHang> getAllByKhachHang(String username) {
         return gioHangRepo.findByKhachHang_Username(username);
+    }
+
+    @Override
+    public List<GioHang> timkiem(String ten, String username) {
+        return gioHangRepo.findBySanPham_TenSanPhamAndKhachHang_Username(ten,username);
+    }
+
+    @Override
+    public Page<GioHang> page(String name,int pageNumber, int pageSize) {
+        Pageable pageable= PageRequest.of(pageNumber,pageSize);
+        return gioHangRepo.findByKhachHang_Username(name,pageable);
     }
 }
