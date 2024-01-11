@@ -133,4 +133,10 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
             + "ORDER BY tongSoLuong DESC", nativeQuery = true)
     List<Object[]> findTopProducts();
 
+    //Thoogns ke
+    @Query("select sp.tenSanPham, sp.size.tenSize, \n" +
+            "sp.mauSac.tenMauSac, sp.chatLieu.tenChatLieu,sp.thuongHieu.tenThuongHieu , sp.soLuongTon\n" +
+            "from SanPham sp\n" +
+            "where sp.soLuongTon <= :soLuongTon and sp.tinhTrang = 0")
+    List<Object[]> danhSachHangSapHet(@Param("soLuongTon") Integer soLuongTon);
 }
