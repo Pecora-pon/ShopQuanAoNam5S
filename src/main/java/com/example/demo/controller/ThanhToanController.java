@@ -74,7 +74,8 @@ public class ThanhToanController {
        KhachHang khachHang=khachHangRepo.findByUsername(logname);
        List<GiamGia>giamGiaList=giamGiaService.getAll();
        List<ThongTinVanChuyen>thongTinVanChuyenList=thongTinVanChuyenService.getAllByKhachHang(username);
-
+       List<SanPham> sanPhamList=sanPhamService.getTop4SanPhamByGiaThapNhat();
+       model.addAttribute("listSanPham",sanPhamList);
        model.addAttribute("listThongTinVanChuyen",thongTinVanChuyenList);
        model.addAttribute("tt",khachHang);
        model.addAttribute("listGiamGia",giamGiaList);
