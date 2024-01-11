@@ -663,6 +663,60 @@
                                 </div>
 
                             </div>
+
+                            <div class="card">
+                                <h5 class="card-header m-0 me-2 pb-3 text-primary">Danh sách sản phẩm sắp hết hàng</h5>
+                                <br>
+                                <form action="<c:url value='/thongke/sapHetHang'/>" method="post" class="row g-3" id="myForm">
+                                    <div class="col-md-2">
+                                        <label class="form-label"> Nhỏ hơn</label>
+                                        <input type="number" class="form-control" value="${soLuongTon != null ? soLuongTon : 25}" name="soLuongTon" min="1" max="1000000000" required>
+                                    </div>
+                                    <!-- Add a radio button for the user to choose the output format -->
+                                    <div class="col-md-2">
+                                        <label style="margin-top: 22%">
+                                            <input type="radio" name="outputFormat" value="table" checked> Hiển thị bảng
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <label style="margin-top: 22%">
+                                            <input type="radio" name="outputFormat" value="excel"> Xuất Excel
+                                        </label>
+                                    </div>
+                                    <div class="col-md-2">
+                                        <button style="margin-top: 17%" type="submit" id="submitButton" class="btn btn-primary">Tìm</button>
+                                    </div>
+                                </form>
+
+                                <br>
+                                <table class="table table-success table-striped" >
+                                    <thead>
+                                    <tr>
+                                        <th>STT</th>
+                                        <th>Sản phẩm</th>
+                                        <th>Kích cỡ</th>
+                                        <th>Màu sắc</th>
+                                        <th>Chất liệu</th>
+                                        <th>Thương hiệu</th>
+                                        <th>Số Lượng</th>
+                                    </tr>
+                                    </thead>
+                                    <tbody>
+                                    <c:forEach var="row" items="${ListDanhSachSapHetHang15}" varStatus="iterStat">
+                                        <tr>
+                                            <td><c:out value="${iterStat.index+1}" /></td>
+                                            <td><c:out value="${row[0]}" /></td>
+                                            <td><c:out value="${row[1]}" /></td>
+                                            <td><c:out value="${row[2]}" /></td>
+                                            <td><c:out value="${row[3]}" /></td>
+                                            <td><c:out value="${row[4]}" /></td>
+                                            <td><c:out value="${row[5]}" /></td>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
+
+                            </div>
                         </div>
                         <!--/ Total Revenue -->
                         <div class="col-12 col-md-8 col-lg-4 order-3 order-md-2">
