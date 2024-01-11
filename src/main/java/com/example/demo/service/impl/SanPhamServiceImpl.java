@@ -305,4 +305,14 @@ public class SanPhamServiceImpl implements SanPhamService {
     public SanPham tim(String ten, String anh, int size, int mausac) {
         return sanPhamRepo.findByTenSanPhamAndHinhAnhURLAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(ten,anh,size,mausac);
     }
+
+    @Override
+    public List<Object[]> danhSachHangSapHet(Integer soLuongTon) {
+        return sanPhamRepo.danhSachHangSapHet(soLuongTon);
+    }
+
+    @Override
+    public SanPham saveExcel(SanPham sanPham) {
+        return sanPhamRepo.save(sanPham);
+    }
 }
