@@ -8,6 +8,8 @@ import com.example.demo.service.SanPhamService;
 import com.example.demo.service.SizeService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.repository.query.Param;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.security.core.Authentication;
 import org.springframework.stereotype.Controller;
@@ -80,6 +82,38 @@ public class CartController {
     public String delete(@PathVariable("gioHangID")int gioHangID){
         cartService.delete(gioHangID);
         return "redirect:/gio-hang";
+    }
+    @GetMapping("/gio-hang/detail")
+    public String detail(@RequestParam("tenSanPham")String ten,Authentication authentication,Model model){
+        String logname=authentication.getName();
+        List<GioHang>list=cartService.timkiem(ten,logname);
+        model.addAttribute("listGioHang",list);
+        return "shop/gio-hang";
+    }
+    @GetMapping("/gio-hang/page")
+    public String page(@RequestParam(defaultValue = "0") int page,
+                       @RequestParam(defaultValue = "5") int size,
+                       Model model,
+                       @Param("keyword") String keyword,Authentication authentication){
+        String logname=authentication.getName();
+        Page<GioHang> page1 = cartService.page(logname,page,size);
+        List<GioHang> list =page1.getContent();
+        List<GioHang> list1 = cartService.getAll();
+        if(keyword !=null){
+            list1     = this.cartService.getAllByKhachHang(keyword);
+        }
+        int totalItems = list1.size();
+        int itemsPerPage = size;
+        int totalPages = (int) Math.floor((double) totalItems / itemsPerPage);
+        int currentPage = page;
+        model.addAttribute("currentPage",currentPage);
+        model.addAttribute("totalPages", totalPages);
+        model.addAttribute("itemsPerPage", itemsPerPage);
+        model.addAttribute("totalItems", totalItems);
+        model.addAttribute("listGioHang",list);
+        model.addAttribute("gh",new GioHang());
+        return "shop/gio-hang";
+
     }
 }
 
