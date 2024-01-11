@@ -619,6 +619,33 @@ ${updatedTotalPriceLong1}" readonly>
 
 
 </div>
+<div class="container">
+    <div class="section-title">
+        <span></span>
+        <h2>Sản phẩm nổi bật</h2>
+    </div>
+    <div class="row">
+        <c:forEach items="${listSanPham}" var="sp">
+            <div class="col-lg-3 col-md-6 col-sm-6 col-sm-6">
+                <div class="product__item">
+                    <div class="product__item__pic set-bg" data-setbg="/getimage/${sp.hinhAnhURL}" style="background-image: url(&quot;img/product/product-1.jpg&quot;);">
+                        <span class="label">New</span>
+                        <ul class="product__hover">
+                            <li><a href="/danh-sach-yt/them/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/heart.png" alt=""></a></li>
+                            <li><a href="/san-pham-detail/${sp.sanPhamID}"><img src="../mainshop/mainshop2/img/icon/search.png" alt=""></a></li>
+                        </ul>
+                    </div>
+                    <div class="product__item__text">
+                        <h6>${sp.tenSanPham}</h6>
+                        <a href="/san-pham-detail/${sp.sanPhamID}" class="add-cart">+ Add To Cart</a>
+
+                        <h5> <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/> VND</h5>
+                    </div>
+                </div>
+            </div>
+        </c:forEach>
+    </div>
+</div>
 <!-- Shopping Cart Section End -->
 
 <!-- Footer Section Begin -->

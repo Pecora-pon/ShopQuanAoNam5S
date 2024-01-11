@@ -394,22 +394,20 @@
                             <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>
                         </form>
                 </div>
-
-                <nav aria-label="Page navigation example">
-                    <ul class="pagination">
-                        <c:forEach begin="0" end="${totalPages}" var="page">
-                            <c:choose>
-                                <c:when test="${page == currentPage}">
-                                    <li class="page-item active"><span class="page-link">${page}</span></li>
-                                </c:when>
-                                <c:otherwise>
-                                    <li class="page-item"><a class="page-link" href="/gio-hang/page?page=${page}">${page}</a></li>
-                                </c:otherwise>
-                            </c:choose>
-                        </c:forEach>
-                    </ul>
-                </nav>
-            </div>
+            </div>  <nav aria-label="Page navigation example">
+            <ul class="pagination">
+                <c:forEach begin="0" end="${totalPages}" var="page">
+                    <c:choose>
+                        <c:when test="${page == currentPage}">
+                            <li class="page-item active"><span class="page-link">${page}</span></li>
+                        </c:when>
+                        <c:otherwise>
+                            <li class="page-item"><a class="page-link" href="/gio-hang/page?page=${page}">${page}</a></li>
+                        </c:otherwise>
+                    </c:choose>
+                </c:forEach>
+            </ul>
+        </nav>
         </div>
     </section>
     <!-- Shopping Cart Section End -->

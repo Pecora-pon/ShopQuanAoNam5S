@@ -24,6 +24,8 @@
     <!-- Google Font -->
     <link href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700;800;900&display=swap"
           rel="stylesheet">
+    <link rel="stylesheet" href="https://unpkg.com/swiper/swiper-bundle.min.css" />
+    <!-- Swiper JS -->
 
     <!-- Css Styles -->
     <link rel="stylesheet" href="../mainshop/mainshop2/css/bootstrap.min.css" type="text/css">
@@ -367,6 +369,73 @@
                     </div>
                 </div>
             </div>
+            <div class="section-title">
+                <span></span>
+                <h2>Sản phẩm nổi bật</h2>
+            </div>
+            <div class="swiper-container main-slider">
+                <div class="swiper-wrapper">
+                    <c:forEach items="${listSanPham}" var="th" varStatus="status">
+                        <div class="swiper-slide">
+                            <div class="card product-card">
+                                <img src="/getimage/${th.hinhAnhURL}" class="card-img-top product-image" alt="${th.tenSanPham}">
+                                <div class="card-body">
+                                    <h5 class="card-title">${th.tenSanPham}</h5>
+                                    <ul class="list-group list-group-flush">
+                                        <li class="list-group-item"><strong>Size:</strong> ${th.size.tenSize}</li>
+                                        <li class="list-group-item"><strong>Màu sắc:</strong> ${th.mauSac.tenMauSac}</li>
+                                        <li class="list-group-item"><strong>Giá:</strong> ${th.giaSanPham}</li>
+                                    </ul>
+                                </div>
+                                <div class="card-footer">
+                                    <a href="/san-pham-detail/${th.sanPhamID}" class="btn btn-primary">+ Add To Cart</a>
+                                </div>
+                            </div>
+                        </div>
+                    </c:forEach>
+                </div>
+
+            </div>
+            <style>
+                .swiper-slide {
+                    margin-right: 10px; /* Đặt margin giữa các slide */
+                }
+
+                .swiper-container {
+                    padding: 20px; /* Đặt padding cho swiper container nếu cần */
+                }
+                .product-card {
+                    width: 18rem;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center; /* Căn giữa theo chiều ngang */
+                }
+
+                .product-image {
+                    max-width: 100%;
+                    max-height: 200px;
+                    object-fit: cover;
+                }
+
+                .product-details {
+                    text-align: center; /* Căn giữa nội dung theo chiều ngang */
+                }
+
+                .product-actions {
+                    margin-top: auto; /* Đẩy phần actions về cuối card */
+                }
+            </style>
+            <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+            <script>
+                var swiper = new Swiper('.swiper-container', {
+                    slidesPerView: 3,
+                    spaceBetween: 10,
+                    navigation: {
+                        nextEl: '.swiper-button-next',
+                        prevEl: '.swiper-button-prev',
+                    },
+                });
+            </script>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="product__details__tab">
