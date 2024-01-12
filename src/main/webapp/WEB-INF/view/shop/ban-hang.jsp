@@ -478,11 +478,9 @@
                                 </div>
                                 <div class="row">
                                     <div class="modal-body">
-<%--                                        <form id="searchForm" action="/ban-hang/timkiem" method="get" class="d-flex align-items-center">--%>
-<%--                                            <label class="me-2">Tìm Kiếm:</label>--%>
-<%--                                            <input type="text" name="ten" class="form-control" required>--%>
-<%--                                            <button type="submit" class="btn btn-primary ms-2">Tìm Kiếm</button>--%>
-<%--                                        </form>--%>
+
+    <label for="soLuong" style="font-size: 16px; color: #555; margin-bottom: 8px; display: block;">Số lượng mua</label>
+    <input type="text" id="soLuong" name="soLuong" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box;">
                                         <c:forEach items="${listSanPham}" var="sanpham">
                                             <div class="product-row">
                                                 <img src="/getimage/${sanpham.hinhAnhURL}" class="product-image">
@@ -490,8 +488,8 @@
                                                     <h4>${sanpham.tenSanPham}</h4>
                                                     <p>Size: ${sanpham.size.tenSize}</p>
                                                     <p>Màu sắc: ${sanpham.mauSac.tenMauSac}</p>
-                                                    <a class="product-link" href="#"
-                                                       onclick="addProductToOrder('${sanpham.sanPhamID}')"> Thêm </a>
+                                                    <input type="hidden" class="soluongton" value="${sanpham.soLuongTon}">
+                                                    <a class="product-link" href="#" onclick="addProductToOrder('${sanpham.sanPhamID}', ${sanpham.soLuongTon})"> Thêm </a>
 
                                                 </div>
                                             </div>
@@ -534,9 +532,22 @@
                                 // Bất kỳ hành động nào bạn muốn thực hiện sau khi modal hiển thị
                             });
                         });
-                        function addProductToOrder(sanPhamID) {
+                        function addProductToOrder(sanPhamID, soLuongTon) {
+                            var soLuong = document.getElementById('soLuong').value;
+
+                            if (!soLuong || isNaN(soLuong) || parseInt(soLuong) <= 0) {
+                                alert('Vui lòng nhập số lượng hợp lệ.');
+                                return;
+                            }
+
+                            if (parseInt(soLuong) > soLuongTon) {
+                                alert('Số lượng đặt không được lớn hơn số lượng tồn kho.');
+                                return;
+                            }
+
                             var currentDonHangID = document.getElementById('currentDonHangID').value;
-                            var url = '/ban-hang/insertsp/' + sanPhamID + '/' + currentDonHangID;
+                            var url = '/ban-hang/insertsp/' + sanPhamID + '/' + currentDonHangID + '?soLuong=' + soLuong;
+
                             // Set the href attribute dynamically before redirecting
                             document.querySelector('.product-link').href = url;
                             window.location.href = url;

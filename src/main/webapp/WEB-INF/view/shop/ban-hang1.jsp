@@ -512,27 +512,34 @@
                             </div>
                         </div></form>
                         <script>
-                            function validateQuantity() {
-                                var quantities = document.getElementsByName("soluongton");
-                                var orderQuantities = document.getElementsByName("soLuongdat");
-                                var isValid = true;
+                            document.addEventListener('DOMContentLoaded', function () {
+                                var form = document.getElementById('paymentForm');
+                                form.addEventListener('submit', function (event) {
+                                    var quantities = document.getElementsByName('soluongdat');
+                                    var quantitiesInStock = document.getElementsByName('soluongton');
 
-                                for (var i = 0; i < quantities.length; i++) {
-                                    var availableQuantity = parseInt(quantities[i].value);
-                                    var orderedQuantity = parseInt(orderQuantities[i].innerText);
+                                    var valid = true;
 
-                                    if (availableQuantity < orderedQuantity) {
-                                        isValid = false;
-                                        alert("Số lượng tồn của sản phẩm " + (i + 1) + " ít hơn số lượng đặt. Vui lòng kiểm tra lại.");
-                                        break; // Stop the loop if any product quantity is invalid
+                                    for (var i = 0; i < quantities.length; i++) {
+                                        var quantityOrdered = parseInt(quantities[i].value);
+                                        var quantityInStock = parseInt(quantitiesInStock[i].value);
+
+                                        if (quantityOrdered > quantityInStock) {
+                                            alert('Số lượng tồn không đủ ');
+                                            valid = false;
+                                            break;
+                                        } else if (quantityOrdered < 0) {
+                                            alert('Số lượng đặt không được âm cho sản phẩm ' + (i + 1));
+                                            valid = false;
+                                            break;
+                                        }
                                     }
-                                }
 
-                                if (isValid) {
-                                    // Proceed with the form submission
-                                    document.getElementById("paymentForm").submit();
-                                }
-                            }
+                                    if (!valid) {
+                                        event.preventDefault(); // Prevent form submission if validation fails
+                                    }
+                                });
+                            });
                         </script>
                         <script>
                             function validateAmountPaid() {
