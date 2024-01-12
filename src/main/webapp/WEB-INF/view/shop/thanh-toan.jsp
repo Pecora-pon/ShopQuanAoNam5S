@@ -229,7 +229,7 @@
                                                 <fmt:formatNumber value="${gh.sanPham.giaSanPham}" pattern="#,##0"/>
                                             </c:otherwise>
                                         </c:choose> -
-                                            ${gh.soLuongDat} -
+                                            ${gh.soLuongDat} -  ${gh.sanPham.size.tenSize} -${gh.sanPham.mauSac.tenMauSac} -
                                         <c:choose>
                                             <c:when test="${gh.sanPham.giaSanPham * gh.soLuongDat >= 1000000}">
                                                 <fmt:formatNumber

@@ -243,8 +243,8 @@
                                         </td>
                                         <style>
                                             .custom-input {
-                                                width: 50px;
-                                                padding: 8px;
+                                                /*width: 50px;*/
+                                                /*padding: 8px;*/
                                                 border: 1px solid #ccc;
                                                 border-radius: 4px;
                                                 box-sizing: border-box;

@@ -224,7 +224,7 @@
                                             <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/>
                                         </c:otherwise>
                                     </c:choose> -
-                                    ${soLuongDat} -
+                                    ${soLuongDat} -  ${gh.sanPham.size.tenSize} -${gh.sanPham.mauSac.tenMauSac} -
                                     <c:choose>
                                         <c:when test="${sp.giaSanPham * soLuongDat >= 1000000}">
                                             <fmt:formatNumber value="${(sp.giaSanPham * soLuongDat) / 1000000}" pattern="#,##0.###"/> triệu
