@@ -423,10 +423,10 @@
                                     </tbody>
                                 </table>
 
-
+                                <c:set var="dh" value="${list}" />
                                 <div class="item-info total-info">
                                     <span class="item-label" style="font-size: 20px">Tổng tiền:</span>
-                                    <span class="item-value" style="font-size: 20px"><fmt:formatNumber value="${list[0].tongTien}" pattern="#,##0"/> VND</span>
+                                    <span class="item-value" style="font-size: 20px"><fmt:formatNumber value="${dh[0].tongTien}" pattern="#,##0"/> VND</span>
                                 </div>
                             </div>
                         </div>
