@@ -287,8 +287,8 @@
                                                 </div>
                                                 <div class="product-info">
                                                     <h4>${giamGia.maGiamGia}</h4>
-                                                    <p>Số tiền giảm: ${giamGia.soTienGiam}</p>
-                                                    <p>Đơn giá tối thiểu: ${giamGia.donToiThieu}</p>
+                                                    <p>Số tiền giảm:<fmt:formatNumber value="${giamGia.soTienGiam}" pattern="#,##0"/> VND</p>
+                                                    <p>Đơn giá tối thiểu:<fmt:formatNumber value="${giamGia.donToiThieu}" pattern="#,##0"/> VND</p>
                                                     <p>Hạn sử dụng: ${giamGia.ngayHetHan}</p>
                                                     <div class="expired-message" style="color: red; font-weight: bold; display: none;">Đã hết hạn</div>
                                                     <div class="totalprice-message" style="color: red; font-weight: bold; display: none;">Tổng tiền không đạt điều kiện</div>
