@@ -44,6 +44,11 @@ public class BanHangServiceImpl implements BanHangService {
         donHang.setNgayDatHang(LocalDate.now());
         String generatedName = generateIncrementalName();
         donHang.setTenKhach(generatedName);
+        while (donHangRepo.existsByTenKhach(generatedName)){
+            generatedName=generateIncrementalName();
+            donHang.setTenKhach(generatedName);
+        }
+
         donHangRepo.save(donHang);
     }
     private String generateIncrementalName() {
@@ -119,6 +124,7 @@ public class BanHangServiceImpl implements BanHangService {
 
     @Override
     public void delete1(UUID id) {
+        donHangChiTietRepo.deleteByDonHangID(id);
         donHangRepo.deleteById(id);
     }
 
