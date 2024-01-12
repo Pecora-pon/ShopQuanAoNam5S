@@ -50,7 +50,7 @@ public UserDetailsService userDetailsServicekh(){
                         .requestMatchers(new AntPathRequestMatcher("/themmoiny")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/thanh-toan")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/them-gio-hang/{tenSanPham}/{hinhAnhURL}")).hasAuthority("ROLE_USER")
-                        .requestMatchers(new AntPathRequestMatcher("/detail6/{donHang}")).hasAuthority("ROLE_USER")
+                        .requestMatchers(new AntPathRequestMatcher("/detail6/{donHang}")).permitAll()
                         .requestMatchers(new AntPathRequestMatcher("/thong-tin-van-chuyen")).hasAuthority("ROLE_USER")
                         .requestMatchers(new AntPathRequestMatcher("/nhan-vien")).hasAuthority("ROLE_ADMIN")
                         .requestMatchers(new AntPathRequestMatcher("/nhan-vien/page")).hasAuthority("ROLE_ADMIN")
