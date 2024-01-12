@@ -516,6 +516,8 @@
                     <th>Ảnh</th>
                     <th>Tên Sản Phẩm</th>
                     <th>Số Lượng</th>
+                    <th>Size</th>
+                    <th>Màu Sắc</th>
                     <th>Giá tiền</th>
                 </tr>
                 <c:forEach items="${list}" var="dhct" varStatus="i">
@@ -526,6 +528,8 @@
                         </td>
                         <td>${dhct.sanPham.tenSanPham}</td>
                         <td>${dhct.soLuong}</td>
+                        <td>${dhct.sanPham.size.tenSize}</td>
+                        <td>${dhct.sanPham.mauSac.tenMauSac}</td>
                         <td>${dhct.sanPham.giaSanPham}</td>
                     </tr>
                 </c:forEach>
