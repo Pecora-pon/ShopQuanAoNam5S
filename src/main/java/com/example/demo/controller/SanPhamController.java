@@ -58,7 +58,7 @@ public class SanPhamController {
         model.addAttribute("listSize", sizeList);
         model.addAttribute("listSanPham", sanPhamList);
         model.addAttribute("sp",new SanPham());
-        return "sanpham/sanpham";
+        return "redirect:/san-pham/page";
     }
     @RequestMapping(value = "/san-pham-add", method = RequestMethod.POST)
     public String addSanPham(@RequestParam("hinhAnhURL") MultipartFile file,
@@ -252,13 +252,10 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
         response.setContentType("application/octet-stream");
         DateFormat dateFormatter = new SimpleDateFormat("yyyy-MM-dd_HH:mm:ss");
         String currentDateTime = dateFormatter.format(new Date());
-
         String headerKey = "Content-Disposition";
         String headerValue = "attachment; filename=sanpham_" + currentDateTime + ".xlsx";
         response.setHeader(headerKey, headerValue);
-
         List<SanPham> listSanPham = sanPhamService.getAll();
-
         SanPhamExel excelExporter = new SanPhamExel(listSanPham);
 
         excelExporter.export(response);
