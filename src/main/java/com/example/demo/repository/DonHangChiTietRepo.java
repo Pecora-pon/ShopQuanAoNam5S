@@ -125,6 +125,12 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     List<DonHangChiTiet> vi(String username);
 
     List<DonHangChiTiet>findAllByDonHangChiTietIDInAndTrangThai(List<Integer> donhang,int page);
+
+    @Modifying
+    @Transactional
+    @Query("DELETE FROM DonHangChiTiet d WHERE d.donHang.donHangID = :donHangID")
+    void deleteByDonHangID(UUID donHangID);
+
     @Transactional
     @Modifying
     @Query(value = "Update DonHangChiTiet set trangThai = 6 where donHangID =:donHangID", nativeQuery = true)

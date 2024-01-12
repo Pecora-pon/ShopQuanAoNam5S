@@ -16,4 +16,5 @@ public interface DonHangRepo extends JpaRepository<DonHang, UUID> {
     List<DonHang> ban();
     @Query("SELECT  d from DonHang d where d.donHangID =:donHangID")
     DonHang timdon(@Param("donHangID") UUID id);
+    boolean existsByTenKhach(String tenKhach);
 }
