@@ -12,7 +12,7 @@ public interface BanHangService {
 
     void insertdh(DonHang donHang);
     List<DonHangChiTiet>getAll(UUID id);
-    DonHangChiTiet insertsp(UUID sanPham, UUID donHang);
+    DonHangChiTiet insertsp(UUID sanPham, UUID donHang,int soLuong);
     SanPham detail(UUID id);
     List<DonHang>getAlll();
     List<DonHangChiTiet> banhang(List<Integer> donhang,float tong);
