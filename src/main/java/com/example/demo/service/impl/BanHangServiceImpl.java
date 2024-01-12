@@ -60,7 +60,7 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public DonHangChiTiet insertsp(UUID sanPham, UUID donHang) {
+    public DonHangChiTiet insertsp(UUID sanPham, UUID donHang,int soLuong) {
         // Retrieve the product and order
         SanPham sp = sanPhamRepo.findById(sanPham).orElse(null);
         DonHang dh = donHangRepo.findById(donHang).orElse(null);
@@ -70,7 +70,7 @@ public class BanHangServiceImpl implements BanHangService {
 
         if (existingDhct != null) {
             // If the product is already in the order details, update the quantity
-            existingDhct.setSoLuong(existingDhct.getSoLuong() + 1);
+            existingDhct.setSoLuong(existingDhct.getSoLuong() + soLuong);
             // You may want to update other properties if needed
             existingDhct.setTrangThai(8); // Assuming you always set the status to 8
             return donHangChiTietRepo.save(existingDhct);
@@ -79,7 +79,7 @@ public class BanHangServiceImpl implements BanHangService {
             DonHangChiTiet newDhct = new DonHangChiTiet();
             newDhct.setSanPham(sp);
             newDhct.setDonHang(dh);
-            newDhct.setSoLuong(1);
+            newDhct.setSoLuong(soLuong);
             newDhct.setTrangThai(8); // Assuming you always set the status to 8
             return donHangChiTietRepo.save(newDhct);
         }
