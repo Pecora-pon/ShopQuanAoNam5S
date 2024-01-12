@@ -59,7 +59,7 @@ public class BanHangController {
     return "shop/ban-hang1";
   }
   @PostMapping("/ban-hang/mua")
-  public String mua(@RequestParam("donHangID[]") List<Integer> donhang,@RequestParam("tongtien")float tong,Model model){
+  public String mua(@RequestParam("donHangID[]") List<Integer> donhang,@RequestParam("tongtien1")float tong,Model model){
     List<DonHangChiTiet> donHangChiTiet=banHangService.banhang(donhang,tong);
     model.addAttribute("donHangChiTietList",donHangChiTiet);
     return "shop/thanhcong";
