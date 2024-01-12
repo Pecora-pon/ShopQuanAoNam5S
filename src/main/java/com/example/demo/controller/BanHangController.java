@@ -46,9 +46,9 @@ public class BanHangController {
     return "shop/ban-hang1";
   }
   @GetMapping("/ban-hang/insertsp/{sanPhamID}/{donhangid}")
-  public String insertsp(@PathVariable("sanPhamID")UUID sanpham,@PathVariable("donhangid")UUID donhang,Model model){
+  public String insertsp(@PathVariable("sanPhamID")UUID sanpham,@PathVariable("donhangid")UUID donhang,@RequestParam("soLuong")int soLuong, Model model){
     List<DonHangChiTiet>list=banHangService.getAll(donhang);
-    banHangService.insertsp(sanpham,donhang);
+    banHangService.insertsp(sanpham,donhang,soLuong);
     model.addAttribute("listDonHang",list);
     return "redirect:/ban-hang/hienthi?donhangid="+donhang;
   }
