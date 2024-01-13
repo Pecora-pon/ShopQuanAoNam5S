@@ -670,7 +670,7 @@
                                 <form action="<c:url value='/thongke/sapHetHang'/>" method="post" class="row g-3" id="myForm">
                                     <div class="col-md-2">
                                         <label class="form-label"> Nhỏ hơn</label>
-                                        <input type="number" class="form-control" value="${soLuongTon != null ? soLuongTon : 25}" name="soLuongTon" min="1" max="1000000000" required>
+                                        <input type="number" class="form-control" value="${soLuongTon}" name="soLuongTon" min="1" max="1000000000" required>
                                     </div>
                                     <!-- Add a radio button for the user to choose the output format -->
                                     <div class="col-md-2">
