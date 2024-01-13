@@ -130,7 +130,7 @@ public class BanHangServiceImpl implements BanHangService {
 
     @Override
     public List<SanPham> findbyten(String ten) {
-        return sanPhamRepo.findByTenSanPhamOrSize_TenSizeOrMauSac_TenMauSac(ten);
+        return sanPhamRepo.findByTenSanPham(ten);
     }
 
 }
