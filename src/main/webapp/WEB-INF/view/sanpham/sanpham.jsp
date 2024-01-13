@@ -630,7 +630,7 @@
                                 </tbody>
                             </table>
 
-                            <nav aria-label="Page navigation example">
+                            <nav aria-label="Ví dụ phân trang">
                                 <div class="pagination-container">
                                     <ul class="pagination">
                                         <c:choose>
@@ -648,7 +648,7 @@
                                                     <li class="page-item active"><span class="page-link">${pageNumber}</span></li>
                                                 </c:when>
                                                 <c:otherwise>
-                                                    <c:if test="${pageNumber <= 2 || pageNumber >= totalPages - 2 || (pageNumber >= currentPage && pageNumber <= currentPage + 2)}">
+                                                    <c:if test="${pageNumber == 1 || pageNumber == totalPages || (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)}">
                                                         <li class="page-item"><a class="page-link" href="/san-pham/page?page=${pageNumber}">${pageNumber}</a></li>
                                                     </c:if>
                                                     <c:if test="${pageNumber == 3 && currentPage > 4}">
@@ -671,14 +671,13 @@
                                         </c:choose>
                                     </ul>
 
-
-
                                     <div class="page-input">
                                         <input type="text" id="pageInput" placeholder="Nhập số trang" />
                                         <button onclick="goToPage()">Đi đến</button>
                                     </div>
                                 </div>
-                            </nav><div/>
+                            </nav>
+                            <div/>
                     </div>
 
                     <!--Footer -->
