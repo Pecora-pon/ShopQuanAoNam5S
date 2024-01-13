@@ -585,10 +585,13 @@
                             var currentDonHangID = document.getElementById('currentDonHangID').value;
                             var url = '/ban-hang/insertsp/' + sanPhamID + '/' + currentDonHangID + '?soLuong=' + soLuong;
 
-                            // Set the href attribute dynamically before redirecting
-                            document.querySelector('.product-link').href = url;
+                            // Cập nhật href cho link cụ thể trong sản phẩm được bấm "Thêm"
+                            $(this).attr('href', url);
+
+                            // Chuyển hướng tới trang giỏ hàng hoặc thực hiện các hành động khác
                             window.location.href = url;
                         }
+
                     </script>
                     <script>
 
