@@ -74,12 +74,11 @@ public class BanHangController {
     banHangService.delete1(id);
     return "redirect:/ban-hang/getAll";
  }
-  @GetMapping("/ban-hang/timkiem")
-  @ResponseBody
-  public String timkiem(@RequestParam(name = "ten", required = false) String ten, Model model) {
-    List<SanPham> list = banHangService.findbyten(ten);
-    model.addAttribute("listSanPham", list);
-    return "fragments/modal-content"; // Trả về trang HTML chứa danh sách sản phẩm (sanpham.html)
+  @GetMapping("/ban-hang/timkiemten1")
+  public ResponseEntity<List<SanPham>> timKiemTheoTen(@RequestParam(name = "ten") String ten, Model model) {
+    List<SanPham> searchResults = banHangService.findbyten(ten);
+    model.addAttribute("listSanPham",searchResults);
+    return ResponseEntity.ok(searchResults);
   }
 }
 
