@@ -30,6 +30,8 @@ public class ShopController {
     private SanPhamService sanPhamService;
     @Autowired
     private ReviewNguoiDungService reviewNguoiDungService;
+    @Autowired
+    private ThuongHieuService thuongHieuService;
 
     //    @RequestMapping("/list-san-pham")
     //    public String getAll(Model model) {
@@ -77,6 +79,11 @@ public class ShopController {
         int itemsPerPage = size;
         int totalPages = pageResult.getTotalPages();
         int currentPage = page;
+        List<ThuongHieu> thuongHieus = thuongHieuService.getAll();
+        model.addAttribute("listBrand", thuongHieus);
+        List<Size> sizes = sizeService.getAll();
+        model.addAttribute("listSizes", sizes);
+
 
         model.addAttribute("currentPage", currentPage);
         model.addAttribute("totalPages", totalPages);
