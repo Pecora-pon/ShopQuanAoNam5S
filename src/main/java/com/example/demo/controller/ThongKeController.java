@@ -36,7 +36,7 @@ public class ThongKeController {
 
 
     @GetMapping("/thongke")
-    public String ThongKe(Model model, @RequestParam(name = "selectedDate", required = false) LocalDate selectedDate) {
+    public String ThongKe(RedirectAttributes redirectAttributes,Model model, @RequestParam(name = "selectedDate", required = false) LocalDate selectedDate) {
         if (selectedDate == null) {
             selectedDate = LocalDate.now();
             return "redirect:/thongke?selectedDate=" + selectedDate;
@@ -97,6 +97,7 @@ public class ThongKeController {
         List<Object[]> danhSachSapHetHangAll = (List<Object[]>) model.asMap().get("ListDanhSachSapHetHang15");
         Integer soLuongTon = 25;
         List<Object[]> listDanhSachSapHetHang15 = sanPhamService.danhSachHangSapHet(soLuongTon);
+        model.addAttribute("soLuongTon", soLuongTon);
 
         if (danhSachSapHetHangAll == null){
             model.addAttribute("ListDanhSachSapHetHang15",listDanhSachSapHetHang15);
@@ -113,14 +114,76 @@ public class ThongKeController {
     @PostMapping("/thongke/sapHetHang")
     public String countSapHetHang(
             @RequestParam(name = "soLuongTon", required = false) Integer soLuongTon,
-            @RequestParam(name = "outputFormat", defaultValue = "table") String outputFormat,
+            @RequestParam(name = "outputFormat", defaultValue = "table") String outputFormat,@RequestParam(name = "selectedDate", required = false) LocalDate selectedDate,
             Model model,  // Use Model to add attributes for the view
             RedirectAttributes redirectAttributes,
             HttpServletResponse response) {
+        int trangThai = 3;
 
+        List<NhanVien> nhanViens = thongKeService.getAllNhanVien();
+        long totalNhanVien = thongKeService.countNhanVien();
+
+        model.addAttribute("nhanViens", nhanViens);
+        model.addAttribute("totalNhanVien", totalNhanVien);
+
+
+        List<SanPham> sanPhams = thongKeService.getAllSanPham();
+        long totalSanPham = thongKeService.countSanPham();
+
+        model.addAttribute("sanPhams", sanPhams);
+        model.addAttribute("totalSanPham", totalSanPham);
+
+        List<KhachHang> khachHangs = thongKeService.getAllKhachHang();
+        long totalKhachHang = thongKeService.countKhachHang();
+
+        model.addAttribute("khachHangs", sanPhams);
+        model.addAttribute("totalKhachHang", totalKhachHang);
+
+        Float totalTongTien = thongKeService.calculateTotalTongTien(trangThai);
+        model.addAttribute("totalTongTien",totalTongTien);
+
+        List<Object[]> totalQuantityByMonth = thongKeService.getTotalQuantityByMonthInYear2023(selectedDate);
+        model.addAttribute("totalQuantityByMonth", totalQuantityByMonth);
+
+        List<Object[]> getTotalRevenueForCurrentMonth = thongKeService.getTotalRevenueForCurrentMonth();
+        model.addAttribute("getTotalRevenueForCurrentMonth",getTotalRevenueForCurrentMonth);
+
+        Long totalQuantity = thongKeService.gettotalQuantity();
+        model.addAttribute("totalQuantity",totalQuantity);
+
+
+        long countOrdersByStatus = thongKeService.countOrdersByStatus();
+        model.addAttribute("ordersByStatus", countOrdersByStatus);
+        long countOrdersByStatus1 = thongKeService.countOrdersByStatus1();
+        model.addAttribute("ordersByStatus1", countOrdersByStatus1);
+        long countOrdersByStatus2 = thongKeService.countOrdersByStatus2();
+        model.addAttribute("ordersByStatus2", countOrdersByStatus2);
+        long countOrdersByStatus3 = thongKeService.countOrdersByStatus3();
+        model.addAttribute("ordersByStatus3", countOrdersByStatus3);
+        long countOrdersByStatus4 = thongKeService.countOrdersByStatus4();
+        model.addAttribute("ordersByStatus4", countOrdersByStatus4);
+        long countOrdersByStatus5 = thongKeService.countOrdersByStatus5();
+        model.addAttribute("ordersByStatus5", countOrdersByStatus5);
+
+        List<Object[]> totalRevenueByMonth = thongKeService.getTotalRevenueByMonthInYear2023();
+        model.addAttribute("totalRevenueByMonth", totalRevenueByMonth);
+        model.addAttribute("selectedDate", selectedDate);
+
+        //th
+//        List<Object[]> danhSachSapHetHangAll = (List<Object[]>) model.asMap().get("ListDanhSachSapHetHang15");
+//        Integer soLuongTon = 200;
+//        List<Object[]> listDanhSachSapHetHang15 = sanPhamService.danhSachHangSapHet(soLuongTon);
+//
+//        if (danhSachSapHetHangAll == null){
+//            model.addAttribute("ListDanhSachSapHetHang15",listDanhSachSapHetHang15);
+//        }else{
+//            model.addAttribute("ListDanhSachSapHetHang15",danhSachSapHetHangAll);
+//        }
+        List<Object[]> topProducts = thongKeService.getTopProducts();
+        model.addAttribute("topProducts",topProducts);
         List<Object[]> danhSachSapHetHang = sanPhamService.danhSachHangSapHet(soLuongTon);
-        redirectAttributes.addFlashAttribute("soLuongTon", soLuongTon);
-        redirectAttributes.addFlashAttribute("ListDanhSachSapHetHang15", danhSachSapHetHang);
+        model.addAttribute("soLuongTon", soLuongTon);
+        model.addAttribute("ListDanhSachSapHetHang15", danhSachSapHetHang);
 //        model.addAttribute("danhSachSapHetHang", danhSachSapHetHang);
 
         if ("excel".equals(outputFormat)) {
@@ -129,7 +192,7 @@ public class ThongKeController {
             exportToExcel(response, danhSachSapHetHang);
             return null;  // Returning null to indicate that the response is already handled
         } else {
-            return "redirect:/thongke";  // Return the JSP view name without redirect
+            return "admin/thong-ke";  // Return the JSP view name without redirect
         }
     }
 
