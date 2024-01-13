@@ -478,9 +478,16 @@
                                 </div>
                                 <div class="row">
                                     <div class="modal-body">
-
+                                        <div >
+                                            <form id="searchForm" class="d-flex align-items-center">
+                                                <label class="me-2">Tên Sản Phẩm:</label>
+                                                <input type="text" id="ten" name="ten" class="form-control" required>
+                                                <button type="button" class="btn btn-primary ms-2" onclick="submitSearchForm()">Tìm Kiếm</button>
+                                            </form>
+                                        </div>
     <label for="soLuong" style="font-size: 16px; color: #555; margin-bottom: 8px; display: block;">Số lượng mua</label>
     <input type="text" id="soLuong" name="soLuong" style="padding: 10px; border: 1px solid #ccc; border-radius: 4px; width: 100%; box-sizing: border-box;">
+                                        <div id="searchResultsContainer">
                                         <c:forEach items="${listSanPham}" var="sanpham">
                                             <div class="product-row">
                                                 <img src="/getimage/${sanpham.hinhAnhURL}" class="product-image">
@@ -494,6 +501,7 @@
                                                 </div>
                                             </div>
                                         </c:forEach>
+                                        </div>
                                     </div>
                                 </div>
 
@@ -501,6 +509,35 @@
                         </div>
                     </div>
                     <script>
+                        function submitSearchForm() {
+                            var ten = $('#ten').val();
+
+                            // Make an asynchronous request to the server
+                            $.get('/ban-hang/timkiemten1', { ten: ten }, function (data) {
+                                // Clear the existing content in the container
+                                $('#searchResultsContainer').empty();
+
+                                // Iterate over the received data and create HTML elements
+                                $.each(data, function (index, sanpham) {
+                                    var productRow = $('<div class="product-row"></div>');
+                                    var productImage = $('<img class="product-image" src="/getimage/' + sanpham.hinhAnhURL + '">');
+                                    var productDetails = $('<div class="product-details"></div>');
+                                    var productName = $('<h4>' + sanpham.tenSanPham + '</h4>');
+                                    var productSize = $('<p>Size: ' + sanpham.size.tenSize + '</p>');
+                                    var productColor = $('<p>Màu sắc: ' + sanpham.mauSac.tenMauSac + '</p>');
+                                    var hiddenInput = $('<input type="hidden" class="soluongton" value="' + sanpham.soLuongTon + '">');
+                                    var addButton = $('<a class="product-link" href="#" onclick="addProductToOrder(\'' + sanpham.sanPhamID + '\', ' + sanpham.soLuongTon + ')"> Thêm </a>');
+
+                                    // Append the created elements to the container
+                                    productDetails.append(productName, productSize, productColor, hiddenInput, addButton);
+                                    productRow.append(productImage, productDetails);
+                                    $('#searchResultsContainer').append(productRow);
+                                });
+
+                                // Display the modal
+                                $('#exampleModal').modal('show');
+                            });
+                        }
                         $(document).ready(function () {
                             // Khởi tạo modal
                             var myModal = new bootstrap.Modal(document.getElementById('exampleModal'));
