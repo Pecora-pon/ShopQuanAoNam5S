@@ -187,18 +187,17 @@
                     <div class="shop__sidebar__accordion">
                         <div class="accordion" id="accordionExample">
 
-                            <div class="card">
+                       <div class="card">
                                 <div class="card-heading">
                                     <a data-toggle="collapse" data-target="#collapseTwo">Thương hiệu</a>
                                 </div>
                                 <div id="collapseTwo" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
                                         <div class="shop__sidebar__brand">
-                                           <ul>
-                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=1&sizeid=&tensanpham=&minPrice=&maxPrice=">Louis Vuitton</a></li>
-                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=2&sizeid=&tensanpham=&minPrice=&maxPrice=">Chanel</a></li>
-                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=3&sizeid=&tensanpham=&minPrice=&maxPrice=">Hermes</a></li>
-                                                <li><a href="/list-san-pham/page?page=1&thuonghieuid=4&sizeid=&tensanpham=&minPrice=&maxPrice=">Gucci</a></li>
+                                            <ul>
+                                                <c:forEach var="th" items="${listBrand}">
+                                                    <li><a href="/list-san-pham/page?page=1&thuonghieuid=${th.thuongHieuID}&sizeid=&tensanpham=&minPrice=&maxPrice=">${th.tenThuongHieu}</a></li>
+                                                </c:forEach>
                                             </ul>
                                         </div>
                                     </div>
@@ -229,59 +228,20 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="card">
+                      <div class="card">
                                 <div class="card-heading">
                                     <a data-toggle="collapse" data-target="#collapseFour">Size</a>
                                 </div>
                                 <div id="collapseFour" class="collapse show" data-parent="#accordionExample">
                                     <div class="card-body">
-                                       <div class="shop__sidebar__size">
-                                            <label for="xs">xs
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=1&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="xs">
-                                                </a>
-                                            </label>
-                                            <label for="sm">sm
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=2&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="sm">
-                                                </a>
-
-                                            </label>
-                                            <label for="md">md
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=3&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="md">
-                                                </a>
-                                            </label>
-                                            <label for="xl">xl
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=4&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="xl">
-                                                </a>
-
-                                            </label>
-                                            <label for="2xl">2xl
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=5&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="2xl">
-                                                </a>
-
-                                            </label>
-                                            <label for="xxl">xxl
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=6&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="xxl">
-                                                </a>
-
-                                            </label>
-                                            <label for="3xl">3xl
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=7&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="3xl">
-                                                </a>
-
-                                            </label>
-                                            <label for="4xl">4xl
-                                                <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=8&tensanpham=${tensanpham}&minPrice=&maxPrice=">
-                                                    <input id="4xl">
-                                                </a>
-
-                                            </label>
+                                        <div class="shop__sidebar__size">
+                                            <c:forEach var="size" items="${listSizes}">
+                                                <label for="${size.sizeID}">${size.tenSize}
+                                                    <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=${size.sizeID}&tensanpham=${tensanpham}&minPrice=&maxPrice=">
+                                                        <input id="${size.sizeID}">
+                                                    </a>
+                                                </label>
+                                            </c:forEach>
                                         </div>
                                     </div>
                                 </div>
