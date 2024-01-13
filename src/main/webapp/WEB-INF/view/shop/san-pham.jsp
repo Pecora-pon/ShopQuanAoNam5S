@@ -247,7 +247,7 @@
                                                 </a>
 
                                             </label>
-                                            <label for="md">m
+                                            <label for="md">md
                                                 <a href="/list-san-pham/page?page=1&thuonghieuid=&sizeid=3&tensanpham=${tensanpham}&minPrice=&maxPrice=">
                                                     <input id="md">
                                                 </a>
