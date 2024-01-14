@@ -42,7 +42,7 @@ public class CartController {
         List<GioHang> gioHangList = cartService.getAllByKhachHang(username);
         model.addAttribute("listGioHang", gioHangList);
         model.addAttribute("gh", new GioHang());
-        return "shop/gio-hang";
+        return "redirect:/gio-hang/page";
     }
 
     @PostMapping(value = "/them-gio-hang/{tenSanPham}/{hinhAnhURL}")
@@ -92,7 +92,7 @@ public class CartController {
     }
     @GetMapping("/gio-hang/page")
     public String page(@RequestParam(defaultValue = "0") int page,
-                       @RequestParam(defaultValue = "5") int size,
+                       @RequestParam(defaultValue = "4") int size,
                        Model model,
                        @Param("keyword") String keyword,Authentication authentication){
         String logname=authentication.getName();
