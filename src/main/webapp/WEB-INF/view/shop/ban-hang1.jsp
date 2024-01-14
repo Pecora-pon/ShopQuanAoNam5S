@@ -492,7 +492,8 @@
                         <div class="total-section">
                             <div class="total-row">
                                 <span class="label">Tổng Tiền Sản Phẩm:</span>
-                                <span class="value large-text" id="totalCost">${totalCost}</span>
+                                <fmt:formatNumber value="${totalCost}" pattern="#,##0" var="formattedTotalCost" />
+                                <span class="value large-text" id="totalCost">${formattedTotalCost} VND</span>
                                 <input type="hidden" name="tongtien1" value="${totalCost}">
                             </div>
                             <div class="total-row">
@@ -506,7 +507,7 @@
                             </div>
                             <div class="total-row">
                                 <span class="label">Tổng Tiền:</span>
-                                <span class="value large-text" id="totalAmount">${totalCost}</span>
+                                <span class="value large-text" id="totalAmount">${formattedTotalCost}</span>
                             </div>
                             <div class="total-row">
                                 <button type="submit" class="sell-link" onclick="validateQuantity()">Bán</button>
@@ -559,15 +560,14 @@
                                 var amountPaidInput = document.getElementById("amountPaid");
                                 var amountPaidDisplay = document.getElementById("amountPaidDisplay");
                                 var amountToPayDisplay = document.getElementById("amountToPay");
-                                var totalCost = parseFloat(document.getElementById("totalCost").textContent);
-
-                                var amountPaid = parseFloat(amountPaidInput.value) || 0; // Giá trị mặc định là 0 nếu không phải là số
-                                amountPaidDisplay.textContent = amountPaid.toFixed(2); // Hiển thị số tiền đã trả với hai chữ số thập phân
-
-                                // Tính số tiền phải trả
-                                var amountToPay =  amountPaid - totalCost ;
+                                var totalCostString = document.getElementById("totalCost").textContent;
+                                var totalCost = parseFloat(totalCostString.replace(/\./g, '').replace(',', '.'));
+                                var amountPaid = parseFloat(amountPaidInput.value) || 0;
+                                amountPaidDisplay.textContent = amountPaid.toFixed(2);
+                                var amountToPay = amountPaid - totalCost;
                                 amountToPayDisplay.textContent = amountToPay.toFixed(2);
                             }
+
                         </script>
                     <style>
 
