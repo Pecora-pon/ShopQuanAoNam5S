@@ -593,11 +593,11 @@ ${updatedTotalPriceLong1}" readonly>
                         </select>
                     </div>
 
-                    <div class="col-md-12">
-                        <label for="note">Note</label>
-                        <input type="text" class="form-control" name="note" id="note" value=""
-                               readonly="">
-                    </div>
+<%--                    <div class="col-md-12">--%>
+<%--                        <label for="note">Note</label>--%>
+<%--                        <input type="text" class="form-control" name="note" id="note" value=""--%>
+<%--                               readonly="">--%>
+<%--                    </div>--%>
                 </div>
                 <input type="hidden" id="trangThaiInput" name="trangThai">
                 <h4 class="mb-3">Hình thức thanh toán</h4>

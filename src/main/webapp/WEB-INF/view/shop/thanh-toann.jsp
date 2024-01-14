@@ -562,11 +562,11 @@
                             </c:forEach>
                         </select>
                     </div>
-                    <div class="col-md-12">
-                        <label for="note">Note</label>
-                        <input type="text" class="form-control" name="note" id="note" value=""
-                               readonly="">
-                    </div>
+<%--                    <div class="col-md-12">--%>
+<%--                        <label for="note">Note</label>--%>
+<%--                        <input type="text" class="form-control" name="note" id="note" value=""--%>
+<%--                               readonly="">--%>
+<%--                    </div>--%>
                 </div>
                 <input type="hidden" id="trangThaiInput" name="trangThai" value="0"> <!-- Giá trị mặc định là 0 -->
                 <!-- Các trường khác của biểu mẫu -->
