@@ -215,22 +215,29 @@
                         <div>
                             <ul>
 
-                                <li>${sp.tenSanPham} -
+                                <li>
+                                    <p>
+                                        <img src="/getimage/${sp.hinhAnhURL}"
+                                             style="max-width: 105px; max-height: 105px;">
+                                    </p>
+                                    Tên Sản Phẩm: ${sp.tenSanPham}
                                     <c:choose>
                                         <c:when test="${sp.giaSanPham >= 1000000}">
-                                            <fmt:formatNumber value="${sp.giaSanPham / 1.0}" pattern="#,##0.###"/>
+                                           <p>Giá Sản Phẩm:  <fmt:formatNumber value="${sp.giaSanPham / 1.0}" pattern="#,##0.###"/></p>
                                         </c:when>
                                         <c:otherwise>
-                                            <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/>
+                                            Giá Sản Phẩm:  <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/>
                                         </c:otherwise>
-                                    </c:choose> -
-                                    ${soLuongDat} -  ${gh.sanPham.size.tenSize} -${gh.sanPham.mauSac.tenMauSac} -
+                                    </c:choose>
+                                    <p>Số Lượng: ${soLuongDat}</p>
+                                    <p>Tên Size: ${gh.sanPham.size.tenSize}</p>
+                                    <p>Tên Màu: ${gh.sanPham.mauSac.tenMauSac}</p>
                                     <c:choose>
                                         <c:when test="${sp.giaSanPham * soLuongDat >= 1000000}">
-                                            <fmt:formatNumber value="${(sp.giaSanPham * soLuongDat) / 1.0}" pattern="#,##0.###"/> triệu
+                                            Tổng Tiền Sản Phẩm: <fmt:formatNumber value="${(sp.giaSanPham * soLuongDat) / 1.0}" pattern="#,##0.###"/> triệu
                                         </c:when>
                                         <c:otherwise>
-                                            <fmt:formatNumber value="${sp.giaSanPham * soLuongDat}" pattern="#,##0"/>
+                                            Tổng Tiền Sản Phẩm: <fmt:formatNumber value="${sp.giaSanPham * soLuongDat}" pattern="#,##0"/>
                                         </c:otherwise>
                                     </c:choose>
                                 </li>

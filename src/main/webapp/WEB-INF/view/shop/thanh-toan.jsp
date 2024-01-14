@@ -217,41 +217,48 @@
                         <li class="list-group-item d-flex justify-content-between lh-condensed">
                             <div>
                                 <ul>
-
                                     <li>
-                                            ${gh.sanPham.tenSanPham} -
-                                        <c:choose>
-                                            <c:when test="${gh.sanPham.giaSanPham >= 1000000}">
-                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1.0}"
-                                                                  pattern="#,##0"/>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham}" pattern="#,##0"/>
-                                            </c:otherwise>
-                                        </c:choose> -
-                                            ${gh.soLuongDat} -  ${gh.sanPham.size.tenSize} -${gh.sanPham.mauSac.tenMauSac} -
-                                        <c:choose>
-                                            <c:when test="${gh.sanPham.giaSanPham * gh.soLuongDat >= 1000000}">
-                                                <fmt:formatNumber
-                                                        value="${(gh.sanPham.giaSanPham * gh.soLuongDat) / 1.0}"
-                                                        pattern="#,##0"/>
-                                            </c:when>
-                                            <c:otherwise>
-                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham * gh.soLuongDat}"
-                                                                  pattern="#,##0"/>
-                                            </c:otherwise>
-                                        </c:choose>
+                                        <p>
+                                            <img src="/getimage/${gh.sanPham.hinhAnhURL}"
+                                                 style="max-width: 105px; max-height: 105px;">
+                                        </p>
+                                        Tên Sản Phẩm: ${gh.sanPham.tenSanPham}
+                                        <br>
+                                        <span>
+                        <c:choose>
+                            <c:when test="${gh.sanPham.giaSanPham >= 1000000}">
+                                <p>Giá Sản Phẩm: <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1.0}"
+                                                                   pattern="#,##0"/> triệu</p>
+                            </c:when>
+                            <c:otherwise>
+                                Giá Sản Phẩm: <fmt:formatNumber value="${gh.sanPham.giaSanPham}" pattern="#,##0"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </span>
+                                        <p>Số Lượng: ${gh.soLuongDat}</p>
+                                        <p>Tên Size: ${gh.sanPham.size.tenSize}</p>
+                                        <p>Tên Màu: ${gh.sanPham.mauSac.tenMauSac}</p>
+                                        <span>
+                        <c:choose>
+                            <c:when test="${gh.sanPham.giaSanPham * gh.soLuongDat >= 1000000}">
+                                Tổng Tiền Sản Phẩm: <fmt:formatNumber
+                                    value="${(gh.sanPham.giaSanPham * gh.soLuongDat) / 1.0}" pattern="#,##0"/> triệu
+                            </c:when>
+                            <c:otherwise>
+                                Tổng Tiền Sản Phẩm: <fmt:formatNumber value="${gh.sanPham.giaSanPham * gh.soLuongDat}"
+                                                                      pattern="#,##0"/>
+                            </c:otherwise>
+                        </c:choose>
+                    </span>
                                     </li>
                                     <input type="hidden" name="gioHangID[]" value="${gh.gioHangID}">
                                 </ul>
                             </div>
-                                <%--                        <span class="text-muted">23600000</span>--%>
                         </li>
                         <c:set var="totalPrice" value="${totalPrice + gh.sanPham.giaSanPham * gh.soLuongDat}"/>
                         <c:set var="totalPriceLong" value="${Math.round(totalPrice)}"/>
-
-
                     </c:forEach>
+
                     <input type="hidden" name="gioHangID" value="4">
                     <input type="hidden" name="sanphamgiohang[2][gia]" value="14990000.00">
                     <input type="hidden" name="sanphamgiohang[2][soluong]" value="8">
