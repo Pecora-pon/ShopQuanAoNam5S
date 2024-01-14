@@ -298,6 +298,7 @@
                                                     <p>Đơn giá tối thiểu:<fmt:formatNumber value="${giamGia.donToiThieu}" pattern="#,##0"/> VND</p>
                                                     <p>Hạn sử dụng: ${giamGia.ngayHetHan}</p>
                                                     <div class="expired-message" style="color: red; font-weight: bold; display: none;">Đã hết hạn</div>
+                                                    <div class="expired-message1" style="color: red; font-weight: bold; display: none;">Mã giảm giá chưa có hiệu lực</div>
                                                     <div class="totalprice-message" style="color: red; font-weight: bold; display: none;">Tổng tiền không đạt điều kiện</div>
 
                                                 </div>
@@ -305,9 +306,11 @@
                                                     <c:when test="${giamGia.ngayHetHan < nowString}">
                                                         <p>Đã hết hạn</p>
                                                     </c:when>
+                                                    <c:when test="${giamGia.ngayTao > nowString}">
+                                                        <p>Mã giảm giá chưa có hiệu lực</p>
+                                                    </c:when>
                                                     <c:otherwise>
-                                                        <input type="radio" value="${giamGia.giamGiaID}" name="giamGiaRadio" data-ngayHetHan="${giamGia.ngayHetHan}" data-donToiThieu="${giamGia.donToiThieu}" data-soTienGiam="${giamGia.soTienGiam}" onchange="updateSoTienGiam(this)" />
-
+                                                        <input type="radio" value="${giamGia.giamGiaID}" name="giamGiaRadio" data-ngayBatDau="${giamGia.ngayTao}" data-ngayHetHan="${giamGia.ngayHetHan}" data-donToiThieu="${giamGia.donToiThieu}" data-soTienGiam="${giamGia.soTienGiam}" onchange="updateSoTienGiam(this)" />
                                                     </c:otherwise>
                                                 </c:choose>
                                             </div>
@@ -334,9 +337,10 @@
                                             var now = new Date();
 
                                             radios.forEach(function (radio) {
+                                                var ngayBatDauString = radio.getAttribute('data-ngayBatDau');
                                                 var ngayHetHanString = radio.getAttribute('data-ngayHetHan');
                                                 console.log("Original NgayHetHanString: ", ngayHetHanString);
-
+                                                var ngayBatDau = parseDateString(ngayBatDauString);
                                                 var ngayHetHan = parseDateString(ngayHetHanString);
                                                 console.log("Parsed NgayHetHan: ", ngayHetHan);
 
@@ -344,6 +348,18 @@
                                                 if (isNaN(ngayHetHan.getTime())) {
                                                     console.error("Ngày hết hạn không hợp lệ:", ngayHetHanString);
                                                     return;
+                                                }
+                                                var nowWithoutTime = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                                                var ngayBatDauWithoutTime = new Date(ngayBatDau.getFullYear(), ngayBatDau.getMonth(), ngayBatDau.getDate());
+
+                                                if (ngayBatDauWithoutTime > nowWithoutTime) {
+                                                    // Not yet started
+                                                    radio.disabled = true;
+                                                    radio.parentElement.querySelector('.expired-message1').style.display = 'block';
+                                                    return;
+                                                } else {
+                                                    radio.disabled = false;
+                                                    radio.parentElement.querySelector('.expired-message1').style.display = 'none';
                                                 }
 
                                                 // Loại bỏ giờ, phút, giây, và mili giây
