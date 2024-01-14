@@ -222,8 +222,8 @@
                                             ${gh.sanPham.tenSanPham} -
                                         <c:choose>
                                             <c:when test="${gh.sanPham.giaSanPham >= 1000000}">
-                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1000000}"
-                                                                  pattern="#,##0"/> triệu
+                                                <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1.0}"
+                                                                  pattern="#,##0"/>
                                             </c:when>
                                             <c:otherwise>
                                                 <fmt:formatNumber value="${gh.sanPham.giaSanPham}" pattern="#,##0"/>
@@ -233,8 +233,8 @@
                                         <c:choose>
                                             <c:when test="${gh.sanPham.giaSanPham * gh.soLuongDat >= 1000000}">
                                                 <fmt:formatNumber
-                                                        value="${(gh.sanPham.giaSanPham * gh.soLuongDat) / 1000000}"
-                                                        pattern="#,##0"/> triệu
+                                                        value="${(gh.sanPham.giaSanPham * gh.soLuongDat) / 1.0}"
+                                                        pattern="#,##0"/>
                                             </c:when>
                                             <c:otherwise>
                                                 <fmt:formatNumber value="${gh.sanPham.giaSanPham * gh.soLuongDat}"

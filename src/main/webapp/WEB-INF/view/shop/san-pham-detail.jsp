@@ -11,6 +11,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 
 <head>
@@ -377,7 +378,8 @@
                                     <ul class="list-group list-group-flush">
                                         <li class="list-group-item"><strong>Size:</strong> ${th.size.tenSize}</li>
                                         <li class="list-group-item"><strong>Màu sắc:</strong> ${th.mauSac.tenMauSac}</li>
-                                        <li class="list-group-item"><strong>Giá:</strong> ${th.giaSanPham}</li>
+                                        <li class="list-group-item"><strong>Giá:</strong>
+                                            <fmt:formatNumber value="${th.giaSanPham}" pattern="#,##0"/> VND</li>
                                     </ul>
                                 </div>
                                 <div class="card-footer">

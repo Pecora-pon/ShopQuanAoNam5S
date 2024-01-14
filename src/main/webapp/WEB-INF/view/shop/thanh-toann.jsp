@@ -218,7 +218,7 @@
                                 <li>${sp.tenSanPham} -
                                     <c:choose>
                                         <c:when test="${sp.giaSanPham >= 1000000}">
-                                            <fmt:formatNumber value="${sp.giaSanPham / 1000000}" pattern="#,##0.###"/> triệu
+                                            <fmt:formatNumber value="${sp.giaSanPham / 1.0}" pattern="#,##0.###"/>
                                         </c:when>
                                         <c:otherwise>
                                             <fmt:formatNumber value="${sp.giaSanPham}" pattern="#,##0"/>
@@ -227,7 +227,7 @@
                                     ${soLuongDat} -  ${gh.sanPham.size.tenSize} -${gh.sanPham.mauSac.tenMauSac} -
                                     <c:choose>
                                         <c:when test="${sp.giaSanPham * soLuongDat >= 1000000}">
-                                            <fmt:formatNumber value="${(sp.giaSanPham * soLuongDat) / 1000000}" pattern="#,##0.###"/> triệu
+                                            <fmt:formatNumber value="${(sp.giaSanPham * soLuongDat) / 1.0}" pattern="#,##0.###"/> triệu
                                         </c:when>
                                         <c:otherwise>
                                             <fmt:formatNumber value="${sp.giaSanPham * soLuongDat}" pattern="#,##0"/>

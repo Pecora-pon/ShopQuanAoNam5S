@@ -9,6 +9,8 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -367,7 +369,7 @@
                     <!--Content -->
                     <!-- Table add -->
                     <div class="card">
-                        <h3 class="card-header">Quản lý màu sắc</h3>
+                        <h3 class="card-header">Mua hàng tại quầy</h3>
                         <div class="card-body">
                             <form:form action="/ban-hang/insert" modelAttribute="dh" method="post">
 
