@@ -510,7 +510,7 @@
                                 <span class="value large-text" id="totalAmount">${formattedTotalCost}</span>
                             </div>
                             <div class="total-row">
-                                <button type="submit" class="sell-link" onclick="validateQuantity()">Bán</button>
+                                <button type="submit" class="sell-link" onclick="confirmSell()">Bán</button>
                             </div>
                         </div></form>
                         <script>
@@ -539,6 +539,13 @@
 
                                     if (!valid) {
                                         event.preventDefault(); // Prevent form submission if validation fails
+                                        return false;
+                                    }
+
+                                    // If validation passes, show confirmation dialog
+                                    var isConfirmed = confirm("Bạn có chắc chắn muốn thực hiện bán?");
+                                    if (!isConfirmed) {
+                                        event.preventDefault(); // Prevent form submission if confirmation is canceled
                                     }
                                 });
                             });
