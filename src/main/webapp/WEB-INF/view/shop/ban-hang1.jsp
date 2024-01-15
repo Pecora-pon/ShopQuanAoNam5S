@@ -428,11 +428,19 @@
                                         <td>${sp.sanPham.tenSanPham} - ${sp.sanPham.size.tenSize}
                                             - ${sp.sanPham.mauSac.tenMauSac}</td>
                                         <td >${sp.soLuong}</td>
-                                        <td>${sp.sanPham.giaSanPham}</td>
+                                           <td>
+                                            <c:set var="unitPrice" value="${sp.sanPham.giaSanPham}" />
+                                            <fmt:formatNumber var="formattedUnitPrice" value="${unitPrice}" pattern="#,##0" />
+                                                ${formattedUnitPrice}
+                                        </td>
                                         <input type="hidden" id="soluongton" name="soluongton" value="${sp.sanPham.soLuongTon}">
                                         <input type="hidden" id="soluongdat" name="soluongdat" value="${sp.soLuong}">
                                         <input type="hidden" id="tongtien" name="tongtien" value="${totalCost + sp.sanPham.giaSanPham * sp.soLuong}">
-                                        <td>${sp.sanPham.giaSanPham * sp.soLuong}</td>
+                                         <td>
+                                            <c:set var="calculatedValue" value="${sp.sanPham.giaSanPham * sp.soLuong}" />
+                                            <fmt:formatNumber var="formattedValue" value="${calculatedValue}" pattern="#,##0" />
+                                                ${formattedValue}
+                                        </td>
                                         <td><a href="/ban-hang/delete/${sp.donHangChiTietID}/${sp.donHang.donHangID}"class="btn btn-primary">Xóa</a></td>
                                         <c:set var="totalCost" value="${totalCost + sp.sanPham.giaSanPham * sp.soLuong}" />
                                     </tr>
@@ -550,15 +558,10 @@
                                 });
                             });
                         </script>
-                        <script>
+                         <script>
                             function validateAmountPaid() {
-                                // Get the input element
                                 var inputElement = document.getElementById("amountPaid");
-
-                                // Remove non-numeric characters using a regular expression
                                 inputElement.value = inputElement.value.replace(/[^0-9]/g, '');
-
-                                // Update the hidden display field
                                 var displayElement = document.getElementById("amountPaidDisplay");
                                 displayElement.value = inputElement.value;
                                 updateAmountPaid()
@@ -570,11 +573,10 @@
                                 var totalCostString = document.getElementById("totalCost").textContent;
                                 var totalCost = parseFloat(totalCostString.replace(/\./g, '').replace(',', '.'));
                                 var amountPaid = parseFloat(amountPaidInput.value) || 0;
-                                amountPaidDisplay.textContent = amountPaid.toFixed(2);
+                                amountPaidDisplay.textContent = amountPaid.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                                 var amountToPay = amountPaid - totalCost;
-                                amountToPayDisplay.textContent = amountToPay.toFixed(2);
+                                amountToPayDisplay.textContent = amountToPay.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
                             }
-
                         </script>
                     <style>
 
