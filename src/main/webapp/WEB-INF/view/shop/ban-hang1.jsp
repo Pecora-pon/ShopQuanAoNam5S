@@ -4,10 +4,7 @@
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ page import="org.springframework.security.core.context.SecurityContextHolder" %>
 <%@ page import="java.security.Principal" %>
-<%@ page import="java.util.Set" %>
-<%@ page import="java.util.HashSet" %>
-<%@ page import="java.util.Arrays" %>
-<%@ page import="java.util.Collections" %>
+<%@ page import="java.util.*" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
@@ -372,9 +369,9 @@
                         <div class="card-body">
 
 
-                                <div class="mt-2">
-                                    <a href="/ban-hang/getAll" class="btn btn-primary me-2">Back</a>
-                                </div>
+                            <div class="mt-2">
+                                <a href="/ban-hang/getAll" class="btn btn-primary me-2">Back</a>
+                            </div>
 
                         </div>
                     </div>
@@ -405,122 +402,431 @@
                     <div class="card">
                         <form class="needs-validation" id="paymentForm" enctype="multipart/form-data" method="post"
                               action="/ban-hang/mua">
-                        <table class="table custom-table">
-                            <tbody class="table-border-bottom-0">
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <td>STT</td>
-                                    <th>Hình Ảnh</th>
-                                    <th>Sản Phẩm</th>
-                                    <th>Số Lượng</th>
-                                    <th>Giá Sản Phẩm</th>
-                                    <th>Thành Tiền</th>
-                                    <th>Action</th>
-                                </tr>
-                                </thead>
+                            <table class="table custom-table">
                                 <tbody class="table-border-bottom-0">
-                                <c:forEach items="${listDonHang}" var="sp" varStatus="i">
+                                <table class="table">
+                                    <thead>
                                     <tr>
-                                        <input type="hidden" name="donHangID[]" value="${sp.donHangChiTietID}">
-                                        <td>${i.index+1}</td>
-                                        <td><img src="/getimage/${sp.sanPham.hinhAnhURL}" class="product-image"></td>
-                                        <td>${sp.sanPham.tenSanPham} - ${sp.sanPham.size.tenSize}
-                                            - ${sp.sanPham.mauSac.tenMauSac}</td>
-                                        <td >${sp.soLuong}</td>
-                                           <td>
-                                            <c:set var="unitPrice" value="${sp.sanPham.giaSanPham}" />
-                                            <fmt:formatNumber var="formattedUnitPrice" value="${unitPrice}" pattern="#,##0" />
-                                                ${formattedUnitPrice}
-                                        </td>
-                                        <input type="hidden" id="soluongton" name="soluongton" value="${sp.sanPham.soLuongTon}">
-                                        <input type="hidden" id="soluongdat" name="soluongdat" value="${sp.soLuong}">
-                                        <input type="hidden" id="tongtien" name="tongtien" value="${totalCost + sp.sanPham.giaSanPham * sp.soLuong}">
-                                         <td>
-                                            <c:set var="calculatedValue" value="${sp.sanPham.giaSanPham * sp.soLuong}" />
-                                            <fmt:formatNumber var="formattedValue" value="${calculatedValue}" pattern="#,##0" />
-                                                ${formattedValue}
-                                        </td>
-                                        <td><a href="/ban-hang/delete/${sp.donHangChiTietID}/${sp.donHang.donHangID}"class="btn btn-primary">Xóa</a></td>
-                                        <c:set var="totalCost" value="${totalCost + sp.sanPham.giaSanPham * sp.soLuong}" />
+                                        <td>STT</td>
+                                        <th>Hình Ảnh</th>
+                                        <th>Sản Phẩm</th>
+                                        <th>Số Lượng</th>
+                                        <th>Giá Sản Phẩm</th>
+                                        <th>Thành Tiền</th>
+                                        <th>Action</th>
                                     </tr>
-                                </c:forEach>
+                                    </thead>
+                                    <tbody class="table-border-bottom-0">
+                                    <c:forEach items="${listDonHang}" var="sp" varStatus="i">
+                                        <tr>
+                                            <input type="hidden" name="donHangID[]" value="${sp.donHangChiTietID}">
+                                            <td>${i.index+1}</td>
+                                            <td><img src="/getimage/${sp.sanPham.hinhAnhURL}" class="product-image">
+                                            </td>
+                                            <td>${sp.sanPham.tenSanPham} - ${sp.sanPham.size.tenSize}
+                                                - ${sp.sanPham.mauSac.tenMauSac}</td>
+                                            <td>${sp.soLuong}</td>
+                                            <td>
+                                                <c:set var="unitPrice" value="${sp.sanPham.giaSanPham}" />
+                                                <fmt:formatNumber var="formattedUnitPrice" value="${unitPrice}" pattern="#,##0" />
+                                                    ${formattedUnitPrice}
+                                            </td>
+                                            <input type="hidden" id="soluongton" name="soluongton"
+                                                   value="${sp.sanPham.soLuongTon}">
+                                            <input type="hidden" id="soluongdat" name="soluongdat"
+                                                   value="${sp.soLuong}">
+                                            <input type="hidden" id="tongtien" name="tongtien"
+                                                   value="${totalCost + sp.sanPham.giaSanPham * sp.soLuong}">
+                                            <td>
+                                                <c:set var="calculatedValue" value="${sp.sanPham.giaSanPham * sp.soLuong}" />
+                                                <fmt:formatNumber var="formattedValue" value="${calculatedValue}" pattern="#,##0" />
+                                                    ${formattedValue}
+                                            </td>
+                                            <td>
+                                                <a href="/ban-hang/delete/${sp.donHangChiTietID}/${sp.donHang.donHangID}"
+                                                   class="btn btn-primary">Xóa</a></td>
+                                            <c:set var="totalCost"
+                                                   value="${totalCost + sp.sanPham.giaSanPham * sp.soLuong}"/>
+                                            <c:set var="totalCost1"
+                                                   value="${totalCost1 + sp.sanPham.giaSanPham * sp.soLuong}"/>
+                                        </tr>
+                                    </c:forEach>
+                                    </tbody>
+                                </table>
                                 </tbody>
                             </table>
-                            </tbody>
-                        </table>
 
 
+                            <style>
+                                .total-section {
+                                    border: 2px solid #3498db;
+                                    background-color: #f8f8f8;
+                                    padding: 15px;
+                                    margin: 15px;
+                                    border-radius: 10px;
+                                }
+
+                                .total-row {
+                                    margin-bottom: 12px;
+                                    border-bottom: 1px solid #ddd; /* Add a subtle border between rows */
+                                    padding-bottom: 8px;
+                                }
+
+                                .label {
+                                    font-weight: bold;
+                                    margin-right: 10px;
+                                }
+
+                                .large-text {
+                                    font-size: 20px;
+                                    color: #2c3e50;
+                                }
+
+                                a {
+                                    text-decoration: none;
+                                    color: #3498db;
+                                    font-weight: bold;
+                                }
+
+                                a:hover {
+                                    text-decoration: underline;
+                                }
+
+                                .sell-link {
+                                    display: inline-block;
+                                    padding: 8px 16px;
+                                    background-color: #3498db;
+                                    color: #ffffff;
+                                    text-decoration: none;
+                                    border-radius: 5px;
+                                    transition: background-color 0.3s ease;
+                                }
+
+                                .sell-link:hover {
+                                    background-color: #2980b9;
+                                }
+
+                            </style>
+                            <div class="total-section">
+                                <div class="toast-row">
+                                    <label for="khachHangSelect" class="label">Danh Sách Khách Hàng</label>
+                                    <input type="text" name="khachHang.khachHangId" id="khachHangSelect"  readonly
+                                           class="form-control">
+                                    <input type="hidden" name="khachHang" id="khachHangSelect1">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Chọn Khách Hàng
+                                    </button>
+                                </div>
+                                <div class="form-group">
+                                    <label for="giamGiaSelect" class="sotiengiam-label">Giảm Gia:</label>
+                                    <input type="text" name="giamGia.giamGiaID" id="giamGiaSelect" readonly class="form-control">
+                                    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal1">Chọn Giảm Giá</button>
+                                </div>
+                                <div class="total-row">
+                                    <span class="label">Tổng Tiền Sản Phẩm:</span>
+                                    <fmt:formatNumber value="${totalCost}" pattern="#,##0" var="formattedTotalCost"/>
+                                    <span class="value large-text" id="totalCost">${formattedTotalCost} VND</span>
+                                    <input type="hidden" name="tongtien2" value="${totalCost}">
+                                </div>
+                                <div class="total-row">
+                                    <span class="label">Số Tiền Khách Trả:</span>
+                                    <input type="text" id="amountPaid" oninput="validateAmountPaid()">
+                                    <input type="hidden" class="value large-text" id="amountPaidDisplay"></input>
+                                </div>
+                                <div class="total-row">
+                                    <span class="label">Số Tiền Phải Trả:</span>
+                                    <span class="value large-text" id="amountToPay"> <!-- Giá trị này sẽ được cập nhật động --> </span>
+                                </div>
+                                <div class="total-row">
+                                    <span class="label">Tổng Tiền:</span>
+                                    <fmt:formatNumber value="${totalCost1}" pattern="#,##0" var="formatted"/>
+                                    <span class="value large-text" id="totalCost1">${formatted} VND</span>
+                                    <input type="hidden" name="tongtien1" value="${totalCost1}">
+                                </div>
+                                <div class="total-row">
+                                    <button type="submit" class="sell-link" onclick="confirmSell()">Bán</button>
+                                </div>
+                            </div>
+                        </form>
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                             aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Khách Hàng</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                                aria-label="Close"></button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="modal-body">
+                                            <c:forEach var="khachhang" items="${listKhachHang}">
+                                                <div class="product-row">
+                                                    <div class="product-details">
+                                                        <div class="product-image">
+                                                            <img src="../mainshop/mainshop2/img/logo.png" alt="" style=" max-width: 105px;
+                        max-height: 105px;
+                        margin-right: 15px;
+                        border-radius: 8px;">
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <h4>${khachhang.hoTen}</h4>
+                                                        </div>
+
+                                                        <input type="radio" value="${khachhang.khachHangId}"
+                                                               name="khachHangRadio" data-username="${khachhang.username}" data-id="${khachhang.khachHangId}"onchange="updateKhachHang(this)"/>
+
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" onclick="clearKhachHangSelection()">Clear Selection</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <%
+                            // Lấy thời gian hiện tại
+                            Date now = new Date();
+                            // (Dùng SimpleDateformat để định dạng ngày theo định dạng y-m-d để so sánh với ngàyHetHan)
+                            java.text.SimpleDateFormat sdf = new java.text.SimpleDateFormat("yyyy-MM-dd");
+                            String nowString = sdf.format(now);
+                        %>
+
+                        <div class="modal fade" id="exampleModal1" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel1">Mã Giảm Giá</h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                    </div>
+                                    <div class="row">
+                                        <div class="modal-body">
+                                            <c:forEach var="giamGia" items="${listGiamGia}">
+                                                <div class="product-row">
+                                                    <div class="product-details">
+                                                        <div class="product-image">
+                                                            <img src="../mainshop/mainshop2/img/logo.png" alt=""style=" max-width: 105px;
+                        max-height: 105px;
+                        margin-right: 15px;
+                        border-radius: 8px;">
+                                                        </div>
+                                                        <div class="product-info">
+                                                            <h4>${giamGia.maGiamGia}</h4>
+                                                            <p>Số tiền giảm:<fmt:formatNumber value="${giamGia.soTienGiam}" pattern="#,##0"/> VND</p>
+                                                            <p>Đơn giá tối thiểu:<fmt:formatNumber value="${giamGia.donToiThieu}" pattern="#,##0"/> VND</p>
+                                                            <p>Hạn sử dụng: ${giamGia.ngayHetHan}</p>
+                                                            <div class="expired-message" style="color: red; font-weight: bold; display: none;">Đã hết hạn</div>
+                                                            <div class="expired-message1" style="color: red; font-weight: bold; display: none;">Mã giảm giá chưa có hiệu lực</div>
+                                                            <div class="totalprice-message" style="color: red; font-weight: bold; display: none;">Tổng tiền không đạt điều kiện</div>
+
+                                                        </div>
+                                                        <c:choose>
+                                                            <c:when test="${giamGia.ngayHetHan < nowString}">
+                                                                <p>Đã hết hạn</p>
+                                                            </c:when>
+                                                            <c:when test="${giamGia.ngayTao > nowString}">
+                                                                <p>Mã giảm giá chưa có hiệu lực</p>
+                                                            </c:when>
+                                                            <c:otherwise>
+                                                                <input type="radio" value="${giamGia.giamGiaID}" name="giamGiaRadio" data-ngayBatDau="${giamGia.ngayTao}" data-ngayHetHan="${giamGia.ngayHetHan}" data-donToiThieu="${giamGia.donToiThieu}" data-soTienGiam="${giamGia.soTienGiam}" onchange="updateGiamGia(this)" />
+                                                            </c:otherwise>
+                                                        </c:choose>
+                                                    </div>
+                                                </div>
+                                            </c:forEach>
+                                            <script>
+                                                function clearKhachHangSelection() {
+                                                    // Uncheck all radio buttons with the name "khachHangRadio"
+                                                    var radioButtons = document.getElementsByName("khachHangRadio");
+                                                    for (var i = 0; i < radioButtons.length; i++) {
+                                                        radioButtons[i].checked = false;
+                                                    }
+                                                    document.getElementById("khachHangSelect").value = "";
+                                                    document.getElementById("khachHangSelect1").value = "";
+
+                                                }
+                                                function clearGiamGiaSelection() {
+                                                    // Uncheck all radio buttons with the name "khachHangRadio"
+                                                    var radioButtons = document.getElementsByName("giamGiaRadio");
+                                                    for (var i = 0; i < radioButtons.length; i++) {
+                                                        radioButtons[i].checked = false;
+                                                    }
+                                                    document.getElementById("giamGiaSelect").value = "";
+                                                }
+                                                document.addEventListener('DOMContentLoaded', function () {
+                                                    $('#exampleModal1').on('shown.bs.modal', function () {
+                                                        var radios = document.querySelectorAll('#exampleModal1 input[type="radio"]');
+                                                        checkDateAndEnableRadios(radios);
+                                                    });
+                                                });
+
+                                                function parseDateString(dateString) {
+                                                    // Giả sử dateString có định dạng "yyyy-MM-dd"
+                                                    var parts = dateString.split("-");
+                                                    var formattedDate = parts[1] + "/" + parts[2] + "/" + parts[0];
+                                                    return new Date(formattedDate);
+                                                }
+
+                                                function parseDateString(dateString) {
+                                                    // Giả sử dateString có định dạng "yyyy-MM-dd"
+                                                    var parts = dateString.split("-");
+                                                    var formattedDate = parts[1] + "/" + parts[2] + "/" + parts[0];
+                                                    return new Date(formattedDate);
+                                                }
+
+                                                function checkDateAndEnableRadios(radios) {
+                                                    console.log("Number of radios:", radios.length);
+                                                    var nowString = "<%= nowString %>";
+                                                    var now = new Date();
+
+                                                    radios.forEach(function (radio) {
+                                                        var ngayBatDauString = radio.getAttribute('data-ngayBatDau');
+                                                        var ngayHetHanString = radio.getAttribute('data-ngayHetHan');
+                                                        console.log("Original NgayHetHanString: ", ngayHetHanString);
+                                                        var ngayBatDau = parseDateString(ngayBatDauString);
+                                                        var ngayHetHan = parseDateString(ngayHetHanString);
+                                                        console.log("Parsed NgayHetHan: ", ngayHetHan);
+
+                                                        // So sánh ngày hiện tại và ngàyHetHan
+                                                        if (isNaN(ngayHetHan.getTime())) {
+                                                            console.error("Ngày hết hạn không hợp lệ:", ngayHetHanString);
+                                                            return;
+                                                        }
+                                                        var nowWithoutTime = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                                                        var ngayBatDauWithoutTime = new Date(ngayBatDau.getFullYear(), ngayBatDau.getMonth(), ngayBatDau.getDate());
+
+                                                        if (ngayBatDauWithoutTime > nowWithoutTime) {
+                                                            // Not yet started
+                                                            radio.disabled = true;
+                                                            radio.parentElement.querySelector('.expired-message1').style.display = 'block';
+                                                            return;
+                                                        } else {
+                                                            radio.disabled = false;
+                                                            radio.parentElement.querySelector('.expired-message1').style.display = 'none';
+                                                        }
+                                                        // Loại bỏ giờ, phút, giây, và mili giây
+                                                        var nowWithoutTime = new Date(now.getFullYear(), now.getMonth(), now.getDate());
+                                                        var ngayHetHanWithoutTime = new Date(ngayHetHan.getFullYear(), ngayHetHan.getMonth(), ngayHetHan.getDate());
+
+                                                        console.log("Now without time:", nowWithoutTime);
+                                                        console.log("NgayHetHan without time:", ngayHetHanWithoutTime);
+
+                                                        if (ngayHetHanWithoutTime < nowWithoutTime) {
+                                                            // Đã hết hạn
+                                                            console.log("Đã hết hạn");
+                                                            radio.disabled = true;
+                                                            radio.parentElement.querySelector('.expired-message').style.display = 'block';
+                                                            return;
+                                                        }else {
+                                                            radio.disabled = false;
+                                                            radio.parentElement.querySelector('.expired-message').style.display = 'none';
+                                                        }
+                                                        // Chưa hết hạn
+                                                        var donToiThieu = parseFloat(radio.getAttribute('data-donToiThieu'));
+                                                        var totalprice = parseFloat(document.getElementsByName('tongtien2')[0].value);
+                                                        console.log("donToiThieu:", donToiThieu);
+                                                        console.log("totalprice:", totalprice);
+
+                                                        // Kiểm tra điều kiện đơn tối thiểu
+                                                        if (isNaN(donToiThieu) || isNaN(totalprice)) {
+                                                            console.error("Giá trị không hợp lệ cho donToiThieu hoặc totalprice");
+                                                            return;
+                                                        }
+
+                                                        if (donToiThieu <= totalprice) {
+                                                            // Đơn tối thiểu hợp lệ
+                                                            radio.disabled = false;
+
+                                                            radio.parentElement.querySelector('.totalprice-message').style.display = 'none';
+                                                        } else {
+                                                            // Đơn tối thiểu không hợp lệ
+                                                            radio.disabled = true;
+
+                                                            radio.parentElement.querySelector('.totalprice-message').style.display = 'block';
+                                                        }
+                                                    });
+                                                }
+                                            </script>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary" onclick="clearGiamGiaSelection()">Clear Selection</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                         <style>
-                            .total-section {
-                                border: 2px solid #3498db;
-                                background-color: #f8f8f8;
+                            .product-row {
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 15px;
                                 padding: 15px;
-                                margin: 15px;
-                                border-radius: 10px;
+                                border: 1px solid #ccc;
+                                border-radius: 8px;
+                                transition: transform 0.2s ease-in-out;
                             }
 
-                            .total-row {
-                                margin-bottom: 12px;
-                                border-bottom: 1px solid #ddd; /* Add a subtle border between rows */
-                                padding-bottom: 8px;
+                            .product-row:hover {
+                                transform: scale(1.05);
                             }
 
-                            .label {
-                                font-weight: bold;
-                                margin-right: 10px;
-                            }.large-text {
-                                 font-size: 20px;
-                                 color: #2c3e50;
-                             }
 
-                            a {
-                                text-decoration: none;
-                                color: #3498db;
-                                font-weight: bold;
-                            }
 
-                            a:hover {
-                                text-decoration: underline;
-                            }
-                            .sell-link {
-                                display: inline-block;
-                                padding: 8px 16px;
-                                background-color: #3498db;
-                                color: #ffffff;
-                                text-decoration: none;
-                                border-radius: 5px;
-                                transition: background-color 0.3s ease;
-                            }
-
-                            .sell-link:hover {
-                                background-color: #2980b9;
+                            .product-details {
+                                display: flex;
+                                align-items: center;
+                                /* Hiển thị các thông tin và ảnh theo chiều ngang */
+                                flex-direction: row;
+                                flex-grow: 1;
                             }
                         </style>
-                        <div class="total-section">
-                            <div class="total-row">
-                                <span class="label">Tổng Tiền Sản Phẩm:</span>
-                                <fmt:formatNumber value="${totalCost}" pattern="#,##0" var="formattedTotalCost" />
-                                <span class="value large-text" id="totalCost">${formattedTotalCost} VND</span>
-                                <input type="hidden" name="tongtien1" value="${totalCost}">
-                            </div>
-                            <div class="total-row">
-                                <span class="label">Số Tiền Khách Trả:</span>
-                                <input type="text" id="amountPaid" oninput="validateAmountPaid()">
-                                <input type="hidden" class="value large-text" id="amountPaidDisplay"></input>
-                            </div>
-                            <div class="total-row">
-                                <span class="label">Số Tiền Phải Trả:</span>
-                                <span class="value large-text" id="amountToPay"> <!-- Giá trị này sẽ được cập nhật động --> </span>
-                            </div>
-                            <div class="total-row">
-                                <span class="label">Tổng Tiền:</span>
-                                <span class="value large-text" id="totalAmount">${formattedTotalCost}</span>
-                            </div>
-                            <div class="total-row">
-                                <button type="submit" class="sell-link" onclick="confirmSell()">Bán</button>
-                            </div>
-                        </div></form>
+                        <script>
+                            function updateKhachHang(radio) {
+                                // Get the selected value from the radio button
+                                var selectedKhachHangId = radio.getAttribute('data-username');
+                                var selectedKhachHang = radio.getAttribute('data-id');
+
+                                // Update the input field with the selected value
+                                document.getElementById('khachHangSelect').value = selectedKhachHangId;
+                                document.getElementById('khachHangSelect1').value = selectedKhachHang;
+                                // Close the modal
+
+                                $('#exampleModal').modal('hide');
+                            }
+                        </script>
+                        <script>
+                            function updateGiamGia(radio) {
+                                // Get the selected value from the radio button
+                                var selectedgiamgiaId = radio.getAttribute('data-soTienGiam');
+                                var soTienGiam = parseFloat(radio.getAttribute("data-soTienGiam"));
+
+                                // Update the input field with the selected value
+                                var totalAmountElement = document.getElementById("totalCost1");
+                                var currentTotal = parseFloat(document.getElementsByName('tongtien2')[0].value.replace(/[^0-9.-]+/g, "")); // Remove non-numeric characters
+                                var newTotal = currentTotal - soTienGiam;
+                                var khachHangValue = document.getElementById("khachHangSelect").value;
+
+                                // Check if the "Khách Hàng" field has data
+                                if (khachHangValue.trim() !== "") {
+                                    // If there is data, open the "Chọn Giảm Giá" modal
+                                    $('#exampleModal1').modal('show');
+                                } else {
+                                    // If there is no data, display an alert or handle it in your preferred way
+                                    alert("Vui lòng chọn Khách Hàng trước khi chọn Giảm Giá.");
+                                    return;
+                                }
+
+                                // Update the total amount span with the new total
+                                totalAmountElement.innerText = newTotal.toLocaleString() + " VND";
+
+                                // Update the hidden input with the selected giamGiaId
+                                document.getElementById('giamGiaSelect').value = selectedgiamgiaId;
+
+                                // Close the modal
+                                $('#exampleModal1').modal('hide');
+                            }
+                        </script>
                         <script>
                             document.addEventListener('DOMContentLoaded', function () {
                                 var form = document.getElementById('paymentForm');
@@ -558,14 +864,20 @@
                                 });
                             });
                         </script>
-                         <script>
+                        <script>
                             function validateAmountPaid() {
+                                // Get the input element
                                 var inputElement = document.getElementById("amountPaid");
+
+                                // Remove non-numeric characters using a regular expression
                                 inputElement.value = inputElement.value.replace(/[^0-9]/g, '');
+
+                                // Update the hidden display field
                                 var displayElement = document.getElementById("amountPaidDisplay");
                                 displayElement.value = inputElement.value;
                                 updateAmountPaid()
                             }
+
                             function updateAmountPaid() {
                                 var amountPaidInput = document.getElementById("amountPaid");
                                 var amountPaidDisplay = document.getElementById("amountPaidDisplay");
@@ -573,172 +885,174 @@
                                 var totalCostString = document.getElementById("totalCost").textContent;
                                 var totalCost = parseFloat(totalCostString.replace(/\./g, '').replace(',', '.'));
                                 var amountPaid = parseFloat(amountPaidInput.value) || 0;
-                                amountPaidDisplay.textContent = amountPaid.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                                amountPaidDisplay.textContent = amountPaid.toFixed(2);
                                 var amountToPay = amountPaid - totalCost;
-                                amountToPayDisplay.textContent = amountToPay.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
+                                amountToPayDisplay.textContent = amountToPay.toFixed(2);
+                            }
+
+                        </script>
+                        <style>
+
+                            .product-link {
+                                display: inline-block;
+                                padding: 10px 20px;
+                                background-color: #4CAF50; /* Green background color */
+                                color: white;
+                                text-decoration: none;
+                                border-radius: 5px;
+                                transition: background-color 0.3s;
+                            }
+
+                            /* Change background color on hover */
+                            .product-link:hover {
+                                background-color: #45a049; /* Darker green on hover */
+                            }
+
+                            .product-row {
+                                display: flex;
+                                align-items: center;
+                                margin-bottom: 15px;
+                                padding: 15px;
+                                border: 1px solid #ccc;
+                                border-radius: 8px;
+                                transition: transform 0.2s ease-in-out;
+                            }
+
+                            .product-row:hover {
+                                transform: scale(1.05);
+                            }
+
+                            .product-image {
+                                max-width: 105px;
+                                max-height: 105px;
+                                margin-right: 15px;
+                                border-radius: 8px;
+                            }
+
+                            .product-details {
+                                display: flex;
+                                align-items: center;
+                                flex-grow: 1;
+                            }
+
+                            .radio-input {
+                                margin-left: auto;
+                                margin-right: 10px;
+                            }
+                        </style>
+                        <script>
+                            function showProductForm(index) {
+                                var selectedForm = document.getElementById('productForm' + index);
+
+                                // Toggle the visibility of the form
+                                if (selectedForm.style.display === 'block') {
+                                    selectedForm.style.display = 'none'; // Hide the form
+                                } else {
+                                    // Hide all other forms
+                                    document.querySelectorAll('.form-container').forEach(function (form) {
+                                        form.style.display = 'none';
+                                    });
+
+                                    selectedForm.style.display = 'block'; // Show the form
+                                }
                             }
                         </script>
-                    <style>
+                        <!--Footer -->
+                        <footer class="content-footer footer bg-footer-theme">
+                            <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                                <div class="mb-2 mb-md-0">
+                                    ©
+                                    <script>
+                                        document.write(new Date().getFullYear());
+                                    </script>
+                                    , made with ❤️ by
+                                    <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
+                                        áo Nam 5S</a>
+                                </div>
+                                <div>
+                                    <a href="https://themeselection.com/license/" class="footer-link me-4"
+                                       target="_blank">Trang
+                                        chủ</a>
+                                    <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
+                                        phẩm</a>
 
-                        .product-link {
-                            display: inline-block;
-                            padding: 10px 20px;
-                            background-color: #4CAF50; /* Green background color */
-                            color: white;
-                            text-decoration: none;
-                            border-radius: 5px;
-                            transition: background-color 0.3s;
-                        }
+                                    <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                                       target="_blank" class="footer-link me-4">Thống kê</a>
 
-                        /* Change background color on hover */
-                        .product-link:hover {
-                            background-color: #45a049; /* Darker green on hover */
-                        }
-
-                        .product-row {
-                            display: flex;
-                            align-items: center;
-                            margin-bottom: 15px;
-                            padding: 15px;
-                            border: 1px solid #ccc;
-                            border-radius: 8px;
-                            transition: transform 0.2s ease-in-out;
-                        }
-
-                        .product-row:hover {
-                            transform: scale(1.05);
-                        }
-
-                        .product-image {
-                            max-width: 105px;
-                            max-height: 105px;
-                            margin-right: 15px;
-                            border-radius: 8px;
-                        }
-
-                        .product-details {
-                            display: flex;
-                            align-items: center;
-                            flex-grow: 1;
-                        }
-
-                        .radio-input {
-                            margin-left: auto;
-                            margin-right: 10px;
-                        }
-                    </style>
-                    <script>
-                        function showProductForm(index) {
-                            var selectedForm = document.getElementById('productForm' + index);
-
-                            // Toggle the visibility of the form
-                            if (selectedForm.style.display === 'block') {
-                                selectedForm.style.display = 'none'; // Hide the form
-                            } else {
-                                // Hide all other forms
-                                document.querySelectorAll('.form-container').forEach(function (form) {
-                                    form.style.display = 'none';
-                                });
-
-                                selectedForm.style.display = 'block'; // Show the form
-                            }
-                        }
-                    </script>
-                    <!--Footer -->
-                    <footer class="content-footer footer bg-footer-theme">
-                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                            <div class="mb-2 mb-md-0">
-                                ©
-                                <script>
-                                    document.write(new Date().getFullYear());
-                                </script>
-                                , made with ❤️ by
-                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
-                                    áo Nam 5S</a>
+                                    <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                       target="_blank" class="footer-link me-4">Hỗ trợ</a>
+                                </div>
                             </div>
-                            <div>
-                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
-                                    chủ</a>
-                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
-                                    phẩm</a>
-
-                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                                   target="_blank" class="footer-link me-4">Thống kê</a>
-
-                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                                   target="_blank" class="footer-link me-4">Hỗ trợ</a>
-                            </div>
-                        </div>
-                    </footer>
-                    <!--Footer -->
+                        </footer>
+                        <!--Footer -->
+                    </div>
                 </div>
+                <!-- Content wrapper -->
+
             </div>
-            <!-- Content wrapper -->
-
+            <!-- / Layout page -->
         </div>
-        <!-- / Layout page -->
+
+        <!-- Overlay -->
+        <div class="layout-overlay layout-menu-toggle"></div>
     </div>
-
-    <!-- Overlay -->
-    <div class="layout-overlay layout-menu-toggle"></div>
-</div>
-<!-- / Layout wrapper -->
+    <!-- / Layout wrapper -->
 
 
-<!-- Core JS -->
-<!-- build:js assets/vendor/js/core.js -->
-<script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="../admin/assets/vendor/libs/popper/popper.js"></script>
-<script src="../admin/assets/vendor/js/bootstrap.js"></script>
-<script src="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+    <!-- Core JS -->
+    <!-- build:js assets/vendor/js/core.js -->
+    <script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
+    <script src="../admin/assets/vendor/libs/popper/popper.js"></script>
+    <script src="../admin/assets/vendor/js/bootstrap.js"></script>
+    <script src="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-<script src="../admin/assets/vendor/js/menu.js"></script>
-<!-- endbuild -->
+    <script src="../admin/assets/vendor/js/menu.js"></script>
+    <!-- endbuild -->
 
-<!-- Vendors JS -->
-<script src="../admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+    <!-- Vendors JS -->
+    <script src="../admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
-<!-- Main JS -->
-<script src="../admin/assets/js/main.js"></script>
+    <!-- Main JS -->
+    <script src="../admin/assets/js/main.js"></script>
 
-<!-- Page JS -->
-<script src="../admin/assets/js/dashboards-analytics.js"></script>
-<script>
-    // Đặt sự kiện khi người dùng ấn Enter trên input
-    $('#searchInput').keypress(function (e) {
-        if (e.which === 13) { // Kiểm tra nếu phím ấn là Enter
-            e.preventDefault(); // Ngăn chặn hành động mặc định của nút Enter
+    <!-- Page JS -->
+    <script src="../admin/assets/js/dashboards-analytics.js"></script>
+    <script>
+        // Đặt sự kiện khi người dùng ấn Enter trên input
+        $('#searchInput').keypress(function (e) {
+            if (e.which === 13) { // Kiểm tra nếu phím ấn là Enter
+                e.preventDefault(); // Ngăn chặn hành động mặc định của nút Enter
 
-            // Lấy giá trị từ input và chuyển đổi thành chữ thường
-            var searchTerm = $(this).val().trim().toLowerCase();
+                // Lấy giá trị từ input và chuyển đổi thành chữ thường
+                var searchTerm = $(this).val().trim().toLowerCase();
 
-            // Kiểm tra giá trị nhập và chuyển hướng tương ứng
-            if (searchTerm === 'khach hang' || searchTerm === 'khách hàng') {
-                window.location.href = '/khach-hang';
-            } else if (searchTerm === 'hien thi' || searchTerm === 'hiển thị') {
-                window.location.href = '/hien-thi';
-            } else if (searchTerm === 'chat lieu' || searchTerm === 'chất liệu') {
-                window.location.href = '/chat-lieu';
-            } else if (searchTerm === 'mau sac' || searchTerm === 'thương hiệu') {
-                window.location.href = '/mau-sac';
-            } else if (searchTerm === 'nhap kho' || searchTerm === 'nhập kho') {
-                window.location.href = '/nhap-kho';
-            } else if (searchTerm === 'size') {
-                window.location.href = '/size';
-            } else if (searchTerm === 'thuong hieu' || searchTerm === 'thương hiệu') {
-                window.location.href = '/thuong-hieu';
-            } else if (searchTerm === 'giam gia' || searchTerm === 'giảm giá') {
-                window.location.href = '/giam-gia';
-            } else if (searchTerm === 'giam gia chi tiet' || searchTerm === 'giảm giá chi tiết') {
-                window.location.href = '/giam-gia-chi-tiet';
-            } else {
-                // Xử lý chuyển hướng mặc định hoặc thông báo lỗi nếu cần
-                window.location.href = '/non-find' + encodeURIComponent(searchTerm.replace(/\s+/g, '-'));
+                // Kiểm tra giá trị nhập và chuyển hướng tương ứng
+                if (searchTerm === 'khach hang' || searchTerm === 'khách hàng') {
+                    window.location.href = '/khach-hang';
+                } else if (searchTerm === 'hien thi' || searchTerm === 'hiển thị') {
+                    window.location.href = '/hien-thi';
+                } else if (searchTerm === 'chat lieu' || searchTerm === 'chất liệu') {
+                    window.location.href = '/chat-lieu';
+                } else if (searchTerm === 'mau sac' || searchTerm === 'thương hiệu') {
+                    window.location.href = '/mau-sac';
+                } else if (searchTerm === 'nhap kho' || searchTerm === 'nhập kho') {
+                    window.location.href = '/nhap-kho';
+                } else if (searchTerm === 'size') {
+                    window.location.href = '/size';
+                } else if (searchTerm === 'thuong hieu' || searchTerm === 'thương hiệu') {
+                    window.location.href = '/thuong-hieu';
+                } else if (searchTerm === 'giam gia' || searchTerm === 'giảm giá') {
+                    window.location.href = '/giam-gia';
+                } else if (searchTerm === 'giam gia chi tiet' || searchTerm === 'giảm giá chi tiết') {
+                    window.location.href = '/giam-gia-chi-tiet';
+                } else {
+                    // Xử lý chuyển hướng mặc định hoặc thông báo lỗi nếu cần
+                    window.location.href = '/non-find' + encodeURIComponent(searchTerm.replace(/\s+/g, '-'));
+                }
             }
-        }
-    });
-</script>
-<!-- Place this tag in your head or just before your close body tag. -->
-<script async defer src="https://buttons.github.io/buttons.js"></script>
+        });
+    </script>
+    <!-- Place this tag in your head or just before your close body tag. -->
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
 </body>
 </html>

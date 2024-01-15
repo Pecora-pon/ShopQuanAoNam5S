@@ -381,7 +381,7 @@
                                                 }
                                                 // Chưa hết hạn
                                                 var donToiThieu = parseFloat(radio.getAttribute('data-donToiThieu'));
-                                                var totalprice = parseFloat(document.getElementsByName('totalprice1')[0].value.replace(/[^0-9.-]+/g, ""));
+                                                var totalprice = parseFloat(document.getElementsByName('totalprice1')[0].value);
                                                 console.log("donToiThieu:", donToiThieu);
                                                 console.log("totalprice:", totalprice);
 
