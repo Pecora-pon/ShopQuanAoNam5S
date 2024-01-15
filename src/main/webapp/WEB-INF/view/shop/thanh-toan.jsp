@@ -228,7 +228,7 @@
                         <c:choose>
                             <c:when test="${gh.sanPham.giaSanPham >= 1000000}">
                                 <p>Giá Sản Phẩm: <fmt:formatNumber value="${gh.sanPham.giaSanPham / 1.0}"
-                                                                   pattern="#,##0"/> triệu</p>
+                                                                   pattern="#,##0"/> </p>
                             </c:when>
                             <c:otherwise>
                                 Giá Sản Phẩm: <fmt:formatNumber value="${gh.sanPham.giaSanPham}" pattern="#,##0"/>
@@ -242,7 +242,7 @@
                         <c:choose>
                             <c:when test="${gh.sanPham.giaSanPham * gh.soLuongDat >= 1000000}">
                                 Tổng Tiền Sản Phẩm: <fmt:formatNumber
-                                    value="${(gh.sanPham.giaSanPham * gh.soLuongDat) / 1.0}" pattern="#,##0"/> triệu
+                                    value="${(gh.sanPham.giaSanPham * gh.soLuongDat) / 1.0}" pattern="#,##0"/>
                             </c:when>
                             <c:otherwise>
                                 Tổng Tiền Sản Phẩm: <fmt:formatNumber value="${gh.sanPham.giaSanPham * gh.soLuongDat}"
