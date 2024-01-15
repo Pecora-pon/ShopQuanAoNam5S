@@ -2,13 +2,18 @@ package com.example.demo.service.impl;
 
 import com.example.demo.entity.DonHang;
 import com.example.demo.entity.DonHangChiTiet;
+import com.example.demo.entity.KhachHang;
 import com.example.demo.entity.SanPham;
 import com.example.demo.repository.DonHangChiTietRepo;
 import com.example.demo.repository.DonHangRepo;
+import com.example.demo.repository.KhachHangRepo;
 import com.example.demo.repository.SanPhamRepo;
 import com.example.demo.service.BanHangService;
 import com.example.demo.service.SanPhamService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
@@ -25,7 +30,8 @@ public class BanHangServiceImpl implements BanHangService {
     SanPhamRepo sanPhamRepo;
 @Autowired
     SanPhamService sanPhamService;
-
+@Autowired
+    KhachHangRepo khachHangRepo;
     @Override
     public DonHangChiTiet insert(DonHang donHang, DonHangChiTiet donHangChiTiet) {
     DonHang dh=donHangRepo.save(donHang);
@@ -101,8 +107,9 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
-    public List<DonHangChiTiet> banhang(List<Integer> donhang,float tong) {
+    public List<DonHangChiTiet> banhang(List<Integer> donhang,float tong,int khachhang) {
        List<DonHangChiTiet>list=donHangChiTietRepo.findAllByDonHangChiTietIDInAndTrangThai(donhang,8);
+        KhachHang kh=khachHangRepo.getById(khachhang);
        for(DonHangChiTiet donHangChiTiet:list){
            donHangChiTiet.setNgayNhan(LocalDate.now());
            donHangChiTiet.setTrangThai(3);
@@ -110,11 +117,29 @@ public class BanHangServiceImpl implements BanHangService {
            UUID sp=donHangChiTiet.getSanPham().getSanPhamID();
           int sl= donHangChiTiet.getSoLuong();
           float gia=donHangChiTiet.getSanPham().getGiaSanPham();
+           donHangChiTiet.getDonHang().setKhachHang(kh);
            donHangChiTiet.setTongTien(tong);
            sanPhamService.capnhat(sp,sl);
        }
        donHangChiTietRepo.saveAll(list);
        return list;
+    }
+
+    @Override
+    public List<DonHangChiTiet> banhang1(List<Integer> donhang,float tong) {
+        List<DonHangChiTiet>list=donHangChiTietRepo.findAllByDonHangChiTietIDInAndTrangThai(donhang,8);
+        for(DonHangChiTiet donHangChiTiet:list){
+            donHangChiTiet.setNgayNhan(LocalDate.now());
+            donHangChiTiet.setTrangThai(3);
+            donHangChiTiet.getDonHang().setTrangThai(2);
+            UUID sp=donHangChiTiet.getSanPham().getSanPhamID();
+            int sl= donHangChiTiet.getSoLuong();
+            float gia=donHangChiTiet.getSanPham().getGiaSanPham();
+            donHangChiTiet.setTongTien(tong);
+            sanPhamService.capnhat(sp,sl);
+        }
+        donHangChiTietRepo.saveAll(list);
+        return list;
     }
 
     @Override
@@ -132,5 +157,12 @@ public class BanHangServiceImpl implements BanHangService {
     public List<SanPham> findbyten(String ten) {
         return sanPhamRepo.findByTenSanPham(ten);
     }
+
+    @Override
+    public Page<SanPham> getPage(int pageNumber, int pageSize) {
+        Pageable pageable= PageRequest.of(pageNumber,pageSize);
+        return sanPhamRepo.findByTinhTrang(0,pageable);
+    }
+
 
 }
