@@ -9,6 +9,12 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Locale" %>
+
+<%
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+%>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -397,24 +403,59 @@
                                         </form:select>
                                     </div>
                                     <div class="mb-3 col-md-6">
+                                        <label class="form-label">Ngày bắt đầu</label>
+                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao != null ? formatter.format(gg.ngayTao) : ''}" min="<%=java.time.LocalDate.now()%>" />
+                                        <form:errors path="ngayTao"/>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Ngày hết hạn</label>
+                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan != null ? formatter.format(gg.ngayHetHan) : ''}"  />
+                                        <form:errors path="ngayHetHan"/>
+                                    </div>
+                                    <div class="mb-3 col-md-6">
                                         <label class="form-label">Số Tiền Giảm</label>
                                         <form:input class="form-control" path="soTienGiam" value="${gg.soTienGiam}" pattern="\d+" title="Vui lòng nhập số"/>
                                     </div>
 
-<%--                                    <div class="mb-3 col-md-6">--%>
-<%--                                        <label class="form-label">Ngày tạo</label>--%>
-<%--                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}"/>--%>
-<%--                                        <form:errors path="ngayTao"/>--%>
-<%--                                    </div>--%>
-<%--                                    <div class="mb-3 col-md-6">--%>
-<%--                                        <label class="form-label">Ngày hết hạn</label>--%>
-<%--                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"/>--%>
-<%--                                        <form:errors path="ngayHetHan"/>--%>
-<%--                                    </div>--%>
+                                    <div class="mb-3 col-md-6">
+                                        <label class="form-label">Số Tiền Tối Thiểu</label>
+                                        <form:input class="form-control" path="donToiThieu" value="${gg.donToiThieu}" pattern="\d+" title="Vui lòng nhập số"/>
+                                    </div>
                                 </div>
                                 <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">sửa</button>
                                 </div>
+                                <script>
+                                    // Lấy phần tử input của ngày bắt đầu và ngày hết hạn
+                                    document.addEventListener('DOMContentLoaded', function () {
+                                        var ngayBatDauInput = document.querySelector('[name="ngayTao"]');
+                                        var ngayHetHanInput = document.querySelector('[name="ngayHetHan"]');
+
+                                        ngayBatDauInput.addEventListener('change', function () {
+                                            // Lấy giá trị ngày hết hạn
+                                            var ngayHetHanValue = ngayHetHanInput.value;
+
+                                            // Nếu ngày hết hạn không được chọn hoặc nó nhỏ hơn ngày tạo, cập nhật giá trị ngày hết hạn
+                                            if (!ngayHetHanValue || ngayHetHanValue < ngayBatDauInput.value) {
+                                                var ngayBatDau = new Date(ngayBatDauInput.value);
+                                                ngayBatDau.setDate(ngayBatDau.getDate() + 1);
+                                                ngayHetHanInput.value = ngayBatDau.toISOString().slice(0, 10);
+                                            }
+                                        });
+
+                                        ngayHetHanInput.addEventListener('change', function () {
+                                            // Lấy giá trị ngày tạo
+                                            var ngayBatDauValue = ngayBatDauInput.value;
+
+                                            // Nếu ngày hết hạn nhỏ hơn ngày tạo, cập nhật giá trị ngày hết hạn
+                                            if (ngayHetHanInput.value <= ngayBatDauValue) {
+                                                var ngayBatDau = new Date(ngayBatDauValue);
+                                                ngayBatDau.setDate(ngayBatDau.getDate() + 1);
+                                                ngayHetHanInput.value = ngayBatDau.toISOString().slice(0, 10);
+                                            }
+                                        });
+                                    });
+                                </script>
                             </form:form>
                             <c:if test="${!empty repon.error}">
                                 <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
@@ -445,8 +486,9 @@
                                 <th>Mã giảm giá</th>
                                 <th>Tên sự kiện</th>
                                 <th>Nhân viên</th>
-<%--                                <th>Ngày tạo</th>--%>
-<%--                                <th>Ngày hết hạn</th>--%>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày kết thúc</th>
+                                <th>Số tiền tối thiểu</th>
                                 <th>Số tiền giảm</th>
                                 <th>Action</th>
                             </tr>
@@ -458,9 +500,11 @@
                                     <td>${giamgia.maGiamGia}</td>
                                     <td>${giamgia.tenSuKien}</td>
                                     <td>${giamgia.nhanVien.hoTen}</td>
+                                    <td>${giamgia.ngayTao}</td>
+                                    <td>${giamgia.ngayHetHan}</td>
+                                    <td>${giamgia.donToiThieu}</td>
                                     <td>${giamgia.soTienGiam}</td>
-<%--                                    <td>${giamgia.ngayTao}</td>--%>
-<%--                                    <td>${giamgia.ngayHetHan}</td>--%>
+
                                     <td>
                                         <div class="dropdown">
                                             <button type="button" class="btn p-0 dropdown-toggle hide-arrow" data-bs-toggle="dropdown">

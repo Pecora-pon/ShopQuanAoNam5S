@@ -9,6 +9,12 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ page import="java.text.SimpleDateFormat" %>
+<%@ page import="java.util.Locale" %>
+
+<%
+    SimpleDateFormat formatter = new SimpleDateFormat("yyyy-MM-dd", Locale.getDefault());
+%>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -411,12 +417,12 @@
 
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Ngày bắt đầu</label>
-                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao}" min="<%=java.time.LocalDate.now()%>" />
+                                                        <form:input type="date" class="form-control"  path="ngayTao" value="${gg.ngayTao != null ? formatter.format(gg.ngayTao) : ''}" min="<%=java.time.LocalDate.now()%>" />
                                                         <form:errors path="ngayTao"/>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Ngày hết hạn</label>
-                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan}"  />
+                                                        <form:input type="date" class="form-control" path="ngayHetHan" value="${gg.ngayHetHan != null ? formatter.format(gg.ngayHetHan) : ''}"  />
                                                         <form:errors path="ngayHetHan"/>
                                                     </div>
                                                     <div class="mb-3 col-md-6">
@@ -499,8 +505,9 @@
                                 <th>Mã giảm giá</th>
                                 <th>Tên sự kiện</th>
                                 <th>Nhân viên</th>
-<%--                                <th>Ngày tạo</th>--%>
-<%--                                <th>Ngày hết hạn</th>--%>
+                                <th>Ngày bắt đầu</th>
+                                <th>Ngày kết thúc</th>
+                                <th>Số tiền tối thiểu</th>
                                 <th>Số tiền giảm</th>
                                 <th>Action</th>
                             </tr>
@@ -512,8 +519,9 @@
                                     <td>${giamgia.maGiamGia}</td>
                                     <td>${giamgia.tenSuKien}</td>
                                     <td>${giamgia.nhanVien.hoTen}</td>
-<%--                                    <td>${giamgia.ngayTao}</td>--%>
-<%--                                    <td>${giamgia.ngayHetHan}</td>--%>
+                                    <td>${giamgia.ngayTao}</td>
+                                    <td>${giamgia.ngayHetHan}</td>
+                                    <td>${giamgia.donToiThieu}</td>
                                     <td>${giamgia.soTienGiam}</td>
                                     <td>
                                         <div class="dropdown">
@@ -522,7 +530,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="/giam-gia-view-update/${giamgia.giamGiaID}"><i class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                                <a class="dropdown-item" href="/giam-gia/delete/${giamgia.giamGiaID}" onclick="confirmDeletee()"><i class="bx bx-trash me-1"></i> Xóa</a>
+                                                <a class="dropdown-item" href="/giam-gia/delete/${giamgia.giamGiaID}" onclick="return confirmDelete()"><i class="bx bx-trash me-1"></i> Xóa</a>
                                             </div>
                                         </div>
                                     </td>
@@ -585,24 +593,17 @@
     <!-- Overlay -->
     <div class="layout-overlay layout-menu-toggle"></div>
 </div>
+    <script>
+        function confirmDelete() {
+            return confirm("Bạn có chắc chắn muốn xóa không?");
+        }
+    </script>
 <!-- / Layout wrapper -->
 
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-<script>
-    function confirmDeletee() {
-        if (confirm("Bạn có chắc chắn muốn xóa không?")) {
-            // Thực hiện cập nhật (submit form, gửi request AJAX, ...)
-            displayNotification("Xóa thành công!");
-        }
-    }
 
-    function displayNotification(message) {
-        // Hiển thị thông báo cho người dùng
-        alert(message);
-    }
-</script>
     <script>
         function validateForm() {
             var maGiamGia = document.getElementById("maGiamGia").value;
