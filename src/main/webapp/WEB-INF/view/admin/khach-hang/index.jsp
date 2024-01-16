@@ -404,7 +404,7 @@
                                                     </div>
                                                     <div class="mb-3 col-md-6">
                                                         <label class="form-label">Mật Khẩu</label>
-                                                        <form:input class="form-control" path="password"
+                                                        <form:input class="form-control" path="password" type="password"
                                                                     value="${kh.password}"/>
                                                         <form:errors path="password"/>
                                                     </div>
@@ -426,10 +426,10 @@
                                                                     value="${kh.soDienThoai}"/>
                                                         <form:errors path="soDienThoai"/>
                                                     </div>
-                                                    <div class="mb-3 col-md-6">
-                                                        <label class="form-label">Chức vụ</label>
-                                                        <form:input class="form-control" path="chucVu" value="${kh.chucVu}"/>
-                                                    </div>
+<%--                                                    <div class="mb-3 col-md-6">--%>
+<%--                                                        <label class="form-label">Chức vụ</label>--%>
+<%--                                                        <form:input class="form-control" path="chucVu" value="${kh.chucVu}"/>--%>
+<%--                                                    </div>--%>
                                                 </div>
                                             </div>
                                             <div class="mt-2">
