@@ -3,7 +3,9 @@ package com.example.demo.controller;
 import com.example.demo.config.SanPhamExel;
 import com.example.demo.entity.*;
 import com.example.demo.entity.responobject.Respon;
+import com.example.demo.repository.SanPhamRepo;
 import com.example.demo.service.*;
+import com.example.demo.service.impl.BanHangServiceImpl;
 import com.example.demo.service.impl.FileUploaderServiceImpl;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
@@ -45,6 +47,10 @@ public class SanPhamController {
     ThuongHieuService thuongHieuService;
     @Autowired
     FileUploaderServiceImpl fileUploaderService;
+    @Autowired
+    SanPhamRepo sanPhamRepo;
+    @Autowired
+    BanHangServiceImpl banHangService;
     @GetMapping("/san-pham")
     private String getAll(Model model){
         List<MauSac> mauSacList = mauSacService.getAll();
@@ -189,7 +195,7 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
 }
 @GetMapping("/timkiemtensp")
     public String timkiem(@RequestParam("tenSanPham") String tenSanPham,Model model){
-        List<SanPham>list=sanPhamService.findtenSanPham(tenSanPham);
+        List<SanPham>list=banHangService.findbyten(tenSanPham);
     List<MauSac> mauSacList = mauSacService.getAll();
     List<ChatLieu> chatLieuList = chatLieuService.getAll();
     List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
@@ -202,6 +208,21 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
         model.addAttribute("sp",new SanPham());
         return "sanpham/sanpham";
 }
+    @GetMapping("/timkiemtenspp")
+    public String timkiemm(@RequestParam("tenSanPham") String tenSanPham,Model model){
+        List<SanPham>list=banHangService.findbytenn(tenSanPham);
+        List<MauSac> mauSacList = mauSacService.getAll();
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+        List<Size> sizeList = sizeService.getAll();
+        model.addAttribute("listMauSac", mauSacList);
+        model.addAttribute("listChatLieu", chatLieuList);
+        model.addAttribute("listThuongHieu", thuongHieuList);
+        model.addAttribute("listSize", sizeList);
+        model.addAttribute("listSanPham",list);
+        model.addAttribute("sp",new SanPham());
+        return "sanpham/sanphamngungkinhdoanh";
+    }
     @GetMapping("/timkiemsize")
     public String timkiemsize(@RequestParam("size") int size,Model model){
         List<SanPham>list=sanPhamService.findBySizeID(size);
@@ -261,4 +282,26 @@ public String ms(@RequestParam("mauSac") int mausac, Model model) {
         excelExporter.export(response);
 
     }
+    @GetMapping("/san-pham/ngung-kinh-doanh")
+    public String spngungkinhdoanh(Model model){
+        List<MauSac> mauSacList = mauSacService.getAll();
+        List<ChatLieu> chatLieuList = chatLieuService.getAll();
+        List<ThuongHieu> thuongHieuList = thuongHieuService.getAll();
+        List<Size> sizeList = sizeService.getAll();
+        List<SanPham> sanPhamList = sanPhamService.findByTinhTrang();
+        model.addAttribute("listMauSac", mauSacList);
+        model.addAttribute("listChatLieu", chatLieuList);
+        model.addAttribute("listThuongHieu", thuongHieuList);
+        model.addAttribute("listSize", sizeList);
+        model.addAttribute("listSanPham", sanPhamList);
+        model.addAttribute("sp",new SanPham());
+        return "sanpham/sanphamngungkinhdoanh";
+    }
+
+    @GetMapping("/san-pham/chuyen-kinh-doanh/{sanPhamID}")
+    public  String chuyenkinhdoanh(Model model,@PathVariable("sanPhamID") UUID sanPhamID){
+        sanPhamRepo.chuyenkinhdoanh(sanPhamID);
+        return "redirect:/san-pham/ngung-kinh-doanh";
+    }
+
 }
