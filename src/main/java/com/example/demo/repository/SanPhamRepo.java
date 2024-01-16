@@ -53,11 +53,17 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
     SanPham findByTen(@Param("tenSanPham") String tenSanPham);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham")
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham and sp.tinhTrang=0")
     List<SanPham> findByTenSanPham1(@Param("tenSanPham") String tenSanPham);
 
-    @Query("SELECT sp from SanPham  sp where sp.tenSanPham LIKE %:tenSanPham%")
+    @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham =:tenSanPham and sp.tinhTrang=1")
+    List<SanPham> findByTenSanPham2(@Param("tenSanPham") String tenSanPham);
+
+    @Query("SELECT sp from SanPham  sp where sp.tenSanPham LIKE %:tenSanPham% and sp.tinhTrang=0")
     List<SanPham> findByTenSanPham(@Param("tenSanPham") String tenSanPham);
+
+    @Query("SELECT sp from SanPham  sp where sp.tenSanPham LIKE %:tenSanPham% and sp.tinhTrang=1")
+    List<SanPham> findByTenSanPhamm(@Param("tenSanPham") String tenSanPham);
 
     @Query("SELECT sp FROM SanPham sp WHERE sp.tenSanPham = :tenSanPham AND sp.hinhAnhURL = :hinhAnhURL AND sp.size.sizeID = :sizeID AND sp.mauSac.mauSacID = :mauSacID")
     SanPham findByTenSanPhamAndHinhAnhURLAndSanPham_Size_SizeIDAndSanPham_MauSac_MauSacID(
@@ -94,16 +100,16 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
 
     Optional<SanPham> findById(UUID sanPhamID);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.mauSac.mauSacID =:mauSacID")
+    @Query("SELECT sp FROM SanPham sp WHERE sp.mauSac.mauSacID =:mauSacID and sp.tinhTrang=0")
     List<SanPham> findByMauSac_MauSacID(@Param("mauSacID") int tenMauSac);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.size.sizeID =:sizeID")
+    @Query("SELECT sp FROM SanPham sp WHERE sp.size.sizeID =:sizeID and sp.tinhTrang=0")
     List<SanPham> findBySize_SizeID(@Param("sizeID") int tenSize);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.chatLieu.chatLieuID =:chatLieuID")
+    @Query("SELECT sp FROM SanPham sp WHERE sp.chatLieu.chatLieuID =:chatLieuID and sp.tinhTrang=0")
     List<SanPham> findByChatLieu_ChatLieuID(@Param("chatLieuID") int tenChatLieu);
 
-    @Query("SELECT sp FROM SanPham sp WHERE sp.thuongHieu.thuongHieuID =:thuongHieuID")
+    @Query("SELECT sp FROM SanPham sp WHERE sp.thuongHieu.thuongHieuID =:thuongHieuID and sp.tinhTrang=0")
     List<SanPham> findByThuongHieu_ThuongHieuID(@Param("thuongHieuID") int tenthuongHieu);
 
     @Query("select sp from SanPham sp order by sp.ngayTao desc ")
@@ -139,4 +145,14 @@ public interface SanPhamRepo extends JpaRepository<SanPham, UUID> {
             "from SanPham sp\n" +
             "where sp.soLuongTon <= :soLuongTon and sp.tinhTrang = 0")
     List<Object[]> danhSachHangSapHet(@Param("soLuongTon") Integer soLuongTon);
+
+    @Query(value = "select * from SanPham p WHERE  p.tinhTrang=1 ", nativeQuery = true)
+    List<SanPham> getSanPhamsByTinhTrang();
+
+    @Transactional
+    @Modifying
+    @Query(value = "update SanPham   set tinhTrang=0 where sanPhamID=:sanPhamID", nativeQuery = true)
+    void chuyenkinhdoanh(@Param("sanPhamID") UUID sanPhamID);
+
+
 }
