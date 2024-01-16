@@ -12,9 +12,7 @@ import org.springframework.security.acls.model.NotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class DonHangChiTietServiceImpl implements DonHangChiTietService {
@@ -162,7 +160,11 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
          sanPhamService.capnhat(sp,sl);
      }
     }
+    @Override
+    public void chuyentrangthaicho1(UUID id) {
+        donHangChiTietRepo.chuyenTrangThaiCho(id);
 
+    }
     @Override
     public void chuyensanghuy(UUID id) {
       donHangChiTietRepo.chuyensanghuy(id);
@@ -175,11 +177,29 @@ public class DonHangChiTietServiceImpl implements DonHangChiTietService {
     }
 
     @Override
-    public void chuyensangchohuy(UUID id,String lydo) {
-       DonHangChiTiet dh= donHangChiTietRepo.donHangChiTiet(id);
-       dh.setLyDoHuy(lydo);
-       donHangChiTietRepo.save(dh);
-     donHangChiTietRepo.chuyenTrangThaiChoHuy(id);
+    public void chuyensanghuy1(UUID id) {
+        donHangChiTietRepo.chuyensanghuy(id);
+    }
+    @Override
+    public List<DonHangChiTiet> chuyensangchohuy(List<UUID> ids, String lydo) {
+        List<DonHangChiTiet> result = new ArrayList<>();
+
+        for (UUID id : ids) {
+            List<DonHangChiTiet> donHangChiTiets = donHangChiTietRepo.donHangChiTiet1(Collections.singletonList(id));
+
+            if (!donHangChiTiets.isEmpty()) {
+                DonHangChiTiet dh = donHangChiTiets.get(0);
+                dh.setLyDoHuy(lydo);
+                donHangChiTietRepo.save(dh);
+                donHangChiTietRepo.chuyenTrangThaiChoHuy(id);
+                result.add(dh);
+            } else {
+                // Xử lý trường hợp không tìm thấy bản ghi
+                // Có thể thêm vào result hoặc xử lý theo yêu cầu của bạn
+            }
+        }
+
+        return result;
     }
 
     @Override
