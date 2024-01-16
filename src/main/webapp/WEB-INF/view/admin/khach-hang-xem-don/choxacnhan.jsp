@@ -281,7 +281,7 @@
                                     <a class="dropdown-item" href="/huycho/${dhct.donHang.donHangID}"><i
                                             class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>
                                     <a class="dropdown-item" href="/detail/${dhct.donHang.donHangID}"><i
-                                            class="bx bx-trash me-1"></i>Chi Tiết</a>
+                                            class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
                                 </td>
                             </tr>
                         </c:if>
