@@ -16,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Repository
@@ -111,6 +112,9 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
 
     @Query("select p from DonHangChiTiet p where p.donHang.donHangID =:id")
     DonHangChiTiet donHangChiTiet(@Param("id") UUID id);
+
+    @Query("select p from DonHangChiTiet p where p.donHang.donHangID in :id")
+    List<DonHangChiTiet> donHangChiTiet1(@Param("id") List<UUID> id);
 
     List<DonHangChiTiet> findByDonHang_DonHangID(UUID id);
 
