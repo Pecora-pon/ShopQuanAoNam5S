@@ -159,6 +159,11 @@ public class BanHangServiceImpl implements BanHangService {
     }
 
     @Override
+    public List<SanPham> findbytenn(String ten) {
+        return sanPhamRepo.findByTenSanPhamm(ten);
+    }
+
+    @Override
     public Page<SanPham> getPage(int pageNumber, int pageSize) {
         Pageable pageable= PageRequest.of(pageNumber,pageSize);
         return sanPhamRepo.findByTinhTrang(0,pageable);

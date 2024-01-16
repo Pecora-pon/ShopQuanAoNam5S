@@ -275,6 +275,10 @@ public class SanPhamServiceImpl implements SanPhamService {
         return sanPhamRepo.findByTenSanPham1(ten);
     }
 
+    @Override
+    public List<SanPham> findtenSanPhamm(String ten) {
+        return sanPhamRepo.findByTenSanPham2(ten);
+    }
 
     @Override
     public List<SanPham> findByMauSacID(int mauSacID) {
@@ -289,6 +293,11 @@ public class SanPhamServiceImpl implements SanPhamService {
     @Override
     public List<SanPham> findByChatLieuID(int chatLieuID) {
         return sanPhamRepo.findByChatLieu_ChatLieuID(chatLieuID);
+    }
+
+    @Override
+    public List<SanPham> findByTinhTrang() {
+        return sanPhamRepo.getSanPhamsByTinhTrang();
     }
 
     @Override
@@ -315,4 +324,10 @@ public class SanPhamServiceImpl implements SanPhamService {
     public SanPham saveExcel(SanPham sanPham) {
         return sanPhamRepo.save(sanPham);
     }
+
+//    @Override
+//    public List<SanPham> chuyenkinhdoanh(UUID sanPhamID) {
+//        return sanPhamRepo;
+//    }
+
 }
