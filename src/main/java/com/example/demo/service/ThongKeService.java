@@ -53,14 +53,11 @@ public class ThongKeService {
     }
 
     public Float calculateTotalTongTien(int trangThai) {
-        List<DonHangChiTiet> donHangChiTiets = donHangChiTietRepo.findByTrangThai(trangThai);
-        float totalTongTien = 0;
-
-        for (DonHangChiTiet donHangChiTiet : donHangChiTiets) {
-            totalTongTien += donHangChiTiet.getTongTien();
-        }
-
-        return totalTongTien;
+        Float totalTongTien = donHangChiTietRepo.calculateDistinctTotalTongTien(trangThai);
+        return totalTongTien != null ? totalTongTien : 0; // Set default value if totalTongTien is null
+    }
+    public List<Object[]> totalTongTien() {
+        return donHangChiTietRepo.calculateTotalAmountByDonHangChiTietID();
     }
 
     public List<Object[]> getTotalQuantityByMonthInYear2023(LocalDate selectedDate) {
