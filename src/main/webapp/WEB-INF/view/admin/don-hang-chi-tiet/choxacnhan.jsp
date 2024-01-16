@@ -466,7 +466,7 @@
                                                     <%--                                                        class="bx bx-trash me-1"></i>Hủy Đơn Hàng</a>--%>
                                                     <%--                                                <a id="cancelLink-${i.index}" class="bx bx-edit-alt me-1 cancel-link" href="#" data-donhangid="${dhct.donHang.donHangID}"></a>--%>
                                                         <a class="dropdown-item" href="/detaildh/${dhct.donHang.donHangID}"><i
-                                                                class="bx bx-trash me-1"></i>Chi Tiết</a>
+                                                                class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
                                                         <a class="dropdown-item" href="/nvxacnhan/${dhct.donHang.donHangID}"><i
                                                                 class="bx bx-edit-alt me-1"></i> Xác Nhận</a>
                                             </div>

@@ -458,7 +458,7 @@
                                             </button>
                                             <div class="dropdown-menu">
                                                 <a class="dropdown-item" href="/detaildh2/${dhct.donHang.donHangID}"><i
-                                                        class="bx bx-trash me-1"></i>Chi Tiết</a>
+                                                        class="bx bx-edit-alt me-1"></i>Chi Tiết</a>
                                             </div>
                                         </div>
                                     </td>
