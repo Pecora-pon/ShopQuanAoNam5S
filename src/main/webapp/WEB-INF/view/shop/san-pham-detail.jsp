@@ -234,18 +234,18 @@
                                     <label>Size</label>
                                     <c:forEach items="${listSize}" var="si">
                                         <div class="custom-radio">
-                                            <input type="radio" id="size_${si.sizeID}" name="sizeID" value="${si.sizeID}" ${si.sizeID == 1 ? 'checked' : ''}>
-                                            <label for="size_${si.sizeID}">${si.tenSize}</label>
+                                            <input type="radio" id="size_${si.sizeID}" name="sizeID" value="${si.sizeID}">
+                                            <label  class="size-option" for="size_${si.sizeID}">${si.tenSize}</label>
                                         </div>
                                     </c:forEach>
 
                                 </div>
-                                <div class="size-options">
+                                <div class="mau-options">
                                     <label>Màu Sắc</label>
                                     <c:forEach items="${listMauSac}" var="ms">
                                         <div class="custom-radio">
-                                            <input type="radio" id="mauSac_${ms.mauSacID}" name="mauSacID" value="${ms.mauSacID}" ${ms.mauSacID == 1 ? 'checked' : ''}>
-                                            <label for="mauSac_${ms.mauSacID}">${ms.tenMauSac}</label>
+                                            <input type="radio" id="mauSac_${ms.mauSacID}" name="mauSacID" value="${ms.mauSacID}" ${ms.mauSacID == 2 ? 'checked' : ''} >
+                                            <label class="mau-option" for="mauSac_${ms.mauSacID}">${ms.tenMauSac}</label>
                                         </div>
                                     </c:forEach>
 
@@ -269,6 +269,26 @@
                             </div>
                         </form:form>
                         <script>
+                            function setInitialSizeAndColor() {
+                                var initialSizeId = ${sp.size.sizeID}; // Replace with the actual initial size ID from your model
+                                var initialColorId = ${sp.mauSac.mauSacID}; // Replace with the actual initial color ID from your model
+
+                                // Set the initial state for size and color radio buttons
+                                var initialSizeRadio = document.querySelector('input[name="sizeID"][value="' + initialSizeId + '"]');
+                                var initialColorRadio = document.querySelector('input[name="mauSacID"][value="' + initialColorId + '"]');
+
+                                if (initialSizeRadio) {
+                                    initialSizeRadio.checked = true;
+                                }
+
+                                if (initialColorRadio) {
+                                    initialColorRadio.checked = true;
+                                }
+                            }
+
+                            // Call the function initially to set the initial size and color
+                            setInitialSizeAndColor();
+
                             function updateAvailableQuantity() {
                                 var sizeId = document.querySelector('input[name="sizeID"]:checked').value;
                                 var mauSacId = document.querySelector('input[name="mauSacID"]:checked').value;
@@ -332,6 +352,10 @@
 
                             .custom-radio input:checked + label {
                                 background-color: #e0e0e0;
+                            }
+                            .size-options .size-option.selected,
+                            .mau-options .mau-option.selected {
+                                background-color: #c0c0c0; /* Darker color for selected options */
                             }
                         </style>
                         <%--                            <script>--%>
