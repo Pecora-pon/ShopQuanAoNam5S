@@ -28,6 +28,8 @@ public interface SanPhamService {
 
     List<SanPham> findtenSanPham(String ten);
 
+    List<SanPham> findtenSanPhamm(String ten);
+
     //   SanPham themgio(UUID sanPhamID);
 //    List<SanPham> findmausac(String mausac);
     List<SanPham> findByMauSacID(int mauSacID);
@@ -35,6 +37,8 @@ public interface SanPhamService {
     List<SanPham> findBySizeID(int sizeID);
 
     List<SanPham> findByChatLieuID(int chatLieuID);
+
+    List<SanPham> findByTinhTrang();
 
     List<SanPham> findByThuongHieuID(int thuongHieuID);
 
@@ -46,4 +50,6 @@ public interface SanPhamService {
     List<Object[]> danhSachHangSapHet(Integer soLuongTon);
 
     SanPham saveExcel(SanPham sanPham);
+
+//    List<SanPham> chuyenkinhdoanh(UUID sanPhamID);
 }

@@ -30,6 +30,7 @@ public interface BanHangService {
     void delete1(UUID id);
 
     List<SanPham> findbyten(String ten);
+    List<SanPham> findbytenn(String ten);
 
     Page<SanPham> getPage(int pageNumber, int pageSize);
 }
