@@ -370,6 +370,11 @@
                     <!-- Table add -->
                     <div class="card">
                         <h3 class="card-header">Quản lý Sản Phẩm</h3>
+                        <div class="mt-2">
+                            <a href="/san-pham/ngung-kinh-doanh" class="btn btn-success">
+                                <i class="bi bi-stop-circle"></i> Danh sách sản phẩm ngừng kinh doanh
+                            </a>
+                        </div>
                         <div class="card-body">
                             <form:form action="/san-pham-add" modelAttribute="sp" method="POST" enctype="multipart/form-data">
                                 <div class="row">
@@ -398,11 +403,11 @@
                                         <form:input class="form-control" path="soLuongTon" value="${sp.soLuongTon}"/>
                                         <form:errors path="soLuongTon"/>
                                     </div>
-                                    <div class="mb-3 col-md-6">
-                                        <label class="form-label">Tình Trạng</label>
-                                        <form:radiobutton path="tinhTrang" value="0" checked="true"/> Còn Hàng
-                                        <form:radiobutton path="tinhTrang" value="1"/> Hết
-                                    </div>
+<%--                                    <div class="mb-3 col-md-6">--%>
+<%--                                        <label class="form-label">Tình Trạng</label>--%>
+<%--                                        <form:radiobutton path="tinhTrang" value="0" checked="true"/> Còn Hàng--%>
+<%--                                        <form:radiobutton path="tinhTrang" value="1"/> Hết--%>
+<%--                                    </div>--%>
                                     <div class="mb-3 col-md-6">
                                         <label class="form-label">Tên Màu Săc</label>
                                         <form:select path="mauSac.mauSacID" class="form-control">
@@ -470,6 +475,7 @@
                                 <div class="mt-2">
                                     <button type="submit" class="btn btn-primary me-2">Thêm</button>
                                 </div>
+
                             </form:form>
                             <div class="mt-2">
 
@@ -496,7 +502,7 @@
                                     <form:form method="get" action="/timkiemmssp" modelAttribute="sp">
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="mauSac">Màu Sắc:</label>
-                                            <form:select path="mauSac" class="form-control">
+                                            <form:select path="mauSac" class="form-control" required="required">
                                                 <form:option value="" label="Chọn Màu Sắc"/>
                                                 <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac"/>
                                             </form:select>
@@ -510,7 +516,7 @@
                                     <form:form method="get" action="/timkiemsize" modelAttribute="sp">
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="size">Size:</label>
-                                            <form:select path="size" class="form-control">
+                                            <form:select path="size" class="form-control" required="required">
                                                 <form:option value="" label="Chọn Size"/>
                                                 <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
                                             </form:select>
@@ -524,7 +530,7 @@
                                     <form:form method="get" action="/timkiemchatlieu" modelAttribute="sp">
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="chatLieu">Chất Liệu:</label>
-                                            <form:select path="chatLieu" class="form-control">
+                                            <form:select path="chatLieu" class="form-control" required="required">
                                                 <form:option value="" label="Chọn Chất Liệu"/>
                                                 <form:options items="${listChatLieu}" itemValue="chatLieuID" itemLabel="tenChatLieu"/>
                                             </form:select>
@@ -538,7 +544,7 @@
                                     <form:form method="get" action="/timkiemthuonghieu" modelAttribute="sp">
                                         <div class="input-group mb-3">
                                             <label class="input-group-text" for="thuongHieu">Thương Hiệu:</label>
-                                            <form:select path="thuongHieu" class="form-control">
+                                            <form:select path="thuongHieu" class="form-control" required="required">
                                                 <form:option value="" label="Chọn Thương Hiệu"/>
                                                 <form:options items="${listThuongHieu}" itemValue="thuongHieuID" itemLabel="tenThuongHieu"/>
                                             </form:select >
@@ -581,7 +587,7 @@
                                     <th>Tên Size</th>
                                     <th>Tên Chất liệu</th>
                                     <th>Thương Hiệu</th>
-                                    <%--                                <th>Ngày Tạo</th>--%>
+
                                     <th>Hình Ảnh URL</th>
 
                                     <%--                                <th>Trạng thái</th>--%>
@@ -601,8 +607,8 @@
                                     <td><fmt:formatNumber value="${sanpham.giaSanPham}" pattern="#,##0"/> VND</td>
                                     <td>${sanpham.soLuongTon}</td>
                                     <td>
-                                        <c:if test="${sanpham.tinhTrang == 0}">Còn Hàng</c:if>
-                                        <c:if test="${sanpham.tinhTrang == 1}">Hết</c:if>
+                                        <c:if test="${sanpham.tinhTrang == 0}">Đang kinh doanh</c:if>
+                                        <c:if test="${sanpham.tinhTrang == 1}">Ngừng kinh doanh</c:if>
                                     </td>
                                     <td>${sanpham.mauSac.tenMauSac}</td>
                                     <td>${sanpham.size.tenSize}</td>
@@ -621,7 +627,7 @@
                                                             class="bx bx-edit-alt me-1"></i> Sửa</a>
                                                     <a class="dropdown-item"
                                                        href="/san-pham/delete/${sanpham.sanPhamID}"><i
-                                                            class="bx bx-trash me-1"></i> Xóa</a>
+                                                            class="bx bx-trash me-1"></i> Ngừng kinh doanh</a>
                                                 </div>
                                             </div>
                                         </td>

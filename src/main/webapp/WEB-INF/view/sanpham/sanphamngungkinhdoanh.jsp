@@ -9,6 +9,7 @@
 <%@ page import="java.util.Arrays" %>
 <%@ page import="java.util.Collections" %>
 <%@ taglib uri="http://www.springframework.org/security/tags" prefix="sec" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!-- =========================================================
 * Sneat - Bootstrap 5 HTML Admin Template - Pro | v1.0.0
@@ -26,7 +27,7 @@
         class="light-style layout-menu-fixed"
         dir="ltr"
         data-theme="theme-default"
-        data-assets-path="../mainshop/mainshop2/admin/assets/"
+        data-assets-path="../admin/assets/"
         data-template="vertical-menu-template-free"
 >
 <head>
@@ -36,7 +37,7 @@
             content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0"
     />
 
-    <title>Sản phẩm - Update</title>
+    <title>Nhân viên</title>
 
     <meta name="description" content=""/>
 
@@ -368,150 +369,145 @@
                     <!--Content -->
                     <!-- Table add -->
                     <div class="card">
-                        <h3 class="card-header">Quản lý nhập kho</h3>
-                        <div class="card-body">
-                            <form:form action="/san-pham/update/${sp.sanPhamID}" modelAttribute="sp" method="POST">
-                            <div class="row">
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">ID nhà kho</label>
-                                    <form:input class="form-control" path="sanPhamID" disabled="true"
-                                                value="${sp.sanPhamID}"/>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Tên Sản Phẩm</label>
-                                    <form:input class="form-control" path="tenSanPham" value="${sp.tenSanPham}"/>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Mô Ta</label>
-                                    <form:input class="form-control" path="moTa" value="${sp.moTa}"/>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Giá Sản Phẩm</label>
-                                    <form:input class="form-control" path="giaSanPham" value="${sp.giaSanPham}"/>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Số lượng tồn</label>
-                                    <form:input class="form-control" path="soLuongTon" value="${sp.soLuongTon}"/>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Tình Trạng</label>
-                                    <form:radiobutton path="tinhTrang" value="0" checked="true"/> Đang kinh doang
-                                    <form:radiobutton path="tinhTrang" value="1"/> Ngừng kinh doanh
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Tên Màu Săc</label>
-                                    <form:select path="mauSac.mauSacID" class="form-control">
-                                        <form:option value="" label="Chọn Màu Sắc"/>
-                                        <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac"/>
-                                    </form:select>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Tên Size</label>
-                                    <form:select path="size.sizeID" class="form-control">
-                                        <form:option value="" label="Chọn Size"/>
-                                        <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>
-                                    </form:select>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Tên Chất Liệu</label>
-                                    <form:select path="chatLieu.chatLieuID" class="form-control">
-                                        <form:option value="" label="Chọn Chất Liệu"/>
-                                        <form:options items="${listChatLieu}" itemValue="chatLieuID"
-                                                      itemLabel="tenChatLieu"/>
-                                    </form:select>
-                                </div>
-
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Tên Thương hiệu</label>
-                                    <form:select path="thuongHieu.thuongHieuID" class="form-control">
-                                        <form:option value="" label="Chọn thương Hiệu"/>
-                                        <form:options items="${listThuongHieu}" itemValue="thuongHieuID"
-                                                      itemLabel="tenThuongHieu"/>
-                                    </form:select>
-                                </div>
-
-
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Ngày Tạo</label>
-                                    <form:input class="form-control" path="ngayTao" value="${sp.ngayTao}" type="date"/>
-                                </div>
-                                <div class="mb-3 col-md-6">
-                                    <label class="form-label">Hình Ảnh URL</label>
-                                    <input type="file" name="hinhAnhURL" class="form-control-file" accept="image/*" value="${sp.hinhAnhURL}"/>
-                                </div>
-
-                            </div>
-                                <%--                                    <div class="mb-3 col-md-6">--%>
-                                <%--                                        <label class="form-label">Trạng thái</label>--%>
-                                <%--                                        <form:radiobutton path="trangThai" value="1" checked="true"/> Hoạt động--%>
-                                <%--                                        <form:radiobutton path="trangThai" value="0"/> Nghỉ--%>
-                                <%--                                    </div>--%>
-                        </div>
-                        <c:if test="${!empty repon.error}">
-                            <div class="alert alert-${!empty repon.data ? 'success' : 'danger'}">${repon.error}</div>
-                        </c:if>
-                        <c:if test="${not empty repon.status}">
-                            <div class="alert alert-success">${repon.status}</div>
-                        </c:if>
+                        <h3 class="card-header">Quản lý Sản Phẩm</h3>
                         <div class="mt-2">
-                            <button type="submit" class="btn btn-primary me-2">Sửa</button>
+                            <a href="/san-pham/page" class="btn btn-success">
+                                <i class="bi bi-stop-circle"></i> Danh sách sản phẩm
+                            </a>
                         </div>
-                        </form:form>
+
+                        <div class="card-body">
+
+
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <form:form action="/timkiemtenspp" modelAttribute="sp" method="get">
+                                        <div class="input-group mb-3">
+                                            <label class="input-group-text" for="tenSanPham">Tên Sản Phẩm:</label>
+                                            <input type="text" class="form-control" id="tenSanPham" name="tenSanPham" value="${sp.tenSanPham}" required>
+                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>
+                                        </div>
+                                    </form:form>
+                                </div>
+
+<%--                                <div class="col-md-4">--%>
+<%--                                    <!-- Màu Sắc Form -->--%>
+<%--                                    <form:form method="get" action="/timkiemmssp" modelAttribute="sp">--%>
+<%--                                        <div class="input-group mb-3">--%>
+<%--                                            <label class="input-group-text" for="mauSac">Màu Sắc:</label>--%>
+<%--                                            <form:select path="mauSac" class="form-control">--%>
+<%--                                                <form:option value="" label="Chọn Màu Sắc"/>--%>
+<%--                                                <form:options items="${listMauSac}" itemValue="mauSacID" itemLabel="tenMauSac"/>--%>
+<%--                                            </form:select>--%>
+<%--                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>--%>
+<%--                                        </div>--%>
+<%--                                    </form:form>--%>
+<%--                                </div>--%>
+
+<%--                                <div class="col-md-3">--%>
+<%--                                    <!-- Size Form -->--%>
+<%--                                    <form:form method="get" action="/timkiemsize" modelAttribute="sp">--%>
+<%--                                        <div class="input-group mb-3">--%>
+<%--                                            <label class="input-group-text" for="size">Size:</label>--%>
+<%--                                            <form:select path="size" class="form-control">--%>
+<%--                                                <form:option value="" label="Chọn Size"/>--%>
+<%--                                                <form:options items="${listSize}" itemValue="sizeID" itemLabel="tenSize"/>--%>
+<%--                                            </form:select>--%>
+<%--                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>--%>
+<%--                                        </div>--%>
+<%--                                    </form:form>--%>
+<%--                                </div>--%>
+
+<%--                                <div class="col-md-4">--%>
+<%--                                    <!-- Chất Liệu Form -->--%>
+<%--                                    <form:form method="get" action="/timkiemchatlieu" modelAttribute="sp">--%>
+<%--                                        <div class="input-group mb-3">--%>
+<%--                                            <label class="input-group-text" for="chatLieu">Chất Liệu:</label>--%>
+<%--                                            <form:select path="chatLieu" class="form-control">--%>
+<%--                                                <form:option value="" label="Chọn Chất Liệu"/>--%>
+<%--                                                <form:options items="${listChatLieu}" itemValue="chatLieuID" itemLabel="tenChatLieu"/>--%>
+<%--                                            </form:select>--%>
+<%--                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>--%>
+<%--                                        </div>--%>
+<%--                                    </form:form>--%>
+<%--                                </div>--%>
+
+<%--                                <div class="col-md-4">--%>
+<%--                                    <!-- Thương Hiệu Form -->--%>
+<%--                                    <form:form method="get" action="/timkiemthuonghieu" modelAttribute="sp">--%>
+<%--                                        <div class="input-group mb-3">--%>
+<%--                                            <label class="input-group-text" for="thuongHieu">Thương Hiệu:</label>--%>
+<%--                                            <form:select path="thuongHieu" class="form-control">--%>
+<%--                                                <form:option value="" label="Chọn Thương Hiệu"/>--%>
+<%--                                                <form:options items="${listThuongHieu}" itemValue="thuongHieuID" itemLabel="tenThuongHieu"/>--%>
+<%--                                            </form:select >--%>
+<%--                                            <button type="submit" class="btn btn-primary">Tìm Kiếm</button>--%>
+<%--                                        </div>--%>
+<%--                                    </form:form>--%>
+<%--                                </div>--%>
+                            </div>
+                        </div>
                     </div>
-                </div>
 
-                <!-- Table add -->
-                <!--Content -->
+                    <!-- Table add -->
+                    <!--Content -->
+                    <%--                    <div class="card">--%>
 
-                <div class="card">
-                    <form>
-                        <input type="text" name="keyword" placeholder="tìm kiếm họ tên">
-                        <button type="submit">Search</button>
-                    </form>
-                    <table class="table">
-                        <thead>
-                        <tr>
-                            <%--                                <th>Sản Phẩm ID</th>--%>
-                            <th>Tên Sản Phẩm</th>
-                            <th>Mô Tả</th>
-                            <th>Giá Sản phẩm</th>
-                            <th>Số lượng tôn</th>
-                            <td>Tình Trạng</td>
-                            <th>Tên Màu Sắc</th>
-                            <th>Tên Size</th>
-                            <th>Tên Chất liệu</th>
-                            <th>Thương Hiệu</th>
-                            <%--                                <th>Ngày Tạo</th>--%>
-                            <th>Hình Ảnh URL</th>
+                    <%--                        <form>--%>
+                    <%--                            <input type="text" name="keyword" placeholder="tìm kiếm họ tên">--%>
+                    <%--                            <button type="submit">Search</button>--%>
+                    <%--                        </form>--%>
+                    <%--                    </div>--%>
+                    <script>
+                        function searchByMauSac() {
+                            var mauSacId = document.getElementById("mauSac").value;
+                            window.location.href = "/timkiemms/page" + mauSacId;
+                        }
+                    </script>
 
-                            <%--                                <th>Trạng thái</th>--%>
-                            <th>Action</th>
-                        </tr>
-                        </thead>
-                        <tbody class="table-border-bottom-0">
-                        <c:forEach items="${listSanPham}" var="sanpham">
+
+                    <div class="card">
+                        <table class="table">
+                            <thead>
                             <tr>
-                                    <%--                                    <td>${sanpham.sanPhamId}</td>--%>
+                                <%--                                <th>Sản Phẩm ID</th>--%>
+                                <th>Tên Sản Phẩm</th>
+                                <th>Mô Tả</th>
+                                <th>Giá Sản phẩm</th>
+                                <th>Số lượng tôn</th>
+                                <td>Tình Trạng</td>
+                                <th>Tên Màu Sắc</th>
+                                <th>Tên Size</th>
+                                <th>Tên Chất liệu</th>
+                                <th>Thương Hiệu</th>
+                                <%--                                <th>Ngày Tạo</th>--%>
+                                <th>Hình Ảnh URL</th>
+
+                                <%--                                <th>Trạng thái</th>--%>
+                                <th>Action</th>
+                            </tr>
+                            </thead>
+                            <tbody class="table-border-bottom-0">
+                            <c:forEach items="${listSanPham}" var="sanpham">
+                                <c:if test="${sanpham.tinhTrang == 1}">
+                                    <tr style="background-color: #ff9999;">
+                                </c:if>
+                                <c:if test="${sanpham.tinhTrang != 1}">
+                                    <tr>
+                                </c:if>
                                 <td>${sanpham.tenSanPham}</td>
                                 <td>${sanpham.moTa}</td>
-                                <td>${sanpham.giaSanPham}</td>
+                                <td><fmt:formatNumber value="${sanpham.giaSanPham}" pattern="#,##0"/> VND</td>
                                 <td>${sanpham.soLuongTon}</td>
-                                        <td>
-                                <c:if test="${sanpham.tinhTrang == 0}"> Còn Hàng </c:if>
-                                <c:if test="${sanpham.tinhTrang == 1}"> Hết</c:if>
-                                        </td>
-                                        <td>${sanpham.mauSac.tenMauSac}</td>
+                                <td>
+                                    <c:if test="${sanpham.tinhTrang == 0}">Đang kinh doanh</c:if>
+                                    <c:if test="${sanpham.tinhTrang == 1}">Ngừng kinh doanh</c:if>
+                                </td>
+                                <td>${sanpham.mauSac.tenMauSac}</td>
                                 <td>${sanpham.size.tenSize}</td>
                                 <td>${sanpham.chatLieu.tenChatLieu}</td>
                                 <td>${sanpham.thuongHieu.tenThuongHieu}</td>
-                                        <td>  <img src="/getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;">
-                                        </td>
-                                    <%--                                    <td>${sanpham.ngayTao}</td>--%>
-<%--                                <td>${sanpham.hinhAnhURL}</td>--%>
-                                    <%--                                    <td>--%>
-                                    <%--                                        <c:if test="${nhanvien.trangThai == 0}"> Nghỉ </c:if>--%>
-                                    <%--                                        <c:if test="${nhanvien.trangThai == 1}"> Hoạt động</c:if>--%>
-                                    <%--                                    </td>--%>
+                                <td><img src="/getimage/${sanpham.hinhAnhURL}" style="max-width: 105px; max-height: 105px;"></td>
                                 <td>
                                     <div class="dropdown">
                                         <button type="button" class="btn p-0 dropdown-toggle hide-arrow"
@@ -520,126 +516,143 @@
                                         </button>
                                         <div class="dropdown-menu">
                                             <a class="dropdown-item"
-                                               href="/san-pham-view-update/${sanpham.sanPhamID}"><i
-                                                    class="bx bx-edit-alt me-1"></i> Sửa</a>
-                                            <a class="dropdown-item"
-                                               href="/san-pham/delete/${sanpham.sanPhamID}"><i
-                                                    class="bx bx-trash me-1"></i> Xóa</a>
+                                              href="/san-pham/chuyen-kinh-doanh/${sanpham.sanPhamID}"><i
+                                                    class="bx bx-edit-alt me-1"></i> Kinh doanh</a>
+
                                         </div>
                                     </div>
                                 </td>
-                            </tr>
-                        </c:forEach>
-                        </tbody>
-                    </table>
-                    <nav aria-label="Ví dụ phân trang">
-                        <div class="pagination-container">
-                            <ul class="pagination">
-                                <c:choose>
-                                    <c:when test="${currentPage > 1}">
-                                        <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage - 1}">&lt;</a></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="page-item disabled"><span class="page-link">&lt;</span></li>
-                                    </c:otherwise>
-                                </c:choose>
+                                </tr>
+                            </c:forEach>
+                            </tbody>
+                        </table>
 
-                                <c:forEach begin="1" end="${totalPages}" var="pageNumber">
+                        <nav aria-label="Ví dụ phân trang">
+                            <div class="pagination-container">
+                                <ul class="pagination">
                                     <c:choose>
-                                        <c:when test="${pageNumber == currentPage}">
-                                            <li class="page-item active"><span class="page-link">${pageNumber}</span></li>
+                                        <c:when test="${currentPage > 1}">
+                                            <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage - 1}">&lt;</a></li>
                                         </c:when>
                                         <c:otherwise>
-                                            <c:if test="${pageNumber == 1 || pageNumber == totalPages || (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)}">
-                                                <li class="page-item"><a class="page-link" href="/san-pham/page?page=${pageNumber}">${pageNumber}</a></li>
-                                            </c:if>
-                                            <c:if test="${pageNumber == 3 && currentPage > 4}">
-                                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                                            </c:if>
-                                            <c:if test="${pageNumber == totalPages - 2 && currentPage < totalPages - 4}">
-                                                <li class="page-item disabled"><span class="page-link">...</span></li>
-                                            </c:if>
+                                            <li class="page-item disabled"><span class="page-link">&lt;</span></li>
                                         </c:otherwise>
                                     </c:choose>
-                                </c:forEach>
 
-                                <c:choose>
-                                    <c:when test="${currentPage < totalPages}">
-                                        <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage + 1}">&gt;</a></li>
-                                    </c:when>
-                                    <c:otherwise>
-                                        <li class="page-item disabled"><span class="page-link">&gt;</span></li>
-                                    </c:otherwise>
-                                </c:choose>
-                            </ul>
+                                    <c:forEach begin="1" end="${totalPages}" var="pageNumber">
+                                        <c:choose>
+                                            <c:when test="${pageNumber == currentPage}">
+                                                <li class="page-item active"><span class="page-link">${pageNumber}</span></li>
+                                            </c:when>
+                                            <c:otherwise>
+                                                <c:if test="${pageNumber == 1 || pageNumber == totalPages || (pageNumber >= currentPage - 1 && pageNumber <= currentPage + 1)}">
+                                                    <li class="page-item"><a class="page-link" href="/san-pham/page?page=${pageNumber}">${pageNumber}</a></li>
+                                                </c:if>
+                                                <c:if test="${pageNumber == 3 && currentPage > 4}">
+                                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                                </c:if>
+                                                <c:if test="${pageNumber == totalPages - 2 && currentPage < totalPages - 4}">
+                                                    <li class="page-item disabled"><span class="page-link">...</span></li>
+                                                </c:if>
+                                            </c:otherwise>
+                                        </c:choose>
+                                    </c:forEach>
 
-                            <div class="page-input">
-                                <input type="text" id="pageInput" placeholder="Nhập số trang" />
-                                <button onclick="goToPage()">Đi đến</button>
+                                    <c:choose>
+                                        <c:when test="${currentPage < totalPages}">
+                                            <li class="page-item"><a class="page-link" href="/san-pham/page?page=${currentPage + 1}">&gt;</a></li>
+                                        </c:when>
+                                        <c:otherwise>
+                                            <li class="page-item disabled"><span class="page-link">&gt;</span></li>
+                                        </c:otherwise>
+                                    </c:choose>
+                                </ul>
+
+                                <div class="page-input">
+                                    <input type="text" id="pageInput" placeholder="Nhập số trang" />
+                                    <button onclick="goToPage()">Đi đến</button>
+                                </div>
+                            </div>
+                        </nav>
+                        <div/>
+                    </div>
+
+                    <!--Footer -->
+                    <footer class="content-footer footer bg-footer-theme">
+                        <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
+                            <div class="mb-2 mb-md-0">
+                                ©
+                                <script>
+                                    document.write(new Date().getFullYear());
+                                </script>
+                                , made with ❤️ by
+                                <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
+                                    áo Nam 5S</a>
+                            </div>
+                            <div>
+                                <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
+                                    chủ</a>
+                                <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
+                                    phẩm</a>
+
+                                <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
+                                   target="_blank" class="footer-link me-4">Thống kê</a>
+
+                                <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
+                                   target="_blank" class="footer-link me-4">Hỗ trợ</a>
                             </div>
                         </div>
-                    </nav>
-
+                    </footer>
+                    <!--Footer -->
                 </div>
-                <!--Footer -->
-                <footer class="content-footer footer bg-footer-theme">
-                    <div class="container-xxl d-flex flex-wrap justify-content-between py-2 flex-md-row flex-column">
-                        <div class="mb-2 mb-md-0">
-                            ©
-                            <script>
-                                document.write(new Date().getFullYear());
-                            </script>
-                            , made with ❤️ by
-                            <a href="https://themeselection.com" target="_blank" class="footer-link fw-bolder">Quần
-                                áo Nam 5S</a>
-                        </div>
-                        <div>
-                            <a href="https://themeselection.com/license/" class="footer-link me-4" target="_blank">Trang
-                                chủ</a>
-                            <a href="https://themeselection.com/" target="_blank" class="footer-link me-4">Sản
-                                phẩm</a>
-
-                            <a href="https://themeselection.com/demo/sneat-bootstrap-html-admin-template/documentation/"
-                               target="_blank" class="footer-link me-4">Thống kê</a>
-
-                            <a href="https://github.com/themeselection/sneat-html-admin-template-free/issues"
-                               target="_blank" class="footer-link me-4">Hỗ trợ</a>
-                        </div>
-                    </div>
-                </footer>
-                <!--Footer -->
             </div>
+            <!-- Content wrapper -->
+
         </div>
-        <!-- Content wrapper -->
-
+        <!-- / Layout page -->
     </div>
-    <!-- / Layout page -->
-</div>
 
-<!-- Overlay -->
-<div class="layout-overlay layout-menu-toggle"></div>
+    <!-- Overlay -->
+    <div class="layout-overlay layout-menu-toggle"></div>
 </div>
 <!-- / Layout wrapper -->
 
 
 <!-- Core JS -->
 <!-- build:js assets/vendor/js/core.js -->
-<script src="../mainshop/mainshop2/admin/assets/vendor/libs/jquery/jquery.js"></script>
-<script src="../mainshop/mainshop2/admin/assets/vendor/libs/popper/popper.js"></script>
-<script src="../mainshop/mainshop2/admin/assets/vendor/js/bootstrap.js"></script>
-<script src="../mainshop/mainshop2/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
+<script src="../admin/assets/vendor/libs/jquery/jquery.js"></script>
+<script src="../admin/assets/vendor/libs/popper/popper.js"></script>
+<script src="../admin/assets/vendor/js/bootstrap.js"></script>
+<script src="../admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.js"></script>
 
-<script src="../mainshop/mainshop2/admin/assets/vendor/js/menu.js"></script>
+<script src="../admin/assets/vendor/js/menu.js"></script>
 <!-- endbuild -->
 
 <!-- Vendors JS -->
-<script src="../mainshop/mainshop2/admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
+<script src="../admin/assets/vendor/libs/apex-charts/apexcharts.js"></script>
 
 <!-- Main JS -->
-<script src="../mainshop/mainshop2/admin/assets/js/main.js"></script>
+<script src="../admin/assets/js/main.js"></script>
 
 <!-- Page JS -->
-<script src="../mainshop/mainshop2/admin/assets/js/dashboards-analytics.js"></script>
+<script>
+    function updateProductStatus(productId) {
+        $.ajax({
+            type: 'POST',
+            url: '/updateProductStatus',
+            data: { sanPhamID: sanPhamID },
+            success: function(response) {
+                // Handle success, you can reload the page or update the UI as needed
+                console.log(response);
+            },
+            error: function(error) {
+                // Handle error
+                console.error(error);
+            }
+        });
+    }
+</script>
+<script src="../admin/assets/js/dashboards-analytics.js"></script>
 <script>
     // Đặt sự kiện khi người dùng ấn Enter trên input
     $('#searchInput').keypress(function (e) {
@@ -677,5 +690,14 @@
 </script>
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
+
+<script>
+    function goToPage() {
+        var pageNumber = document.getElementById("pageInput").value;
+        if (pageNumber > 0 && pageNumber <= ${totalPages}) {
+            window.location.href = "/san-pham/page?page=" + pageNumber;
+        }
+    }
+</script>
 </body>
 </html>
