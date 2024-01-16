@@ -36,10 +36,12 @@ public interface DonHangChiTietService {
     List<DonHangChiTiet>gethuyttt();
     List<DonHangChiTiet>vi(String name);
     void chuyentrangthaicho(UUID id);
+    void chuyentrangthaicho1(UUID id);
     void chuyensangxn(UUID id);
     void chuyensangtc(UUID id);
     void chuyensanghuy(UUID id);
-    void chuyensangchohuy(UUID id,String lydo);
+    void chuyensanghuy1(UUID id);
+    List<DonHangChiTiet> chuyensangchohuy(List<UUID> id,String lydo);
    List<DonHangChiTiet> findkhachHang(String username);
     List<DonHangChiTiet> findkhachHang1(String username);
     List<DonHangChiTiet> findkhachHang2(String username);
