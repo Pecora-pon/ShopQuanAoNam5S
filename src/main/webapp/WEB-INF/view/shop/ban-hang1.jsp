@@ -882,7 +882,7 @@
                                 var amountPaidInput = document.getElementById("amountPaid");
                                 var amountPaidDisplay = document.getElementById("amountPaidDisplay");
                                 var amountToPayDisplay = document.getElementById("amountToPay");
-                                var totalCostString = document.getElementById("totalCost").textContent;
+                                var totalCostString = document.getElementById("totalCost1").textContent;
                                 var totalCost = parseFloat(totalCostString.replace(/\./g, '').replace(',', '.'));
                                 var amountPaid = parseFloat(amountPaidInput.value) || 0;
                                 amountPaidDisplay.textContent = amountPaid.toLocaleString('vi-VN', { style: 'currency', currency: 'VND' });
