@@ -160,7 +160,7 @@ public class ThanhToanController {
         String logname=principal.getName();
         KhachHang khachHang=khachHangRepo.findByUsername(logname);
         donHang.setKhachHang(khachHang);
-        DonHang donHang1= thanhToanService.themmoingay(donHang,id,sl,tt,trang);
+        DonHang donHang1= thanhToanService.themmoingay1(donHang,id,sl,tt,trang);
         model.addAttribute("t",donHang1);
         String donhanggg="http://localhost:8080/detail6/"+donHang.getDonHangID();
         MimeMessage message = mailSender.createMimeMessage();
