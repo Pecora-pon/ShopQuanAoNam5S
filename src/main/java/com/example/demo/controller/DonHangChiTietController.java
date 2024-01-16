@@ -296,7 +296,7 @@ public class DonHangChiTietController {
    }
     @GetMapping("/chuyentttt/{donHangID}")
     public String chuyentttt(@PathVariable("donHangID")UUID id){
-        donHangChiTietService.chuyentrangthaicho(id);
+        donHangChiTietService.chuyentrangthaicho1(id);
         return "redirect:/hien-thi2";
     }
 //   @GetMapping("/hien-thi1")

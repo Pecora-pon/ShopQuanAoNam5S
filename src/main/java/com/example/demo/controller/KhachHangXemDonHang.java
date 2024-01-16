@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import java.security.Principal;
 import java.time.LocalDate;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 
@@ -88,7 +89,7 @@ public class KhachHangXemDonHang {
 //    }
     @GetMapping("/huycho/{donHangID}")
     public String huycho(@PathVariable("donHangID")UUID id){
-        donHangChiTietService.chuyensanghuy(id);
+        donHangChiTietService.chuyensanghuy1(id);
         return "redirect:/choxacnhan";
     }
     @GetMapping("/huyt/{donHangID}")
@@ -102,7 +103,7 @@ public class KhachHangXemDonHang {
         return "redirect:/xacnhan";
     }
     @GetMapping("/huydacho/{donHangID}")
-    public String huyyyy(@PathVariable("donHangID")UUID id,@RequestParam("lyDoHuy")String lydo){
+    public String huyyyy(@PathVariable("donHangID")List<UUID> id,@RequestParam("lyDoHuy")String lydo){
         donHangChiTietService.chuyensangchohuy(id,lydo);
         return "redirect:/dangxem";
     }
