@@ -123,6 +123,33 @@ public class ThanhToanServiceImpl implements ThanhToanService {
         donHangChiTiet.setTrangThai(trangthai);
         donHangChiTiet.setDonHang(donHang1);
         donHangChiTietRepo.save(donHangChiTiet);
+        sanPhamService.capnhat(sanPham, sl);
+//
+
+//        if (donHangChiTiet != null) {
+//            donHangChiTiet.setDonHang(donHang1);
+//            donHangChiTiets.add(donHangChiTiet);
+//        }
+        return donHang1;
+    }
+    @Override
+    public DonHang themmoingay1(DonHang donHang, UUID sanPham, int sl, float tt,int trangthai) {
+        donHang.setNgayDatHang(LocalDate.now());
+        donHang.setTrangThai(0);
+        DonHang donHang1 = donHangRepo.save(donHang);
+        SanPham sanPham1 = sanPhamRepo.findById(sanPham).orElse(null);
+
+//        GiamGia giamGia=giamGiaRepo.findById(gg).orElse(null);
+
+        List<DonHangChiTiet> donHangChiTiets = new ArrayList<>();
+
+        DonHangChiTiet donHangChiTiet = new DonHangChiTiet();
+        donHangChiTiet.setSanPham(sanPham1);
+        donHangChiTiet.setSoLuong(sl);
+        donHangChiTiet.setTongTien(tt);
+        donHangChiTiet.setTrangThai(trangthai);
+        donHangChiTiet.setDonHang(donHang1);
+        donHangChiTietRepo.save(donHangChiTiet);
 //        sanPhamService.capnhat(sanPham, sl);
 //
 
@@ -132,7 +159,6 @@ public class ThanhToanServiceImpl implements ThanhToanService {
 //        }
         return donHang1;
     }
-
     @Override
     public DonHang themmoi2(DonHang donHang, List<GioHang> gioHangList, float tt, DonHangChiTiet donHangChiTiet,int trang) {
         donHang.setNgayDatHang(LocalDate.now());
