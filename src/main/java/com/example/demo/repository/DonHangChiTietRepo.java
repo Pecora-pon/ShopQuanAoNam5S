@@ -199,13 +199,21 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
             "WHERE dhc.trangThai = 3")
     Long getTotalObject();
 
-    @Query("SELECT dhc.ngayNhan AS date, SUM(dhc.tongTien) AS totalRevenue FROM DonHangChiTiet dhc WHERE dhc.trangThai = 3 GROUP BY date,(dhc.ngayNhan)")
+ @Query("SELECT dhc.ngayNhan AS date, SUM(DISTINCT dhc.tongTien) AS totalRevenue " +
+            "FROM DonHangChiTiet dhc " +
+            "WHERE MONTH(dhc.ngayNhan) = MONTH(CURRENT_DATE) AND YEAR(dhc.ngayNhan) = YEAR(CURRENT_DATE) AND dhc.trangThai = 3 " +
+            "GROUP BY date, dhc.ngayNhan")
     List<Object[]> getTotalRevenueByMonthInYear2023();
-    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(dhc.tongTien) AS totalRevenue " +
+    @Query("SELECT MONTH(dhc.ngayNhan) AS month, SUM(DISTINCT dhc.tongTien) AS totalRevenue " +
             "FROM DonHangChiTiet dhc " +
             "WHERE dhc.trangThai = 3 AND MONTH(dhc.ngayNhan) = MONTH(CURRENT_DATE()) " +
             "GROUP BY month(dhc.ngayNhan)")
     List<Object[]> getTotalRevenueForCurrentMonth();
+    @Query("SELECT dhct.donHangChiTietID, SUM(dhct.tongTien) AS totalRevenue " +
+            "FROM DonHangChiTiet dhct " +
+            "WHERE dhct.trangThai = 3 " +
+            "GROUP BY dhct.donHangChiTietID")
+    List<Object[]> calculateTotalAmountByDonHangChiTietID();
 
     @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 0")
     long countDistinctDonHangByTrangThai0();
@@ -225,7 +233,9 @@ public interface DonHangChiTietRepo extends JpaRepository<DonHangChiTiet, Intege
     @Query("SELECT COUNT(DISTINCT dhc.donHang) FROM DonHangChiTiet dhc WHERE dhc.trangThai = 5")
     long countDistinctDonHangByTrangThai5();
 
-    List<DonHangChiTiet> findByTrangThai(int trangThai);
+     List<DonHangChiTiet> findByTrangThai(int trangThai);
+    @Query("SELECT SUM(DISTINCT d.tongTien) FROM DonHangChiTiet d WHERE d.trangThai = :trangThai")
+    Float calculateDistinctTotalTongTien(@Param("trangThai") int trangThai);
 
 
 }
